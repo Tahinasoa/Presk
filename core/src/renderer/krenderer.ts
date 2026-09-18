@@ -29,20 +29,9 @@ class KRenderer {
         this._rootElement.appendChild(this._app.canvas);
     }
 
-    draw() {
-        const square = new Graphics();
-
-        square
-            .rect(0, 0, 100, 100)
-            .fill('#3498db');
-
-        square.x = 350;
-        square.y = 250;
-
-        this._app.stage.addChild(square);
+    add(graphic: Graphics) {
+        this._app.stage.addChild(graphic);
     }
-
 }
-
 
 export default KRenderer;

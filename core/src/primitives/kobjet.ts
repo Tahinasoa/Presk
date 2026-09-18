@@ -8,11 +8,11 @@ export interface KObjectParams{
 
 class KObject {
     readonly type:string = "KObject" ;
-    private _id : string ;
-    private _x : number ;
-    private _y : number ;
-    private _scale : number ;
-    private _rotation : number;
+    protected _id : string ;
+    protected _x : number ;
+    protected _y : number ;
+    protected _scale : number ;
+    protected _rotation : number;
 
     constructor({id, x, y, scale=1, rotation=0}:KObjectParams){
         this._id = id ;

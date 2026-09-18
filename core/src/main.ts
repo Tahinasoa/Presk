@@ -1,5 +1,6 @@
 import KRenderer from "./renderer/krenderer";
 import KScene from "./primitives/kscene";
+import KGraphicRectangle from "./renderer/kgraphicRectangle";
 
 const appRoot = document.querySelector("#app") ?? document.body;
 
@@ -14,11 +15,17 @@ const scene = new KScene({
     width: 800,
     height: 600,
 });
-
 const renderer = new KRenderer({
     root: "#app",
     scene,
 });
 
 await renderer.init();
-renderer.draw();
+
+
+const graphictRectangle = new KGraphicRectangle({
+    renderer: renderer,
+    object: scene,
+    width: scene.width,
+    height: scene.height,
+});
