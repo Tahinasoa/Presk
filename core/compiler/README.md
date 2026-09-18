@@ -1,0 +1,1 @@
+it takes a JSON in input an output a playable GSAP timeline
