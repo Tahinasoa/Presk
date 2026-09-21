@@ -1,37 +1,55 @@
-import type KScene from "@/primitives/kscene";
-import { Application, Graphics, type Renderer } from "pixi.js";
+// KRenderer owns the PixiJS Application: the actual <canvas> element and
+// its DOM container. It is intentionally "dumb" — it doesn't know about
+// KObject/KScene at all, only about attaching/detaching PixiJS display
+// objects to the stage. KGraphicObjects call add()/remove() on it.
+
+import { Application, type Container, type Renderer } from "pixi.js";
 
 export interface KRendererParams {
-    root: string,
-    scene: KScene,
+  /** CSS selector for the element the <canvas> gets appended into. */
+  root: string;
+  width: number;
+  height: number;
+  background?: string;
 }
 
 class KRenderer {
-    private _app: Application<Renderer>;
-    private _scene: KScene;
-    private _rootElement: Element
+  private _app: Application<Renderer>;
+  private _rootElement: Element;
+  private _width: number;
+  private _height: number;
+  private _background: string;
 
-    constructor({ scene, root }: KRendererParams) {
-        this._app = new Application();
-        this._scene = scene;
-        const rootElement = document.querySelector(root);
-        if (!rootElement) {
-            throw `You must define root element : ${root}`;
-        }
-        this._rootElement = rootElement;
+  constructor({ root, width, height, background = "#101014" }: KRendererParams) {
+    this._app = new Application();
+    const rootElement = document.querySelector(root);
+    if (!rootElement) {
+      throw new Error(`KRenderer: root element not found for selector "${root}".`);
     }
-    async init() {
-        await this._app.init({
-            width: this._scene.width,
-            height: this._scene.height
-        });
+    this._rootElement = rootElement;
+    this._width = width;
+    this._height = height;
+    this._background = background;
+  }
 
-        this._rootElement.appendChild(this._app.canvas);
-    }
+  async init(): Promise<void> {
+    await this._app.init({
+      width: this._width,
+      height: this._height,
+      background: this._background,
+      antialias: true,
+    });
 
-    add(graphic: Graphics) {
-        this._app.stage.addChild(graphic);
-    }
+    this._rootElement.appendChild(this._app.canvas);
+  }
+
+  add(displayObject: Container): void {
+    this._app.stage.addChild(displayObject);
+  }
+
+  remove(displayObject: Container): void {
+    this._app.stage.removeChild(displayObject);
+  }
 }
 
 export default KRenderer;

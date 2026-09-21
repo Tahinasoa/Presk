@@ -1,3 +1,10 @@
+/*
+ * Minimal page chrome for the Presk demo (core/src/main.ts).
+ * Presk itself renders inside a <canvas> managed by PixiJS; this stylesheet
+ * only styles the page around that canvas. It has no effect on anything
+ * drawn by the engine.
+ */
+
 * {
   box-sizing: border-box;
 }
@@ -12,230 +19,19 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-}
-
-#app {
-  min-height: 100vh;
-}
-
-.scene {
-  width: min(1100px, 90vw);
-  min-height: 100vh;
-  margin: 0 auto;
-
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 70px;
-}
-
-/* ---------- Title ---------- */
-
-.title {
-  max-width: 500px;
-}
-
-.eyebrow {
-  display: block;
-  margin-bottom: 12px;
-
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  color: #777;
-}
-
-h1 {
-  margin: 0;
-
-  font-size: clamp(40px, 6vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-}
-
-/* ---------- Flow ---------- */
-
-.flow {
-  display: grid;
-  grid-template-columns:
-    170px
-    minmax(100px, 1fr)
-    170px
-    minmax(100px, 1fr)
-    170px;
-
   align-items: center;
-  gap: 24px;
-}
-
-/* ---------- Nodes ---------- */
-
-.node {
-  height: 150px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  background: #fff;
-  border: 1px solid #d9d8d3;
-  border-radius: 18px;
-
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.05);
-}
-
-.node-icon {
-  width: 42px;
-  height: 42px;
-  margin-bottom: 14px;
-
-  display: grid;
-  place-items: center;
-
-  background: #111;
-  border-radius: 11px;
-}
-
-.node-icon svg {
-  width: 22px;
-  height: 22px;
-
-  stroke: #fff;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.node-label {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.node-detail {
-  margin-top: 4px;
-
-  font-size: 11px;
-  color: #888;
-}
-
-/* ---------- Connections ---------- */
-
-.connection {
-  position: relative;
-
-  height: 1px;
-  background: #c8c7c2;
-
-  display: flex;
   justify-content: center;
 }
 
-.connection span {
-  position: absolute;
-  top: -24px;
-
-  padding: 3px 8px;
-
-  background: #f4f3ef;
-
-  font-size: 10px;
-  font-weight: 600;
-  color: #777;
-}
-
-/* ---------- Packets ---------- */
-
-.packet {
-  position: absolute;
-  top: 50%;
-
-  width: 10px;
-  height: 10px;
-
-  border-radius: 50%;
-
-  transform: translateY(-50%);
-}
-
-.packet-request {
-  left: 0;
-  background: #111;
-}
-
-.packet-response {
-  right: 0;
-  background: #777;
-}
-
-/* ---------- Response ---------- */
-
-.response-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-
-.response-status {
-  padding: 8px 12px;
-
+#app canvas {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
   border-radius: 8px;
-
-  background: #e7f5e9;
-  color: #28783b;
-
-  font-size: 18px;
-  font-weight: 800;
-}
-
-.response-label {
-  font-size: 11px;
-  color: #888;
-}
-
-/* ---------- Footer ---------- */
-
-.footer {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  font-size: 11px;
-  color: #888;
-}
-
-.step {
-  font-weight: 800;
-  color: #111;
-}
-
-/* ---------- Responsive ---------- */
-
-@media (max-width: 800px) {
-  .scene {
-    padding: 60px 0;
-  }
-
-  .flow {
-    grid-template-columns: 1fr;
-    gap: 36px;
-  }
-
-  .connection {
-    width: 1px;
-    height: 70px;
-    margin: 0 auto;
-  }
-
-  .connection span {
-    top: 50%;
-    left: 14px;
-    transform: translateY(-50%);
-  }
-
-  .packet {
-    left: 50%;
-    right: auto;
-  }
+  /* mockInput.json's scene is 1920x1080; scale it down to fit the viewport
+     for the demo. Real embedding contexts can size the canvas however
+     they want — this is just presentation, not part of the engine. */
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
 }

@@ -1,31 +1,26 @@
-import KRenderer from "./renderer/krenderer";
-import KScene from "./primitives/kscene";
-import KGraphicRectangle from "./renderer/kgraphicRectangle";
+// Demo entry point: wires Presk up and plays compiler/mockInput.json.
+// This is the reference example for how the pieces documented in
+// src/README.md fit together in practice.
+import "./style.css";
+import Presk from "./presk";
+import { registerBuiltins } from "./registry/builtins";
+import { compile } from "./compiler/compiler";
+import type { DslDocument } from "./compiler/types";
+import mockInput from "./compiler/mockInput.json";
 
-const appRoot = document.querySelector("#app") ?? document.body;
+const doc = mockInput as DslDocument;
 
-if (!(appRoot instanceof HTMLElement)) {
-    throw new Error("The app root is not a valid HTML element.");
-}
+const presk = new Presk();
+registerBuiltins(presk);
 
-const scene = new KScene({
-    id: "main-scene",
-    x: 0,
-    y: 0,
-    width: 800,
-    height: 600,
+await presk.init({
+  root: "#app",
+  width: doc.scene.width,
+  height: doc.scene.height,
+  background: doc.scene.background,
 });
-const renderer = new KRenderer({
-    root: "#app",
-    scene,
-});
 
-await renderer.init();
+const timeline = compile(doc, presk);
 
-
-const graphictRectangle = new KGraphicRectangle({
-    renderer: renderer,
-    object: scene,
-    width: scene.width,
-    height: scene.height,
-});
+presk.start(); // starts the single shared ticker (state -> bindings -> redraw)
+timeline.play();

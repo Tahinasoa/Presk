@@ -2,11 +2,16 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Presk</title>
   </head>
 
   <body>
+    <!--
+      Presk renders into this element: KRenderer looks it up by the "root"
+      selector passed to Presk.init() and appends the PixiJS <canvas> to it.
+    -->
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
   </body>

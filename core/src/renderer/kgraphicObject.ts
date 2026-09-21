@@ -1,20 +1,30 @@
-import type KObject from "@/primitives/kobjet";
+// KGraphicObject is the base class for every visual (PixiJS-backed)
+// component. It holds a reference to a KObject and is responsible for
+// reading its current state and pushing it to PixiJS — never the reverse.
+// See renderer/README.md for the full contract.
+
+import type KObject from "@/primitives/kobject";
 import type KRenderer from "./krenderer";
 
 export interface KGraphicObjectParams {
-    renderer : KRenderer ;
-    object: KObject;
+  renderer: KRenderer;
+  object: KObject;
 }
 
-class KGraphicObject {
-    /* this is a temporary implementation real implemenation wont use DOM at all*/
-    protected _object: KObject;
-    constructor({ object}: KGraphicObjectParams) {
-        this._object = object
-    }
-    update(){
-        /* specific to each children */
-    }
+abstract class KGraphicObject {
+  protected _object: KObject;
+  protected _renderer: KRenderer;
+
+  constructor({ object, renderer }: KGraphicObjectParams) {
+    this._object = object;
+    this._renderer = renderer;
+  }
+
+  /** Re-reads `this._object`'s current state and updates the PixiJS display object. */
+  abstract redraw(): void;
+
+  /** Detaches and disposes the underlying PixiJS display object(s). */
+  abstract destroy(): void;
 }
 
 export default KGraphicObject;

@@ -1,8 +1,9 @@
 {
-  "name": "core",
+  "name": "@presk/core",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
+  "description": "Presk engine: DSL compiler, binding engine, and PixiJS renderer.",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,7 +11,7 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "typescript": "~6.0.2",
+    "typescript": "~7.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"
   },

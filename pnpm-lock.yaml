@@ -7,6 +7,12 @@ settings:
 importers:
 
   .:
+    devDependencies:
+      typescript:
+        specifier: ~7.0.2
+        version: 7.0.2
+
+  core:
     dependencies:
       gsap:
         specifier: ^3.15.0

@@ -1,37 +1,43 @@
-import { describe, it, expect } from 'vitest';
-import KObject from './kobjet';
+// Unit tests for KObject. Pure data class, so these run with no browser,
+// no canvas, no PixiJS involved at all (see primitives/README.md).
+import { describe, it, expect } from "vitest";
+import KObject from "./kobject";
 
-describe('KObject', () => {
-  it('initializes properties from constructor args', () => {
-    const obj = new KObject({ id: 'hero', x: 10, y: 20, scale: 2, rotation: 90 });
+describe("KObject", () => {
+  it("initializes properties from constructor args", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20, scale: 2, rotation: 0.5, opacity: 0.8 });
 
-    expect(obj.id).toBe('hero');
+    expect(obj.id).toBe("hero");
     expect(obj.x).toBe(10);
     expect(obj.y).toBe(20);
     expect(obj.scale).toBe(2);
-    expect(obj.rotation).toBe(90);
+    expect(obj.rotation).toBe(0.5);
+    expect(obj.opacity).toBe(0.8);
   });
 
-  it('uses default values when optional args are omitted', () => {
-    const obj = new KObject({ id: 'hero', x: 10, y: 20 });
+  it("uses default values when optional args are omitted", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20 });
 
     expect(obj.scale).toBe(1);
     expect(obj.rotation).toBe(0);
+    expect(obj.opacity).toBe(1);
   });
 
-  it('updates values through setters', () => {
-    const obj = new KObject({ id: 'hero', x: 10, y: 20 });
+  it("updates values through setters", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20 });
 
-    obj.id = 'enemy';
+    obj.id = "enemy";
     obj.x = 15;
     obj.y = 25;
     obj.scale = 3;
     obj.rotation = 45;
+    obj.opacity = 0.2;
 
-    expect(obj.id).toBe('enemy');
+    expect(obj.id).toBe("enemy");
     expect(obj.x).toBe(15);
     expect(obj.y).toBe(25);
     expect(obj.scale).toBe(3);
     expect(obj.rotation).toBe(45);
+    expect(obj.opacity).toBe(0.2);
   });
 });
