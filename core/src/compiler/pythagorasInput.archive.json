@@ -1,0 +1,203 @@
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#090d16"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "mainTitle",
+      "type": "text",
+      "properties": {
+        "text": "The Pythagorean Theorem",
+        "x": 960,
+        "y": 540,
+        "scale": 0,
+        "opacity": 0
+      }
+    },
+    {
+      "action": "transform",
+      "target": "mainTitle",
+      "name": "titleShow",
+      "properties": {
+        "scale": 1.5,
+        "opacity": 1
+      },
+      "duration": 0.8,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "mainTitle",
+      "name": "titleMoveUp",
+      "properties": {
+        "scale": 0.8,
+        "y": 120
+      },
+      "start": "titleShow+=0.8",
+      "duration": 0.6,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "create",
+      "target": "subtitle",
+      "type": "text",
+      "properties": {
+        "text": "A geometric journey through right triangles",
+        "x": 960,
+        "y": 190,
+        "opacity": 0
+      },
+      "start": "titleMoveUp"
+    },
+    {
+      "action": "transform",
+      "target": "subtitle",
+      "name": "subtitleDone",
+      "properties": {
+        "opacity": 0.8
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "card1",
+      "type": "shape",
+      "properties": {
+        "x": 400,
+        "y": 500,
+        "width": 450,
+        "height": 350,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "subtitleDone+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "name": "card1Ready",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "back.out"
+    },
+    {
+      "action": "create",
+      "target": "textCard1",
+      "type": "text",
+      "properties": {
+        "text": "1. The Right Triangle",
+        "x": 400,
+        "y": 380,
+        "opacity": 0
+      },
+      "start": "card1Ready"
+    },
+    {
+      "action": "transform",
+      "target": "textCard1",
+      "name": "text1Done",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "card2",
+      "type": "shape",
+      "properties": {
+        "x": 1070,
+        "y": 500,
+        "width": 450,
+        "height": 350,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "text1Done+=0.4"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "name": "card2Ready",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "back.out"
+    },
+    {
+      "action": "create",
+      "target": "textCard2",
+      "type": "text",
+      "properties": {
+        "text": "2. The Equation: a² + b² = c²",
+        "x": 1070,
+        "y": 380,
+        "opacity": 0
+      },
+      "start": "card2Ready"
+    },
+    {
+      "action": "transform",
+      "target": "textCard2",
+      "name": "text2Done",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "bottomBanner",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 920,
+        "width": 1120,
+        "height": 100,
+        "opacity": 0,
+        "scale": 0.9
+      },
+      "start": "text2Done+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "bottomBanner",
+      "name": "bannerReady",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "power2.out"
+    },
+    {
+      "action": "create",
+      "target": "footerText",
+      "type": "text",
+      "properties": {
+        "text": "Conclusion: Hypotenuse squared equals sum of legs squared.",
+        "x": 960,
+        "y": 920,
+        "opacity": 0
+      },
+      "start": "bannerReady"
+    },
+    {
+      "action": "transform",
+      "target": "footerText",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.4
+    }
+  ]
+}
