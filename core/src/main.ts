@@ -6,9 +6,9 @@ import Presk from "./presk";
 import { registerBuiltins } from "./registry/builtins";
 import { compile } from "./compiler/compiler";
 import type { DslDocument } from "./compiler/types";
-import pythagorasInput from "./compiler/pythagorasInput.json";
+import inputData from "./compiler/input.json";
 
-const doc = pythagorasInput as DslDocument;
+const doc = inputData as DslDocument;
 
 const presk = new Presk();
 registerBuiltins(presk);

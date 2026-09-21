@@ -9,6 +9,8 @@ import KRectangle from "@/primitives/krectangle";
 import KGraphicRectangle from "@/renderer/kgraphicRectangle";
 import KText from "@/primitives/ktext";
 import KGraphicText from "@/renderer/kgraphicText";
+import KLine from "@/primitives/kline";
+import KGraphicLine from "@/renderer/kgraphicLine";
 
 export function registerBuiltins(presk: Presk): void {
   // Backs DSL `"type": "shape"` (see mockInput.json / spec.md examples).
@@ -16,4 +18,7 @@ export function registerBuiltins(presk: Presk): void {
 
   // Backs DSL `"type": "text"`.
   presk.register("text", KText, KGraphicText);
+
+  // Backs DSL `"type": "line"`.
+  presk.register("line", KLine, KGraphicLine);
 }
