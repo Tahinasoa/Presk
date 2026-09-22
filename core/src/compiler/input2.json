@@ -1,0 +1,97 @@
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#080c14"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "movingRect",
+      "type": "shape",
+      "properties": {
+        "x": 1400,
+        "y": 800,
+        "width": 80,
+        "height": 80,
+        "opacity": 1
+      }
+    },
+        {
+      "action": "create",
+      "target": "text",
+      "type": "text",
+      "properties": {
+        "pos" : "movingRect.center",
+        "text": "Hello you, how are you"
+      }
+    },
+    {
+      "action": "create",
+      "target": "anchorRect",
+      "type": "shape",
+      "properties": {
+        "x": 900,
+        "y": 500,
+        "width": 120,
+        "height": 60,
+        "opacity": 1
+      }
+    },
+    {
+      "action": "transform",
+      "target": "movingRect",
+      "name": "moveRect",
+      "properties": {
+        "x": 500
+      },
+      "duration": 5
+    },
+    {
+      "action": "follow",
+      "target": "text",
+      "properties": {
+        "pos": "movingRect.center"
+      },
+      "start": "moveRect"
+    },
+    {
+      "action": "create",
+      "target": "linkLine",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "anchorRect.center.x",
+        "startY": "anchorRect.center.y",
+        "endX": "anchorRect.center.x",
+        "endY": "anchorRect.center.y",
+        "opacity": 1
+      },
+      "start": "moveRect"
+    },
+    {
+      "action": "transform",
+      "target": "linkLine",
+      "name": "drawLine",
+      "properties": {
+        "endX": "movingRect.topLeft.x",
+        "endY": "movingRect.topLeft.y"
+      },
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "follow",
+      "target": "linkLine",
+      "properties": {
+        "startX": "anchorRect.bottomLeft.x",
+        "startY": "anchorRect.bottomLeft.y",
+        "endX": "movingRect.topLeft.x",
+        "endY": "movingRect.topLeft.y"
+      },
+      "start": "drawLine"
+    }
+  ]
+}
