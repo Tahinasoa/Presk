@@ -19,9 +19,6 @@ export interface KObjectParams {
 }
 
 class KObject {
-  /** Discriminant used by the registry/compiler; each subclass overrides it. */
-  readonly type: string = "KObject";
-
   protected _id: string;
   protected _x: number;
   protected _y: number;

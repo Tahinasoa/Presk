@@ -18,8 +18,6 @@ export interface KRectangleParams extends KObjectParams {
 }
 
 class KRectangle extends KObject {
-  override readonly type: string = "KRectangle";
-
   private _width: number;
   private _height: number;
   private _anchorX: number;

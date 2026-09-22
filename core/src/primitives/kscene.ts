@@ -13,8 +13,6 @@ export interface KSceneParams extends KObjectParams {
 }
 
 class KScene extends KObject {
-  override readonly type: string = "KScene";
-
   private _width: number;
   private _height: number;
 

@@ -1,4 +1,4 @@
-// Demo entry point: wires Presk up and plays compiler/mockInput.json.
+// Demo entry point: wires Presk up and plays compiler/input.json.
 // This is the reference example for how the pieces documented in
 // src/README.md fit together in practice.
 import "./style.css";

@@ -13,7 +13,7 @@ of any rendering dependency (no PixiJS import, ever) so that:
 - `types.ts` — shared geometry types (`KPoint`) used across the whole engine.
 - `kobject.ts` — `KObject`, the base class every DSL-creatable type extends.
   Holds the properties common to every object per the spec (§4.1): `x`, `y`,
-  `pos` (as `{ x, y }` alias), `scale`, `rotation`, `opacity`.
+  `pos` (as `{ x, y }` getter/setter), `scale`, `rotation`, and `opacity`.
 - `krectangle.ts` — `KRectangle`, backs the DSL's `"shape"` type. Adds
   `width`/`height` and implements the full corner/bounding-box geometry from
   spec §4.2-4.3 (`topLeft`, `center`, `boundingBox.*`, ...).

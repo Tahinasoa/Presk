@@ -17,8 +17,6 @@ export interface KTextParams extends Omit<KRectangleParams, "width" | "height"> 
 }
 
 class KText extends KRectangle {
-  override readonly type: string = "KText";
-
   private _text: string;
 
   constructor({ text, width = 0, height = 0, ...rest }: KTextParams) {

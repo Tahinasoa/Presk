@@ -43,8 +43,14 @@ describe("evaluateExpression", () => {
     expect(() => evaluateExpression("ghost.x", scene)).toThrow(/unknown reference/);
   });
 
-  it("throws when a point property is not followed by .x or .y", () => {
+  it("resolves nested point properties or objects generically", () => {
     const scene = makeScene();
-    expect(() => evaluateExpression("title.topRight", scene)).toThrow();
+    // topRight returns an object { x, y }, accessing .x yields its number
+    expect(evaluateExpression("title.topRight.x", scene)).toBe(120);
+  });
+
+  it("throws when performing arithmetic on a non-scalar property", () => {
+    const scene = makeScene();
+    expect(() => evaluateExpression("title.topRight + 10", scene)).toThrow(/arithmetic operations require scalar/);
   });
 });

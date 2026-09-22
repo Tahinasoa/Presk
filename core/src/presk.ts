@@ -52,9 +52,8 @@ class Presk {
   private _started = false;
 
   /**
-   * Registers a DSL type as a pair of constructors. Answers the
-   * "Presk.register(KRectangle, KGraphicRectangle)" design question: `type`
-   * is the DSL's `"type"` field (e.g. "shape"), and `create()` uses this
+   * Registers a DSL type name as a pair of constructors (data object + graphic object).
+   * `type` is the DSL's `"type"` field (e.g. "shape", "text"), and `create()` uses this
    * pair to build both halves and link them by id.
    */
   register(type: string, ObjectClass: ObjectCtor, GraphicClass: GraphicCtor): void {

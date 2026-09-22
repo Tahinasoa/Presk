@@ -8,8 +8,6 @@ export interface KLineParams extends KObjectParams {
 }
 
 class KLine extends KObject {
-  override readonly type: string = "KLine";
-
   private _startX: number;
   private _startY: number;
   private _endX: number;

@@ -20,7 +20,10 @@ function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<s
       // "text" properties (e.g. a text object's `text` field) are strings
       // that are *not* expressions — only try to evaluate them as one if
       // they look like a Presk reference/arithmetic expression.
-      resolved[key] = /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) && /[A-Za-z]/.test(value) && value.includes(".")
+      resolved[key] =
+        /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) // 1. Whitelist valid expression characters only
+        && /[A-Za-z]/.test(value)         // 2. Must contain at least one letter (identifies property/variable references)
+        && value.includes(".")            // 3. Must contain at least one dot (identifies object.property access)
         ? evaluateExpression(value, presk.scene)
         : value;
     } else {
