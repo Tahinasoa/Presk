@@ -12,8 +12,8 @@
       "type": "text",
       "properties": {
         "text": "Analysons une phrase",
-        "x": 960,
-        "y": 540,
+        "x": "scene.width / 2",
+        "y": "scene.height / 2",
         "scale": 0.5,
         "opacity": 0
       }
@@ -46,8 +46,8 @@
       "type": "text",
       "properties": {
         "text": "Le petit garçon",
-        "x": 650,
-        "y": 450,
+        "x": "scene.width * 0.34",
+        "y": "scene.height * 0.42",
         "scale": 0.9,
         "opacity": 0
       },
@@ -68,8 +68,8 @@
       "type": "text",
       "properties": {
         "text": "mange",
-        "x": 960,
-        "y": 450,
+        "x": "scene.width * 0.5",
+        "y": "scene.height * 0.42",
         "scale": 0.9,
         "opacity": 0
       },
@@ -99,8 +99,8 @@
       "type": "text",
       "properties": {
         "text": "une pomme",
-        "x": 1270,
-        "y": 450,
+        "x": "scene.width * 0.66",
+        "y": "scene.height * 0.42",
         "scale": 0.9,
         "opacity": 0
       },
@@ -129,8 +129,8 @@
       "target": "qBox",
       "type": "shape",
       "properties": {
-        "x": 960,
-        "y": 680,
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.63",
         "width": 700,
         "height": 100,
         "opacity": 0,
@@ -803,8 +803,8 @@
       "target": "mapPomme",
       "name": "mapPommeDraw",
       "properties": {
-        "endX": 550,
-        "endY": 685
+        "endX": "pWordCod.x",
+        "endY": "pWordCod.topLeft.y"
       },
       "duration": 0.8,
       "ease": "power2.inOut"
@@ -814,7 +814,7 @@
       "target": "mapPomme",
       "properties": {
         "startX": "wordCod.x",
-        "startY": "wordCod.y + 35"
+        "startY": "wordCod.bottomLeft.y"
       },
       "start": "mapPommeDraw"
     },
@@ -838,8 +838,8 @@
       "target": "mapVerbe",
       "name": "mapVerbeDraw",
       "properties": {
-        "endX": 960,
-        "endY": 685
+        "endX": "pWordVerbe.x",
+        "endY": "pWordVerbe.topLeft.y"
       },
       "duration": 0.8,
       "ease": "power2.inOut"
@@ -849,7 +849,7 @@
       "target": "mapVerbe",
       "properties": {
         "startX": "wordVerbe.x",
-        "startY": "wordVerbe.y + 35"
+        "startY": "wordVerbe.bottomLeft.y"
       },
       "start": "mapVerbeDraw"
     },
@@ -873,8 +873,8 @@
       "target": "mapSujet",
       "name": "mapSujetDraw",
       "properties": {
-        "endX": 1350,
-        "endY": 685
+        "endX": "pWordSujet.x",
+        "endY": "pWordSujet.topLeft.y"
       },
       "duration": 0.8,
       "ease": "power2.inOut"
@@ -884,7 +884,7 @@
       "target": "mapSujet",
       "properties": {
         "startX": "wordSujet.x",
-        "startY": "wordSujet.y + 35"
+        "startY": "wordSujet.bottomLeft.y"
       },
       "start": "mapSujetDraw"
     }

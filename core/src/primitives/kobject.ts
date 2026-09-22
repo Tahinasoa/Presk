@@ -62,6 +62,15 @@ class KObject {
     this._y = value;
   }
 
+  get pos(): { x: number; y: number } {
+    return { x: this._x, y: this._y };
+  }
+
+  set pos(value: { x: number; y: number }) {
+    this._x = value.x;
+    this._y = value.y;
+  }
+
   get scale(): number {
     return this._scale;
   }

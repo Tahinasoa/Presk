@@ -21,6 +21,7 @@ describe("KObject", () => {
     expect(obj.scale).toBe(1);
     expect(obj.rotation).toBe(0);
     expect(obj.opacity).toBe(1);
+    expect(obj.pos).toEqual({ x: 10, y: 20 });
   });
 
   it("updates values through setters", () => {
@@ -29,13 +30,15 @@ describe("KObject", () => {
     obj.id = "enemy";
     obj.x = 15;
     obj.y = 25;
+    obj.pos = { x: 50, y: 60 };
     obj.scale = 3;
     obj.rotation = 45;
     obj.opacity = 0.2;
 
     expect(obj.id).toBe("enemy");
-    expect(obj.x).toBe(15);
-    expect(obj.y).toBe(25);
+    expect(obj.x).toBe(50);
+    expect(obj.y).toBe(60);
+    expect(obj.pos).toEqual({ x: 50, y: 60 });
     expect(obj.scale).toBe(3);
     expect(obj.rotation).toBe(45);
     expect(obj.opacity).toBe(0.2);
