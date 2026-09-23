@@ -33,6 +33,7 @@ class KObject {
   protected _scale: number;
   protected _rotation: number;
   protected _opacity: number;
+  protected _visible: boolean;
 
   protected propertyAnimators: Record<string, PropertyAnimator> = {
     x: (value, tl, opts) => {
@@ -58,6 +59,7 @@ class KObject {
   };
 
   create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    this._visible = true;
     const duration = options.duration ?? 0.4;
     const ease = options.ease ?? "power2.out";
     const tl = gsap.timeline();
@@ -87,9 +89,10 @@ class KObject {
     return tl;
   }
 
-  setNow(data: Record<string, unknown>): void {
+  setNow(data: Record<string, unknown>): gsap.core.Timeline {
     const tl = this.transform(data, { duration: 0 });
     tl.progress(1);
+    return tl;
   }
 
   constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
@@ -99,6 +102,15 @@ class KObject {
     this._scale = scale;
     this._rotation = rotation;
     this._opacity = opacity;
+    this._visible = true;
+  }
+
+  get visible(): boolean {
+    return this._visible;
+  }
+
+  set visible(value: boolean) {
+    this._visible = value;
   }
 
   get id(): string {

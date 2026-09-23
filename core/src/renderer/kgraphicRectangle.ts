@@ -31,6 +31,12 @@ class KGraphicRectangle extends KGraphicObject {
   override redraw(): void {
     const rect = this.rect;
 
+    if (!rect.visible) {
+      this._graphics.visible = false;
+      return;
+    }
+    this._graphics.visible = true;
+
     this._graphics.clear();
     
     // Draw fill and optional stroke

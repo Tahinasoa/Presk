@@ -5,40 +5,19 @@
 // (renderer/kgraphicScene.ts) for the visual counterpart that mirrors this
 // registry one-to-one via Presk's registry (presk.ts).
 
-import KObject, { type KObjectParams } from "./kobject";
+import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
+import type KObject from "./kobject";
 
-export interface KSceneParams extends KObjectParams {
-  width: number;
-  height: number;
+export interface KSceneParams extends KAbstractRectangleParams {
+  // width and height are inherited from KAbstractRectangle
 }
 
-class KScene extends KObject {
-  private _width: number;
-  private _height: number;
-
+class KScene extends KAbstractRectangle {
   /** Every live KObject, keyed by its DSL id. Does not include the scene itself. */
   private _objects: Map<string, KObject> = new Map();
 
   constructor(params: KSceneParams) {
     super(params);
-    this._width = params.width;
-    this._height = params.height;
-  }
-
-  get width(): number {
-    return this._width;
-  }
-
-  set width(value: number) {
-    this._width = value;
-  }
-
-  get height(): number {
-    return this._height;
-  }
-
-  set height(value: number) {
-    this._height = value;
   }
 
   /** Registers an object so it becomes resolvable as `<id>.<prop>` in expressions. */

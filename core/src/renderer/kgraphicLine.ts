@@ -28,6 +28,12 @@ class KGraphicLine extends KGraphicObject {
   override redraw(): void {
     const line = this.line;
 
+    if (!line.visible) {
+      this._graphics.visible = false;
+      return;
+    }
+    this._graphics.visible = true;
+
     this._graphics.clear();
 
     const stroke = line.stroke;

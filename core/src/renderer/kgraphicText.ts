@@ -36,6 +36,12 @@ class KGraphicText extends KGraphicObject {
   override redraw(): void {
     const obj = this.kText;
 
+    if (!obj.visible) {
+      this._text.visible = false;
+      return;
+    }
+    this._text.visible = true;
+
     if (this._text.text !== obj.text) {
       this._text.text = obj.text;
       // TODO(primitives/ktext.ts): once text is measured here, write the

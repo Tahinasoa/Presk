@@ -22,6 +22,7 @@ describe("KObject", () => {
     expect(obj.rotation).toBe(0);
     expect(obj.opacity).toBe(1);
     expect(obj.pos).toEqual({ x: 10, y: 20 });
+    expect(obj.visible).toBe(true);
   });
 
   it("updates values through setters", () => {
