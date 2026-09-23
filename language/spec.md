@@ -60,11 +60,12 @@ Toutes les actions (sauf mention contraire) partagent le même bloc de timing : 
 
 Chaque objet expose deux catégories d'accesseurs, utilisables à la fois comme valeurs à définir et comme points de référence dans les expressions (§8). C'est le **seul et unique** vocabulaire de positionnement du DSL : il n'existe pas de raccourcis alternatifs (pas de `left`/`right`/`top`/`bottom`/`centerX`/`centerY`), afin de donner à l'IA génératrice un moyen unique et sans ambiguïté d'exprimer une position.
 
-### 4.1 Scalaires directs
+### 4.1 Scalaires directs et position globale
 
 | Propriété | Description |
 | --- | --- |
 | `x`, `y` | position de l'origine locale de l'objet |
+| `pos` | position globale sous forme d'un objet point `{ x, y }` |
 | `width`, `height` | dimensions locales, avant rotation |
 | `scale`, `rotation`, `opacity` | propriétés visuelles animables |
 

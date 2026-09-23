@@ -11,8 +11,7 @@
       "type" : "shape",
       "target" : "r1",
       "properties" : {
-        "x" : 200,
-        "y" : "scene.bottom",
+        "pos" : "scene.center",
         "width" : "scene.width/2",
         "height" : 1000
       },
