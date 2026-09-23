@@ -1,4 +1,4 @@
-// Demo entry point: wires Presk up and plays compiler/input.json.
+// Demo entry point: wires Presk up and plays compiler/input2.json.
 // This is the reference example for how the pieces documented in
 // src/README.md fit together in practice.
 import "./style.css";
@@ -6,7 +6,7 @@ import Presk from "./presk";
 import { registerBuiltins } from "./registry/builtins";
 import { compile } from "./compiler/compiler";
 import type { DslDocument } from "./compiler/types";
-import inputData from "./compiler/input2.json";
+import inputData from "./compiler/input.json";
 
 const doc = inputData as DslDocument;
 

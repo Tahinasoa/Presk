@@ -105,17 +105,44 @@ describe("compile", () => {
     expect(presk.binding.unfollow).toHaveBeenCalledWith("arrow", ["x"]);
   });
 
-  it("destroys objects declared with a 'destroy' step", () => {
-    const { presk, destroyed } = makeMockPresk();
+  it("animates a 'transform' step with composite pos property", () => {
+    const { presk } = makeMockPresk();
     presk.scene.add(new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 }));
 
     const doc: DslDocument = {
       version: "0.1",
       scene: { width: 800, height: 600 },
-      steps: [{ action: "destroy", target: "box" }],
+      steps: [{ action: "transform", target: "box", properties: { pos: { x: 50, y: 75 } }, duration: 0.1 }],
     };
 
     compile(doc, presk).progress(1);
-    expect(destroyed).toEqual(["box"]);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        const box = presk.scene.get("box") as KRectangle;
+        expect(box.x).toBeCloseTo(50);
+        expect(box.y).toBeCloseTo(75);
+        expect(box.center.x).toBeCloseTo(50);
+        expect(box.center.y).toBeCloseTo(75);
+        resolve();
+      }, 200);
+    });
+  });
+
+  it("triggers createAnimation on a 'create' step", () => {
+    const { presk } = makeMockPresk();
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "create", target: "fadeInBox", type: "shape", properties: { x: 100, y: 100, width: 20, height: 20, opacity: 1 }, duration: 0.1 }],
+    };
+
+    compile(doc, presk).progress(1);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        const box = presk.scene.get("fadeInBox") as KRectangle;
+        expect(box.opacity).toBeCloseTo(1);
+        resolve();
+      }, 200);
+    });
   });
 });

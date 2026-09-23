@@ -7,6 +7,7 @@
 
 import KObject, { type KObjectParams } from "./kobject";
 import type { KPoint } from "./types";
+import gsap from "gsap";
 
 export interface KRectangleParams extends KObjectParams {
   width: number;
@@ -15,6 +16,9 @@ export interface KRectangleParams extends KObjectParams {
   anchorX?: number;
   /** 0 = top, 0.5 = center, 1 = bottom. Defaults to center. */
   anchorY?: number;
+  fill?: number;
+  stroke?: number;
+  strokeWidth?: number;
 }
 
 class KRectangle extends KObject {
@@ -22,13 +26,55 @@ class KRectangle extends KObject {
   private _height: number;
   private _anchorX: number;
   private _anchorY: number;
+  private _fill: number;
+  private _stroke: number;
+  private _strokeWidth: number;
 
-  constructor({ width, height, anchorX = 0.5, anchorY = 0.5, ...rest }: KRectangleParams) {
+  constructor({ width, height, anchorX = 0.5, anchorY = 0.5, fill = 0x9c9c9c, stroke = 0, strokeWidth = 0, ...rest }: KRectangleParams) {
     super(rest);
     this._width = width;
     this._height = height;
     this._anchorX = anchorX;
     this._anchorY = anchorY;
+    this._fill = fill;
+    this._stroke = stroke;
+    this._strokeWidth = strokeWidth;
+
+    Object.assign(this.propertyAnimators, {
+      width: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _width: value, ...opts }, 0);
+      },
+      height: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _height: value, ...opts }, 0);
+      },
+      anchorX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _anchorX: value, ...opts }, 0);
+      },
+      anchorY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _anchorY: value, ...opts }, 0);
+      },
+      fill: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _fill: value, ...opts }, 0);
+      },
+      stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _stroke: value, ...opts }, 0);
+      },
+      strokeWidth: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _strokeWidth: value, ...opts }, 0);
+      },
+    });
+  }
+
+  override createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    const duration = options.duration ?? 0.4;
+    const ease = options.ease ?? "power2.out";
+    const tl = gsap.timeline();
+    const finalScale = this._scale;
+    const finalOpacity = this._opacity;
+    this._scale = 0;
+    this._opacity = 0;
+    tl.to(this, { _scale: finalScale, _opacity: finalOpacity, duration, ease }, 0);
+    return tl;
   }
 
   get width(): number {
@@ -61,6 +107,30 @@ class KRectangle extends KObject {
 
   set anchorY(value: number) {
     this._anchorY = value;
+  }
+
+  get fill(): number {
+    return this._fill;
+  }
+
+  set fill(value: number) {
+    this._fill = value;
+  }
+
+  get stroke(): number {
+    return this._stroke;
+  }
+
+  set stroke(value: number) {
+    this._stroke = value;
+  }
+
+  get strokeWidth(): number {
+    return this._strokeWidth;
+  }
+
+  set strokeWidth(value: number) {
+    this._strokeWidth = value;
   }
 
   // ---- Center & rotation pivot ----
@@ -98,80 +168,78 @@ class KRectangle extends KObject {
    * projected into scene coordinates after scale + rotation around center.
    */
   private getCorner(localX: number, localY: number): KPoint {
-    const center = this.center;
     const cos = Math.cos(this.rotation);
     const sin = Math.sin(this.rotation);
+    const rx = (localX - this._anchorX) * this._width;
+    const ry = (localY - this._anchorY) * this._height;
 
-    const dx = localX * this._width * this.scale;
-    const dy = localY * this._height * this.scale;
+    // Scale
+    const sx = rx * this.scale;
+    const sy = ry * this.scale;
 
+    // Rotate around anchor (x, y)
     return {
-      x: center.x + dx * cos - dy * sin,
-      y: center.y + dx * sin + dy * cos,
+      x: this.x + sx * cos - sy * sin,
+      y: this.y + sx * sin + sy * cos,
     };
   }
 
-  // ---- Real corners (spec §4.2 — follow rotation) ----
-
   get topLeft(): KPoint {
-    return this.getCorner(-0.5, -0.5);
+    return this.getCorner(0, 0);
   }
 
   get topRight(): KPoint {
-    return this.getCorner(0.5, -0.5);
+    return this.getCorner(1, 0);
   }
 
   get bottomRight(): KPoint {
-    return this.getCorner(0.5, 0.5);
+    return this.getCorner(1, 1);
   }
 
   get bottomLeft(): KPoint {
-    return this.getCorner(-0.5, 0.5);
+    return this.getCorner(0, 1);
   }
 
-  get corners(): KPoint[] {
-    return [this.topLeft, this.topRight, this.bottomRight, this.bottomLeft];
-  }
-
-  // ---- Axis-aligned bounding box (spec §4.3 — boundingBox.*) ----
-  // TODO(spec §4.3): not yet wired into the expression evaluator
-  // (binding/expression.ts), which only resolves the real corners above.
-
+  /**
+   * Bounding box axis-aligned (spec §4.3). Recomputed after rotation.
+   */
   get boundingBox(): { topLeft: KPoint; topRight: KPoint; bottomLeft: KPoint; bottomRight: KPoint; center: KPoint } {
-    const xs = this.corners.map((p) => p.x);
-    const ys = this.corners.map((p) => p.y);
-    const left = Math.min(...xs);
-    const right = Math.max(...xs);
-    const top = Math.min(...ys);
-    const bottom = Math.max(...ys);
+    const corners = [this.topLeft, this.topRight, this.bottomLeft, this.bottomRight];
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+    for (const c of corners) {
+      if (c.x < minX) minX = c.x;
+      if (c.x > maxX) maxX = c.x;
+      if (c.y < minY) minY = c.y;
+      if (c.y > maxY) maxY = c.y;
+    }
 
     return {
-      topLeft: { x: left, y: top },
-      topRight: { x: right, y: top },
-      bottomLeft: { x: left, y: bottom },
-      bottomRight: { x: right, y: bottom },
-      center: { x: (left + right) / 2, y: (top + bottom) / 2 },
+      topLeft: { x: minX, y: minY },
+      topRight: { x: maxX, y: minY },
+      bottomLeft: { x: minX, y: maxY },
+      bottomRight: { x: maxX, y: maxY },
+      center: { x: (minX + maxX) / 2, y: (minY + maxY) / 2 },
     };
   }
 
-  // ---- Hit-testing helpers (not part of the DSL yet, kept for lib/ authors) ----
-
-  /** Precise point-in-rectangle test, accounting for rotation. */
   containsPoint(px: number, py: number): boolean {
-    const center = this.center;
     const cos = Math.cos(-this.rotation);
     const sin = Math.sin(-this.rotation);
-
-    const dx = px - center.x;
-    const dy = py - center.y;
-
+    const dx = px - this.x;
+    const dy = py - this.y;
     const localX = dx * cos - dy * sin;
     const localY = dx * sin + dy * cos;
 
-    const halfW = (this._width * this.scale) / 2;
-    const halfH = (this._height * this.scale) / 2;
+    const left = (0 - this._anchorX) * this._width * this.scale;
+    const right = (1 - this._anchorX) * this._width * this.scale;
+    const top = (0 - this._anchorY) * this._height * this.scale;
+    const bottom = (1 - this._anchorY) * this._height * this.scale;
 
-    return localX >= -halfW && localX <= halfW && localY >= -halfH && localY <= halfH;
+    return localX >= left && localX <= right && localY >= top && localY <= bottom;
   }
 }
 

@@ -9,6 +9,14 @@
 //     `gsap.to(kObject, { x: 100 })`, since they're plain getters/setters
 //     on a plain object.
 
+import gsap from "gsap";
+
+export type PropertyAnimator = (
+  value: unknown,
+  tl: gsap.core.Timeline,
+  options: { duration: number; ease?: string }
+) => void;
+
 export interface KObjectParams {
   id: string;
   x: number;
@@ -25,6 +33,64 @@ class KObject {
   protected _scale: number;
   protected _rotation: number;
   protected _opacity: number;
+
+  protected propertyAnimators: Record<string, PropertyAnimator> = {
+    x: (value, tl, opts) => {
+      tl.to(this, { _x: value, ...opts }, 0);
+    },
+    y: (value, tl, opts) => {
+      tl.to(this, { _y: value, ...opts }, 0);
+    },
+    pos: (value, tl, opts) => {
+      const { x, y } = value as { x: number; y: number };
+      this.propertyAnimators.x(x, tl, opts);
+      this.propertyAnimators.y(y, tl, opts);
+    },
+    scale: (value, tl, opts) => {
+      tl.to(this, { _scale: value, ...opts }, 0);
+    },
+    rotation: (value, tl, opts) => {
+      tl.to(this, { _rotation: value, ...opts }, 0);
+    },
+    opacity: (value, tl, opts) => {
+      tl.to(this, { _opacity: value, ...opts }, 0);
+    },
+  };
+
+  createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    const duration = options.duration ?? 0.4;
+    const ease = options.ease ?? "power2.out";
+    const tl = gsap.timeline();
+    
+    const targetX = this._x;
+    const targetY = this._y;
+    const targetOpacity = this._opacity;
+
+    // Start slightly above and transparent, dropping onto the target data
+    this._x = targetX;
+    this._y = targetY - 40;
+    this._opacity = 0;
+
+    tl.to(this, { _x: targetX, _y: targetY, _opacity: targetOpacity, duration, ease }, 0);
+    return tl;
+  }
+
+  transform(data: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
+    const tl = gsap.timeline();
+    for (const [key, value] of Object.entries(data)) {
+      const animator = this.propertyAnimators[key];
+      if (!animator) {
+        throw new Error(`${this.constructor.name}: no animator registered for property "${key}".`);
+      }
+      animator(value, tl, options);
+    }
+    return tl;
+  }
+
+  setNow(data: Record<string, unknown>): void {
+    const tl = this.transform(data, { duration: 0 });
+    tl.progress(1);
+  }
 
   constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
     this._id = id;

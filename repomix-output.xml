@@ -1,0 +1,4539 @@
+This file is a merged representation of the entire codebase, combined into a single document by Repomix.
+
+<file_summary>
+This section contains a summary of this file.
+
+<purpose>
+This file contains a packed representation of the entire repository's contents.
+It is designed to be easily consumable by AI systems for analysis, code review,
+or other automated processes.
+</purpose>
+
+<file_format>
+The content is organized as follows:
+1. This summary section
+2. Repository information
+3. Directory structure
+4. Repository files (if enabled)
+5. Multiple file entries, each consisting of:
+  - File path as an attribute
+  - Full contents of the file
+</file_format>
+
+<usage_guidelines>
+- This file should be treated as read-only. Any changes should be made to the
+  original repository files, not this packed version.
+- When processing this file, use the file path to distinguish
+  between different files in the repository.
+- Be aware that this file may contain sensitive information. Handle it with
+  the same level of security as you would the original repository.
+</usage_guidelines>
+
+<notes>
+- Some files may have been excluded based on .gitignore rules and Repomix's configuration
+- Binary files are not included in this packed representation. Please refer to the Repository Structure section for a complete list of file paths, including binary files
+- Files matching patterns in .gitignore are excluded
+- Files matching default ignore patterns are excluded
+- Files are sorted by Git change count (files with more changes are at the bottom)
+</notes>
+
+</file_summary>
+
+<directory_structure>
+core/
+  public/
+    favicon.svg
+  src/
+    binding/
+      bindingEngine.test.ts
+      bindingEngine.ts
+      expression.test.ts
+      expression.ts
+      README.md
+    compiler/
+      compiler.test.ts
+      compiler.ts
+      input.json
+      input2.json
+      pythagorasInput.archive.json
+      README.md
+      types.ts
+    primitives/
+      kline.test.ts
+      kline.ts
+      kobject.test.ts
+      kobject.ts
+      krectangle.test.ts
+      krectangle.ts
+      kscene.ts
+      ktext.ts
+      README.md
+      types.ts
+    registry/
+      builtins.ts
+      README.md
+    renderer/
+      kgraphicLine.ts
+      kgraphicObject.ts
+      kgraphicRectangle.ts
+      kgraphicScene.ts
+      kgraphicText.ts
+      krenderer.ts
+      README.md
+    main.ts
+    presk.ts
+    README.md
+    style.css
+  index.html
+  package.json
+  tsconfig.json
+  vite.config.ts
+language/
+  spec.md
+.gitignore
+package.json
+pnpm-workspace.yaml
+README.md
+</directory_structure>
+
+<files>
+This section contains the contents of the repository's files.
+
+<file path="core/public/favicon.svg">
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="46" fill="none" viewBox="0 0 48 46"><path fill="#863bff" d="M25.946 44.938c-.664.845-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.287c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.497 0-3.578-1.842-3.578H1.237c-.92 0-1.456-1.04-.92-1.788L10.013.474c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.579 1.842 3.579h11.377c.943 0 1.473 1.088.89 1.83L25.947 44.94z" style="fill:#863bff;fill:color(display-p3 .5252 .23 1);fill-opacity:1"/><mask id="a" width="48" height="46" x="0" y="0" maskUnits="userSpaceOnUse" style="mask-type:alpha"><path fill="#000" d="M25.842 44.938c-.664.844-2.021.375-2.021-.698V33.937a2.26 2.26 0 0 0-2.262-2.262H10.183c-.92 0-1.456-1.04-.92-1.788l7.48-10.471c1.07-1.498 0-3.579-1.842-3.579H1.133c-.92 0-1.456-1.04-.92-1.787L9.91.473c.214-.297.556-.474.92-.474h28.894c.92 0 1.456 1.04.92 1.788l-7.48 10.471c-1.07 1.498 0 3.578 1.842 3.578h11.377c.943 0 1.473 1.088.89 1.832L25.843 44.94z" style="fill:#000;fill-opacity:1"/></mask><g mask="url(#a)"><g filter="url(#b)"><ellipse cx="5.508" cy="14.704" fill="#ede6ff" rx="5.508" ry="14.704" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -4.47 31.516)"/></g><g filter="url(#c)"><ellipse cx="10.399" cy="29.851" fill="#ede6ff" rx="10.399" ry="29.851" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -39.328 7.883)"/></g><g filter="url(#d)"><ellipse cx="5.508" cy="30.487" fill="#7e14ff" rx="5.508" ry="30.487" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -25.913 -14.639)scale(1 -1)"/></g><g filter="url(#e)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.814 -32.644 -3.334)scale(1 -1)"/></g><g filter="url(#f)"><ellipse cx="5.508" cy="30.599" fill="#7e14ff" rx="5.508" ry="30.599" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="matrix(.00324 1 1 -.00324 -34.34 30.47)"/></g><g filter="url(#g)"><ellipse cx="14.072" cy="22.078" fill="#ede6ff" rx="14.072" ry="22.078" style="fill:#ede6ff;fill:color(display-p3 .9275 .9033 1);fill-opacity:1" transform="rotate(93.35 24.506 48.493)scale(-1 1)"/></g><g filter="url(#h)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#i)"><ellipse cx="3.47" cy="21.501" fill="#7e14ff" rx="3.47" ry="21.501" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(89.009 28.708 47.59)scale(-1 1)"/></g><g filter="url(#j)"><ellipse cx=".387" cy="8.972" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(39.51 .387 8.972)"/></g><g filter="url(#k)"><ellipse cx="47.523" cy="-6.092" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 47.523 -6.092)"/></g><g filter="url(#l)"><ellipse cx="41.412" cy="6.333" fill="#47bfff" rx="5.971" ry="9.665" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 41.412 6.333)"/></g><g filter="url(#m)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#n)"><ellipse cx="-1.879" cy="38.332" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 -1.88 38.332)"/></g><g filter="url(#o)"><ellipse cx="35.651" cy="29.907" fill="#7e14ff" rx="4.407" ry="29.108" style="fill:#7e14ff;fill:color(display-p3 .4922 .0767 1);fill-opacity:1" transform="rotate(37.892 35.651 29.907)"/></g><g filter="url(#p)"><ellipse cx="38.418" cy="32.4" fill="#47bfff" rx="5.971" ry="15.297" style="fill:#47bfff;fill:color(display-p3 .2799 .748 1);fill-opacity:1" transform="rotate(37.892 38.418 32.4)"/></g></g><defs><filter id="b" width="60.045" height="41.654" x="-19.77" y="16.149" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="c" width="90.34" height="51.437" x="-54.613" y="-7.533" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="d" width="79.355" height="29.4" x="-49.64" y="2.03" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="e" width="79.579" height="29.4" x="-45.045" y="20.029" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="f" width="79.579" height="29.4" x="-43.513" y="21.178" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="g" width="74.749" height="58.852" x="15.756" y="-17.901" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="7.659"/></filter><filter id="h" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="i" width="61.377" height="25.362" x="23.548" y="2.284" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="j" width="56.045" height="63.649" x="-27.636" y="-22.853" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="k" width="54.814" height="64.646" x="20.116" y="-38.415" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="l" width="33.541" height="35.313" x="24.641" y="-11.323" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="m" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="n" width="54.814" height="64.646" x="-29.286" y="6.009" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="o" width="54.814" height="64.646" x="8.244" y="-2.416" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter><filter id="p" width="39.409" height="43.623" x="18.713" y="10.588" color-interpolation-filters="sRGB" filterUnits="userSpaceOnUse"><feFlood flood-opacity="0" result="BackgroundImageFix"/><feBlend in="SourceGraphic" in2="BackgroundImageFix" result="shape"/><feGaussianBlur result="effect1_foregroundBlur_2002_17158" stdDeviation="4.596"/></filter></defs></svg>
+</file>
+
+<file path="core/src/binding/bindingEngine.test.ts">
+// Tests the pull-based follow/unfollow semantics (spec §10).
+import { describe, it, expect } from "vitest";
+import KScene from "@/primitives/kscene";
+import KRectangle from "@/primitives/krectangle";
+import BindingEngine from "./bindingEngine";
+
+function setup() {
+  const scene = new KScene({ id: "scene", x: 0, y: 0, width: 1000, height: 1000 });
+  const a = new KRectangle({ id: "a", x: 10, y: 0, width: 10, height: 10 });
+  const b = new KRectangle({ id: "b", x: 0, y: 0, width: 10, height: 10 });
+  scene.add(a);
+  scene.add(b);
+  const binding = new BindingEngine(scene);
+  return { scene, a, b, binding };
+}
+
+describe("BindingEngine", () => {
+  it("copies a followed value on flush()", () => {
+    const { a, b, binding } = setup();
+    binding.follow("b", { x: "a.x" });
+
+    expect(b.x).toBe(0); // not yet flushed
+    binding.flush();
+    expect(b.x).toBe(10);
+
+    a.x = 42;
+    binding.flush();
+    expect(b.x).toBe(42);
+  });
+
+  it("stops updating after unfollow()", () => {
+    const { a, b, binding } = setup();
+    binding.follow("b", { x: "a.x" });
+    binding.flush();
+    binding.unfollow("b", ["x"]);
+
+    a.x = 999;
+    binding.flush();
+    expect(b.x).toBe(10); // frozen at last known value
+  });
+
+  it("clear() removes all bindings for a target", () => {
+    const { binding } = setup();
+    binding.follow("b", { x: "a.x", y: "a.y" });
+    binding.clear("b");
+
+    expect(binding.isFollowing("b", "x")).toBe(false);
+    expect(binding.isFollowing("b", "y")).toBe(false);
+  });
+});
+</file>
+
+<file path="core/src/binding/bindingEngine.ts">
+// BindingEngine implements the DSL's `follow`/`unfollow` actions (spec §10)
+// as a pull-based system: `follow(id, { x: "other.x" })` just registers an
+// expression string per property; `flush()` (called once per tick by
+// Presk) re-evaluates every registered expression and applies the result
+// via target.setNow() to respect component property animators.
+//
+// See binding/README.md for why this is pull-based rather than event/proxy
+// driven, and for the known limitations (chained-binding lag, no cycle
+// detection).
+
+import type KScene from "@/primitives/kscene";
+import { evaluateExpression } from "./expression";
+
+class BindingEngine {
+  private _scene: KScene;
+  /** targetId -> (propName -> expression source) */
+  private _bindings: Map<string, Map<string, string>> = new Map();
+
+  constructor(scene: KScene) {
+    this._scene = scene;
+  }
+
+  /** Registers/replaces a `follow` binding for one or more properties of `targetId`. */
+  follow(targetId: string, properties: Record<string, string>): void {
+    let props = this._bindings.get(targetId);
+    if (!props) {
+      props = new Map();
+      this._bindings.set(targetId, props);
+    }
+    for (const [prop, expression] of Object.entries(properties)) {
+      props.set(prop, expression);
+    }
+  }
+
+  /** Stops following the given properties (spec §10.4). If omitted, stops all of them. */
+  unfollow(targetId: string, properties?: string[]): void {
+    const props = this._bindings.get(targetId);
+    if (!props) return;
+
+    if (!properties) {
+      this._bindings.delete(targetId);
+      return;
+    }
+    for (const prop of properties) props.delete(prop);
+    if (props.size === 0) this._bindings.delete(targetId);
+  }
+
+  /** Drops every binding for a destroyed object (called by Presk.destroy()). */
+  clear(targetId: string): void {
+    this._bindings.delete(targetId);
+  }
+
+  isFollowing(targetId: string, prop: string): boolean {
+    return this._bindings.get(targetId)?.has(prop) ?? false;
+  }
+
+  /** Re-evaluates every active binding and writes the result onto its target. Called once per tick. */
+  flush(): void {
+    for (const [targetId, props] of this._bindings) {
+      const target = this._scene.get(targetId);
+      if (!target) continue; // target was destroyed without an explicit unfollow
+      const data: Record<string, unknown> = {};
+      for (const [prop, expression] of props) {
+        data[prop] = evaluateExpression(expression, this._scene);
+      }
+      target.setNow(data);
+    }
+  }
+}
+
+export default BindingEngine;
+</file>
+
+<file path="core/src/binding/README.md">
+# binding/
+
+Implements the DSL's positioning expressions (spec §8) and the `follow`
+action (spec §10) as a **pull-based** binding system: no proxies, no
+subscriptions. Every tick, each active binding just re-runs its expression
+and writes the result onto its target.
+
+This was a deliberate simplification for v1 (see the chat/design log this
+project came out of): GSAP already mutates plain object properties directly,
+so a reactive/proxy layer would fight GSAP rather than help it. Polling is
+also trivially easy to reason about and debug.
+
+## Files
+
+- `expression.ts` — parses and evaluates the small arithmetic expression
+  grammar from spec §8.2 (`identifier.prop`, `+ - * /`, numeric literals,
+  chained point props like `title.topRight.x`). Resolves identifiers via a
+  `KScene` (so `"scene.center.x"` and `"someId.x"` both work).
+- `bindingEngine.ts` — `BindingEngine`, the runtime registry of active
+  `follow` bindings (`target id -> prop name -> expression string`) plus the
+  `flush()` method Presk calls once per tick to re-evaluate all of them, grouping
+  properties per target and applying them via `target.setNow()` to fully respect
+  component property animators.
+
+## Known limitations (tracked, not yet fixed — see root README)
+
+- **Chained bindings can lag one frame.** If B follows A, and C follows B,
+  and all three are flushed in a single top-to-bottom pass in registration
+  order, C only sees B's *previous* value unless B happens to be registered
+  before C. A topological sort over the dependency graph (spec §8.4) would
+  fix this properly; not implemented yet.
+- **No cycle detection** (spec §8.5). A `follow` cycle will just keep
+  reading stale values forever instead of raising a compile-time error.
+- **`boundingBox.*` and `pathX`/`pathY`/`pathAngle` are not implemented** in
+  the expression grammar yet (spec §4.3, §9).
+</file>
+
+<file path="core/src/compiler/compiler.test.ts">
+// Tests the DSL -> GSAP timeline compilation in isolation from rendering:
+// PixiJS needs a real <canvas>/WebGL context, which this test suite (run
+// under Node, not a browser) doesn't have. Instead we exercise `compile()`
+// against a minimal mock that behaves like Presk's create/destroy/binding
+// API, and drive the resulting timeline with `tl.progress(1)` to play it
+// to completion synchronously.
+import { describe, it, expect, vi } from "vitest";
+import KScene from "@/primitives/kscene";
+import KRectangle from "@/primitives/krectangle";
+import type Presk from "@/presk";
+import { compile } from "./compiler";
+import type { DslDocument } from "./types";
+
+function makeMockPresk() {
+  const scene = new KScene({ id: "scene", x: 0, y: 0, width: 800, height: 600 });
+  const created: string[] = [];
+  const destroyed: string[] = [];
+
+  const presk = {
+    scene,
+    binding: { follow: vi.fn(), unfollow: vi.fn() },
+    create: vi.fn((_type: string, id: string, props: Record<string, unknown>) => {
+      const obj = new KRectangle({ id, x: 0, y: 0, width: 10, height: 10, ...(props as object) });
+      scene.add(obj);
+      created.push(id);
+      return obj;
+    }),
+    destroy: vi.fn((id: string) => {
+      scene.remove(id);
+      destroyed.push(id);
+    }),
+  } as unknown as Presk;
+
+  return { presk, created, destroyed };
+}
+
+describe("compile", () => {
+  it("creates every object declared with a 'create' step", () => {
+    const { presk, created } = makeMockPresk();
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [
+        { action: "create", target: "box", type: "shape", properties: { x: 10, y: 20 } },
+        { action: "create", target: "label", type: "text", properties: { text: "hi", x: 0, y: 0 } },
+      ],
+    };
+
+    const tl = compile(doc, presk);
+    tl.progress(1); // play the whole timeline synchronously
+
+    expect(created).toEqual(["box", "label"]);
+  });
+
+  it("resolves an expression property once for 'create'", () => {
+    const { presk } = makeMockPresk();
+    presk.scene.add(new KRectangle({ id: "title", x: 100, y: 0, width: 40, height: 20 }));
+
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "create", target: "dot", type: "shape", properties: { x: "title.topRight.x", y: 0 } }],
+    };
+
+    compile(doc, presk).progress(1);
+
+    expect(presk.create).toHaveBeenCalledWith("shape", "dot", expect.objectContaining({ x: 120 }));
+  });
+
+  it("animates a 'transform' step to its target value", () => {
+    const { presk } = makeMockPresk();
+    presk.scene.add(new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 }));
+
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "transform", target: "box", properties: { x: 100 }, duration: 0.1 }],
+    };
+
+    compile(doc, presk).progress(1);
+    // Give the inner gsap.to() tween (started via tl.call at progress(1)) a
+    // moment to complete; duration is tiny (0.1s) so this settles quickly.
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        expect((presk.scene.get("box") as KRectangle).x).toBeCloseTo(100);
+        resolve();
+      }, 200);
+    });
+  });
+
+  it("registers and clears 'follow'/'unfollow' bindings", () => {
+    const { presk } = makeMockPresk();
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [
+        { action: "follow", target: "arrow", properties: { x: "dot.x", y: "dot.y" } },
+        { action: "unfollow", target: "arrow", properties: ["x"] },
+      ],
+    };
+
+    compile(doc, presk).progress(1);
+
+    expect(presk.binding.follow).toHaveBeenCalledWith("arrow", { x: "dot.x", y: "dot.y" });
+    expect(presk.binding.unfollow).toHaveBeenCalledWith("arrow", ["x"]);
+  });
+
+  it("animates a 'transform' step with composite pos property", () => {
+    const { presk } = makeMockPresk();
+    presk.scene.add(new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 }));
+
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "transform", target: "box", properties: { pos: { x: 50, y: 75 } }, duration: 0.1 }],
+    };
+
+    compile(doc, presk).progress(1);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        const box = presk.scene.get("box") as KRectangle;
+        expect(box.x).toBeCloseTo(50);
+        expect(box.y).toBeCloseTo(75);
+        expect(box.center.x).toBeCloseTo(50);
+        expect(box.center.y).toBeCloseTo(75);
+        resolve();
+      }, 200);
+    });
+  });
+
+  it("triggers createAnimation on a 'create' step", () => {
+    const { presk } = makeMockPresk();
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "create", target: "fadeInBox", type: "shape", properties: { x: 100, y: 100, width: 20, height: 20, opacity: 1 }, duration: 0.1 }],
+    };
+
+    compile(doc, presk).progress(1);
+    return new Promise<void>((resolve) => {
+      setTimeout(() => {
+        const box = presk.scene.get("fadeInBox") as KRectangle;
+        expect(box.opacity).toBeCloseTo(1);
+        resolve();
+      }, 200);
+    });
+  });
+});
+</file>
+
+<file path="core/src/compiler/input2.json">
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#080c14"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "movingRect",
+      "type": "shape",
+      "properties": {
+        "x": 1400,
+        "y": 800,
+        "width": 80,
+        "height": 80,
+        "opacity": 1
+      }
+    },
+        {
+      "action": "create",
+      "target": "text",
+      "type": "text",
+      "properties": {
+        "pos" : "movingRect.center",
+        "text": "Hello you, how are you"
+      }
+    },
+    {
+      "action": "create",
+      "target": "anchorRect",
+      "type": "shape",
+      "properties": {
+        "x": 900,
+        "y": 500,
+        "width": 120,
+        "height": 60,
+        "opacity": 1
+      }
+    },
+    {
+      "action": "transform",
+      "target": "movingRect",
+      "name": "moveRect",
+      "properties": {
+        "x": 500
+      },
+      "duration": 5
+    },
+    {
+      "action": "follow",
+      "target": "text",
+      "properties": {
+        "pos": "movingRect.center"
+      },
+      "start": "moveRect"
+    },
+    {
+      "action": "create",
+      "target": "linkLine",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "anchorRect.center.x",
+        "startY": "anchorRect.center.y",
+        "endX": "anchorRect.center.x",
+        "endY": "anchorRect.center.y",
+        "opacity": 1
+      },
+      "start": "moveRect"
+    },
+    {
+      "action": "transform",
+      "target": "linkLine",
+      "name": "drawLine",
+      "properties": {
+        "endX": "movingRect.topLeft.x",
+        "endY": "movingRect.topLeft.y"
+      },
+      "start": "moveRect",
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "follow",
+      "target": "linkLine",
+      "properties": {
+        "startX": "anchorRect.bottomLeft.x",
+        "startY": "anchorRect.bottomLeft.y",
+        "endX": "movingRect.topLeft.x",
+        "endY": "movingRect.topLeft.y"
+      },
+      "start": "drawLine"
+    }
+  ]
+}
+</file>
+
+<file path="core/src/compiler/pythagorasInput.archive.json">
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#090d16"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "mainTitle",
+      "type": "text",
+      "properties": {
+        "text": "The Pythagorean Theorem",
+        "x": 960,
+        "y": 540,
+        "scale": 0,
+        "opacity": 0
+      }
+    },
+    {
+      "action": "transform",
+      "target": "mainTitle",
+      "name": "titleShow",
+      "properties": {
+        "scale": 1.5,
+        "opacity": 1
+      },
+      "duration": 0.8,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "mainTitle",
+      "name": "titleMoveUp",
+      "properties": {
+        "scale": 0.8,
+        "y": 120
+      },
+      "start": "titleShow+=0.8",
+      "duration": 0.6,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "create",
+      "target": "subtitle",
+      "type": "text",
+      "properties": {
+        "text": "A geometric journey through right triangles",
+        "x": 960,
+        "y": 190,
+        "opacity": 0
+      },
+      "start": "titleMoveUp"
+    },
+    {
+      "action": "transform",
+      "target": "subtitle",
+      "name": "subtitleDone",
+      "properties": {
+        "opacity": 0.8
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "card1",
+      "type": "shape",
+      "properties": {
+        "x": 400,
+        "y": 500,
+        "width": 450,
+        "height": 350,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "subtitleDone+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "name": "card1Ready",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "back.out"
+    },
+    {
+      "action": "create",
+      "target": "textCard1",
+      "type": "text",
+      "properties": {
+        "text": "1. The Right Triangle",
+        "x": 400,
+        "y": 380,
+        "opacity": 0
+      },
+      "start": "card1Ready"
+    },
+    {
+      "action": "transform",
+      "target": "textCard1",
+      "name": "text1Done",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "card2",
+      "type": "shape",
+      "properties": {
+        "x": 1070,
+        "y": 500,
+        "width": 450,
+        "height": 350,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "text1Done+=0.4"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "name": "card2Ready",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "back.out"
+    },
+    {
+      "action": "create",
+      "target": "textCard2",
+      "type": "text",
+      "properties": {
+        "text": "2. The Equation: a² + b² = c²",
+        "x": 1070,
+        "y": 380,
+        "opacity": 0
+      },
+      "start": "card2Ready"
+    },
+    {
+      "action": "transform",
+      "target": "textCard2",
+      "name": "text2Done",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "bottomBanner",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 920,
+        "width": 1120,
+        "height": 100,
+        "opacity": 0,
+        "scale": 0.9
+      },
+      "start": "text2Done+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "bottomBanner",
+      "name": "bannerReady",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "power2.out"
+    },
+    {
+      "action": "create",
+      "target": "footerText",
+      "type": "text",
+      "properties": {
+        "text": "Conclusion: Hypotenuse squared equals sum of legs squared.",
+        "x": 960,
+        "y": 920,
+        "opacity": 0
+      },
+      "start": "bannerReady"
+    },
+    {
+      "action": "transform",
+      "target": "footerText",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.4
+    }
+  ]
+}
+</file>
+
+<file path="core/src/compiler/types.ts">
+// TypeScript shape of a Presk DSL document, per language/spec.md §2-§11.
+// Deliberately permissive (properties are Record<string, unknown>) rather
+// than exhaustively typed per action, since expression strings and numeric
+// literals are both valid property values and the exact set of properties
+// depends on the registered type (spec §4.1 lists the common ones, but a
+// lib/ component can add its own).
+
+export type DslAction = "create" | "set" | "transform" | "follow" | "unfollow" | "group" | "ungroup" | "destroy";
+
+export interface DslStep {
+  action: DslAction;
+  target: string;
+  /** Required for "create"; the registered DSL type name (e.g. "shape", "text"). */
+  type?: string;
+  /** Property values: number, or an expression string per spec §8.2. For "unfollow", a list of prop names instead. */
+  properties?: Record<string, unknown> | string[];
+  /** Optional label for this action, referenceable by later steps' `start` (spec §6.1). */
+  name?: string;
+  /** GSAP-style position parameter (spec §6.1). Defaults to sequential (same as ">"). */
+  start?: string | number;
+  /** Seconds. Required for interpolated `transform`s. */
+  duration?: number;
+  /** GSAP easing name (spec §6.3). */
+  ease?: string;
+}
+
+export interface DslDocument {
+  version: string;
+  scene: {
+    width: number;
+    height: number;
+    background?: string;
+  };
+  steps: DslStep[];
+}
+</file>
+
+<file path="core/src/primitives/kline.test.ts">
+import { describe, it, expect } from "vitest";
+import KLine from "./kline";
+
+describe("KLine", () => {
+  it("initializes properties correctly", () => {
+    const line = new KLine({
+      id: "l1",
+      x: 10,
+      y: 20,
+      startX: 0,
+      startY: 0,
+      endX: 100,
+      endY: 50,
+    });
+
+    expect(line.id).toBe("l1");
+    expect(line.x).toBe(10);
+    expect(line.y).toBe(20);
+    expect(line.startX).toBe(0);
+    expect(line.startY).toBe(0);
+    expect(line.endX).toBe(100);
+    expect(line.endY).toBe(50);
+  });
+
+  it("allows updating properties", () => {
+    const line = new KLine({
+      id: "l1",
+      x: 0,
+      y: 0,
+      startX: 0,
+      startY: 0,
+      endX: 50,
+      endY: 50,
+    });
+
+    line.startX = 10;
+    line.startY = 10;
+    line.endX = 90;
+    line.endY = 90;
+
+    expect(line.startX).toBe(10);
+    expect(line.startY).toBe(10);
+    expect(line.endX).toBe(90);
+    expect(line.endY).toBe(90);
+  });
+});
+</file>
+
+<file path="core/src/primitives/krectangle.test.ts">
+// Geometry tests for KRectangle: corners must follow rotation (spec §4.2),
+// boundingBox must stay axis-aligned (spec §4.3).
+import { describe, it, expect } from "vitest";
+import KRectangle from "./krectangle";
+
+describe("KRectangle", () => {
+  it("computes axis-aligned corners with no rotation", () => {
+    const rect = new KRectangle({ id: "r", x: 100, y: 100, width: 40, height: 20 });
+
+    expect(rect.topLeft).toEqual({ x: 80, y: 90 });
+    expect(rect.topRight).toEqual({ x: 120, y: 90 });
+    expect(rect.bottomRight).toEqual({ x: 120, y: 110 });
+    expect(rect.bottomLeft).toEqual({ x: 80, y: 110 });
+    expect(rect.center).toEqual({ x: 100, y: 100 });
+  });
+
+  it("rotates real corners around the center by 90 degrees", () => {
+    const rect = new KRectangle({ id: "r", x: 0, y: 0, width: 40, height: 20, rotation: Math.PI / 2 });
+
+    // A 90deg rotation swaps width/height's contribution to each corner.
+    expect(rect.topLeft.x).toBeCloseTo(10);
+    expect(rect.topLeft.y).toBeCloseTo(-20);
+  });
+
+  it("keeps boundingBox axis-aligned even when the rectangle is rotated", () => {
+    const rect = new KRectangle({ id: "r", x: 0, y: 0, width: 40, height: 20, rotation: Math.PI / 4 });
+    const box = rect.boundingBox;
+
+    // For a 45deg rotation the AABB must be a square-ish diamond envelope:
+    // topLeft.x === bottomLeft.x and topLeft.y === topRight.y.
+    expect(box.topLeft.x).toBeCloseTo(box.bottomLeft.x);
+    expect(box.topLeft.y).toBeCloseTo(box.topRight.y);
+  });
+
+  it("containsPoint accounts for rotation", () => {
+    const rect = new KRectangle({ id: "r", x: 0, y: 0, width: 40, height: 20 });
+
+    expect(rect.containsPoint(0, 0)).toBe(true);
+    expect(rect.containsPoint(30, 0)).toBe(false);
+  });
+});
+</file>
+
+<file path="core/src/primitives/types.ts">
+// Shared geometry types used across primitives, binding and rendering.
+// Kept in their own file (rather than inside kobject.ts/krectangle.ts) so
+// that any layer can import just the shape it needs without pulling in a
+// concrete class.
+
+/** A single point in scene-space coordinates (spec §4). */
+export interface KPoint {
+  x: number;
+  y: number;
+}
+</file>
+
+<file path="core/src/registry/README.md">
+# registry/
+
+The extension point of the engine: where a DSL type name (e.g. `"shape"`,
+`"text"`) is mapped to a `{ KObject subclass, KGraphicObject subclass }`
+pair. This is the mechanism the future `lib/` component packages (per the
+root README) will plug into — a domain package just calls
+`presk.register("resistor", KResistor, KGraphicResistor)`.
+
+## Files
+
+- `builtins.ts` — `registerBuiltins(presk)`, registers the two types the
+  spec's examples currently use: `"shape"` (-> `KRectangle` /
+  `KGraphicRectangle`) and `"text"` (-> `KText` / `KGraphicText`). Called
+  once from `main.ts` before compiling/running a DSL document.
+
+The registry itself (the `Map` and the `register()`/`create()` methods) lives
+on the `Presk` class in `../presk.ts`, not here — this folder only holds
+concrete registrations.
+</file>
+
+<file path="core/src/renderer/kgraphicLine.ts">
+import { Graphics } from "pixi.js";
+import type KLine from "@/primitives/kline";
+import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
+
+export interface KGraphicLineParams extends KGraphicObjectParams {
+  object: KLine;
+  /** Radius of the circles at both ends. Defaults to 4. */
+  circleRadius?: number;
+}
+
+class KGraphicLine extends KGraphicObject {
+  private _graphics: Graphics;
+  private _circleRadius: number;
+
+  constructor(params: KGraphicLineParams) {
+    super(params);
+    this._circleRadius = params.circleRadius ?? 4;
+
+    this._graphics = new Graphics();
+    this._renderer.add(this._graphics);
+    this.redraw();
+  }
+
+  private get line(): KLine {
+    return this._object as KLine;
+  }
+
+  override redraw(): void {
+    const line = this.line;
+
+    this._graphics.clear();
+
+    const stroke = line.stroke;
+    const thickness = line.thickness;
+
+    // Draw line
+    this._graphics
+      .moveTo(line.startX, line.startY)
+      .lineTo(line.endX, line.endY)
+      .stroke({ width: thickness, color: stroke });
+
+    // Draw circle at start point
+    this._graphics
+      .circle(line.startX, line.startY, this._circleRadius)
+      .fill(stroke);
+
+    // Draw circle at end point
+    this._graphics
+      .circle(line.endX, line.endY, this._circleRadius)
+      .fill(stroke);
+
+    this._graphics.position.set(line.x, line.y);
+    this._graphics.rotation = line.rotation;
+    this._graphics.scale.set(line.scale);
+    this._graphics.alpha = line.opacity;
+  }
+
+  override destroy(): void {
+    this._renderer.remove(this._graphics);
+    this._graphics.destroy();
+  }
+}
+
+export default KGraphicLine;
+</file>
+
+<file path="core/src/renderer/kgraphicScene.ts">
+// KGraphicScene is the visual counterpart of KScene (primitives/kscene.ts):
+// a registry of every live KGraphicObject, keyed by the same id as its
+// paired KObject. Presk keeps the two registries in lockstep on every
+// create()/destroy() call (see presk.ts).
+
+import type KGraphicObject from "./kgraphicObject";
+
+class KGraphicScene {
+  private _graphicObjects: Map<string, KGraphicObject> = new Map();
+
+  add(id: string, graphicObject: KGraphicObject): void {
+    this._graphicObjects.set(id, graphicObject);
+  }
+
+  remove(id: string): void {
+    const graphicObject = this._graphicObjects.get(id);
+    graphicObject?.destroy();
+    this._graphicObjects.delete(id);
+  }
+
+  get(id: string): KGraphicObject | undefined {
+    return this._graphicObjects.get(id);
+  }
+
+  /** Redraws every live graphic object. Called once per frame by Presk's ticker. */
+  tick(): void {
+    for (const graphicObject of this._graphicObjects.values()) {
+      graphicObject.redraw();
+    }
+  }
+}
+
+export default KGraphicScene;
+</file>
+
+<file path="core/src/renderer/kgraphicText.ts">
+// Draws a KText (primitives/ktext.ts) as a PixiJS Text object. Paired with
+// KText under the "text" DSL type — see registry/builtins.ts.
+
+import { Text } from "pixi.js";
+import type KText from "@/primitives/ktext";
+import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
+
+export interface KGraphicTextParams extends KGraphicObjectParams {
+  object: KText;
+  fill?: number;
+  fontSize?: number;
+}
+
+class KGraphicText extends KGraphicObject {
+  private _text: Text;
+
+  constructor(params: KGraphicTextParams) {
+    super(params);
+    this._text = new Text({
+      text: params.object.text,
+      style: {
+        fill: params.fill ?? 0xffffff,
+        fontSize: params.fontSize ?? 32,
+        fontWeight: "700",
+      },
+    });
+    this._text.anchor.set(0.5);
+    this._renderer.add(this._text);
+    this.redraw();
+  }
+
+  private get kText(): KText {
+    return this._object as KText;
+  }
+
+  override redraw(): void {
+    const obj = this.kText;
+
+    if (this._text.text !== obj.text) {
+      this._text.text = obj.text;
+      // TODO(primitives/ktext.ts): once text is measured here, write the
+      // real width/height back onto the KText so other objects can anchor
+      // against it via topLeft/center/etc.
+    }
+
+    this._text.position.set(obj.x, obj.y);
+    this._text.scale.set(obj.scale);
+    this._text.rotation = obj.rotation;
+    this._text.alpha = obj.opacity;
+  }
+
+  override destroy(): void {
+    this._renderer.remove(this._text);
+    this._text.destroy();
+  }
+}
+
+export default KGraphicText;
+</file>
+
+<file path="core/src/README.md">
+# core/src — engine internals
+
+This folder implements the Presk engine described in the root `README.md`.
+It has one job: take a DSL document (see `language/spec.md`) and turn it into
+a running, animated, rendered scene.
+
+## Responsibility split
+
+The engine is deliberately split into layers that don't know about each
+other's implementation details. This is the single most important design
+rule in this codebase — respect it when adding code:
+
+```
+compiler/    DSL (JSON) -> calls into Presk + a GSAP timeline
+                 |
+presk.ts     the public API + registry + the unified ticker
+                 |
+        +--------+--------+
+        |                 |
+primitives/          renderer/
+(KObject, KScene)    (KGraphicObject, KGraphicScene, KRenderer)
+"what an object IS"  "how an object is DRAWN"
+no graphics knowledge   PixiJS-specific
+        |                 ^
+        +--- read by -----+
+binding/     (pull-based `follow` expression evaluation)
+```
+
+- **`primitives/`** — plain data model. A `KObject` (and its subclasses like
+  `KRectangle`) knows its own x/y/scale/rotation/opacity and geometry. It
+  never imports PixiJS and never draws anything. You can unit-test this
+  layer with zero DOM/browser/canvas involved (see `kobject.test.ts`).
+- **`renderer/`** — the PixiJS side. A `KGraphicObject` holds a *reference*
+  to a `KObject` and knows how to redraw itself from that object's current
+  state. It never mutates the `KObject` — data flows one way, primitives to
+  renderer, every tick.
+- **`binding/`** — implements the DSL's `follow` action (§10 of the spec) as
+  a **pull-based** binding: every tick, it re-evaluates each active
+  expression and writes the result directly onto the target `KObject`. No
+  proxies, no event subscriptions — see `binding/README.md` for why, and for
+  the known limitation (chained bindings can lag one frame).
+- **`compiler/`** — turns a DSL JSON document into: (1) calls to `Presk`'s
+  registry to create/destroy objects, and (2) a GSAP timeline that drives
+  `transform` animations and `follow` binding windows. It leans heavily on
+  GSAP's own timeline position-parameter syntax (`"<"`, `">"`, `"+=1"`,
+  labels, ...) because the DSL's `start` field (§6.1) was designed to be a
+  1:1 mirror of it.
+- **`registry/`** — where concrete DSL types (`"shape"`, `"text"`, ...) are
+  registered as `{ KObject subclass, KGraphicObject subclass }` pairs. This
+  is the extension point for the future `lib/` component packages.
+- **`presk.ts`** — the `Presk` class: the object the end user (or the
+  compiler) actually talks to. Owns the registry, the `KScene`, the
+  `KGraphicScene`, the `KRenderer`, the binding engine, and the single
+  shared GSAP ticker that drives all four of them in a fixed, deterministic
+  order every frame (state update -> binding flush -> redraw).
+
+## Tick order (why it's deterministic)
+
+`Presk.start()` registers exactly one `gsap.ticker.add()` callback. On every
+frame, in this order:
+
+1. GSAP's own internal engine updates all active tweens (this happens before
+   any `ticker.add()` callback runs — it's built into GSAP itself).
+2. `bindingEngine.flush()` re-evaluates every active `follow` expression and
+   writes the result onto its target `KObject`.
+3. `graphicScene.tick()` calls `redraw()` on every `KGraphicObject`, which
+   reads final values off its paired `KObject` and pushes them to PixiJS.
+
+This means a value can be driven by a tween, then immediately re-read by a
+`follow` on another object, then rendered — all within the same frame, with
+no one-frame lag. See the root README's "Known gaps" for the one thing this
+order does *not* protect you from (dependency cycles between `follow`s).
+</file>
+
+<file path="language/spec.md">
+# Presk : un DSL de présentation animée — Spécification v0.1
+
+## 1. Objectif
+
+Presk permet de décrire une présentation pédagogique animée sous forme d'une suite d'actions.
+
+Il est conçu pour être :
+
+* facilement générable par une IA ;
+* déterministe et strict ;
+* lisible par un humain ;
+* indépendant du moteur graphique utilisé pour le rendu.
+
+Le DSL décrit **ce qui doit apparaître et comment il doit évoluer**, jamais la manière technique de le dessiner.
+
+---
+
+## 2. Structure générale
+
+```json
+{
+  "version": "0.1",
+
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#101014"
+  },
+
+  "steps": []
+}
+```
+
+`steps` est une liste d'actions exécutées dans l'ordre.
+
+---
+
+## 3. Vue d'ensemble des actions
+
+| Action | Rôle |
+| --- | --- |
+| `create` | crée un nouvel objet |
+| `set` | assigne une valeur instantanément, sans interpolation |
+| `transform` | anime une propriété vers une valeur **constante** |
+| `follow` | maintient une propriété égale à une expression, en continu ou sur une progression pilotée |
+| `unfollow` | arrête un `follow` en cours sur une ou plusieurs propriétés |
+| `group` | rattache des objets à un groupe (le crée si nécessaire) |
+| `ungroup` | détache des objets d'un groupe |
+| `destroy` | détruit un objet |
+
+Toutes les actions (sauf mention contraire) partagent le même bloc de timing : `start`, `duration`, `ease` (voir §6).
+
+---
+
+## 4. Système de coordonnées
+
+* Origine `(0, 0)` = **coin supérieur gauche de la scène**.
+* Axe `x` croissant vers la droite, axe `y` croissant vers le bas — convention identique à CSS, SVG et Canvas 2D, choisie pour rester la plus naturelle possible à générer par une IA.
+* Axes en unités arbitraires, indépendantes de la résolution de rendu (`scene.width`/`scene.height` ne servent qu'au rendu final, pas au repère de positionnement).
+
+Chaque objet expose deux catégories d'accesseurs, utilisables à la fois comme valeurs à définir et comme points de référence dans les expressions (§8). C'est le **seul et unique** vocabulaire de positionnement du DSL : il n'existe pas de raccourcis alternatifs (pas de `left`/`right`/`top`/`bottom`/`centerX`/`centerY`), afin de donner à l'IA génératrice un moyen unique et sans ambiguïté d'exprimer une position.
+
+### 4.1 Scalaires directs
+
+| Propriété | Description |
+| --- | --- |
+| `x`, `y` | position de l'origine locale de l'objet |
+| `width`, `height` | dimensions locales, avant rotation |
+| `scale`, `rotation`, `opacity` | propriétés visuelles animables |
+
+### 4.2 Points géométriques (chaînables)
+
+Ces accesseurs retournent un **point**, pas un scalaire directement utilisable dans une expression arithmétique — il faut obligatoirement chaîner `.x` ou `.y` pour en extraire une coordonnée :
+
+| Point | Description |
+| --- | --- |
+| `topLeft`, `topRight`, `bottomLeft`, `bottomRight` | coins réels du rectangle de l'objet ; suivent la rotation, restent toujours sur le coin géométrique de l'objet, tourné ou non |
+| `center` | centre de l'objet |
+
+```
+"x": "title.topRight.x"
+"y": "title.topRight.y"
+```
+
+### 4.3 Boîte englobante (`boundingBox`)
+
+Préfixer un point par `boundingBox.` donne le point correspondant sur la **bounding box axis-aligned**, recalculée après rotation — les 4 coins de cette boîte restent toujours alignés aux axes x/y de la scène, quitte à ce que la boîte change de taille/forme apparente à chaque frame si l'objet tourne. Utile pour du layout ou de la détection de collision, pas pour accrocher visuellement un élément à un coin qui doit suivre la rotation :
+
+```
+"x": "title.boundingBox.topLeft.x"
+"y": "title.boundingBox.center.y"
+```
+
+`scene` est un identifiant réservé désignant la racine, et suit les mêmes règles :
+
+```
+"scene.center.x"
+"scene.width"
+```
+
+---
+
+## 5. Cycle de vie d'un objet
+
+```text
+create → (set | transform | follow | unfollow | group | ungroup)* → destroy
+```
+
+### 5.1 `create`
+
+```json
+{
+  "action": "create",
+  "target": "title",
+  "type": "text",
+  "properties": {
+    "text": "COD, COI et COS",
+    "x": 0,
+    "y": 0
+  }
+}
+```
+
+### 5.2 `set`
+
+Assigne une valeur **instantanément**, sans interpolation ni consommation de durée sur la timeline. Équivalent du `.set()` de GSAP.
+
+```json
+{
+  "action": "set",
+  "target": "dot",
+  "properties": {
+    "x": 0,
+    "opacity": 1
+  }
+}
+```
+
+Règles :
+
+* `duration` est toujours `0` ; une valeur explicite `> 0` est une erreur.
+* `ease` n'a pas de sens et est interdit.
+* `start` reste valide (position dans la timeline).
+* Une expression de type path (§9) à **trois arguments** (valeur animée) est interdite dans un `set` ; seule la forme à deux arguments (valeur figée) est autorisée.
+
+### 5.3 `transform`
+
+Anime une ou plusieurs propriétés vers une **valeur constante**, sur une durée donnée. C'est la seule sémantique de `transform` : une interpolation classique depuis la valeur courante vers une cible fixe, évaluée une seule fois au démarrage de l'action (voir §8.3).
+
+```json
+{
+  "action": "transform",
+  "target": "title",
+  "properties": {
+    "x": 0,
+    "y": 0,
+    "scale": 0.7
+  },
+  "duration": 0.8,
+  "ease": "power2.out"
+}
+```
+
+### 5.4 `destroy`
+
+```json
+{
+  "action": "destroy",
+  "target": "title"
+}
+```
+
+---
+
+## 6. Timing
+
+
+
+Toute action (hors précisions du §5.2 pour `set`) accepte :
+
+```json
+{
+  "start": "...",
+  "duration": 1,
+  "ease": "..."
+}
+```
+
+Les trois propriétés sont indépendantes de l'action elle-même :
+
+```text
+WHAT     → action + target + properties
+WHEN     → start
+HOW LONG → duration
+HOW      → ease
+```
+
+### 6.1 `start`
+
+Détermine quand l'action commence. Valeur par défaut :
+
+```text
+"start": ">"
+```
+
+L'action commence à la fin de l'action précédente. Le moteur doit interpréter `start` comme un **position parameter**, indépendant de l'action elle-même.
+
+Méthodes de timing disponibles (identiques à GSAP) :
+
+| Type / Méthode de timing | Exemple de syntaxe | Description |
+| --- | --- | --- |
+| Temps absolu | `3` ou `"3"` | Démarre exactement à la marque de seconde spécifiée depuis le début de la timeline. |
+| Écart de fin (relatif) | `"+=1"` | Démarre 1 seconde après la fin actuelle de toute la timeline. |
+| Chevauchement de fin (relatif) | `"-=1"` | Démarre 1 seconde avant la fin actuelle de toute la timeline. |
+| Ancre de début précédent | `"<"` | Aligne le début de cette action avec le début de l'action précédente. |
+| Ancre de fin précédent | `">"` | Aligne le début de cette action avec la fin de l'action précédente. |
+| Décalage d'ancre (post-début) | `"<1"` ou `"<+=1"` | Démarre N secondes après le début de l'action précédente. |
+| Décalage d'ancre (pré-début) | `"<-0.5"` ou `"<=-0.5"` | Démarre N secondes avant le début de l'action précédente. |
+| Décalage d'ancre (post-fin) | `">1"` ou `">+=1"` | Démarre N secondes après la fin de l'action précédente. |
+| Décalage d'ancre (pré-fin) | `">-0.5"` ou `">=-0.5"` | Démarre N secondes avant la fin de l'action précédente. |
+| Ancre d'étiquette nommée | `"menuOpen"` | Aligne l'action sur un repère nommé de la timeline. |
+| Décalage d'étiquette | `"menuOpen+=0.5"` / `"-=0.5"` | Démarre N secondes après ou avant une étiquette nommée. |
+
+#### Nommer une action (étiquette de timeline)
+
+Toute action peut recevoir un champ optionnel `name`, qui lui donne une
+**étiquette** utilisable par la suite comme valeur de `start` (§6.1,
+« Ancre d'étiquette nommée »). Ce nom identifie l'**action elle-même**
+dans la timeline, pas l'objet ciblé par `target` — plusieurs actions
+peuvent viser le même `target`, mais chaque `name` doit être unique sur
+l'ensemble de la timeline.
+
+```json
+{
+  "action": "transform",
+  "target": "menu",
+  "name": "menuOpen",
+  "properties": { "x": 0 },
+  "duration": 0.5
+}
+```
+
+```json
+{
+  "action": "create",
+  "target": "codLabel",
+  "type": "text",
+  "properties": { "text": "COD" },
+  "start": "menuOpen+=0.5",
+  "duration": 0.5
+}
+```
+
+Règles :
+
+* `name` est optionnel ; une action sans `name` ne peut simplement pas
+  être référencée comme étiquette par la suite.
+* Un `name` dupliqué sur deux actions distinctes est une erreur de
+  compilation.
+* `name` n'a aucun effet sur l'exécution de l'action elle-même — c'est
+  uniquement un repère pour le système de timing (§6.1).
+
+### 6.2 `duration`
+
+Durée de l'action, en secondes.
+
+```json
+{ "duration": 1.5 }
+```
+
+Une action instantanée utilise `{ "duration": 0 }`.
+
+### 6.3 `ease`
+
+Fonction d'interpolation de la transition, au sens des easing functions GSAP :
+
+```text
+linear
+power1.in / power1.out / power1.inOut
+power2.in / power2.out / power2.inOut
+power3.in / power3.out / power3.inOut
+power4.in / power4.out / power4.inOut
+back.out
+elastic.out
+bounce.out
+```
+
+### 6.4 Exemples
+
+**Démarrer en même temps que l'action précédente**
+
+```json
+{
+  "action": "transform",
+  "target": "title",
+  "properties": { "x": 0, "y": 0, "scale": 0.7 },
+  "start": "<",
+  "duration": 1,
+  "ease": "power2.out"
+}
+```
+
+**Commencer 1 seconde après le début de l'action précédente**
+
+```json
+{
+  "action": "create",
+  "target": "sentence",
+  "type": "text",
+  "properties": {
+    "text": "Paul donne un livre à Marie.",
+    "x": 0,
+    "y": 100
+  },
+  "start": "<1",
+  "duration": 0.5,
+  "ease": "power1.out"
+}
+```
+
+**Commencer 0,5 seconde avant la fin de l'action précédente**
+
+```json
+{
+  "action": "transform",
+  "target": "sentence",
+  "properties": { "opacity": 1 },
+  "start": ">-0.5",
+  "duration": 0.5,
+  "ease": "power1.out"
+}
+```
+
+**Position absolue sur la timeline**
+
+```json
+{
+  "action": "transform",
+  "target": "title",
+  "properties": { "scale": 1 },
+  "start": 3,
+  "duration": 1,
+  "ease": "power2.out"
+}
+```
+
+**Étiquette nommée, avec décalage**
+
+```json
+{
+  "action": "transform",
+  "target": "codLabel",
+  "properties": { "opacity": 1 },
+  "start": "explainCOD+=0.5",
+  "duration": 0.5,
+  "ease": "power1.out"
+}
+```
+
+---
+
+## 7. Groupes
+
+Traité ici car les groupes sont des objets à part entière et interagissent avec le système de points géométriques du §4 — voir §7.3.
+
+### 7.1 `group`
+
+Rattache un ou plusieurs objets à un groupe. Le groupe est créé implicitement si `target` ne correspond à aucun objet existant.
+
+```json
+{
+  "action": "group",
+  "target": "circuitGroup",
+  "properties": {
+    "children": ["wire1", "switch", "lamp"],
+    "keepVisual": true
+  }
+}
+```
+
+`children` accepte un identifiant unique ou un tableau d'identifiants.
+
+`keepVisual` détermine comment sont recalculées les propriétés locales (`x`, `y`, `scale`, `rotation`) de chaque enfant au moment du rattachement :
+
+* **`true`** *(par défaut)* : le moteur calcule la transformation locale de l'enfant de façon à ce que son rendu à l'écran ne change pas, quelle que soit la transformation déjà appliquée au groupe. Concrètement, `local = inverse(groupWorldTransform) × childWorldTransform`.
+* **`false`** : l'enfant garde ses valeurs `x`/`y`/`scale`/`rotation` brutes, mais celles-ci sont désormais interprétées dans le repère du groupe — l'enfant peut donc visuellement « sauter » si le groupe n'est pas à l'identité.
+
+`duration`/`ease` n'ont de sens que si `keepVisual: false` (ils animent alors la transition entre la position visuelle actuelle et la position recalculée dans le nouveau repère). Avec `keepVisual: true`, rien ne change visuellement à l'instant du `group` : une `duration > 0` explicite doit être considérée comme une erreur.
+
+```json
+{
+  "action": "group",
+  "target": "circuitGroup",
+  "properties": {
+    "children": "lamp",
+    "keepVisual": false
+  },
+  "duration": 0.6,
+  "ease": "power2.inOut"
+}
+```
+
+Si un enfant ciblé appartient déjà à un autre groupe, il est **reparenté silencieusement** : retiré de l'ancien groupe, ajouté au nouveau, avec la même sémantique `keepVisual` appliquée par rapport au nouveau parent.
+
+### 7.2 `ungroup`
+
+Détache un ou plusieurs enfants d'un groupe. `target` désigne le groupe et reste obligatoire, pour permettre au moteur de valider que les `children` lui appartiennent bien.
+
+```json
+{
+  "action": "ungroup",
+  "target": "circuitGroup",
+  "properties": {
+    "children": ["switch", "lamp"],
+    "keepVisual": true
+  }
+}
+```
+
+`keepVisual` suit la même logique qu'au §7.1, en sens inverse :
+
+* **`true`** *(par défaut)* : le moteur recalcule les propriétés absolues de l'enfant pour qu'il ne bouge pas visuellement au moment de sa sortie du groupe.
+* **`false`** : l'enfant garde ses valeurs locales brutes, désormais réinterprétées comme absolues — saut visuel possible, animable via `duration`/`ease`.
+
+Si `children` est omis, tous les enfants sont détachés et le groupe lui-même est détruit.
+
+### 7.3 Interaction avec les points géométriques (§4)
+
+Un groupe expose les mêmes accesseurs que n'importe quel objet (`topLeft`, `center`, `boundingBox.*`, etc.), calculés par défaut comme la bounding box de ses enfants, sauf si le groupe a reçu un `width`/`height` explicite via `transform`. Un `transform` ou un `follow` appliqué directement au groupe (`x`, `y`, `scale`, `rotation`) affecte récursivement tous ses enfants.
+
+---
+
+## 8. Expressions et positionnement relatif
+
+### 8.1 Principe
+
+Plutôt que de calculer des coordonnées absolues, un objet peut se positionner **relativement à un autre objet**, via une expression textuelle. Cette expression est parsée en un petit AST, évalué au moment approprié (voir §8.3 pour la distinction snapshot / continu).
+
+```json
+{
+  "action": "create",
+  "target": "codLabel",
+  "type": "text",
+  "properties": {
+    "text": "COD",
+    "x": "title.center.x",
+    "y": "title.bottomLeft.y + 40"
+  }
+}
+```
+
+### 8.2 Grammaire des expressions
+
+```
+expr        := term (("+" | "-") term)*
+term        := factor (("*" | "/") factor)*
+factor      := number | reference
+reference   := identifier "." segment ("." segment)*
+segment     := scalarProp | pointProp | "boundingBox"
+scalarProp  := "x" | "y" | "width" | "height" | "scale" | "rotation" | "opacity"
+pointProp   := "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "center"
+```
+
+Règle de résolution : une `reference` doit toujours se terminer sur un `scalarProp`. Un `pointProp` peut être précédé optionnellement de `boundingBox`, mais doit ensuite obligatoirement être suivi de `.x` ou `.y` — un `pointProp` isolé n'est pas une valeur numérique valide dans une expression arithmétique.
+
+Exemples valides :
+
+```
+"title.topRight.x + 20"
+"title.boundingBox.topLeft.y - 100"
+"scene.center.x"
+"title.width / 2"
+```
+
+Exemples invalides (erreur de parsing) :
+
+```
+"title.topRight"          // point sans .x/.y
+"title.boundingBox"       // boundingBox sans point ni scalaire
+"title.left"              // n'existe pas : utiliser title.topLeft.x
+```
+
+Pas de parenthèses ni d'appels de fonction généraux dans cette grammaire de base (les fonctions de path, §9, suivent une syntaxe dédiée). Volontairement limité pour rester facilement générable par une IA et trivial à parser.
+
+### 8.3 Résolution : `transform` fige, `follow` maintient
+
+C'est la règle la plus importante du DSL à retenir :
+
+* Dans un **`transform`**, une expression est évaluée **une seule fois**, au moment où l'action démarre. La valeur obtenue devient la cible fixe de l'interpolation — cohérent avec la sémantique de `transform` (§5.3) : on anime toujours vers une constante.
+* Dans un **`follow`** (§10), l'expression est réévaluée en continu, à chaque frame — voir §10 pour la sémantique complète.
+
+Il n'existe pas de flag intermédiaire : si vous voulez une valeur qui bouge en suivant une autre propriété, l'action à utiliser est `follow`, jamais `transform`.
+
+### 8.4 Résolution des dépendances
+
+Le moteur doit :
+
+1. Parser chaque expression en AST au moment du `create`/`transform`/`follow`.
+2. Construire un graphe de dépendances entre objets (ex. `codLabel.x` dépend de `title.topRight.x`).
+3. Détecter les **cycles** à la compilation (erreur explicite, jamais au runtime).
+4. Évaluer en ordre topologique : une seule fois pour un `transform`, à chaque frame pour un `follow` actif.
+
+### 8.5 Erreurs à gérer explicitement
+
+* Référence à un `target` inexistant ou pas encore créé → erreur claire.
+* Référence à un `target` déjà détruit → erreur claire.
+* Cycle de dépendance entre expressions → erreur à la compilation.
+* Segment inconnu ou mal formé (ex. `title.left`, `title.topRight` sans `.x`/`.y`) → erreur de parsing.
+
+---
+
+## 9. Ancrage sur une courbe (path)
+
+### 9.1 Principe
+
+Un objet (par exemple une fonction mathématique tracée à l'écran, ou un polygone) peut exposer un ou plusieurs **paths** nommés. Chaque path fournit trois fonctions de projection :
+
+```
+<target>.pathX(<pathName>, <t>)
+<target>.pathY(<pathName>, <t>)
+<target>.pathAngle(<pathName>, <t>)
+```
+
+où `t` est une position normalisée entre `0` (début du path) et `1` (fin du path). `pathAngle` retourne la tangente à la courbe en `t`, utile pour orienter un objet (ex. une flèche) dans le sens du déplacement. Le résultat de `pathX`/`pathY` est déjà exprimé dans le repère de la scène (§4) — aucune conversion supplémentaire n'est nécessaire, même si le path est défini en interne dans un repère local propre à la courbe.
+
+### 9.2 Valeur figée vs valeur animée
+
+```
+<target>.pathX(<pathName>, <t>)                → valeur figée, un seul paramètre de position
+<target>.pathX(<pathName>, <start>, <end>)     → valeur animée, progression pilotée par l'action qui la contient
+```
+
+**Valeur figée** (point fixe à 50 % du path, ne bouge jamais) :
+
+```json
+{
+  "action": "create",
+  "target": "dot",
+  "type": "shape",
+  "properties": {
+    "x": "sineCurve.pathX(main, 0.5)",
+    "y": "sineCurve.pathY(main, 0.5)"
+  }
+}
+```
+
+**Valeur animée** — nécessite `follow` (voir §10.2), car un path à trois arguments décrit une trajectoire dans le temps, pas une constante. Utiliser cette forme dans un `transform` est une erreur : `transform` anime toujours une propriété vers une valeur fixe, jamais vers une fonction du temps.
+
+---
+
+## 10. `follow` et `unfollow` — binding continu
+
+### 10.1 Principe
+
+`follow` maintient une égalité entre une propriété du `target` et une expression, réévaluée en continu — à ne pas confondre avec `transform`, qui anime toujours vers une constante figée au démarrage (§8.3).
+
+```json
+{
+  "action": "follow",
+  "target": "arrow",
+  "properties": {
+    "x": "dot.x",
+    "y": "dot.y"
+  }
+}
+```
+
+Tant que `dot.x`/`dot.y` changent (par un `transform`, un autre `follow`, etc.), `arrow` recopie la valeur à chaque frame.
+
+### 10.2 `follow` avec progression pilotée (path)
+
+Quand les expressions utilisent un path à trois arguments (`pathX(name, start, end)`), `duration`/`ease` ne pilotent pas directement la propriété — ils pilotent le paramètre interne `t`, qui progresse de `start` à `end` sur la durée donnée. `pathX`/`pathY`/`pathAngle` se contentent de projeter ce `t` en coordonnées à chaque frame.
+
+```json
+{
+  "action": "follow",
+  "target": "dot",
+  "properties": {
+    "x": "sineCurve.pathX(main, 0.2, 0.8)",
+    "y": "sineCurve.pathY(main, 0.2, 0.8)"
+  },
+  "duration": 2,
+  "ease": "power1.inOut"
+}
+```
+
+### 10.3 `follow` sans path — binding pur
+
+Si `properties` ne contient que des références directes à d'autres objets (pas de fonction path), il n'y a pas de progression interne à piloter : `duration` n'a pas de sens et doit être omis. Le `follow` est alors **infini par défaut**, actif jusqu'à :
+
+* un `destroy` du `target` ;
+* une action `unfollow` explicite ;
+* un autre `follow` ou `transform` qui reprend la main sur la même propriété (voir §10.5).
+
+### 10.4 `unfollow`
+
+Arrête un `follow` en cours sur une ou plusieurs propriétés. La propriété se fige à sa dernière valeur connue, redevenant pilotable normalement par `transform`/`set`.
+
+```json
+{
+  "action": "unfollow",
+  "target": "arrow",
+  "properties": ["x", "y"]
+}
+```
+
+### 10.5 Conflits de propriété
+
+Un `target` ne peut avoir qu'un seul mécanisme actif sur une même propriété à la fois (`follow` ou `transform`, jamais les deux simultanément). Règle de résolution : **la dernière action déclarée sur cette propriété, dans l'ordre de la timeline, prend la main et arrête implicitement la précédente.** Le moteur peut émettre un avertissement non bloquant pour signaler l'écrasement, utile en débogage.
+
+### 10.6 Exemple : électron se déplaçant dans un circuit
+
+Un circuit est une suite de segments ; on enchaîne un `follow` par segment, chacun démarrant à la fin du précédent :
+
+```json
+{
+  "action": "follow",
+  "target": "electron",
+  "properties": {
+    "x": "wireAB.pathX(main, 0, 1)",
+    "y": "wireAB.pathY(main, 0, 1)"
+  },
+  "duration": 1,
+  "ease": "linear"
+}
+```
+
+```json
+{
+  "action": "follow",
+  "target": "electron",
+  "properties": {
+    "x": "wireBC.pathX(main, 0, 1)",
+    "y": "wireBC.pathY(main, 0, 1)"
+  },
+  "start": ">",
+  "duration": 1,
+  "ease": "linear"
+}
+```
+
+Une flèche indicatrice qui suit en continu la position et l'orientation de l'électron :
+
+```json
+{
+  "action": "follow",
+  "target": "arrowIndicator",
+  "properties": {
+    "x": "electron.x",
+    "y": "electron.y",
+    "rotation": "electron.rotation"
+  }
+}
+```
+
+### 10.7 Exemple : flèche accrochée à un coin tourné
+
+Cas d'usage direct du système de points géométriques (§4.2) : une flèche qui reste accrochée au coin haut-droite d'un objet, même si celui-ci tourne.
+
+```json
+{
+  "action": "follow",
+  "target": "arrow",
+  "properties": {
+    "x": "box.topRight.x",
+    "y": "box.topRight.y",
+    "rotation": "box.rotation"
+  }
+}
+```
+
+`topRight` désigne toujours le coin réel du rectangle, qu'il ait tourné ou non (§4.2) — c'est la forme à utiliser ici, par opposition à `boundingBox.topRight` qui recalculerait un coin sur une boîte réalignée aux axes, non souhaité dans ce cas.
+
+---
+
+## 11. Récapitulatif des actions
+
+| Action | `duration` | `ease` | Notes |
+| --- | --- | --- | --- |
+| `create` | optionnel (défaut `0`) | optionnel | crée l'objet, peut apparaître avec une transition |
+| `set` | toujours `0` | interdit | assignation instantanée, pas d'expression path animée |
+| `transform` | requis si interpolation | recommandé | anime toujours vers une valeur **constante** |
+| `follow` | optionnel | optionnel | absent = binding infini ; présent = pilote la progression `t` d'un path |
+| `unfollow` | n/a | n/a | arrête un `follow` en cours |
+| `group` | pertinent seulement si `keepVisual: false` | idem | crée le groupe si absent |
+| `ungroup` | pertinent seulement si `keepVisual: false` | idem | détruit le groupe si `children` omis |
+| `destroy` | n/a | n/a | retire l'objet définitivement |
+</file>
+
+<file path=".gitignore">
+# Node
+node_modules/
+dist/
+build/
+.output/
+.nuxt/
+.vinxi/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+</file>
+
+<file path="package.json">
+{
+  "name": "presk-monorepo",
+  "private": true,
+  "packageManager": "pnpm@11.17.0",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "typescript": "~7.0.2"
+  }
+}
+</file>
+
+<file path="pnpm-workspace.yaml">
+packages:
+  - "core"
+  - "lib/*"
+</file>
+
+<file path="core/src/binding/expression.test.ts">
+// Tests the spec §8.2 expression grammar: arithmetic, scalar refs, point
+// refs (must end on .x/.y).
+import { describe, it, expect } from "vitest";
+import KScene from "@/primitives/kscene";
+import KRectangle from "@/primitives/krectangle";
+import { evaluateExpression } from "./expression";
+
+function makeScene() {
+  const scene = new KScene({ id: "scene", x: 0, y: 0, width: 1920, height: 1080 });
+  const title = new KRectangle({ id: "title", x: 100, y: 200, width: 40, height: 20 });
+  scene.add(title);
+  return scene;
+}
+
+describe("evaluateExpression", () => {
+  it("evaluates plain numeric arithmetic", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("2 + 3 * 4", scene)).toBe(14);
+  });
+
+  it("resolves a scalar property on an object", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("title.x", scene)).toBe(100);
+  });
+
+  it("resolves the reserved scene identifier", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("scene.width", scene)).toBe(1920);
+  });
+
+  it("resolves a point property followed by .x/.y", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("title.topRight.x", scene)).toBe(120);
+  });
+
+  it("supports arithmetic combining two references", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("title.topRight.x + 20", scene)).toBe(140);
+  });
+
+  it("throws on an unknown identifier", () => {
+    const scene = makeScene();
+    expect(() => evaluateExpression("ghost.x", scene)).toThrow(/unknown reference/);
+  });
+
+  it("resolves nested point properties or objects generically", () => {
+    const scene = makeScene();
+    // topRight returns an object { x, y }, accessing .x yields its number
+    expect(evaluateExpression("title.topRight.x", scene)).toBe(120);
+  });
+
+  it("throws when performing arithmetic on a non-scalar property", () => {
+    const scene = makeScene();
+    expect(() => evaluateExpression("title.topRight + 10", scene)).toThrow(/arithmetic operations require scalar/);
+  });
+});
+</file>
+
+<file path="core/src/binding/expression.ts">
+// Parses and evaluates the arithmetic expression grammar from spec §8.2:
+//
+//   expr      := term (("+" | "-") term)*
+//   term      := factor (("*" | "/") factor)*
+//   factor    := number | reference
+//   reference := identifier "." segment ("." segment)*
+//   segment   := scalarProp | pointProp | "boundingBox" | "pos"
+//
+// A numeric expression must ultimately evaluate to a scalar (either via a scalar prop
+// like `x`, `y`, width, height, etc., or by selecting `.x` / `.y` from a point prop
+// or the `pos` object). Point props or `pos` may also be preceded by "boundingBox".
+// See spec §8.2 for the invalid examples this is meant to reject.
+//
+// TODO(spec §9): pathX/pathY/pathAngle function-call syntax is not part of
+// this grammar yet — expressions using them will fail to parse.
+
+import type KScene from "@/primitives/kscene";
+
+type Token = { type: "number"; value: number } | { type: "ident"; value: string } | { type: "op"; value: string } | { type: "dot" };
+
+function tokenize(source: string): Token[] {
+  const tokens: Token[] = [];
+  // Tokenizer regex using the sticky 'y' flag:
+  // - \s* : consumes leading whitespace around tokens
+  // - Group 1 ([0-9]+(?:\.[0-9]+)?): matches integer or floating-point numbers
+  // - Group 2 ([A-Za-z_][A-Za-z0-9_]*): matches identifiers (object IDs, property names)
+  // - Group 3 (\.): matches dots for property/point access chaining
+  // - Group 4 ([+\-*/]): matches arithmetic operators
+  const re = /\s*(?:([0-9]+(?:\.[0-9]+)?)|([A-Za-z_][A-Za-z0-9_]*)|(\.)|([+\-*/]))\s*/y;
+  let index = 0;
+
+  while (index < source.length) {
+    re.lastIndex = index;
+    const match = re.exec(source);
+    if (!match || match.index !== index) {
+      throw new Error(`Presk expression: unexpected character at position ${index} in "${source}".`);
+    }
+    const [full, number, ident, dot, op] = match;
+    if (number !== undefined) tokens.push({ type: "number", value: Number(number) });
+    else if (ident !== undefined) tokens.push({ type: "ident", value: ident });
+    else if (dot !== undefined) tokens.push({ type: "dot" });
+    else if (op !== undefined) tokens.push({ type: "op", value: op });
+    index += full.length;
+  }
+
+  return tokens;
+}
+
+/** Resolves an identifier + dotted segment chain generically against the scene. */
+function resolveReference(scene: KScene, identifier: string, segments: string[]): unknown {
+  const object = scene.get(identifier) as unknown as Record<string, unknown> | undefined;
+  if (!object) {
+    throw new Error(`Presk expression: unknown reference "${identifier}" (not created yet, or already destroyed).`);
+  }
+
+  let current: unknown = object;
+
+  for (const segment of segments) {
+    if (current === null || current === undefined) {
+      throw new Error(`Presk expression: cannot access property "${segment}" on null or undefined reference "${identifier}".`);
+    }
+    current = (current as Record<string, unknown>)[segment];
+  }
+
+  return current;
+}
+
+/** Recursive-descent parser/evaluator. Small enough to inline parsing and evaluation in one pass. */
+class Parser {
+  private tokens: Token[];
+  private pos = 0;
+  private scene: KScene;
+
+  constructor(tokens: Token[], scene: KScene) {
+    this.tokens = tokens;
+    this.scene = scene;
+  }
+
+  private peek(): Token | undefined {
+    return this.tokens[this.pos];
+  }
+
+  private next(): Token {
+    const token = this.tokens[this.pos];
+    if (!token) throw new Error("Presk expression: unexpected end of expression.");
+    this.pos++;
+    return token;
+  }
+
+  parseExpr(): number {
+    let value = this.parseTerm();
+    while (this.peek()?.type === "op" && (this.peek() as { value: string }).value.match(/[+-]/)) {
+      const op = (this.next() as { value: string }).value;
+      const rhs = this.parseTerm();
+      if (typeof value !== "number" || typeof rhs !== "number") {
+        throw new Error("Presk expression: arithmetic operations require scalar (number) operands.");
+      }
+      value = op === "+" ? value + rhs : value - rhs;
+    }
+    return value;
+  }
+
+  private parseTerm(): number {
+    let value = this.parseFactor();
+    while (this.peek()?.type === "op" && (this.peek() as { value: string }).value.match(/[*/]/)) {
+      const op = (this.next() as { value: string }).value;
+      const rhs = this.parseFactor();
+      if (typeof value !== "number" || typeof rhs !== "number") {
+        throw new Error("Presk expression: arithmetic operations require scalar (number) operands.");
+      }
+      value = op === "*" ? value * rhs : value / rhs;
+    }
+    return value;
+  }
+
+  private parseFactor(): number {
+    const token = this.next();
+    if (token.type === "number") return token.value;
+
+    if (token.type === "ident") {
+      const identifier = token.value;
+      const segments: string[] = [];
+      while (this.peek()?.type === "dot") {
+        this.next(); // consume "."
+        const segmentToken = this.next();
+        if (segmentToken.type !== "ident") {
+          throw new Error("Presk expression: expected a property name after \".\".");
+        }
+        segments.push(segmentToken.value);
+      }
+      if (segments.length === 0) {
+        throw new Error(`Presk expression: "${identifier}" used without a property (e.g. "${identifier}.x").`);
+      }
+      const val = resolveReference(this.scene, identifier, segments);
+      return val as number;
+    }
+
+    throw new Error(`Presk expression: unexpected token "${JSON.stringify(token)}".`);
+  }
+}
+
+/**
+ * Evaluates a Presk DSL expression string against the current scene state.
+ * This is a *pull* evaluation: it always reads live, current values — call
+ * it again to get an updated result (see binding/bindingEngine.ts).
+ */
+export function evaluateExpression(source: string, scene: KScene): number {
+  const tokens = tokenize(source);
+  const parser = new Parser(tokens, scene);
+  const value = parser.parseExpr();
+  return value;
+}
+</file>
+
+<file path="core/src/compiler/compiler.ts">
+// Compiles a DSL document (spec §2-§11) into a GSAP timeline that drives a
+// Presk instance. See compiler/README.md for the reasoning behind leaning
+// on GSAP's own position-parameter syntax and functional values.
+//
+// Uses materializeScene() for sequential two-pass object creation and
+// delegates all animation/setting actions to KObject's transform() and setNow().
+
+import gsap from "gsap";
+import type Presk from "@/presk";
+import { evaluateExpression } from "@/binding/expression";
+import type { DslDocument, DslStep } from "./types";
+
+function isExpression(value: unknown): value is string {
+  return typeof value === "string";
+}
+
+/** Resolves a properties object once, right now, against the current scene state. Used by "create" and "set". */
+function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
+  const resolved: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(properties)) {
+    if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || (value && typeof value === "object")) {
+      if (typeof value === "number" || typeof value === "boolean") {
+        resolved[key] = value;
+      } else if (isExpression(value)) {
+        // "text" properties (e.g. a text object's `text` field) are strings
+        // that are *not* expressions — only try to evaluate them as one if
+        // they look like a Presk reference/arithmetic expression.
+        resolved[key] =
+          /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) // 1. Whitelist valid expression characters only
+          && /[A-Za-z]/.test(value)         // 2. Must contain at least one letter (identifies property/variable references)
+          && value.includes(".")            // 3. Must contain at least one dot (identifies object.property access)
+          ? evaluateExpression(value, presk.scene)
+          : value;
+      } else if (Array.isArray(value)) {
+        resolved[key] = value;
+      } else if (value && typeof value === "object") {
+        // Recursively resolve nested objects (e.g. position: { x: ..., y: ... })
+        resolved[key] = resolveNow(value as Record<string, unknown>, presk);
+      }
+    }
+  }
+  return resolved;
+}
+
+/**
+ * Builds the GSAP tween vars for a "transform" step. Expression-valued
+ * properties become *functional values* so GSAP evaluates them once, the
+ * first time the tween renders (spec §8.3: transform freezes at start).
+ */
+function toTweenVars(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
+  const vars: Record<string, unknown> = {};
+  for (const [key, value] of Object.entries(properties)) {
+    if (typeof value === "number" || typeof value === "boolean") {
+      vars[key] = value;
+    } else if (isExpression(value)) {
+      vars[key] = () => evaluateExpression(value, presk.scene);
+    } else if (value && typeof value === "object") {
+      // Recursively wrap nested objects for transform vars
+      const nested: Record<string, unknown> = {};
+      for (const [subKey, subVal] of Object.entries(value as Record<string, unknown>)) {
+        if (typeof subVal === "number" || typeof subVal === "boolean") {
+          nested[subKey] = subVal;
+        } else if (isExpression(subVal)) {
+          nested[subKey] = () => evaluateExpression(subVal, presk.scene);
+        } else {
+          nested[subKey] = subVal;
+        }
+      }
+      vars[key] = nested;
+    } else {
+      vars[key] = value;
+    }
+  }
+  return vars;
+}
+
+/**
+ * Materializes all "create" steps sequentially prior to timeline compilation
+ * (two-pass model: 1. instantiate shells, 2. resolve & apply initial properties).
+ */
+export function materializeScene(steps: DslStep[], presk: Presk): void {
+  // Pass 1: Instanciate shells with resolved initial properties and register them immediately in presk.scene
+  for (const step of steps) {
+    if (step.action === "create") {
+      if (!step.type) throw new Error(`Presk compiler: "create" step for "${step.target}" is missing "type".`);
+      const properties = (step.properties ?? {}) as Record<string, unknown>;
+      const resolved = resolveNow(properties, presk);
+      presk.create(step.type, step.target, resolved);
+    }
+  }
+}
+
+export function compile(doc: DslDocument, presk: Presk): gsap.core.Timeline {
+  // Pre-materialize all create steps so targets exist as shells for references
+  materializeScene(doc.steps, presk);
+
+  const tl = gsap.timeline({ paused: true });
+
+  for (const step of doc.steps) {
+    addStep(tl, step, presk);
+  }
+
+  return tl;
+}
+
+function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
+  const position = step.start; // undefined behaves like the spec's default ">" (sequential)
+
+  switch (step.action) {
+    case "create": {
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "create" step targets unknown object "${step.target}".`);
+      const creationTween = target.createAnimation({
+        duration: step.duration,
+        ease: step.ease,
+      });
+      tl.add(creationTween, position);
+      break;
+    }
+
+    case "set": {
+      const properties = (step.properties ?? {}) as Record<string, unknown>;
+      tl.call(
+        () => {
+          const target = presk.scene.get(step.target);
+          if (!target) throw new Error(`Presk: "set" targets unknown object "${step.target}".`);
+          const data = resolveNow(properties, presk);
+          target.setNow(data);
+        },
+        undefined,
+        position,
+      );
+      break;
+    }
+
+    case "transform": {
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "transform" targets unknown object "${step.target}".`);
+      const properties = (step.properties ?? {}) as Record<string, unknown>;
+      const tweenData = toTweenVars(properties, presk);
+      const tween = target.transform(tweenData, {
+        duration: step.duration ?? 0,
+        ease: step.ease,
+      });
+      tl.add(tween, position);
+      break;
+    }
+
+    case "follow": {
+      const properties = (step.properties ?? {}) as Record<string, unknown>;
+      const asStrings: Record<string, string> = {};
+      for (const [key, value] of Object.entries(properties)) {
+        if (!isExpression(value)) {
+          throw new Error(`Presk compiler: "follow" property "${key}" must be an expression string.`);
+        }
+        asStrings[key] = value;
+      }
+      tl.call(() => presk.binding.follow(step.target, asStrings), undefined, position);
+      break;
+    }
+
+    case "unfollow": {
+      const properties = step.properties as string[] | undefined;
+      tl.call(() => presk.binding.unfollow(step.target, properties), undefined, position);
+      break;
+    }
+
+    case "destroy": {
+      tl.call(() => presk.destroy(step.target), undefined, position);
+      break;
+    }
+
+    case "group":
+    case "ungroup":
+      console.warn(`Presk compiler: "${step.action}" is not implemented yet, skipping step for "${step.target}".`);
+      break;
+
+    default:
+      throw new Error(`Presk compiler: unknown action "${step.action satisfies never}".`);
+  }
+
+  if (step.name) {
+    tl.addLabel(step.name, "<");
+  }
+}
+</file>
+
+<file path="core/src/compiler/input.json">
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#080c14"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "introTitle",
+      "type": "text",
+      "properties": {
+        "text": "Analysons une phrase",
+        "x": "scene.width / 2",
+        "y": "scene.height / 2",
+        "scale": 0.5,
+        "opacity": 0
+      }
+    },
+    {
+      "action": "transform",
+      "target": "introTitle",
+      "name": "tShow",
+      "properties": {
+        "scale": 1.4,
+        "opacity": 1
+      },
+      "duration": 0.8,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "introTitle",
+      "name": "tOut",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "tShow+=2.5",
+      "duration": 0.5
+    },
+    {
+      "action": "create",
+      "target": "wordSujet",
+      "type": "text",
+      "properties": {
+        "text": "Le petit garçon",
+        "x": "scene.width * 0.34",
+        "y": "scene.height * 0.42",
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "tOut"
+    },
+    {
+      "action": "transform",
+      "target": "wordSujet",
+      "name": "s1Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "create",
+      "target": "wordVerbe",
+      "type": "text",
+      "properties": {
+        "text": "mange",
+        "x": "scene.width * 0.5",
+        "y": "scene.height * 0.42",
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "s1Show+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "wordVerbe",
+      "name": "s2Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "follow",
+      "target": "wordVerbe",
+      "properties": {
+        "x": "wordSujet.x + 240",
+        "y": "wordSujet.y"
+      },
+      "start": "s2Show"
+    },
+    {
+      "action": "create",
+      "target": "wordCod",
+      "type": "text",
+      "properties": {
+        "text": "une pomme",
+        "x": "scene.width * 0.66",
+        "y": "scene.height * 0.42",
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "s2Show+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "wordCod",
+      "name": "s3Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "follow",
+      "target": "wordCod",
+      "properties": {
+        "x": "wordVerbe.x + 200",
+        "y": "wordVerbe.y"
+      },
+      "start": "s3Show"
+    },
+    {
+      "action": "create",
+      "target": "qBox",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.63",
+        "width": 700,
+        "height": 100,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "s3Show+=0.8"
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxShow1",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.5,
+      "ease": "back.out"
+    },
+    {
+      "action": "create",
+      "target": "qText",
+      "type": "text",
+      "properties": {
+        "text": "Qui fait l'action ?",
+        "x": 960,
+        "y": 680,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "qBoxShow1"
+    },
+    {
+      "action": "transform",
+      "target": "qText",
+      "name": "qTextShow1",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "underSujet",
+      "type": "shape",
+      "properties": {
+        "x": 650,
+        "y": 485,
+        "width": 240,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "qTextShow1+=1.5"
+    },
+    {
+      "action": "transform",
+      "target": "underSujet",
+      "name": "underSujetShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4,
+      "ease": "power2.out"
+    },
+    {
+      "action": "follow",
+      "target": "underSujet",
+      "properties": {
+        "x": "wordSujet.x",
+        "y": "wordSujet.y + 35"
+      },
+      "start": "underSujetShow"
+    },
+    {
+      "action": "create",
+      "target": "labelSujet",
+      "type": "text",
+      "properties": {
+        "text": "SUJET",
+        "x": 650,
+        "y": 380,
+        "scale": 0.6,
+        "opacity": 0
+      },
+      "start": "underSujetShow"
+    },
+    {
+      "action": "transform",
+      "target": "labelSujet",
+      "name": "labelSujetShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 0.8
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "labelSujet",
+      "properties": {
+        "x": "wordSujet.x",
+        "y": "wordSujet.y - 65"
+      },
+      "start": "labelSujetShow"
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxHide1",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "labelSujetShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "qText",
+      "name": "qTextHide1",
+      "properties": {
+        "opacity": 0
+      },
+      "start": "labelSujetShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxShow2",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "start": "qBoxHide1+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "qText2",
+      "type": "text",
+      "properties": {
+        "text": "Que fait le petit garçon ?",
+        "x": 960,
+        "y": 680,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "qBoxShow2"
+    },
+    {
+      "action": "transform",
+      "target": "qText2",
+      "name": "qText2Show",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "underVerbe",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 485,
+        "width": 120,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "qText2Show+=1.5"
+    },
+    {
+      "action": "transform",
+      "target": "underVerbe",
+      "name": "underVerbeShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4,
+      "ease": "power2.out"
+    },
+    {
+      "action": "follow",
+      "target": "underVerbe",
+      "properties": {
+        "x": "wordVerbe.x",
+        "y": "wordVerbe.y + 35"
+      },
+      "start": "underVerbeShow"
+    },
+    {
+      "action": "create",
+      "target": "labelVerbe",
+      "type": "text",
+      "properties": {
+        "text": "VERBE",
+        "x": 960,
+        "y": 380,
+        "scale": 0.6,
+        "opacity": 0
+      },
+      "start": "underVerbeShow"
+    },
+    {
+      "action": "transform",
+      "target": "labelVerbe",
+      "name": "labelVerbeShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 0.8
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "labelVerbe",
+      "properties": {
+        "x": "wordVerbe.x",
+        "y": "wordVerbe.y - 65"
+      },
+      "start": "labelVerbeShow"
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxHide2",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "labelVerbeShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "qText2",
+      "name": "qText2Hide",
+      "properties": {
+        "opacity": 0
+      },
+      "start": "labelVerbeShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxShow3",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "start": "qBoxHide2+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "qText3",
+      "type": "text",
+      "properties": {
+        "text": "Le petit garçon mange quoi ?",
+        "x": 960,
+        "y": 680,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "qBoxShow3"
+    },
+    {
+      "action": "transform",
+      "target": "qText3",
+      "name": "qText3Show",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "underCod",
+      "type": "shape",
+      "properties": {
+        "x": 1270,
+        "y": 485,
+        "width": 180,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "qText3Show+=1.5"
+    },
+    {
+      "action": "transform",
+      "target": "underCod",
+      "name": "underCodShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4,
+      "ease": "power2.out"
+    },
+    {
+      "action": "follow",
+      "target": "underCod",
+      "properties": {
+        "x": "wordCod.x",
+        "y": "wordCod.y + 35"
+      },
+      "start": "underCodShow"
+    },
+    {
+      "action": "create",
+      "target": "labelCod",
+      "type": "text",
+      "properties": {
+        "text": "COD",
+        "x": 1270,
+        "y": 380,
+        "scale": 0.6,
+        "opacity": 0
+      },
+      "start": "underCodShow"
+    },
+    {
+      "action": "transform",
+      "target": "labelCod",
+      "name": "labelCodShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 0.8
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "labelCod",
+      "properties": {
+        "x": "wordCod.x",
+        "y": "wordCod.y - 65"
+      },
+      "start": "labelCodShow"
+    },
+    {
+      "action": "transform",
+      "target": "qBox",
+      "name": "qBoxHide3",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "labelCodShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "qText3",
+      "name": "qText3Hide",
+      "properties": {
+        "opacity": 0
+      },
+      "start": "labelCodShow+=1.8",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "wordSujet",
+      "name": "moveUpSujet",
+      "properties": {
+        "y": 300
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "wordVerbe",
+      "name": "moveUpVerbe",
+      "properties": {
+        "y": 300
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "wordCod",
+      "name": "moveUpCod",
+      "properties": {
+        "y": 300
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "labelSujet",
+      "name": "moveUpLblS",
+      "properties": {
+        "y": 235
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "labelVerbe",
+      "name": "moveUpLblV",
+      "properties": {
+        "y": 235
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "labelCod",
+      "name": "moveUpLblC",
+      "properties": {
+        "y": 235
+      },
+      "start": "qBoxHide3+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "create",
+      "target": "passiveIntro",
+      "type": "text",
+      "properties": {
+        "text": "Et la voix passive alors ?",
+        "x": 960,
+        "y": 480,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "moveUpSujet+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "passiveIntro",
+      "name": "passIntroShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1.1
+      },
+      "duration": 0.6,
+      "ease": "back.out"
+    },
+    {
+      "action": "transform",
+      "target": "passiveIntro",
+      "name": "passIntroHide",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "passIntroShow+=2.0",
+      "duration": 0.5
+    },
+    {
+      "action": "create",
+      "target": "pWordCod",
+      "type": "text",
+      "properties": {
+        "text": "Une pomme",
+        "x": 550,
+        "y": 720,
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "passIntroHide"
+    },
+    {
+      "action": "transform",
+      "target": "pWordCod",
+      "name": "p1Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "create",
+      "target": "pOverCod",
+      "type": "shape",
+      "properties": {
+        "x": 550,
+        "y": 685,
+        "width": 180,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "p1Show"
+    },
+    {
+      "action": "transform",
+      "target": "pOverCod",
+      "name": "pOverCodShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "pOverCod",
+      "properties": {
+        "x": "pWordCod.x",
+        "y": "pWordCod.y - 35"
+      },
+      "start": "pOverCodShow"
+    },
+    {
+      "action": "create",
+      "target": "pWordVerbe",
+      "type": "text",
+      "properties": {
+        "text": "est mangée",
+        "x": 960,
+        "y": 720,
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "s1Show+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "pWordVerbe",
+      "name": "p2Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "follow",
+      "target": "pWordVerbe",
+      "properties": {
+        "x": "pWordCod.x + 280",
+        "y": "pWordCod.y"
+      },
+      "start": "p2Show"
+    },
+    {
+      "action": "create",
+      "target": "pOverVerbe",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 685,
+        "width": 160,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "p2Show"
+    },
+    {
+      "action": "transform",
+      "target": "pOverVerbe",
+      "name": "pOverVerbeShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "pOverVerbe",
+      "properties": {
+        "x": "pWordVerbe.x",
+        "y": "pWordVerbe.y - 35"
+      },
+      "start": "pOverVerbeShow"
+    },
+    {
+      "action": "create",
+      "target": "pWordSujet",
+      "type": "text",
+      "properties": {
+        "text": "par le petit garçon",
+        "x": 1350,
+        "y": 720,
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "s2Show+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "pWordSujet",
+      "name": "p3Show",
+      "properties": {
+        "opacity": 1
+      },
+      "duration": 0.5
+    },
+    {
+      "action": "follow",
+      "target": "pWordSujet",
+      "properties": {
+        "x": "pWordVerbe.x + 300",
+        "y": "pWordVerbe.y"
+      },
+      "start": "p3Show"
+    },
+    {
+      "action": "create",
+      "target": "pOverSujet",
+      "type": "shape",
+      "properties": {
+        "x": 1350,
+        "y": 685,
+        "width": 240,
+        "height": 6,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "p3Show"
+    },
+    {
+      "action": "transform",
+      "target": "pOverSujet",
+      "name": "pOverSujetShow",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.4
+    },
+    {
+      "action": "follow",
+      "target": "pOverSujet",
+      "properties": {
+        "x": "pWordSujet.x",
+        "y": "pWordSujet.y - 35"
+      },
+      "start": "pOverSujetShow"
+    },
+    {
+      "action": "create",
+      "target": "mapPomme",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": 1270,
+        "startY": 335,
+        "endX": 1270,
+        "endY": 335,
+        "opacity": 1
+      },
+      "start": "pOverSujetShow+=0.6"
+    },
+    {
+      "action": "transform",
+      "target": "mapPomme",
+      "name": "mapPommeDraw",
+      "properties": {
+        "endX": "pWordCod.x",
+        "endY": "pWordCod.topLeft.y"
+      },
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "follow",
+      "target": "mapPomme",
+      "properties": {
+        "startX": "wordCod.x",
+        "startY": "wordCod.bottomLeft.y"
+      },
+      "start": "mapPommeDraw"
+    },
+    {
+      "action": "create",
+      "target": "mapVerbe",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": 960,
+        "startY": 335,
+        "endX": 960,
+        "endY": 335,
+        "opacity": 1
+      },
+      "start": "mapPommeDraw+=0.6"
+    },
+    {
+      "action": "transform",
+      "target": "mapVerbe",
+      "name": "mapVerbeDraw",
+      "properties": {
+        "endX": "pWordVerbe.x",
+        "endY": "pWordVerbe.topLeft.y"
+      },
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "follow",
+      "target": "mapVerbe",
+      "properties": {
+        "startX": "wordVerbe.x",
+        "startY": "wordVerbe.bottomLeft.y"
+      },
+      "start": "mapVerbeDraw"
+    },
+    {
+      "action": "create",
+      "target": "mapSujet",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": 650,
+        "startY": 335,
+        "endX": 650,
+        "endY": 335,
+        "opacity": 1
+      },
+      "start": "mapVerbeDraw+=0.6"
+    },
+    {
+      "action": "transform",
+      "target": "mapSujet",
+      "name": "mapSujetDraw",
+      "properties": {
+        "endX": "pWordSujet.x",
+        "endY": "pWordSujet.topLeft.y"
+      },
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "follow",
+      "target": "mapSujet",
+      "properties": {
+        "startX": "wordSujet.x",
+        "startY": "wordSujet.bottomLeft.y"
+      },
+      "start": "mapSujetDraw"
+    }
+  ]
+}
+</file>
+
+<file path="core/src/compiler/README.md">
+# compiler/
+
+Turns a DSL document (spec §2-§11) into a running scene: it drives `Presk`'s
+registry (create/destroy/follow/unfollow) and builds a GSAP timeline that
+drives `transform` animations.
+
+## Why it leans on GSAP directly
+
+The DSL's `start` field (spec §6.1) was explicitly designed to mirror GSAP's
+own timeline "position parameter" syntax (`"<"`, `">"`, `"+=1"`, absolute
+seconds, named-label offsets, ...). Rather than reimplementing that
+resolution logic, `compiler.ts` passes `step.start` straight through as the
+third argument to `tl.to()`/`tl.call()` — GSAP already does exactly what the
+spec asks for.
+
+Similarly, "a `transform` expression is evaluated once, when the action
+starts" (spec §8.3) maps directly onto GSAP's own **functional values**:
+passing a function instead of a number as a tween property value makes GSAP
+invoke it once, the first time that tween renders. `compiler.ts` wraps every
+expression string in such a function instead of resolving it up front.
+
+## Files
+
+- `types.ts` — TypeScript types for the DSL JSON document (spec §2-§11).
+- `compiler.ts` — `compile(doc, presk)`, returns a `gsap.core.Timeline`.
+  Handles `create` (via `materializeScene` two-pass shell instantiation),
+  `set` (`target.setNow()`), `transform` (`target.transform()`), `follow`,
+  `unfollow`, and `destroy`. See the root README's "Known gaps" for what's
+  intentionally not handled yet (`group`/`ungroup`, path anchoring).
+- `mockInput.json` — a full example DSL document (used by `main.ts`'s demo
+  and by `compiler.test.ts`).
+</file>
+
+<file path="core/src/primitives/kline.ts">
+import KObject, { type KObjectParams } from "./kobject";
+import gsap from "gsap";
+
+export interface KLineParams extends KObjectParams {
+  startX: number;
+  startY: number;
+  endX: number;
+  endY: number;
+  stroke?: number;
+  thickness?: number;
+}
+
+class KLine extends KObject {
+  private _startX: number;
+  private _startY: number;
+  private _endX: number;
+  private _endY: number;
+  private _stroke: number;
+  private _thickness: number;
+
+  constructor({ startX, startY, endX, endY, stroke = 0x9c9c9c, thickness = 2, ...rest }: KLineParams) {
+    super(rest);
+    this._startX = startX;
+    this._startY = startY;
+    this._endX = endX;
+    this._endY = endY;
+    this._stroke = stroke;
+    this._thickness = thickness;
+
+    Object.assign(this.propertyAnimators, {
+      startX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { startX: value, ...opts }, 0);
+      },
+      startY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { startY: value, ...opts }, 0);
+      },
+      endX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { endX: value, ...opts }, 0);
+      },
+      endY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { endY: value, ...opts }, 0);
+      },
+      stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _stroke: value, ...opts }, 0);
+      },
+      thickness: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _thickness: value, ...opts }, 0);
+      },
+    });
+  }
+
+  override createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    const duration = options.duration ?? 0.6;
+    const ease = options.ease ?? "power2.out";
+    const tl = gsap.timeline();
+    
+    // Animate line drawing from start point to full end point
+    const targetEndX = this._endX;
+    const targetEndY = this._endY;
+    this._endX = this._startX;
+    this._endY = this._startY;
+
+    tl.to(this, { endX: targetEndX, endY: targetEndY, duration, ease }, 0);
+    return tl;
+  }
+
+  get startX(): number {
+    return this._startX;
+  }
+
+  set startX(value: number) {
+    this._startX = value;
+  }
+
+  get startY(): number {
+    return this._startY;
+  }
+
+  set startY(value: number) {
+    this._startY = value;
+  }
+
+  get endX(): number {
+    return this._endX;
+  }
+
+  set endX(value: number) {
+    this._endX = value;
+  }
+
+  get endY(): number {
+    return this._endY;
+  }
+
+  set endY(value: number) {
+    this._endY = value;
+  }
+
+  get stroke(): number {
+    return this._stroke;
+  }
+
+  set stroke(value: number) {
+    this._stroke = value;
+  }
+
+  get thickness(): number {
+    return this._thickness;
+  }
+
+  set thickness(value: number) {
+    this._thickness = value;
+  }
+}
+
+export default KLine;
+</file>
+
+<file path="core/src/primitives/krectangle.ts">
+// KRectangle backs the DSL's `"shape"` type (see registry/builtins.ts).
+// It adds width/height plus the full corner and bounding-box geometry
+// required by spec §4.2 ("real" corners, which follow rotation) and §4.3
+// (`boundingBox.*`, axis-aligned corners recomputed after rotation).
+//
+// No PixiJS import here — see primitives/README.md.
+
+import KObject, { type KObjectParams } from "./kobject";
+import type { KPoint } from "./types";
+import gsap from "gsap";
+
+export interface KRectangleParams extends KObjectParams {
+  width: number;
+  height: number;
+  /** 0 = left, 0.5 = center, 1 = right. Defaults to center. */
+  anchorX?: number;
+  /** 0 = top, 0.5 = center, 1 = bottom. Defaults to center. */
+  anchorY?: number;
+  fill?: number;
+  stroke?: number;
+  strokeWidth?: number;
+}
+
+class KRectangle extends KObject {
+  private _width: number;
+  private _height: number;
+  private _anchorX: number;
+  private _anchorY: number;
+  private _fill: number;
+  private _stroke: number;
+  private _strokeWidth: number;
+
+  constructor({ width, height, anchorX = 0.5, anchorY = 0.5, fill = 0x9c9c9c, stroke = 0, strokeWidth = 0, ...rest }: KRectangleParams) {
+    super(rest);
+    this._width = width;
+    this._height = height;
+    this._anchorX = anchorX;
+    this._anchorY = anchorY;
+    this._fill = fill;
+    this._stroke = stroke;
+    this._strokeWidth = strokeWidth;
+
+    Object.assign(this.propertyAnimators, {
+      width: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _width: value, ...opts }, 0);
+      },
+      height: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _height: value, ...opts }, 0);
+      },
+      anchorX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _anchorX: value, ...opts }, 0);
+      },
+      anchorY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _anchorY: value, ...opts }, 0);
+      },
+      fill: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _fill: value, ...opts }, 0);
+      },
+      stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _stroke: value, ...opts }, 0);
+      },
+      strokeWidth: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _strokeWidth: value, ...opts }, 0);
+      },
+    });
+  }
+
+  override createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    const duration = options.duration ?? 0.4;
+    const ease = options.ease ?? "power2.out";
+    const tl = gsap.timeline();
+    const finalScale = this._scale;
+    const finalOpacity = this._opacity;
+    this._scale = 0;
+    this._opacity = 0;
+    tl.to(this, { _scale: finalScale, _opacity: finalOpacity, duration, ease }, 0);
+    return tl;
+  }
+
+  get width(): number {
+    return this._width;
+  }
+
+  set width(value: number) {
+    this._width = value;
+  }
+
+  get height(): number {
+    return this._height;
+  }
+
+  set height(value: number) {
+    this._height = value;
+  }
+
+  get anchorX(): number {
+    return this._anchorX;
+  }
+
+  set anchorX(value: number) {
+    this._anchorX = value;
+  }
+
+  get anchorY(): number {
+    return this._anchorY;
+  }
+
+  set anchorY(value: number) {
+    this._anchorY = value;
+  }
+
+  get fill(): number {
+    return this._fill;
+  }
+
+  set fill(value: number) {
+    this._fill = value;
+  }
+
+  get stroke(): number {
+    return this._stroke;
+  }
+
+  set stroke(value: number) {
+    this._stroke = value;
+  }
+
+  get strokeWidth(): number {
+    return this._strokeWidth;
+  }
+
+  set strokeWidth(value: number) {
+    this._strokeWidth = value;
+  }
+
+  // ---- Center & rotation pivot ----
+
+  /**
+   * Offset between the object's (x, y) anchor point and its geometric
+   * center, before scale/rotation are applied.
+   */
+  private get pivotOffsetX(): number {
+    return (0.5 - this._anchorX) * this._width;
+  }
+
+  private get pivotOffsetY(): number {
+    return (0.5 - this._anchorY) * this._height;
+  }
+
+  /**
+   * Real center of the rectangle in scene coordinates (accounts for anchor,
+   * scale and rotation). Also the pivot rotation is applied around.
+   */
+  get center(): KPoint {
+    const cos = Math.cos(this.rotation);
+    const sin = Math.sin(this.rotation);
+    const ox = this.pivotOffsetX * this.scale;
+    const oy = this.pivotOffsetY * this.scale;
+
+    return {
+      x: this.x + ox * cos - oy * sin,
+      y: this.y + ox * sin + oy * cos,
+    };
+  }
+
+  /**
+   * A corner given in local, unrotated units (e.g. -0.5/-0.5 = topLeft),
+   * projected into scene coordinates after scale + rotation around center.
+   */
+  private getCorner(localX: number, localY: number): KPoint {
+    const cos = Math.cos(this.rotation);
+    const sin = Math.sin(this.rotation);
+    const rx = (localX - this._anchorX) * this._width;
+    const ry = (localY - this._anchorY) * this._height;
+
+    // Scale
+    const sx = rx * this.scale;
+    const sy = ry * this.scale;
+
+    // Rotate around anchor (x, y)
+    return {
+      x: this.x + sx * cos - sy * sin,
+      y: this.y + sx * sin + sy * cos,
+    };
+  }
+
+  get topLeft(): KPoint {
+    return this.getCorner(0, 0);
+  }
+
+  get topRight(): KPoint {
+    return this.getCorner(1, 0);
+  }
+
+  get bottomRight(): KPoint {
+    return this.getCorner(1, 1);
+  }
+
+  get bottomLeft(): KPoint {
+    return this.getCorner(0, 1);
+  }
+
+  /**
+   * Bounding box axis-aligned (spec §4.3). Recomputed after rotation.
+   */
+  get boundingBox(): { topLeft: KPoint; topRight: KPoint; bottomLeft: KPoint; bottomRight: KPoint; center: KPoint } {
+    const corners = [this.topLeft, this.topRight, this.bottomLeft, this.bottomRight];
+    let minX = Infinity;
+    let maxX = -Infinity;
+    let minY = Infinity;
+    let maxY = -Infinity;
+
+    for (const c of corners) {
+      if (c.x < minX) minX = c.x;
+      if (c.x > maxX) maxX = c.x;
+      if (c.y < minY) minY = c.y;
+      if (c.y > maxY) maxY = c.y;
+    }
+
+    return {
+      topLeft: { x: minX, y: minY },
+      topRight: { x: maxX, y: minY },
+      bottomLeft: { x: minX, y: maxY },
+      bottomRight: { x: maxX, y: maxY },
+      center: { x: (minX + maxX) / 2, y: (minY + maxY) / 2 },
+    };
+  }
+
+  containsPoint(px: number, py: number): boolean {
+    const cos = Math.cos(-this.rotation);
+    const sin = Math.sin(-this.rotation);
+    const dx = px - this.x;
+    const dy = py - this.y;
+    const localX = dx * cos - dy * sin;
+    const localY = dx * sin + dy * cos;
+
+    const left = (0 - this._anchorX) * this._width * this.scale;
+    const right = (1 - this._anchorX) * this._width * this.scale;
+    const top = (0 - this._anchorY) * this._height * this.scale;
+    const bottom = (1 - this._anchorY) * this._height * this.scale;
+
+    return localX >= left && localX <= right && localY >= top && localY <= bottom;
+  }
+}
+
+export default KRectangle;
+</file>
+
+<file path="core/src/primitives/ktext.ts">
+// KText backs the DSL's `"text"` type (see registry/builtins.ts).
+// It reuses KRectangle for its geometry (a text block still has a
+// width/height box that other objects can anchor to via §4.2/§4.3), and
+// adds the `text` string content itself.
+//
+// TODO: width/height are currently caller-provided or default to 0; a real
+// implementation should measure the rendered text (e.g. via a PixiJS
+// TextMetrics call in KGraphicText) and write the result back here so that
+// `someText.width` is accurate for other objects to bind against.
+
+import KRectangle, { type KRectangleParams } from "./krectangle";
+
+export interface KTextParams extends Omit<KRectangleParams, "width" | "height"> {
+  text: string;
+  width?: number;
+  height?: number;
+}
+
+class KText extends KRectangle {
+  private _text: string;
+
+  constructor({ text, width = 0, height = 0, ...rest }: KTextParams) {
+    super({ ...rest, width, height });
+    this._text = text;
+
+    Object.assign(this.propertyAnimators, {
+      text: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _text: value, ...opts }, 0);
+      },
+    });
+  }
+
+  get text(): string {
+    return this._text;
+  }
+
+  set text(value: string) {
+    this._text = value;
+  }
+}
+
+export default KText;
+</file>
+
+<file path="core/src/registry/builtins.ts">
+// Registers the built-in DSL types with a Presk instance. Call this once,
+// before compiling/running any DSL document (see main.ts).
+//
+// To add a new built-in type: add a KObject subclass under primitives/, a
+// KGraphicObject subclass under renderer/, then register the pair here.
+
+import type Presk from "@/presk";
+import KRectangle from "@/primitives/krectangle";
+import KGraphicRectangle from "@/renderer/kgraphicRectangle";
+import KText from "@/primitives/ktext";
+import KGraphicText from "@/renderer/kgraphicText";
+import KLine from "@/primitives/kline";
+import KGraphicLine from "@/renderer/kgraphicLine";
+
+export function registerBuiltins(presk: Presk): void {
+  // Backs DSL `"type": "shape"` (see mockInput.json / spec.md examples).
+  presk.register("shape", KRectangle, KGraphicRectangle);
+
+  // Backs DSL `"type": "text"`.
+  presk.register("text", KText, KGraphicText);
+
+  // Backs DSL `"type": "line"`.
+  presk.register("line", KLine, KGraphicLine);
+}
+</file>
+
+<file path="core/src/renderer/kgraphicObject.ts">
+// KGraphicObject is the base class for every visual (PixiJS-backed)
+// component. It holds a reference to a KObject and is responsible for
+// reading its current state and pushing it to PixiJS — never the reverse.
+// See renderer/README.md for the full contract.
+
+import type KObject from "@/primitives/kobject";
+import type KRenderer from "./krenderer";
+
+export interface KGraphicObjectParams {
+  renderer: KRenderer;
+  object: KObject;
+}
+
+abstract class KGraphicObject {
+  protected _object: KObject;
+  protected _renderer: KRenderer;
+
+  constructor({ object, renderer }: KGraphicObjectParams) {
+    this._object = object;
+    this._renderer = renderer;
+  }
+
+  /** Re-reads `this._object`'s current state and updates the PixiJS display object. */
+  abstract redraw(): void;
+
+  /** Detaches and disposes the underlying PixiJS display object(s). */
+  abstract destroy(): void;
+}
+
+export default KGraphicObject;
+</file>
+
+<file path="core/src/renderer/kgraphicRectangle.ts">
+// Draws a KRectangle (primitives/krectangle.ts) as a PixiJS Graphics rect.
+// Paired with KRectangle under the "shape" DSL type — see
+// registry/builtins.ts.
+
+import { Graphics } from "pixi.js";
+import type KRectangle from "@/primitives/krectangle";
+import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
+
+export interface KGraphicRectangleParams extends KGraphicObjectParams {
+  object: KRectangle;
+  /** Fill color, as a hex number (e.g. 0xff0000). Defaults to a neutral gray. */
+  fill?: number;
+  stroke?: number;
+  strokeWidth?: number;
+}
+
+class KGraphicRectangle extends KGraphicObject {
+  private _graphics: Graphics;
+
+  constructor(params: KGraphicRectangleParams) {
+    super(params);
+    this._graphics = new Graphics();
+    this._renderer.add(this._graphics);
+    this.redraw();
+  }
+
+  private get rect(): KRectangle {
+    return this._object as KRectangle;
+  }
+
+  override redraw(): void {
+    const rect = this.rect;
+
+    this._graphics.clear();
+    
+    // Draw fill and optional stroke
+    const g = this._graphics.rect(-rect.width / 2, -rect.height / 2, rect.width, rect.height);
+    if (rect.fill !== undefined) {
+      g.fill(rect.fill);
+    }
+    if (rect.strokeWidth > 0) {
+      g.stroke({ width: rect.strokeWidth, color: rect.stroke });
+    }
+
+    const center = rect.center;
+    this._graphics.position.set(center.x, center.y);
+    this._graphics.rotation = rect.rotation;
+    this._graphics.scale.set(rect.scale);
+    this._graphics.alpha = rect.opacity;
+  }
+
+  override destroy(): void {
+    this._renderer.remove(this._graphics);
+    this._graphics.destroy();
+  }
+}
+
+export default KGraphicRectangle;
+</file>
+
+<file path="core/src/renderer/README.md">
+# renderer/
+
+The visual side of Presk. Everything here is allowed to depend on PixiJS —
+this is the only layer that does.
+
+## The contract
+
+Every `KGraphicObject` holds a reference to exactly one `KObject` (from
+`primitives/`) and knows how to `redraw()` itself by reading that object's
+*current* state. Data only flows one way: primitives -> renderer. Nothing in
+this folder ever mutates a `KObject`.
+
+## Files
+
+- `kgraphicObject.ts` — `KGraphicObject`, the abstract base every visual
+  component extends. Defines `redraw()` and `destroy()`.
+- `kgraphicRectangle.ts` — draws a `KRectangle` as a PixiJS `Graphics` rect.
+  Paired with `KRectangle` under the `"shape"` type (see
+  `registry/builtins.ts`).
+- `kgraphicText.ts` — draws a `KText` as a PixiJS `Text`. Paired with `KText`
+  under the `"text"` type.
+- `kgraphicScene.ts` — `KGraphicScene`, the visual counterpart of `KScene`:
+  a registry of every live `KGraphicObject` by id, and a `tick()` that calls
+  `redraw()` on all of them once per frame (see `presk.ts` for exactly when
+  this runs relative to tween/binding updates).
+- `krenderer.ts` — `KRenderer`, a thin wrapper around a PixiJS
+  `Application`. Owns the actual `<canvas>` and its container element, and
+  exposes `add()`/`remove()` so `KGraphicObject`s can attach/detach their
+  PixiJS display objects from the stage without reaching into the
+  `Application` directly.
+
+## Adding a new visual component
+
+1. Add a `KObject` subclass in `primitives/` (data only, no PixiJS).
+2. Add a `KGraphicObject` subclass here that reads from it and draws with
+   PixiJS.
+3. Register the pair with `presk.register("myType", KMyThing, KGraphicMyThing)`
+   (see `registry/builtins.ts` for the pattern, or `presk.ts` for the
+   registry itself).
+</file>
+
+<file path="core/src/presk.ts">
+// Presk is the engine's public API. It owns:
+//   - the type registry (register/create), the factory pattern that answers
+//     the original design question "how do I link a KObject to its
+//     KGraphicObject";
+//   - the KScene (data) and KGraphicScene (visuals) registries, kept in
+//     lockstep;
+//   - the KRenderer (PixiJS Application wrapper);
+//   - the BindingEngine (pull-based `follow` bindings);
+//   - the single shared GSAP ticker that drives all of the above in a
+//     fixed, deterministic order every frame.
+//
+// See src/README.md for the full architecture diagram and the reasoning
+// behind the tick order.
+
+import gsap from "gsap";
+import KScene from "@/primitives/kscene";
+import type KObject from "@/primitives/kobject";
+import KGraphicScene from "@/renderer/kgraphicScene";
+import KRenderer from "@/renderer/krenderer";
+import type KGraphicObject from "@/renderer/kgraphicObject";
+import BindingEngine from "@/binding/bindingEngine";
+
+// A registered "type" is a pair of constructors: one for the data object,
+// one for its paired visual. `any` is used for constructor params here
+// deliberately — each concrete pair (e.g. KRectangle/KGraphicRectangle)
+// has its own, more specific params type; the registry only needs to know
+// "give it an id/props object, get back an instance".
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type ObjectCtor = new (params: any) => KObject;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type GraphicCtor = new (params: any) => KGraphicObject;
+
+interface RegistryEntry {
+  ObjectClass: ObjectCtor;
+  GraphicClass: GraphicCtor;
+}
+
+export interface PreskInitParams {
+  /** CSS selector for the element the <canvas> is appended into. */
+  root: string;
+  width: number;
+  height: number;
+  background?: string;
+}
+
+class Presk {
+  private _registry: Map<string, RegistryEntry> = new Map();
+  private _scene!: KScene;
+  private _graphicScene: KGraphicScene = new KGraphicScene();
+  private _renderer!: KRenderer;
+  private _binding!: BindingEngine;
+  private _started = false;
+
+  /**
+   * Registers a DSL type name as a pair of constructors (data object + graphic object).
+   * `type` is the DSL's `"type"` field (e.g. "shape", "text"), and `create()` uses this
+   * pair to build both halves and link them by id.
+   */
+  register(type: string, ObjectClass: ObjectCtor, GraphicClass: GraphicCtor): void {
+    this._registry.set(type, { ObjectClass, GraphicClass });
+  }
+
+  /** Sets up the KScene + KRenderer and mounts the PixiJS canvas. Must be called before create(). */
+  async init({ root, width, height, background }: PreskInitParams): Promise<void> {
+    this._scene = new KScene({ id: "scene", x: 0, y: 0, width, height });
+    this._binding = new BindingEngine(this._scene);
+    this._renderer = new KRenderer({ root, width, height, background });
+    await this._renderer.init();
+  }
+
+  get scene(): KScene {
+    return this._scene;
+  }
+
+  get binding(): BindingEngine {
+    return this._binding;
+  }
+
+  /**
+   * Creates a KObject + its paired KGraphicObject from a registered type,
+   * links them (both keyed by the same id), and adds them to the scene.
+   * This is the `create("rectangle", {...})` factory from the design chat.
+   */
+  create<T extends KObject = KObject>(type: string, id: string, props: Record<string, unknown>): T {
+    const entry = this._registry.get(type);
+    if (!entry) {
+      throw new Error(`Presk.create: unknown type "${type}". Did you forget to register() it?`);
+    }
+    if (this._scene.has(id)) {
+      throw new Error(`Presk.create: an object with id "${id}" already exists.`);
+    }
+
+    const kObject = new entry.ObjectClass({ id, ...props });
+    const kGraphicObject = new entry.GraphicClass({ renderer: this._renderer, object: kObject });
+
+    this._scene.add(kObject);
+    this._graphicScene.add(id, kGraphicObject);
+
+    return kObject as T;
+  }
+
+  /** Destroys an object and its visual, and drops any bindings pointing at it. */
+  destroy(id: string): void {
+    this._graphicScene.remove(id); // also calls the graphic object's destroy()
+    this._scene.remove(id);
+    this._binding.clear(id);
+  }
+
+  /**
+   * Starts the single shared ticker driving the whole engine. Order, every
+   * frame:
+   *   1. GSAP's own internal tween engine updates first (built into GSAP,
+   *      runs before any ticker.add() callback — see src/README.md).
+   *   2. binding.flush() resolves every active `follow` expression.
+   *   3. graphicScene.tick() redraws every visual from its current KObject.
+   */
+  start(): void {
+    if (this._started) return;
+    this._started = true;
+    gsap.ticker.add(() => {
+      this._binding.flush();
+      this._graphicScene.tick();
+    });
+  }
+}
+
+export default Presk;
+</file>
+
+<file path="core/src/style.css">
+/*
+ * Minimal page chrome for the Presk demo (core/src/main.ts).
+ * Presk itself renders inside a <canvas> managed by PixiJS; this stylesheet
+ * only styles the page around that canvas. It has no effect on anything
+ * drawn by the engine.
+ */
+
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: #111;
+  background: #f4f3ef;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#app canvas {
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  /* mockInput.json's scene is 1920x1080; scale it down to fit the viewport
+     for the demo. Real embedding contexts can size the canvas however
+     they want — this is just presentation, not part of the engine. */
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+}
+</file>
+
+<file path="core/index.html">
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Presk</title>
+  </head>
+
+  <body>
+    <!--
+      Presk renders into this element: KRenderer looks it up by the "root"
+      selector passed to Presk.init() and appends the PixiJS <canvas> to it.
+    -->
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
+</file>
+
+<file path="core/package.json">
+{
+  "name": "@presk/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Presk engine: DSL compiler, binding engine, and PixiJS renderer.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "~7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "dependencies": {
+    "gsap": "^3.15.0",
+    "pixi.js": "^8.21.0"
+  }
+}
+</file>
+
+<file path="core/tsconfig.json">
+{
+  "compilerOptions": {
+    "target": "es2023",
+    "module": "esnext",
+    "lib": ["ES2023", "DOM"],
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "erasableSyntaxOnly": true,
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  },
+  "include": ["src"]
+}
+</file>
+
+<file path="core/vite.config.ts">
+// Vite dev/build configuration for the Presk core package.
+// Resolves the "@/*" path alias (declared in tsconfig.json) so source files
+// can import each other with e.g. `import KScene from "@/primitives/kscene"`
+// instead of long relative paths like `../../primitives/kscene`.
+import { defineConfig } from "vite";
+import { fileURLToPath, URL } from "node:url";
+
+export default defineConfig({
+  resolve: {
+    alias: {
+      "@": fileURLToPath(new URL("./src", import.meta.url)),
+    },
+  },
+  test: {
+    globals: false,
+  },
+});
+</file>
+
+<file path="README.md">
+## Presk
+
+Presk is a project that allows pedagogical animations to be described using a
+declarative language, designed to be reliably generated by an AI rather than
+hand-coded.
+
+The goal is to make the creation of educational animations (grammar, physics,
+mathematics lessons, etc.) as simple as describing the scene in natural
+language to an AI, without having to tinker with SVG or low-level animation
+code.
+
+⚠️ Status: Project in the design phase. The language specification is still
+under active iteration. This repository contains a working v1 skeleton of the
+engine — enough to create objects, animate them, bind values between them and
+render them with PixiJS — with clearly marked gaps where the spec goes further
+than the current implementation (see "Known gaps" below).
+
+## Project Structure
+
+The project is composed of three distinct parts:
+
+### `language/`
+Defines the DSL (Domain Specific Language): the grammar, the JSON format, and
+the full specification of the language used to describe an animation
+(objects, properties, timing, expressions, anchoring, etc.). See
+`language/spec.md`.
+
+### `core/`
+Contains the engine: the DSL compiler, the resolution of expressions and
+dependencies, timeline management, and rendering. This is what executes a
+file written in the language defined in `language/`. See `core/README.md`
+for the internal architecture (this is where most of the code lives today).
+
+### `lib/`
+Not started yet. Will contain the pre-built component libraries, organized by
+domain (for example: electrical circuits, French grammar, geometry...). These
+components make it possible to describe a scene at a semantic level rather
+than drawing each element by hand.
+
+## Why This Project
+
+Most existing tools used to generate pedagogical animations via AI (Manim,
+imperative code, raw SVG) produce code that is difficult to validate and fix
+reliably. Presk aims for the opposite: a strict, unambiguous format with
+ready-to-use business components, allowing an AI to generate correct
+animations repeatably.
+
+## Getting started
+
+```bash
+pnpm install
+pnpm --filter @presk/core dev      # opens the demo (renders core/src/compiler/mockInput.json)
+pnpm --filter @presk/core test     # runs the unit tests
+```
+
+## Known gaps vs. the spec (`language/spec.md`)
+
+This v1 focuses on getting the *architecture* right (see
+`core/src/README.md` for the responsibility split) rather than implementing
+every corner of the DSL. Not yet implemented, tracked as TODOs in the
+relevant files:
+
+- `group` / `ungroup` actions (§7).
+- Path anchoring, `pathX`/`pathY`/`pathAngle` (§9).
+- `boundingBox.*` prefix in expressions (§4.3) — only the direct corner
+  points (`topLeft`, `center`, ...) are supported.
+- Cycle detection in the dependency graph (§8.4-8.5) — a cyclic `follow`
+  will currently just loop forever reading stale values instead of raising a
+  compile-time error.
+
+Everything else in the spec (create/set/transform/follow/unfollow/destroy,
+timeline position parameters, named labels, expressions on scalar/point
+props) is implemented.
+</file>
+
+<file path="core/src/primitives/kobject.test.ts">
+// Unit tests for KObject. Pure data class, so these run with no browser,
+// no canvas, no PixiJS involved at all (see primitives/README.md).
+import { describe, it, expect } from "vitest";
+import KObject from "./kobject";
+
+describe("KObject", () => {
+  it("initializes properties from constructor args", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20, scale: 2, rotation: 0.5, opacity: 0.8 });
+
+    expect(obj.id).toBe("hero");
+    expect(obj.x).toBe(10);
+    expect(obj.y).toBe(20);
+    expect(obj.scale).toBe(2);
+    expect(obj.rotation).toBe(0.5);
+    expect(obj.opacity).toBe(0.8);
+  });
+
+  it("uses default values when optional args are omitted", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20 });
+
+    expect(obj.scale).toBe(1);
+    expect(obj.rotation).toBe(0);
+    expect(obj.opacity).toBe(1);
+    expect(obj.pos).toEqual({ x: 10, y: 20 });
+  });
+
+  it("updates values through setters", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20 });
+
+    obj.id = "enemy";
+    obj.x = 15;
+    obj.y = 25;
+    obj.pos = { x: 50, y: 60 };
+    obj.scale = 3;
+    obj.rotation = 45;
+    obj.opacity = 0.2;
+
+    expect(obj.id).toBe("enemy");
+    expect(obj.x).toBe(50);
+    expect(obj.y).toBe(60);
+    expect(obj.pos).toEqual({ x: 50, y: 60 });
+    expect(obj.scale).toBe(3);
+    expect(obj.rotation).toBe(45);
+    expect(obj.opacity).toBe(0.2);
+  });
+});
+</file>
+
+<file path="core/src/primitives/kobject.ts">
+// KObject is the base "data" class for every object the DSL can `create`
+// (spec §4.1). It knows nothing about how it is drawn — no PixiJS import is
+// allowed in this file, ever (see primitives/README.md).
+//
+// It exists so that:
+//   - the binding engine (binding/) can read/write `x`, `y`, `scale`,
+//     `rotation`, `opacity` uniformly on any object type;
+//   - GSAP can tween these same properties directly, e.g.
+//     `gsap.to(kObject, { x: 100 })`, since they're plain getters/setters
+//     on a plain object.
+
+import gsap from "gsap";
+
+export type PropertyAnimator = (
+  value: unknown,
+  tl: gsap.core.Timeline,
+  options: { duration: number; ease?: string }
+) => void;
+
+export interface KObjectParams {
+  id: string;
+  x: number;
+  y: number;
+  scale?: number;
+  rotation?: number;
+  opacity?: number;
+}
+
+class KObject {
+  protected _id: string;
+  protected _x: number;
+  protected _y: number;
+  protected _scale: number;
+  protected _rotation: number;
+  protected _opacity: number;
+
+  protected propertyAnimators: Record<string, PropertyAnimator> = {
+    x: (value, tl, opts) => {
+      tl.to(this, { _x: value, ...opts }, 0);
+    },
+    y: (value, tl, opts) => {
+      tl.to(this, { _y: value, ...opts }, 0);
+    },
+    pos: (value, tl, opts) => {
+      const { x, y } = value as { x: number; y: number };
+      this.propertyAnimators.x(x, tl, opts);
+      this.propertyAnimators.y(y, tl, opts);
+    },
+    scale: (value, tl, opts) => {
+      tl.to(this, { _scale: value, ...opts }, 0);
+    },
+    rotation: (value, tl, opts) => {
+      tl.to(this, { _rotation: value, ...opts }, 0);
+    },
+    opacity: (value, tl, opts) => {
+      tl.to(this, { _opacity: value, ...opts }, 0);
+    },
+  };
+
+  createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    const duration = options.duration ?? 0.4;
+    const ease = options.ease ?? "power2.out";
+    const tl = gsap.timeline();
+    
+    const targetX = this._x;
+    const targetY = this._y;
+    const targetOpacity = this._opacity;
+
+    // Start slightly above and transparent, dropping onto the target data
+    this._x = targetX;
+    this._y = targetY - 40;
+    this._opacity = 0;
+
+    tl.to(this, { _x: targetX, _y: targetY, _opacity: targetOpacity, duration, ease }, 0);
+    return tl;
+  }
+
+  transform(data: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
+    const tl = gsap.timeline();
+    for (const [key, value] of Object.entries(data)) {
+      const animator = this.propertyAnimators[key];
+      if (!animator) {
+        throw new Error(`${this.constructor.name}: no animator registered for property "${key}".`);
+      }
+      animator(value, tl, options);
+    }
+    return tl;
+  }
+
+  setNow(data: Record<string, unknown>): void {
+    const tl = this.transform(data, { duration: 0 });
+    tl.progress(1);
+  }
+
+  constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
+    this._id = id;
+    this._x = x;
+    this._y = y;
+    this._scale = scale;
+    this._rotation = rotation;
+    this._opacity = opacity;
+  }
+
+  get id(): string {
+    return this._id;
+  }
+
+  set id(value: string) {
+    this._id = value;
+  }
+
+  get x(): number {
+    return this._x;
+  }
+
+  set x(value: number) {
+    this._x = value;
+  }
+
+  get y(): number {
+    return this._y;
+  }
+
+  set y(value: number) {
+    this._y = value;
+  }
+
+  get pos(): { x: number; y: number } {
+    return { x: this._x, y: this._y };
+  }
+
+  set pos(value: { x: number; y: number }) {
+    this._x = value.x;
+    this._y = value.y;
+  }
+
+  get scale(): number {
+    return this._scale;
+  }
+
+  set scale(value: number) {
+    this._scale = value;
+  }
+
+  get rotation(): number {
+    return this._rotation;
+  }
+
+  set rotation(value: number) {
+    this._rotation = value;
+  }
+
+  get opacity(): number {
+    return this._opacity;
+  }
+
+  set opacity(value: number) {
+    this._opacity = value;
+  }
+}
+
+export default KObject;
+</file>
+
+<file path="core/src/primitives/kscene.ts">
+// KScene is the *data* scene: a registry of every live KObject by id, plus
+// the reserved "scene" identifier's own properties (width/height, spec §4).
+//
+// It deliberately knows nothing about graphics — see KGraphicScene
+// (renderer/kgraphicScene.ts) for the visual counterpart that mirrors this
+// registry one-to-one via Presk's registry (presk.ts).
+
+import KObject, { type KObjectParams } from "./kobject";
+
+export interface KSceneParams extends KObjectParams {
+  width: number;
+  height: number;
+}
+
+class KScene extends KObject {
+  private _width: number;
+  private _height: number;
+
+  /** Every live KObject, keyed by its DSL id. Does not include the scene itself. */
+  private _objects: Map<string, KObject> = new Map();
+
+  constructor(params: KSceneParams) {
+    super(params);
+    this._width = params.width;
+    this._height = params.height;
+  }
+
+  get width(): number {
+    return this._width;
+  }
+
+  set width(value: number) {
+    this._width = value;
+  }
+
+  get height(): number {
+    return this._height;
+  }
+
+  set height(value: number) {
+    this._height = value;
+  }
+
+  /** Registers an object so it becomes resolvable as `<id>.<prop>` in expressions. */
+  add(object: KObject): void {
+    if (this._objects.has(object.id)) {
+      throw new Error(`KScene: an object with id "${object.id}" already exists.`);
+    }
+    this._objects.set(object.id, object);
+  }
+
+  remove(id: string): void {
+    this._objects.delete(id);
+  }
+
+  /**
+   * Resolves an identifier from an expression (spec §8). The reserved id
+   * "scene" always resolves to this KScene itself.
+   */
+  get(id: string): KObject | undefined {
+    if (id === "scene") return this;
+    return this._objects.get(id);
+  }
+
+  has(id: string): boolean {
+    return id === "scene" || this._objects.has(id);
+  }
+
+  /** All live objects, in insertion order. Used by the binding engine and by tick(). */
+  all(): KObject[] {
+    return [...this._objects.values()];
+  }
+}
+
+export default KScene;
+</file>
+
+<file path="core/src/primitives/README.md">
+# primitives/
+
+Pure data model for Presk objects. Everything in this folder must stay free
+of any rendering dependency (no PixiJS import, ever) so that:
+
+- it can be unit-tested without a browser or canvas (see `kobject.test.ts`,
+  `krectangle.test.ts`);
+- it can, in principle, be paired with a different renderer later without
+  any change here (see `core/src/renderer/README.md`).
+
+## Files
+
+- `types.ts` — shared geometry types (`KPoint`) used across the whole engine.
+- `kobject.ts` — `KObject`, the base class every DSL-creatable type extends.
+  Holds the properties common to every object per the spec (§4.1): `x`, `y`,
+  `pos` (as `{ x, y }` getter/setter), `scale`, `rotation`, and `opacity`.
+- `krectangle.ts` — `KRectangle`, backs the DSL's `"shape"` type. Adds
+  `width`/`height` and implements the full corner/bounding-box geometry from
+  spec §4.2-4.3 (`topLeft`, `center`, `boundingBox.*`, ...).
+- `ktext.ts` — `KText`, backs the DSL's `"text"` type. Adds a `text` string
+  property; reuses `KRectangle`'s geometry since text has a width/height box
+  too (needed once it's actually measured by the renderer — see the TODO in
+  `renderer/kgraphicText.ts`).
+- `kscene.ts` — `KScene`, the data-only scene graph. Holds the registry of
+  every live `KObject` by id (`get`/`add`/`remove`) — this is what makes
+  `"someId.x"` resolvable from an expression (see `binding/expression.ts`).
+  Also represents the DSL's reserved `"scene"` identifier (§4, `scene.width`,
+  `scene.center.x`, ...).
+</file>
+
+<file path="core/src/renderer/krenderer.ts">
+// KRenderer owns the PixiJS Application: the actual <canvas> element and
+// its DOM container. It is intentionally "dumb" — it doesn't know about
+// KObject/KScene at all, only about attaching/detaching PixiJS display
+// objects to the stage. KGraphicObjects call add()/remove() on it.
+
+import { Application, type Container, type Renderer } from "pixi.js";
+
+export interface KRendererParams {
+  /** CSS selector for the element the <canvas> gets appended into. */
+  root: string;
+  width: number;
+  height: number;
+  background?: string;
+}
+
+class KRenderer {
+  private _app: Application<Renderer>;
+  private _rootElement: Element;
+  private _width: number;
+  private _height: number;
+  private _background: string;
+
+  constructor({ root, width, height, background = "#101014" }: KRendererParams) {
+    this._app = new Application();
+    const rootElement = document.querySelector(root);
+    if (!rootElement) {
+      throw new Error(`KRenderer: root element not found for selector "${root}".`);
+    }
+    this._rootElement = rootElement;
+    this._width = width;
+    this._height = height;
+    this._background = background;
+  }
+
+  async init(): Promise<void> {
+    await this._app.init({
+      width: this._width,
+      height: this._height,
+      background: this._background,
+      antialias: true,
+    });
+
+    this._rootElement.appendChild(this._app.canvas);
+  }
+
+  add(displayObject: Container): void {
+    this._app.stage.addChild(displayObject);
+  }
+
+  remove(displayObject: Container): void {
+    this._app.stage.removeChild(displayObject);
+  }
+}
+
+export default KRenderer;
+</file>
+
+<file path="core/src/main.ts">
+// Demo entry point: wires Presk up and plays compiler/input2.json.
+// This is the reference example for how the pieces documented in
+// src/README.md fit together in practice.
+import "./style.css";
+import Presk from "./presk";
+import { registerBuiltins } from "./registry/builtins";
+import { compile } from "./compiler/compiler";
+import type { DslDocument } from "./compiler/types";
+import inputData from "./compiler/input.json";
+
+const doc = inputData as DslDocument;
+
+const presk = new Presk();
+registerBuiltins(presk);
+
+await presk.init({
+  root: "#app",
+  width: doc.scene.width,
+  height: doc.scene.height,
+  background: doc.scene.background,
+});
+
+const timeline = compile(doc, presk);
+
+presk.start(); // starts the single shared ticker (state -> bindings -> redraw)
+timeline.play();
+</file>
+
+</files>

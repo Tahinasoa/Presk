@@ -1,8 +1,8 @@
 // BindingEngine implements the DSL's `follow`/`unfollow` actions (spec §10)
 // as a pull-based system: `follow(id, { x: "other.x" })` just registers an
 // expression string per property; `flush()` (called once per tick by
-// Presk) re-evaluates every registered expression and writes the result
-// straight onto the target KObject.
+// Presk) re-evaluates every registered expression and applies the result
+// via target.setNow() to respect component property animators.
 //
 // See binding/README.md for why this is pull-based rather than event/proxy
 // driven, and for the known limitations (chained-binding lag, no cycle
@@ -57,11 +57,13 @@ class BindingEngine {
   /** Re-evaluates every active binding and writes the result onto its target. Called once per tick. */
   flush(): void {
     for (const [targetId, props] of this._bindings) {
-      const target = this._scene.get(targetId) as unknown as Record<string, number> | undefined;
+      const target = this._scene.get(targetId);
       if (!target) continue; // target was destroyed without an explicit unfollow
+      const data: Record<string, unknown> = {};
       for (const [prop, expression] of props) {
-        target[prop] = evaluateExpression(expression, this._scene);
+        data[prop] = evaluateExpression(expression, this._scene);
       }
+      target.setNow(data);
     }
   }
 }

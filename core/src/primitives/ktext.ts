@@ -22,6 +22,12 @@ class KText extends KRectangle {
   constructor({ text, width = 0, height = 0, ...rest }: KTextParams) {
     super({ ...rest, width, height });
     this._text = text;
+
+    Object.assign(this.propertyAnimators, {
+      text: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
+        tl.to(this, { _text: value, ...opts }, 0);
+      },
+    });
   }
 
   get text(): string {

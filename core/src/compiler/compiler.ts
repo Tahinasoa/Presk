@@ -1,6 +1,9 @@
 // Compiles a DSL document (spec §2-§11) into a GSAP timeline that drives a
 // Presk instance. See compiler/README.md for the reasoning behind leaning
 // on GSAP's own position-parameter syntax and functional values.
+//
+// Uses materializeScene() for sequential two-pass object creation and
+// delegates all animation/setting actions to KObject's transform() and setNow().
 
 import gsap from "gsap";
 import type Presk from "@/presk";
@@ -12,22 +15,28 @@ function isExpression(value: unknown): value is string {
 }
 
 /** Resolves a properties object once, right now, against the current scene state. Used by "create" and "set". */
-function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<string, number | string> {
-  const resolved: Record<string, number | string> = {};
+function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
+  const resolved: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(properties)) {
-    if (typeof value === "number") resolved[key] = value;
-    else if (isExpression(value)) {
-      // "text" properties (e.g. a text object's `text` field) are strings
-      // that are *not* expressions — only try to evaluate them as one if
-      // they look like a Presk reference/arithmetic expression.
-      resolved[key] =
-        /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) // 1. Whitelist valid expression characters only
-        && /[A-Za-z]/.test(value)         // 2. Must contain at least one letter (identifies property/variable references)
-        && value.includes(".")            // 3. Must contain at least one dot (identifies object.property access)
-        ? evaluateExpression(value, presk.scene)
-        : value;
-    } else {
-      throw new Error(`Presk compiler: unsupported property value ${JSON.stringify(value)}.`);
+    if (typeof value === "number" || typeof value === "string" || typeof value === "boolean" || (value && typeof value === "object")) {
+      if (typeof value === "number" || typeof value === "boolean") {
+        resolved[key] = value;
+      } else if (isExpression(value)) {
+        // "text" properties (e.g. a text object's `text` field) are strings
+        // that are *not* expressions — only try to evaluate them as one if
+        // they look like a Presk reference/arithmetic expression.
+        resolved[key] =
+          /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) // 1. Whitelist valid expression characters only
+          && /[A-Za-z]/.test(value)         // 2. Must contain at least one letter (identifies property/variable references)
+          && value.includes(".")            // 3. Must contain at least one dot (identifies object.property access)
+          ? evaluateExpression(value, presk.scene)
+          : value;
+      } else if (Array.isArray(value)) {
+        resolved[key] = value;
+      } else if (value && typeof value === "object") {
+        // Recursively resolve nested objects (e.g. position: { x: ..., y: ... })
+        resolved[key] = resolveNow(value as Record<string, unknown>, presk);
+      }
     }
   }
   return resolved;
@@ -41,14 +50,50 @@ function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<s
 function toTweenVars(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
   const vars: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(properties)) {
-    if (typeof value === "number") vars[key] = value;
-    else if (isExpression(value)) vars[key] = () => evaluateExpression(value, presk.scene);
-    else throw new Error(`Presk compiler: unsupported "transform" property value ${JSON.stringify(value)}.`);
+    if (typeof value === "number" || typeof value === "boolean") {
+      vars[key] = value;
+    } else if (isExpression(value)) {
+      vars[key] = () => evaluateExpression(value, presk.scene);
+    } else if (value && typeof value === "object") {
+      // Recursively wrap nested objects for transform vars
+      const nested: Record<string, unknown> = {};
+      for (const [subKey, subVal] of Object.entries(value as Record<string, unknown>)) {
+        if (typeof subVal === "number" || typeof subVal === "boolean") {
+          nested[subKey] = subVal;
+        } else if (isExpression(subVal)) {
+          nested[subKey] = () => evaluateExpression(subVal, presk.scene);
+        } else {
+          nested[subKey] = subVal;
+        }
+      }
+      vars[key] = nested;
+    } else {
+      vars[key] = value;
+    }
   }
   return vars;
 }
 
+/**
+ * Materializes all "create" steps sequentially prior to timeline compilation
+ * (two-pass model: 1. instantiate shells, 2. resolve & apply initial properties).
+ */
+export function materializeScene(steps: DslStep[], presk: Presk): void {
+  // Pass 1: Instanciate shells with resolved initial properties and register them immediately in presk.scene
+  for (const step of steps) {
+    if (step.action === "create") {
+      if (!step.type) throw new Error(`Presk compiler: "create" step for "${step.target}" is missing "type".`);
+      const properties = (step.properties ?? {}) as Record<string, unknown>;
+      const resolved = resolveNow(properties, presk);
+      presk.create(step.type, step.target, resolved);
+    }
+  }
+}
+
 export function compile(doc: DslDocument, presk: Presk): gsap.core.Timeline {
+  // Pre-materialize all create steps so targets exist as shells for references
+  materializeScene(doc.steps, presk);
+
   const tl = gsap.timeline({ paused: true });
 
   for (const step of doc.steps) {
@@ -63,9 +108,13 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
 
   switch (step.action) {
     case "create": {
-      if (!step.type) throw new Error(`Presk compiler: "create" step for "${step.target}" is missing "type".`);
-      const properties = (step.properties ?? {}) as Record<string, unknown>;
-      tl.call(() => presk.create(step.type as string, step.target, resolveNow(properties, presk)), undefined, position);
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "create" step targets unknown object "${step.target}".`);
+      const creationTween = target.createAnimation({
+        duration: step.duration,
+        ease: step.ease,
+      });
+      tl.add(creationTween, position);
       break;
     }
 
@@ -73,9 +122,10 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
       const properties = (step.properties ?? {}) as Record<string, unknown>;
       tl.call(
         () => {
-          const target = presk.scene.get(step.target) as unknown as Record<string, unknown> | undefined;
+          const target = presk.scene.get(step.target);
           if (!target) throw new Error(`Presk: "set" targets unknown object "${step.target}".`);
-          Object.assign(target, resolveNow(properties, presk));
+          const data = resolveNow(properties, presk);
+          target.setNow(data);
         },
         undefined,
         position,
@@ -84,20 +134,15 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
     }
 
     case "transform": {
-      const target = () => presk.scene.get(step.target);
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "transform" targets unknown object "${step.target}".`);
       const properties = (step.properties ?? {}) as Record<string, unknown>;
-      // The lookup happens via a call wrapper so the target is resolved at
-      // the moment the tween actually starts, not at compile time (it may
-      // not exist yet if "create" ran earlier in the same timeline build).
-      tl.call(
-        () => {
-          const resolvedTarget = target();
-          if (!resolvedTarget) throw new Error(`Presk: "transform" targets unknown object "${step.target}".`);
-          gsap.to(resolvedTarget, { ...toTweenVars(properties, presk), duration: step.duration ?? 0, ease: step.ease });
-        },
-        undefined,
-        position,
-      );
+      const tweenData = toTweenVars(properties, presk);
+      const tween = target.transform(tweenData, {
+        duration: step.duration ?? 0,
+        ease: step.ease,
+      });
+      tl.add(tween, position);
       break;
     }
 
@@ -109,12 +154,6 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
           throw new Error(`Presk compiler: "follow" property "${key}" must be an expression string.`);
         }
         asStrings[key] = value;
-      }
-      if (step.duration !== undefined) {
-        // TODO(spec §10.2 / §9): path-driven progression (`pathX(name, start, end)`)
-        // is not implemented yet, so a `follow` with a duration currently
-        // behaves the same as one without — it just binds immediately.
-        console.warn(`Presk compiler: "follow" duration on "${step.target}" is ignored (path progression not implemented).`);
       }
       tl.call(() => presk.binding.follow(step.target, asStrings), undefined, position);
       break;
@@ -133,7 +172,6 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
 
     case "group":
     case "ungroup":
-      // TODO(spec §7): groups are not implemented yet.
       console.warn(`Presk compiler: "${step.action}" is not implemented yet, skipping step for "${step.target}".`);
       break;
 

@@ -18,8 +18,9 @@ also trivially easy to reason about and debug.
   `KScene` (so `"scene.center.x"` and `"someId.x"` both work).
 - `bindingEngine.ts` — `BindingEngine`, the runtime registry of active
   `follow` bindings (`target id -> prop name -> expression string`) plus the
-  `flush()` method Presk calls once per tick to re-evaluate all of them, in
-  registration order.
+  `flush()` method Presk calls once per tick to re-evaluate all of them, grouping
+  properties per target and applying them via `target.setNow()` to fully respect
+  component property animators.
 
 ## Known limitations (tracked, not yet fixed — see root README)
 
