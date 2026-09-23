@@ -1,0 +1,490 @@
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#0b1220"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "title",
+      "type": "text",
+      "properties": {
+        "text": "Le cycle de l'eau",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.15",
+        "scale": 0.6,
+        "opacity": 0
+      }
+    },
+    {
+      "action": "transform",
+      "target": "title",
+      "name": "titleIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.7,
+      "ease": "back.out(1.6)"
+    },
+    {
+      "action": "transform",
+      "target": "title",
+      "name": "titleOut",
+      "properties": { "opacity": 0, "scale": 0.7 },
+      "start": "titleIn+=1.6",
+      "duration": 0.5
+    },
+
+    {
+      "action": "create",
+      "target": "ocean",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.92",
+        "width": 1700,
+        "height": 220,
+        "opacity": 0,
+        "scale": 0.9
+      },
+      "start": "titleOut"
+    },
+    {
+      "action": "create",
+      "target": "oceanLabel",
+      "type": "text",
+      "properties": {
+        "text": "Océan",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.92",
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "titleOut"
+    },
+    {
+      "action": "create",
+      "target": "sun",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width * 0.15",
+        "y": "scene.height * 0.18",
+        "width": 160,
+        "height": 160,
+        "opacity": 0,
+        "scale": 0.5
+      },
+      "start": "titleOut"
+    },
+    {
+      "action": "create",
+      "target": "sunLabel",
+      "type": "text",
+      "properties": {
+        "text": "Soleil",
+        "x": "scene.width * 0.15",
+        "y": "scene.height * 0.26",
+        "scale": 0.7,
+        "opacity": 0
+      },
+      "start": "titleOut"
+    },
+
+    {
+      "action": "transform",
+      "target": "ocean",
+      "name": "oceanIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "start": "titleOut+=0.3",
+      "duration": 0.7,
+      "ease": "power2.out"
+    },
+    {
+      "action": "transform",
+      "target": "oceanLabel",
+      "name": "oceanLabelIn",
+      "properties": { "opacity": 1 },
+      "start": "oceanIn",
+      "duration": 0.5
+    },
+    {
+      "action": "transform",
+      "target": "sun",
+      "name": "sunIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "start": "oceanIn",
+      "duration": 0.7,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "transform",
+      "target": "sunLabel",
+      "name": "sunLabelIn",
+      "properties": { "opacity": 1 },
+      "start": "sunIn",
+      "duration": 0.5
+    },
+
+    {
+      "action": "create",
+      "target": "heatArrow",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "sun.bottomLeft.x",
+        "startY": "sun.bottomLeft.y",
+        "endX": "sun.bottomLeft.x",
+        "endY": "sun.bottomLeft.y",
+        "opacity": 0
+      },
+      "start": "sunLabelIn"
+    },
+    {
+      "action": "set",
+      "target": "heatArrow",
+      "start": "sunLabelIn+=0.4",
+      "properties": { "opacity": 1 }
+    },
+    {
+      "action": "transform",
+      "target": "heatArrow",
+      "name": "heatArrowDraw",
+      "properties": {
+        "endX": "ocean.topLeft.x",
+        "endY": "ocean.topLeft.y"
+      },
+      "start": "sunLabelIn+=0.4",
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+
+    {
+      "action": "create",
+      "target": "cloud",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.28",
+        "width": 300,
+        "height": 130,
+        "opacity": 0,
+        "scale": 0
+      },
+      "start": "heatArrowDraw+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "cloudLabel",
+      "type": "text",
+      "properties": {
+        "text": "Condensation",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.28",
+        "scale": 0.7,
+        "opacity": 0
+      },
+      "start": "heatArrowDraw+=0.3"
+    },
+
+    {
+      "action": "create",
+      "target": "evapArrow",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "ocean.topLeft.x",
+        "startY": "ocean.topLeft.y",
+        "endX": "ocean.topLeft.x",
+        "endY": "ocean.topLeft.y",
+        "opacity": 0
+      },
+      "start": "heatArrowDraw+=0.3"
+    },
+    {
+      "action": "set",
+      "target": "evapArrow",
+      "start": "heatArrowDraw+=0.5",
+      "properties": { "opacity": 1 }
+    },
+    {
+      "action": "transform",
+      "target": "evapArrow",
+      "name": "evapArrowDraw",
+      "properties": {
+        "endX": "cloud.bottomLeft.x",
+        "endY": "cloud.bottomLeft.y"
+      },
+      "start": "heatArrowDraw+=0.5",
+      "duration": 0.9,
+      "ease": "power2.inOut"
+    },
+
+    {
+      "action": "transform",
+      "target": "cloud",
+      "name": "cloudIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "start": "evapArrowDraw",
+      "duration": 0.6,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "cloudLabel",
+      "name": "cloudLabelIn",
+      "properties": { "opacity": 1 },
+      "start": "cloudIn",
+      "duration": 0.4
+    },
+
+    {
+      "action": "follow",
+      "target": "cloudLabel",
+      "properties": {
+        "x": "cloud.center.x",
+        "y": "cloud.topLeft.y"
+      },
+      "start": "cloudLabelIn"
+    },
+
+    {
+      "action": "transform",
+      "target": "cloud",
+      "name": "cloudGrow",
+      "properties": { "scale": 1.2 },
+      "start": "cloudLabelIn+=0.4",
+      "duration": 0.5,
+      "ease": "power2.out"
+    },
+    {
+      "action": "transform",
+      "target": "cloud",
+      "name": "cloudSettle",
+      "properties": { "scale": 1.05 },
+      "duration": 0.4,
+      "ease": "power2.inOut"
+    },
+
+    {
+      "action": "unfollow",
+      "target": "cloudLabel",
+      "start": "cloudSettle"
+    },
+    {
+      "action": "set",
+      "target": "cloudLabel",
+      "start": "cloudSettle",
+      "properties": {
+        "x": "cloud.center.x",
+        "y": "cloud.topLeft.y"
+      }
+    },
+
+    {
+      "action": "create",
+      "target": "rainLabel",
+      "type": "text",
+      "properties": {
+        "text": "Précipitation",
+        "x": "scene.width * 0.5",
+        "y": "scene.height * 0.5",
+        "scale": 0.7,
+        "opacity": 0
+      },
+      "start": "cloudSettle+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "rainLabel",
+      "name": "rainLabelIn",
+      "properties": { "opacity": 1 },
+      "start": "cloudSettle+=0.3",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "rainLabel",
+      "name": "rainLabelOut",
+      "properties": { "opacity": 0 },
+      "start": "rainLabelIn+=1.0",
+      "duration": 0.4
+    },
+
+    {
+      "action": "create",
+      "target": "rain1",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "scene.width * 0.42",
+        "startY": "cloud.bottomLeft.y",
+        "endX": "scene.width * 0.42",
+        "endY": "cloud.bottomLeft.y",
+        "opacity": 0
+      },
+      "start": "rainLabelIn"
+    },
+    {
+      "action": "create",
+      "target": "rain2",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "scene.width * 0.5",
+        "startY": "cloud.bottomLeft.y",
+        "endX": "scene.width * 0.5",
+        "endY": "cloud.bottomLeft.y",
+        "opacity": 0
+      },
+      "start": "rainLabelIn"
+    },
+    {
+      "action": "create",
+      "target": "rain3",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": "scene.width * 0.58",
+        "startY": "cloud.bottomLeft.y",
+        "endX": "scene.width * 0.58",
+        "endY": "cloud.bottomLeft.y",
+        "opacity": 0
+      },
+      "start": "rainLabelIn"
+    },
+
+    {
+      "action": "set",
+      "target": "rain1",
+      "start": "rainLabelIn+=0.2",
+      "properties": { "opacity": 1 }
+    },
+    {
+      "action": "transform",
+      "target": "rain1",
+      "name": "rain1Fall",
+      "properties": { "endY": "ocean.topLeft.y" },
+      "start": "rainLabelIn+=0.2",
+      "duration": 0.5,
+      "ease": "power1.in"
+    },
+
+    {
+      "action": "set",
+      "target": "rain2",
+      "start": "rainLabelIn+=0.35",
+      "properties": { "opacity": 1 }
+    },
+    {
+      "action": "transform",
+      "target": "rain2",
+      "name": "rain2Fall",
+      "properties": { "endY": "ocean.topLeft.y" },
+      "start": "rainLabelIn+=0.35",
+      "duration": 0.5,
+      "ease": "power1.in"
+    },
+
+    {
+      "action": "set",
+      "target": "rain3",
+      "start": "rainLabelIn+=0.5",
+      "properties": { "opacity": 1 }
+    },
+    {
+      "action": "transform",
+      "target": "rain3",
+      "name": "rain3Fall",
+      "properties": { "endY": "ocean.topLeft.y" },
+      "start": "rainLabelIn+=0.5",
+      "duration": 0.5,
+      "ease": "power1.in"
+    },
+
+    {
+      "action": "transform",
+      "target": "ocean",
+      "name": "oceanRipple",
+      "properties": { "scale": 1.02 },
+      "start": "rain3Fall",
+      "duration": 0.2,
+      "ease": "power1.out"
+    },
+    {
+      "action": "transform",
+      "target": "ocean",
+      "name": "oceanRippleBack",
+      "properties": { "scale": 1 },
+      "duration": 0.3,
+      "ease": "power1.in"
+    },
+
+    {
+      "action": "destroy",
+      "target": "rain1",
+      "start": "oceanRipple"
+    },
+    {
+      "action": "destroy",
+      "target": "rain2",
+      "start": "oceanRipple"
+    },
+    {
+      "action": "destroy",
+      "target": "rain3",
+      "start": "oceanRipple"
+    },
+
+    {
+      "action": "create",
+      "target": "loopLabel",
+      "type": "text",
+      "properties": {
+        "text": "Le cycle recommence",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.62",
+        "scale": 0.6,
+        "opacity": 0
+      },
+      "start": "oceanRippleBack+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "loopLabel",
+      "name": "loopLabelIn",
+      "properties": { "opacity": 1, "scale": 0.9 },
+      "start": "oceanRippleBack+=0.3",
+      "duration": 0.5,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "loopLabel",
+      "name": "loopLabelOut",
+      "properties": { "opacity": 0 },
+      "start": "loopLabelIn+=1.4",
+      "duration": 0.5
+    },
+
+    {
+      "action": "destroy",
+      "target": "heatArrow",
+      "start": "loopLabelOut"
+    },
+    {
+      "action": "destroy",
+      "target": "evapArrow",
+      "start": "loopLabelOut"
+    },
+    {
+      "action": "destroy",
+      "target": "loopLabel",
+      "start": "loopLabelOut+=0.5"
+    }
+  ]
+}

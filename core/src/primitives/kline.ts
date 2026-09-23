@@ -49,7 +49,7 @@ class KLine extends KObject {
     });
   }
 
-  override createAnimation(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+  override create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
     const duration = options.duration ?? 0.6;
     const ease = options.ease ?? "power2.out";
     const tl = gsap.timeline();

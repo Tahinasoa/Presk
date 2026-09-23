@@ -128,7 +128,7 @@ describe("compile", () => {
     });
   });
 
-  it("triggers createAnimation on a 'create' step", () => {
+  it("triggers create animation on a 'create' step", () => {
     const { presk } = makeMockPresk();
     const doc: DslDocument = {
       version: "0.1",

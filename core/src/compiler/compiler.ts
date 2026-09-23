@@ -2,7 +2,7 @@
 // Presk instance. See compiler/README.md for the reasoning behind leaning
 // on GSAP's own position-parameter syntax and functional values.
 //
-// Uses materializeScene() for sequential two-pass object creation and
+// Uses preapreScene() for sequential two-pass object creation and
 // delegates all animation/setting actions to KObject's transform() and setNow().
 
 import gsap from "gsap";
@@ -78,7 +78,7 @@ function toTweenVars(properties: Record<string, unknown>, presk: Presk): Record<
  * Materializes all "create" steps sequentially prior to timeline compilation
  * (two-pass model: 1. instantiate shells, 2. resolve & apply initial properties).
  */
-export function materializeScene(steps: DslStep[], presk: Presk): void {
+export function preapreScene(steps: DslStep[], presk: Presk): void {
   // Pass 1: Instanciate shells with resolved initial properties and register them immediately in presk.scene
   for (const step of steps) {
     if (step.action === "create") {
@@ -92,7 +92,7 @@ export function materializeScene(steps: DslStep[], presk: Presk): void {
 
 export function compile(doc: DslDocument, presk: Presk): gsap.core.Timeline {
   // Pre-materialize all create steps so targets exist as shells for references
-  materializeScene(doc.steps, presk);
+  preapreScene(doc.steps, presk);
 
   const tl = gsap.timeline({ paused: true });
 
@@ -110,7 +110,7 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
     case "create": {
       const target = presk.scene.get(step.target);
       if (!target) throw new Error(`Presk: "create" step targets unknown object "${step.target}".`);
-      const creationTween = target.createAnimation({
+      const creationTween = target.create({
         duration: step.duration,
         ease: step.ease,
       });
