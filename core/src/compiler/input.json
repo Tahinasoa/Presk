@@ -3,890 +3,98 @@
   "scene": {
     "width": 1920,
     "height": 1080,
-    "background": "#080c14"
+    "background": "#0b0f19"
   },
   "steps": [
     {
       "action": "create",
-      "target": "introTitle",
-      "type": "text",
+      "target": "centerRect",
+      "type": "shape",
       "properties": {
-        "text": "Analysons une phrase",
         "x": "scene.width / 2",
         "y": "scene.height / 2",
-        "scale": 0.5,
-        "opacity": 0
+        "width": 640,
+        "height": 380,
+        "fill": 1779768,
+        "stroke": 3824492,
+        "strokeWidth": 3
+      },
+      "duration": 0.8
+    },
+    {
+      "action": "create",
+      "target": "squareLeft",
+      "type": "shape",
+      "properties": {
+        "pos": "scene.bottomCenter",
+        "width": 140,
+        "height": 140,
+        "fill": 3878390,
+        "stroke": 16777215,
+        "strokeWidth": 2
+      },
+      "start": "<",
+      "duration": 0.6
+    },
+    {
+      "action": "create",
+      "target": "squareTop",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width / 2",
+        "y": 180,
+        "width": 140,
+        "height": 140,
+        "fill": 1098689,
+        "stroke": 16777215,
+        "strokeWidth": 2
+      },
+      "start": "<",
+      "duration": 0.6
+    },
+    {
+      "action": "create",
+      "target": "squareRight",
+      "type": "shape",
+      "properties": {
+        "x": 1540,
+        "y": "scene.height / 2",
+        "width": 140,
+        "height": 140,
+        "fill": 15485081,
+        "stroke": 16777215,
+        "strokeWidth": 2
+      },
+      "start": "<",
+      "duration": 0.6
+    },
+    {
+      "action" : "create",
+      "type" : "text",
+      "target" : "myText",
+      "properties" : {
+        "text" : "textfdghd",
+        "pos" : "scene.center",
+        "frame" : false
+      }
+    },
+        {
+      "action" : "create",
+      "type" : "text",
+      "target" : "myText2",
+      "properties" : {
+        "text" : "textfdghd",
+        "pos" : "myText.boundingBox.topLeft",
+        "frame" : false
       }
     },
     {
-      "action": "transform",
-      "target": "introTitle",
-      "name": "tShow",
-      "properties": {
-        "scale": 1.4,
-        "opacity": 1
-      },
-      "duration": 0.8,
-      "ease": "back.out(1.5)"
-    },
-    {
-      "action": "transform",
-      "target": "introTitle",
-      "name": "tOut",
-      "properties": {
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "tShow+=2.5",
-      "duration": 0.5
-    },
-    {
-      "action": "create",
-      "target": "wordSujet",
-      "type": "text",
-      "properties": {
-        "text": "Le petit garçon",
-        "x": "scene.width * 0.34",
-        "y": "scene.height * 0.42",
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "tOut"
-    },
-    {
-      "action": "transform",
-      "target": "wordSujet",
-      "name": "s1Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "create",
-      "target": "wordVerbe",
-      "type": "text",
-      "properties": {
-        "text": "mange",
-        "x": "scene.width * 0.5",
-        "y": "scene.height * 0.42",
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "s1Show+=0.3"
-    },
-    {
-      "action": "transform",
-      "target": "wordVerbe",
-      "name": "s2Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "follow",
-      "target": "wordVerbe",
-      "properties": {
-        "x": "wordSujet.x + 240",
-        "y": "wordSujet.y"
-      },
-      "start": "s2Show"
-    },
-    {
-      "action": "create",
-      "target": "wordCod",
-      "type": "text",
-      "properties": {
-        "text": "une pomme",
-        "x": "scene.width * 0.66",
-        "y": "scene.height * 0.42",
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "s2Show+=0.3"
-    },
-    {
-      "action": "transform",
-      "target": "wordCod",
-      "name": "s3Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "follow",
-      "target": "wordCod",
-      "properties": {
-        "x": "wordVerbe.x + 200",
-        "y": "wordVerbe.y"
-      },
-      "start": "s3Show"
-    },
-    {
-      "action": "create",
-      "target": "qBox",
-      "type": "shape",
-      "properties": {
-        "x": "scene.width / 2",
-        "y": "scene.height * 0.63",
-        "width": 700,
-        "height": 100,
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "s3Show+=0.8"
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxShow1",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.5,
-      "ease": "back.out"
-    },
-    {
-      "action": "create",
-      "target": "qText",
-      "type": "text",
-      "properties": {
-        "text": "Qui fait l'action ?",
-        "x": 960,
-        "y": 680,
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "qBoxShow1"
-    },
-    {
-      "action": "transform",
-      "target": "qText",
-      "name": "qTextShow1",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "create",
-      "target": "underSujet",
-      "type": "shape",
-      "properties": {
-        "x": 650,
-        "y": 485,
-        "width": 240,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "qTextShow1+=1.5"
-    },
-    {
-      "action": "transform",
-      "target": "underSujet",
-      "name": "underSujetShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4,
-      "ease": "power2.out"
-    },
-    {
-      "action": "follow",
-      "target": "underSujet",
-      "properties": {
-        "x": "wordSujet.x",
-        "y": "wordSujet.y + 35"
-      },
-      "start": "underSujetShow"
-    },
-    {
-      "action": "create",
-      "target": "labelSujet",
-      "type": "text",
-      "properties": {
-        "text": "SUJET",
-        "x": 650,
-        "y": 380,
-        "scale": 0.6,
-        "opacity": 0
-      },
-      "start": "underSujetShow"
-    },
-    {
-      "action": "transform",
-      "target": "labelSujet",
-      "name": "labelSujetShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 0.8
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "labelSujet",
-      "properties": {
-        "x": "wordSujet.x",
-        "y": "wordSujet.y - 65"
-      },
-      "start": "labelSujetShow"
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxHide1",
-      "properties": {
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "labelSujetShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "qText",
-      "name": "qTextHide1",
-      "properties": {
-        "opacity": 0
-      },
-      "start": "labelSujetShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxShow2",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "start": "qBoxHide1+=0.3"
-    },
-    {
-      "action": "create",
-      "target": "qText2",
-      "type": "text",
-      "properties": {
-        "text": "Que fait le petit garçon ?",
-        "x": 960,
-        "y": 680,
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "qBoxShow2"
-    },
-    {
-      "action": "transform",
-      "target": "qText2",
-      "name": "qText2Show",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "create",
-      "target": "underVerbe",
-      "type": "shape",
-      "properties": {
-        "x": 960,
-        "y": 485,
-        "width": 120,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "qText2Show+=1.5"
-    },
-    {
-      "action": "transform",
-      "target": "underVerbe",
-      "name": "underVerbeShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4,
-      "ease": "power2.out"
-    },
-    {
-      "action": "follow",
-      "target": "underVerbe",
-      "properties": {
-        "x": "wordVerbe.x",
-        "y": "wordVerbe.y + 35"
-      },
-      "start": "underVerbeShow"
-    },
-    {
-      "action": "create",
-      "target": "labelVerbe",
-      "type": "text",
-      "properties": {
-        "text": "VERBE",
-        "x": 960,
-        "y": 380,
-        "scale": 0.6,
-        "opacity": 0
-      },
-      "start": "underVerbeShow"
-    },
-    {
-      "action": "transform",
-      "target": "labelVerbe",
-      "name": "labelVerbeShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 0.8
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "labelVerbe",
-      "properties": {
-        "x": "wordVerbe.x",
-        "y": "wordVerbe.y - 65"
-      },
-      "start": "labelVerbeShow"
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxHide2",
-      "properties": {
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "labelVerbeShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "qText2",
-      "name": "qText2Hide",
-      "properties": {
-        "opacity": 0
-      },
-      "start": "labelVerbeShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxShow3",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "start": "qBoxHide2+=0.3"
-    },
-    {
-      "action": "create",
-      "target": "qText3",
-      "type": "text",
-      "properties": {
-        "text": "Le petit garçon mange quoi ?",
-        "x": 960,
-        "y": 680,
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "qBoxShow3"
-    },
-    {
-      "action": "transform",
-      "target": "qText3",
-      "name": "qText3Show",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "create",
-      "target": "underCod",
-      "type": "shape",
-      "properties": {
-        "x": 1270,
-        "y": 485,
-        "width": 180,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "qText3Show+=1.5"
-    },
-    {
-      "action": "transform",
-      "target": "underCod",
-      "name": "underCodShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4,
-      "ease": "power2.out"
-    },
-    {
-      "action": "follow",
-      "target": "underCod",
-      "properties": {
-        "x": "wordCod.x",
-        "y": "wordCod.y + 35"
-      },
-      "start": "underCodShow"
-    },
-    {
-      "action": "create",
-      "target": "labelCod",
-      "type": "text",
-      "properties": {
-        "text": "COD",
-        "x": 1270,
-        "y": 380,
-        "scale": 0.6,
-        "opacity": 0
-      },
-      "start": "underCodShow"
-    },
-    {
-      "action": "transform",
-      "target": "labelCod",
-      "name": "labelCodShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 0.8
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "labelCod",
-      "properties": {
-        "x": "wordCod.x",
-        "y": "wordCod.y - 65"
-      },
-      "start": "labelCodShow"
-    },
-    {
-      "action": "transform",
-      "target": "qBox",
-      "name": "qBoxHide3",
-      "properties": {
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "labelCodShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "qText3",
-      "name": "qText3Hide",
-      "properties": {
-        "opacity": 0
-      },
-      "start": "labelCodShow+=1.8",
-      "duration": 0.4
-    },
-    {
-      "action": "transform",
-      "target": "wordSujet",
-      "name": "moveUpSujet",
-      "properties": {
-        "y": 300
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "transform",
-      "target": "wordVerbe",
-      "name": "moveUpVerbe",
-      "properties": {
-        "y": 300
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "transform",
-      "target": "wordCod",
-      "name": "moveUpCod",
-      "properties": {
-        "y": 300
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "transform",
-      "target": "labelSujet",
-      "name": "moveUpLblS",
-      "properties": {
-        "y": 235
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "transform",
-      "target": "labelVerbe",
-      "name": "moveUpLblV",
-      "properties": {
-        "y": 235
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "transform",
-      "target": "labelCod",
-      "name": "moveUpLblC",
-      "properties": {
-        "y": 235
-      },
-      "start": "qBoxHide3+=0.5",
-      "duration": 1.0,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "create",
-      "target": "passiveIntro",
-      "type": "text",
-      "properties": {
-        "text": "Et la voix passive alors ?",
-        "x": 960,
-        "y": 480,
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "moveUpSujet+=0.5"
-    },
-    {
-      "action": "transform",
-      "target": "passiveIntro",
-      "name": "passIntroShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1.1
-      },
-      "duration": 0.6,
-      "ease": "back.out"
-    },
-    {
-      "action": "transform",
-      "target": "passiveIntro",
-      "name": "passIntroHide",
-      "properties": {
-        "opacity": 0,
-        "scale": 0.8
-      },
-      "start": "passIntroShow+=2.0",
-      "duration": 0.5
-    },
-    {
-      "action": "create",
-      "target": "pWordCod",
-      "type": "text",
-      "properties": {
-        "text": "Une pomme",
-        "x": 550,
-        "y": 720,
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "passIntroHide"
-    },
-    {
-      "action": "transform",
-      "target": "pWordCod",
-      "name": "p1Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "create",
-      "target": "pOverCod",
-      "type": "shape",
-      "properties": {
-        "x": 550,
-        "y": 685,
-        "width": 180,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "p1Show"
-    },
-    {
-      "action": "transform",
-      "target": "pOverCod",
-      "name": "pOverCodShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "pOverCod",
-      "properties": {
-        "x": "pWordCod.x",
-        "y": "pWordCod.y - 35"
-      },
-      "start": "pOverCodShow"
-    },
-    {
-      "action": "create",
-      "target": "pWordVerbe",
-      "type": "text",
-      "properties": {
-        "text": "est mangée",
-        "x": 960,
-        "y": 720,
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "s1Show+=0.3"
-    },
-    {
-      "action": "transform",
-      "target": "pWordVerbe",
-      "name": "p2Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "follow",
-      "target": "pWordVerbe",
-      "properties": {
-        "x": "pWordCod.x + 280",
-        "y": "pWordCod.y"
-      },
-      "start": "p2Show"
-    },
-    {
-      "action": "create",
-      "target": "pOverVerbe",
-      "type": "shape",
-      "properties": {
-        "x": 960,
-        "y": 685,
-        "width": 160,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "p2Show"
-    },
-    {
-      "action": "transform",
-      "target": "pOverVerbe",
-      "name": "pOverVerbeShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "pOverVerbe",
-      "properties": {
-        "x": "pWordVerbe.x",
-        "y": "pWordVerbe.y - 35"
-      },
-      "start": "pOverVerbeShow"
-    },
-    {
-      "action": "create",
-      "target": "pWordSujet",
-      "type": "text",
-      "properties": {
-        "text": "par le petit garçon",
-        "x": 1350,
-        "y": 720,
-        "scale": 0.9,
-        "opacity": 0
-      },
-      "start": "s2Show+=0.3"
-    },
-    {
-      "action": "transform",
-      "target": "pWordSujet",
-      "name": "p3Show",
-      "properties": {
-        "opacity": 1
-      },
-      "duration": 0.5
-    },
-    {
-      "action": "follow",
-      "target": "pWordSujet",
-      "properties": {
-        "x": "pWordVerbe.x + 300",
-        "y": "pWordVerbe.y"
-      },
-      "start": "p3Show"
-    },
-    {
-      "action": "create",
-      "target": "pOverSujet",
-      "type": "shape",
-      "properties": {
-        "x": 1350,
-        "y": 685,
-        "width": 240,
-        "height": 6,
-        "opacity": 0,
-        "scale": 0
-      },
-      "start": "p3Show"
-    },
-    {
-      "action": "transform",
-      "target": "pOverSujet",
-      "name": "pOverSujetShow",
-      "properties": {
-        "opacity": 1,
-        "scale": 1
-      },
-      "duration": 0.4
-    },
-    {
-      "action": "follow",
-      "target": "pOverSujet",
-      "properties": {
-        "x": "pWordSujet.x",
-        "y": "pWordSujet.y - 35"
-      },
-      "start": "pOverSujetShow"
-    },
-    {
-      "action": "create",
-      "target": "mapPomme",
-      "type": "line",
-      "properties": {
-        "x": 0,
-        "y": 0,
-        "startX": 1270,
-        "startY": 335,
-        "endX": 1270,
-        "endY": 335,
-        "opacity": 1
-      },
-      "start": "pOverSujetShow+=0.6"
-    },
-    {
-      "action": "transform",
-      "target": "mapPomme",
-      "name": "mapPommeDraw",
-      "properties": {
-        "endX": "pWordCod.x",
-        "endY": "pWordCod.topLeft.y"
-      },
-      "duration": 0.8,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "follow",
-      "target": "mapPomme",
-      "properties": {
-        "startX": "wordCod.x",
-        "startY": "wordCod.bottomLeft.y"
-      },
-      "start": "mapPommeDraw"
-    },
-    {
-      "action": "create",
-      "target": "mapVerbe",
-      "type": "line",
-      "properties": {
-        "x": 0,
-        "y": 0,
-        "startX": 960,
-        "startY": 335,
-        "endX": 960,
-        "endY": 335,
-        "opacity": 1
-      },
-      "start": "mapPommeDraw+=0.6"
-    },
-    {
-      "action": "transform",
-      "target": "mapVerbe",
-      "name": "mapVerbeDraw",
-      "properties": {
-        "endX": "pWordVerbe.x",
-        "endY": "pWordVerbe.topLeft.y"
-      },
-      "duration": 0.8,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "follow",
-      "target": "mapVerbe",
-      "properties": {
-        "startX": "wordVerbe.x",
-        "startY": "wordVerbe.bottomLeft.y"
-      },
-      "start": "mapVerbeDraw"
-    },
-    {
-      "action": "create",
-      "target": "mapSujet",
-      "type": "line",
-      "properties": {
-        "x": 0,
-        "y": 0,
-        "startX": 650,
-        "startY": 335,
-        "endX": 650,
-        "endY": 335,
-        "opacity": 1
-      },
-      "start": "mapVerbeDraw+=0.6"
-    },
-    {
-      "action": "transform",
-      "target": "mapSujet",
-      "name": "mapSujetDraw",
-      "properties": {
-        "endX": "pWordSujet.x",
-        "endY": "pWordSujet.topLeft.y"
-      },
-      "duration": 0.8,
-      "ease": "power2.inOut"
-    },
-    {
-      "action": "follow",
-      "target": "mapSujet",
-      "properties": {
-        "startX": "wordSujet.x",
-        "startY": "wordSujet.bottomLeft.y"
-      },
-      "start": "mapSujetDraw"
+      "action" : "transform",
+      "target" : "myText",
+      "properties" : {
+        "frame" : true
+      },
+      "duration" : 2
     }
   ]
 }

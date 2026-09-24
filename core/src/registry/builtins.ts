@@ -13,7 +13,7 @@ import KLine from "@/primitives/kline";
 import KGraphicLine from "@/renderer/kgraphicLine";
 
 export function registerBuiltins(presk: Presk): void {
-  // Backs DSL `"type": "shape"` (see mockInput.json / spec.md examples).
+  // Backs DSL `"type": "rectangle"` (see mockInput.json / spec.md examples).
   presk.register("shape", KRectangle, KGraphicRectangle);
 
   // Backs DSL `"type": "text"`.

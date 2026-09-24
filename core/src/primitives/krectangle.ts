@@ -7,17 +7,17 @@ import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRe
 import gsap from "gsap";
 
 export interface KRectangleParams extends KAbstractRectangleParams {
-  fill?: number;
-  stroke?: number;
+  fill?: number | undefined;
+  stroke?: number | undefined;
   strokeWidth?: number;
 }
 
 class KRectangle extends KAbstractRectangle {
-  private _fill: number;
-  private _stroke: number;
-  private _strokeWidth: number;
+  protected _fill: number | undefined;
+  protected _stroke: number | undefined;
+  protected _strokeWidth: number;
 
-  constructor({ fill = 0x9c9c9c, stroke = 0, strokeWidth = 0, ...rest }: KRectangleParams) {
+  constructor({ fill = 0x9c9c9c, stroke = undefined, strokeWidth = 0, ...rest }: KRectangleParams) {
     super(rest);
     this._fill = fill;
     this._stroke = stroke;
@@ -25,13 +25,25 @@ class KRectangle extends KAbstractRectangle {
 
     Object.assign(this.propertyAnimators, {
       fill: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _fill: value, ...opts }, 0);
+        if (value === undefined || opts.duration === 0) {
+          this._fill = value as number | undefined;
+        } else {
+          tl.to(this, { _fill: value, ...opts }, 0);
+        }
       },
       stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _stroke: value, ...opts }, 0);
+        if (value === undefined || opts.duration === 0) {
+          this._stroke = value as number | undefined;
+        } else {
+          tl.to(this, { _stroke: value, ...opts }, 0);
+        }
       },
       strokeWidth: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _strokeWidth: value, ...opts }, 0);
+        if (opts.duration === 0) {
+          this._strokeWidth = value as number;
+        } else {
+          tl.to(this, { _strokeWidth: value, ...opts }, 0);
+        }
       },
     });
   }
@@ -48,19 +60,19 @@ class KRectangle extends KAbstractRectangle {
     return tl;
   }
 
-  get fill(): number {
+  get fill(): number | undefined {
     return this._fill;
   }
 
-  set fill(value: number) {
+  set fill(value: number | undefined) {
     this._fill = value;
   }
 
-  get stroke(): number {
+  get stroke(): number | undefined {
     return this._stroke;
   }
 
-  set stroke(value: number) {
+  set stroke(value: number | undefined) {
     this._stroke = value;
   }
 

@@ -62,7 +62,7 @@ class Presk {
 
   /** Sets up the KScene + KRenderer and mounts the PixiJS canvas. Must be called before create(). */
   async init({ root, width, height, background }: PreskInitParams): Promise<void> {
-    this._scene = new KScene({ id: "scene", x: 0, y: 0, width, height });
+    this._scene = new KScene({ id: "scene", x: 0, y: 0, anchorX:0,anchorY : 0,width, height });
     this._binding = new BindingEngine(this._scene);
     this._renderer = new KRenderer({ root, width, height, background });
     await this._renderer.init();

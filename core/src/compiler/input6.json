@@ -23,10 +23,10 @@
       "start": "verbeIn+=0.3" },
 
     { "action": "create", "target": "qBox", "type": "shape", "name": "qBoxIn",
-      "properties": { "x": 960, "y": 700, "width": 760, "height": 100, "fill": 1779520, "stroke": 0, "strokeWidth": 0 },
+      "properties": { "x": "scene.width / 2", "y": 700, "width": 760, "height": 100, "fill": 1779520, "stroke": 0, "strokeWidth": 0 },
       "start": "codIn+=0.6" },
     { "action": "create", "target": "qText", "type": "text", "name": "q1In",
-      "properties": { "text": "Qui fait l'action ?", "x": 960, "y": 700, "scale": 1 }, "start": "<" },
+      "properties": { "text": "Qui fait l'action ?", "x": "qBox.center.x", "y": "qBox.center.y", "scale": 1 }, "start": "<" },
 
     { "action": "destroy", "target": "qText", "start": "q1In+=1.5" },
     { "action": "create", "target": "underSujet", "type": "shape", "name": "underSujetIn",
@@ -39,7 +39,7 @@
     { "action": "follow", "target": "labelSujet", "properties": { "x": "wordSujet.center.x", "y": "wordSujet.center.y - 65" }, "start": ">" },
 
     { "action": "create", "target": "qText2", "type": "text", "name": "q2In",
-      "properties": { "text": "Que fait-il ?", "x": 960, "y": 700, "scale": 1 }, "start": "labelSujetIn+=0.3" },
+      "properties": { "text": "Que fait-il ?", "x": "qBox.center.x", "y": "qBox.center.y", "scale": 1 }, "start": "labelSujetIn+=0.3" },
 
     { "action": "destroy", "target": "qText2", "start": "q2In+=1.5" },
     { "action": "create", "target": "underVerbe", "type": "shape", "name": "underVerbeIn",
@@ -52,7 +52,7 @@
     { "action": "follow", "target": "labelVerbe", "properties": { "x": "wordVerbe.center.x", "y": "wordVerbe.center.y - 65" }, "start": ">" },
 
     { "action": "create", "target": "qText3", "type": "text", "name": "q3In",
-      "properties": { "text": "Sur quoi porte l'action ?", "x": 960, "y": 700, "scale": 1 }, "start": "labelVerbeIn+=0.3" },
+      "properties": { "text": "Sur quoi porte l'action ?", "x": "qBox.center.x", "y": "qBox.center.y", "scale": 1 }, "start": "labelVerbeIn+=0.3" },
 
     { "action": "destroy", "target": "qText3", "start": "q3In+=1.5" },
     { "action": "create", "target": "underCod", "type": "shape", "name": "underCodIn",
