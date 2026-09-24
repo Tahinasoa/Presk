@@ -1,0 +1,1044 @@
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#05070f"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "titleIntro",
+      "type": "text",
+      "properties": {
+        "text": "Le Système Solaire",
+        "x": "scene.width / 2",
+        "y": "scene.height / 2",
+        "scale": 1.3
+      }
+    },
+    {
+      "action": "transform",
+      "target": "titleIntro",
+      "name": "titleOut",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.7
+      },
+      "start": "+=2.0",
+      "duration": 0.6
+    },
+    {
+      "action": "destroy",
+      "target": "titleIntro",
+      "start": "titleOut+=0.6"
+    },
+    {
+      "action": "create",
+      "target": "sun",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 540,
+        "width": 260,
+        "height": 260,
+        "fill": 16758861,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "titleOut"
+    },
+    {
+      "action": "create",
+      "target": "sunLabel",
+      "type": "text",
+      "properties": {
+        "text": "Soleil",
+        "x": "sun.center.x",
+        "y": "sun.center.y + 170",
+        "scale": 0.8
+      },
+      "start": "<"
+    },
+    {
+      "action": "transform",
+      "target": "sun",
+      "name": "sunPulse1",
+      "properties": {
+        "scale": 1.05
+      },
+      "start": ">0.4",
+      "duration": 1.2,
+      "ease": "power1.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "sun",
+      "name": "sunPulse2",
+      "properties": {
+        "scale": 1.0
+      },
+      "duration": 1.2,
+      "ease": "power1.inOut"
+    },
+    {
+      "action": "create",
+      "target": "mercury",
+      "type": "shape",
+      "properties": {
+        "x": 1100,
+        "y": 540,
+        "width": 30,
+        "height": 30,
+        "fill": 11119017,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "sunPulse1+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "mercuryLabel",
+      "type": "text",
+      "properties": {
+        "text": "Mercure",
+        "x": "mercury.center.x",
+        "y": "mercury.center.y + 45.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "mercuryLabel",
+      "properties": {
+        "x": "mercury.center.x",
+        "y": "mercury.center.y + 45.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "mercury",
+      "name": "mercuryCreatedMarker",
+      "properties": {
+        "x": 1100
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "venus",
+      "type": "shape",
+      "properties": {
+        "x": 1170,
+        "y": 540,
+        "width": 46,
+        "height": 46,
+        "fill": 14729367,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "mercuryCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "venusLabel",
+      "type": "text",
+      "properties": {
+        "text": "Vénus",
+        "x": "venus.center.x",
+        "y": "venus.center.y + 53.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "venusLabel",
+      "properties": {
+        "x": "venus.center.x",
+        "y": "venus.center.y + 53.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "venus",
+      "name": "venusCreatedMarker",
+      "properties": {
+        "x": 1170
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "earth",
+      "type": "shape",
+      "properties": {
+        "x": 1250,
+        "y": 540,
+        "width": 50,
+        "height": 50,
+        "fill": 3900100,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "venusCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "earthLabel",
+      "type": "text",
+      "properties": {
+        "text": "Terre",
+        "x": "earth.center.x",
+        "y": "earth.center.y + 55.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "earthLabel",
+      "properties": {
+        "x": "earth.center.x",
+        "y": "earth.center.y + 55.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "earth",
+      "name": "earthCreatedMarker",
+      "properties": {
+        "x": 1250
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "mars",
+      "type": "shape",
+      "properties": {
+        "x": 1340,
+        "y": 540,
+        "width": 38,
+        "height": 38,
+        "fill": 12665870,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "earthCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "marsLabel",
+      "type": "text",
+      "properties": {
+        "text": "Mars",
+        "x": "mars.center.x",
+        "y": "mars.center.y + 49.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "marsLabel",
+      "properties": {
+        "x": "mars.center.x",
+        "y": "mars.center.y + 49.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "mars",
+      "name": "marsCreatedMarker",
+      "properties": {
+        "x": 1340
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "jupiter",
+      "type": "shape",
+      "properties": {
+        "x": 1580,
+        "y": 540,
+        "width": 130,
+        "height": 130,
+        "fill": 14197866,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "marsCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "jupiterLabel",
+      "type": "text",
+      "properties": {
+        "text": "Jupiter",
+        "x": "jupiter.center.x",
+        "y": "jupiter.center.y + 95.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "jupiterLabel",
+      "properties": {
+        "x": "jupiter.center.x",
+        "y": "jupiter.center.y + 95.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "jupiter",
+      "name": "jupiterCreatedMarker",
+      "properties": {
+        "x": 1580
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "saturn",
+      "type": "shape",
+      "properties": {
+        "x": 1720,
+        "y": 540,
+        "width": 110,
+        "height": 110,
+        "fill": 14928010,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "jupiterCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "saturnLabel",
+      "type": "text",
+      "properties": {
+        "text": "Saturne",
+        "x": "saturn.center.x",
+        "y": "saturn.center.y + 85.0",
+        "scale": 0.65
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "saturnLabel",
+      "properties": {
+        "x": "saturn.center.x",
+        "y": "saturn.center.y + 85.0"
+      },
+      "start": ">"
+    },
+    {
+      "action": "set",
+      "target": "saturn",
+      "name": "saturnCreatedMarker",
+      "properties": {
+        "x": 1720
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "moon",
+      "type": "shape",
+      "properties": {
+        "x": 1295,
+        "y": 540,
+        "width": 16,
+        "height": 16,
+        "fill": 13421772,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "saturnCreatedMarker+=0.2"
+    },
+    {
+      "action": "follow",
+      "target": "moon",
+      "properties": {
+        "x": "earth.center.x + 45",
+        "y": "earth.center.y"
+      },
+      "start": ">"
+    },
+    {
+      "action": "create",
+      "target": "asteroid1",
+      "type": "shape",
+      "properties": {
+        "x": 1430.0,
+        "y": 540.0,
+        "width": 12,
+        "height": 12,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "saturnCreatedMarker+=0.3"
+    },
+    {
+      "action": "create",
+      "target": "asteroid2",
+      "type": "shape",
+      "properties": {
+        "x": 1195.0,
+        "y": 947.0,
+        "width": 13,
+        "height": 13,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "asteroid3",
+      "type": "shape",
+      "properties": {
+        "x": 725.0,
+        "y": 947.0,
+        "width": 11,
+        "height": 11,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "asteroid4",
+      "type": "shape",
+      "properties": {
+        "x": 490.0,
+        "y": 540.0,
+        "width": 12,
+        "height": 12,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "asteroid5",
+      "type": "shape",
+      "properties": {
+        "x": 725.0,
+        "y": 133.0,
+        "width": 13,
+        "height": 13,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "asteroid6",
+      "type": "shape",
+      "properties": {
+        "x": 1195.0,
+        "y": 133.0,
+        "width": 11,
+        "height": 11,
+        "fill": 9141611,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "beltLabel",
+      "type": "text",
+      "properties": {
+        "text": "Ceinture d'astéroïdes",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.86",
+        "scale": 0.6
+      },
+      "start": "<"
+    },
+    {
+      "action": "transform",
+      "target": "beltLabel",
+      "name": "beltLabelShow",
+      "properties": {
+        "opacity": 1
+      },
+      "start": ">",
+      "duration": 0.4
+    },
+    {
+      "action": "transform",
+      "target": "beltLabel",
+      "name": "beltLabelHide",
+      "properties": {
+        "opacity": 0
+      },
+      "start": "beltLabelShow+=1.6",
+      "duration": 0.5
+    },
+    {
+      "action": "destroy",
+      "target": "beltLabel",
+      "start": "beltLabelHide+=0.5"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP1",
+      "properties": {
+        "x": 1030.0,
+        "y": 661.2
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP2",
+      "properties": {
+        "x": 890.0,
+        "y": 661.2
+      },
+      "start": "mercuryWP1+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP3",
+      "properties": {
+        "x": 820.0,
+        "y": 540.0
+      },
+      "start": "mercuryWP2+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP4",
+      "properties": {
+        "x": 890.0,
+        "y": 418.8
+      },
+      "start": "mercuryWP3+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP5",
+      "properties": {
+        "x": 1030.0,
+        "y": 418.8
+      },
+      "start": "mercuryWP4+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP6",
+      "properties": {
+        "x": 1100.0,
+        "y": 540.0
+      },
+      "start": "mercuryWP5+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP7",
+      "properties": {
+        "x": 1030.0,
+        "y": 661.2
+      },
+      "start": "mercuryWP6+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP8",
+      "properties": {
+        "x": 890.0,
+        "y": 661.2
+      },
+      "start": "mercuryWP7+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP9",
+      "properties": {
+        "x": 820.0,
+        "y": 540.0
+      },
+      "start": "mercuryWP8+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mercury",
+      "name": "mercuryWP10",
+      "properties": {
+        "x": 890.0,
+        "y": 418.8
+      },
+      "start": "mercuryWP9+=0.5",
+      "duration": 0.5,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP1",
+      "properties": {
+        "x": 1065.0,
+        "y": 721.9
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP2",
+      "properties": {
+        "x": 855.0,
+        "y": 721.9
+      },
+      "start": "venusWP1+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP3",
+      "properties": {
+        "x": 750.0,
+        "y": 540.0
+      },
+      "start": "venusWP2+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP4",
+      "properties": {
+        "x": 855.0,
+        "y": 358.1
+      },
+      "start": "venusWP3+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP5",
+      "properties": {
+        "x": 1065.0,
+        "y": 358.1
+      },
+      "start": "venusWP4+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP6",
+      "properties": {
+        "x": 1170.0,
+        "y": 540.0
+      },
+      "start": "venusWP5+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP7",
+      "properties": {
+        "x": 1065.0,
+        "y": 721.9
+      },
+      "start": "venusWP6+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "venus",
+      "name": "venusWP8",
+      "properties": {
+        "x": 855.0,
+        "y": 721.9
+      },
+      "start": "venusWP7+=0.6",
+      "duration": 0.6,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP1",
+      "properties": {
+        "x": 1105.0,
+        "y": 791.1
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP2",
+      "properties": {
+        "x": 815.0,
+        "y": 791.1
+      },
+      "start": "earthWP1+=0.8",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP3",
+      "properties": {
+        "x": 670.0,
+        "y": 540.0
+      },
+      "start": "earthWP2+=0.8",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP4",
+      "properties": {
+        "x": 815.0,
+        "y": 288.9
+      },
+      "start": "earthWP3+=0.8",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP5",
+      "properties": {
+        "x": 1105.0,
+        "y": 288.9
+      },
+      "start": "earthWP4+=0.8",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "earth",
+      "name": "earthWP6",
+      "properties": {
+        "x": 1250.0,
+        "y": 540.0
+      },
+      "start": "earthWP5+=0.8",
+      "duration": 0.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mars",
+      "name": "marsWP1",
+      "properties": {
+        "x": 1150.0,
+        "y": 869.1
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 1.0,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mars",
+      "name": "marsWP2",
+      "properties": {
+        "x": 770.0,
+        "y": 869.1
+      },
+      "start": "marsWP1+=1.0",
+      "duration": 1.0,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mars",
+      "name": "marsWP3",
+      "properties": {
+        "x": 580.0,
+        "y": 540.0
+      },
+      "start": "marsWP2+=1.0",
+      "duration": 1.0,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mars",
+      "name": "marsWP4",
+      "properties": {
+        "x": 770.0,
+        "y": 210.9
+      },
+      "start": "marsWP3+=1.0",
+      "duration": 1.0,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "mars",
+      "name": "marsWP5",
+      "properties": {
+        "x": 1150.0,
+        "y": 210.9
+      },
+      "start": "marsWP4+=1.0",
+      "duration": 1.0,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "jupiter",
+      "name": "jupiterWP1",
+      "properties": {
+        "x": 1270.0,
+        "y": 1076.9
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 1.4,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "jupiter",
+      "name": "jupiterWP2",
+      "properties": {
+        "x": 650.0,
+        "y": 1076.9
+      },
+      "start": "jupiterWP1+=1.4",
+      "duration": 1.4,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "jupiter",
+      "name": "jupiterWP3",
+      "properties": {
+        "x": 340.0,
+        "y": 540.0
+      },
+      "start": "jupiterWP2+=1.4",
+      "duration": 1.4,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "saturn",
+      "name": "saturnWP1",
+      "properties": {
+        "x": 1340.0,
+        "y": 1198.2
+      },
+      "start": "beltLabelHide+=1.0",
+      "duration": 1.8,
+      "ease": "linear"
+    },
+    {
+      "action": "transform",
+      "target": "saturn",
+      "name": "saturnWP2",
+      "properties": {
+        "x": 580.0,
+        "y": 1198.2
+      },
+      "start": "saturnWP1+=1.8",
+      "duration": 1.8,
+      "ease": "linear"
+    },
+    {
+      "action": "create",
+      "target": "comet",
+      "type": "shape",
+      "properties": {
+        "x": -60,
+        "y": 120,
+        "width": 20,
+        "height": 20,
+        "fill": 12511487,
+        "stroke": 0,
+        "strokeWidth": 0
+      },
+      "start": "beltLabelHide+=4.0"
+    },
+    {
+      "action": "create",
+      "target": "cometLabel",
+      "type": "text",
+      "properties": {
+        "text": "Comète",
+        "x": "comet.center.x",
+        "y": "comet.center.y - 40",
+        "scale": 0.6
+      },
+      "start": "<"
+    },
+    {
+      "action": "follow",
+      "target": "cometLabel",
+      "properties": {
+        "x": "comet.center.x",
+        "y": "comet.center.y - 40"
+      },
+      "start": ">"
+    },
+    {
+      "action": "transform",
+      "target": "comet",
+      "name": "cometFly",
+      "properties": {
+        "x": 2000,
+        "y": 980
+      },
+      "start": ">0.2",
+      "duration": 2.2,
+      "ease": "power1.in"
+    },
+    {
+      "action": "destroy",
+      "target": "cometLabel",
+      "start": "cometFly+=2.2"
+    },
+    {
+      "action": "destroy",
+      "target": "comet",
+      "start": "<"
+    },
+    {
+      "action": "unfollow",
+      "target": "earthLabel",
+      "properties": [
+        "x",
+        "y"
+      ],
+      "start": "beltLabelHide+=7.0"
+    },
+    {
+      "action": "transform",
+      "target": "earthLabel",
+      "name": "earthCallout",
+      "properties": {
+        "x": "scene.width * 0.5",
+        "y": "scene.height * 0.12",
+        "scale": 1.3,
+        "opacity": 1
+      },
+      "start": "<",
+      "duration": 0.7,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "transform",
+      "target": "earthLabel",
+      "name": "earthCalloutOut",
+      "properties": {
+        "opacity": 0
+      },
+      "start": "earthCallout+=1.6",
+      "duration": 0.5
+    },
+    {
+      "action": "create",
+      "target": "titleOutro",
+      "type": "text",
+      "properties": {
+        "text": "Un ballet céleste depuis 4,5 milliards d'années",
+        "x": "scene.width / 2",
+        "y": "scene.height * 0.5",
+        "scale": 0
+      },
+      "start": "earthCalloutOut+=1.0"
+    },
+    {
+      "action": "transform",
+      "target": "titleOutro",
+      "name": "outroShow",
+      "properties": {
+        "scale": 1
+      },
+      "start": "<",
+      "duration": 0.8,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "transform",
+      "target": "titleOutro",
+      "name": "outroHide",
+      "properties": {
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "outroShow+=2.5",
+      "duration": 0.6
+    },
+    {
+      "action": "destroy",
+      "target": "titleOutro",
+      "start": "outroHide+=0.6"
+    }
+  ]
+}
