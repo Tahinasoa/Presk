@@ -14,6 +14,8 @@ export interface DslStep {
   type?: string;
   /** Property values: number, or an expression string per spec §8.2. For "unfollow", a list of prop names instead. */
   properties?: Record<string, unknown> | string[];
+  /** Optional follow bindings to activate immediately upon "create". */
+  follow?: Record<string, string>;
   /** Optional label for this action, referenceable by later steps' `start` (spec §6.1). */
   name?: string;
   /** GSAP-style position parameter (spec §6.1). Defaults to sequential (same as ">"). */

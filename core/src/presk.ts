@@ -91,6 +91,16 @@ class Presk {
     }
 
     const kObject = new entry.ObjectClass({ id, ...props });
+    
+    // Apply any non-constructor initial properties (like center, pos, etc.) via setNow
+    const initialProps: Record<string, unknown> = {};
+    for (const [key, val] of Object.entries(props)) {
+      if (!["id", "type"].includes(key)) {
+        initialProps[key] = val;
+      }
+    }
+    kObject.setNow(initialProps);
+
     const kGraphicObject = new entry.GraphicClass({ renderer: this._renderer, object: kObject });
 
     this._scene.add(kObject);

@@ -53,4 +53,19 @@ describe("evaluateExpression", () => {
     const scene = makeScene();
     expect(() => evaluateExpression("title.topRight + 10", scene)).toThrow(/arithmetic operations require scalar/);
   });
+
+  it("throws when accessing a non-existent property on an object", () => {
+    const scene = makeScene();
+    expect(() => evaluateExpression("title.nonExistent", scene)).toThrow(/does not exist/);
+  });
+
+  it("throws when accessing a non-existent property on an intermediate point object", () => {
+    const scene = makeScene();
+    expect(() => evaluateExpression("title.topRight.foo", scene)).toThrow(/does not exist/);
+  });
+
+  it("evaluates a point object directly without .x/.y", () => {
+    const scene = makeScene();
+    expect(evaluateExpression("title.topLeft", scene)).toEqual({ x: 80, y: 190 });
+  });
 });

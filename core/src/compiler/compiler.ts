@@ -78,13 +78,15 @@ function toTweenVars(properties: Record<string, unknown>, presk: Presk): Record<
  * Materializes all "create" steps sequentially prior to timeline compilation
  * (two-pass model: 1. instantiate shells, 2. resolve & apply initial properties).
  */
-export function preapreScene(steps: DslStep[], presk: Presk): void {
+export function prepareScene(steps: DslStep[], presk: Presk): void {
   // Pass 1: Instanciate shells with resolved initial properties and register them immediately in presk.scene
   for (const step of steps) {
     if (step.action === "create") {
       if (!step.type) throw new Error(`Presk compiler: "create" step for "${step.target}" is missing "type".`);
       const properties = (step.properties ?? {}) as Record<string, unknown>;
-      const resolved = resolveNow(properties, presk);
+      const followProps = (step.follow ?? (typeof properties === "object" && properties !== null && "follow" in properties ? (properties.follow as Record<string, unknown>) : {})) as Record<string, unknown>;
+      const combined = { ...properties, ...followProps };
+      const resolved = resolveNow(combined, presk);
       presk.create(step.type, step.target, resolved);
     }
   }
@@ -92,7 +94,7 @@ export function preapreScene(steps: DslStep[], presk: Presk): void {
 
 export function compile(doc: DslDocument, presk: Presk): gsap.core.Timeline {
   // Pre-materialize all create steps so targets exist as shells for references
-  preapreScene(doc.steps, presk);
+  prepareScene(doc.steps, presk);
 
   const tl = gsap.timeline({ paused: true });
 
@@ -115,6 +117,11 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
         ease: step.ease,
       });
       tl.add(creationTween, position);
+
+      const followMap = step.follow ?? ((step.properties as Record<string, unknown>)?.follow as Record<string, string> | undefined);
+      if (followMap) {
+        tl.call(() => presk.binding.follow(step.target, followMap), undefined, position);
+      }
       break;
     }
 

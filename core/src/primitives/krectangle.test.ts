@@ -38,4 +38,26 @@ describe("KRectangle", () => {
     expect(rect.containsPoint(0, 0)).toBe(true);
     expect(rect.containsPoint(30, 0)).toBe(false);
   });
+
+  it("allows setting point anchors correctly", () => {
+    const rect = new KRectangle({ id: "r", x: 100, y: 100, width: 40, height: 20 });
+
+    rect.center = { x: 200, y: 300 };
+    expect(rect.center).toEqual({ x: 200, y: 300 });
+    expect(rect.x).toBe(200);
+    expect(rect.y).toBe(300);
+
+    rect.topLeft = { x: 0, y: 0 };
+    expect(rect.topLeft).toEqual({ x: 0, y: 0 });
+    expect(rect.center).toEqual({ x: 20, y: 10 });
+  });
+
+  it("allows setting point anchors via property animators (setNow/transform)", () => {
+    const rect = new KRectangle({ id: "r", x: 100, y: 100, width: 40, height: 20 });
+    rect.setNow({ center: { x: 400, y: 500 } });
+    expect(rect.center).toEqual({ x: 400, y: 500 });
+
+    rect.setNow({ topLeft: { x: 10, y: 20 } });
+    expect(rect.topLeft).toEqual({ x: 10, y: 20 });
+  });
 });

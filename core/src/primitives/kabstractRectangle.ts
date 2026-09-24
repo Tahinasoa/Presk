@@ -4,7 +4,7 @@
 // point anchors topLeft, bottomLeft, topRight, bottomRight, center, topCenter,
 // bottomCenter, leftCenter, rightCenter). It has no associated renderer.
 
-import KObject, { type KObjectParams } from "./kobject";
+import KObject, { type KObjectParams, type PropertyAnimator } from "./kobject";
 import type { KPoint } from "./types";
 
 export interface KAbstractRectangleParams extends KObjectParams {
@@ -40,7 +40,27 @@ abstract class KAbstractRectangle extends KObject {
       anchorY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
         tl.to(this, { _anchorY: value, ...opts }, 0);
       },
+      topLeft: this.registerPointAnimator(0, 0),
+      topRight: this.registerPointAnimator(1, 0),
+      bottomRight: this.registerPointAnimator(1, 1),
+      bottomLeft: this.registerPointAnimator(0, 1),
+      center: this.registerPointAnimator(0.5, 0.5),
+      topCenter: this.registerPointAnimator(0.5, 0),
+      bottomCenter: this.registerPointAnimator(0.5, 1),
+      leftCenter: this.registerPointAnimator(0, 0.5),
+      rightCenter: this.registerPointAnimator(1, 0.5),
     });
+  }
+
+  private registerPointAnimator(localX: number, localY: number): PropertyAnimator {
+    return (value, tl, opts) => {
+      const { x, y } = value as { x: number; y: number };
+      const current = this.getCorner(localX, localY);
+      const dx = x - current.x;
+      const dy = y - current.y;
+      this.propertyAnimators.x(this._x + dx, tl, opts);
+      this.propertyAnimators.y(this._y + dy, tl, opts);
+    };
   }
 
   get width(): number {
@@ -109,16 +129,32 @@ abstract class KAbstractRectangle extends KObject {
     return this.getCorner(0, 0);
   }
 
+  set topLeft(value: KPoint) {
+    this.setCorner(0, 0, value);
+  }
+
   get topRight(): KPoint {
     return this.getCorner(1, 0);
+  }
+
+  set topRight(value: KPoint) {
+    this.setCorner(1, 0, value);
   }
 
   get bottomRight(): KPoint {
     return this.getCorner(1, 1);
   }
 
+  set bottomRight(value: KPoint) {
+    this.setCorner(1, 1, value);
+  }
+
   get bottomLeft(): KPoint {
     return this.getCorner(0, 1);
+  }
+
+  set bottomLeft(value: KPoint) {
+    this.setCorner(0, 1, value);
   }
 
   get center(): KPoint {
@@ -133,20 +169,46 @@ abstract class KAbstractRectangle extends KObject {
     };
   }
 
+  set center(value: KPoint) {
+    this.setCorner(0.5, 0.5, value);
+  }
+
   get topCenter(): KPoint {
     return this.getCorner(0.5, 0);
+  }
+
+  set topCenter(value: KPoint) {
+    this.setCorner(0.5, 0, value);
   }
 
   get bottomCenter(): KPoint {
     return this.getCorner(0.5, 1);
   }
 
+  set bottomCenter(value: KPoint) {
+    this.setCorner(0.5, 1, value);
+  }
+
   get leftCenter(): KPoint {
     return this.getCorner(0, 0.5);
   }
 
+  set leftCenter(value: KPoint) {
+    this.setCorner(0, 0.5, value);
+  }
+
   get rightCenter(): KPoint {
     return this.getCorner(1, 0.5);
+  }
+
+  set rightCenter(value: KPoint) {
+    this.setCorner(1, 0.5, value);
+  }
+
+  private setCorner(localX: number, localY: number, value: KPoint): void {
+    const current = this.getCorner(localX, localY);
+    this._x += value.x - current.x;
+    this._y += value.y - current.y;
   }
 
   // Scalar anchors (bounding box min/max or derived positions)

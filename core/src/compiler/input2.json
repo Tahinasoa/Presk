@@ -7,15 +7,284 @@
   },
   "steps": [
     {
-      "action" : "create",
-      "type" : "shape",
-      "target" : "r1",
-      "properties" : {
-        "pos" : "scene.center",
-        "width" : "scene.width/2",
-        "height" : 1000
+      "action": "create",
+      "target": "demoRect",
+      "type": "shape",
+      "properties": {
+        "x": "scene.width / 2",
+        "y": "scene.height / 2",
+        "width": 800,
+        "height": 500,
+        "fill": 1644825,
+        "stroke": 3950140,
+        "strokeWidth": 4,
+        "scale": 0.8,
+        "opacity": 0
       },
-      "duration" : 10
+      "duration": 0.8
+    },
+    {
+      "action": "transform",
+      "target": "demoRect",
+      "name": "rectAppear",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.8,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "markerTL",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 1098689,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.topLeft.x",
+        "y": "demoRect.topLeft.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerTC",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 389332,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.topCenter.x",
+        "y": "demoRect.topCenter.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerTR",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 3878390,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.topRight.x",
+        "y": "demoRect.topRight.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerRC",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 9133046,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.rightCenter.x",
+        "y": "demoRect.rightCenter.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerBR",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 15485081,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.bottomRight.x",
+        "y": "demoRect.bottomRight.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerBC",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 15679556,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.bottomCenter.x",
+        "y": "demoRect.bottomCenter.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerBL",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 16096779,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.bottomLeft.x",
+        "y": "demoRect.bottomLeft.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "create",
+      "target": "markerLC",
+      "type": "shape",
+      "properties": {
+        "width": 36,
+        "height": 36,
+        "fill": 5227749,
+        "stroke": 16777215,
+        "strokeWidth": 3,
+        "scale": 0,
+        "opacity": 0
+      },
+      "follow": {
+        "x": "demoRect.leftCenter.x",
+        "y": "demoRect.leftCenter.y"
+      },
+      "start": "rectAppear"
+    },
+    {
+      "action": "transform",
+      "target": "markerTL",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerTC",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.05",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerTR",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.1",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerRC",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.15",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerBR",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.2",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerBC",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.25",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerBL",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.3",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "markerLC",
+      "properties": { "scale": 1, "opacity": 1 },
+      "start": "rectAppear+=0.35",
+      "duration": 0.5,
+      "ease": "back.out(2)"
+    },
+    {
+      "action": "transform",
+      "target": "demoRect",
+      "name": "rotateRect1",
+      "properties": {
+        "rotation": 1.5708,
+        "scale": 1.15
+      },
+      "start": ">0.5",
+      "duration": 1.5,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "demoRect",
+      "name": "rotateRect2",
+      "properties": {
+        "rotation": 3.14159,
+        "scale": 1.0
+      },
+      "start": ">0.5",
+      "duration": 1.5,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "demoRect",
+      "name": "rotateRect3",
+      "properties": {
+        "rotation": 6.28318,
+        "scale": 1.0
+      },
+      "start": ">0.5",
+      "duration": 2.0,
+      "ease": "power2.inOut"
     }
   ]
 }

@@ -1,0 +1,670 @@
+{
+  "version": "0.1",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#0b0f19"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "browserWindow",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 540,
+        "width": 1720,
+        "height": 960,
+        "fill": 1184541,
+        "stroke": 2699329,
+        "strokeWidth": 3,
+        "scale": 0.85,
+        "opacity": 0
+      },
+      "duration": 0.7
+    },
+    {
+      "action": "transform",
+      "target": "browserWindow",
+      "name": "windowAppear",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "duration": 0.7,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "navBar",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 140,
+        "width": 1640,
+        "height": 70,
+        "fill": 1711674,
+        "stroke": 3356247,
+        "strokeWidth": 2,
+        "scale": 0.9,
+        "opacity": 0
+      },
+      "start": "windowAppear"
+    },
+    {
+      "action": "transform",
+      "target": "navBar",
+      "name": "navAppear",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "start": "windowAppear",
+      "duration": 0.5,
+      "ease": "power2.out"
+    },
+    {
+      "action": "create",
+      "target": "navLogo",
+      "type": "shape",
+      "properties": {
+        "x": 200,
+        "y": 140,
+        "width": 140,
+        "height": 36,
+        "fill": 3881958,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0
+      },
+      "start": "navAppear"
+    },
+    {
+      "action": "transform",
+      "target": "navLogo",
+      "properties": { "opacity": 1 },
+      "duration": 0.4
+    },
+    {
+      "action": "create",
+      "target": "navLink1",
+      "type": "shape",
+      "properties": {
+        "x": 1340,
+        "y": 140,
+        "width": 70,
+        "height": 20,
+        "fill": 2699329,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0
+      },
+      "start": "navLogo"
+    },
+    {
+      "action": "transform",
+      "target": "navLink1",
+      "properties": { "opacity": 1 },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "navLink2",
+      "type": "shape",
+      "properties": {
+        "x": 1440,
+        "y": 140,
+        "width": 70,
+        "height": 20,
+        "fill": 2699329,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0
+      },
+      "start": "navLink1"
+    },
+    {
+      "action": "transform",
+      "target": "navLink2",
+      "properties": { "opacity": 1 },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "navLink3",
+      "type": "shape",
+      "properties": {
+        "x": 1540,
+        "y": 140,
+        "width": 70,
+        "height": 20,
+        "fill": 2699329,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0
+      },
+      "start": "navLink2"
+    },
+    {
+      "action": "transform",
+      "target": "navLink3",
+      "properties": { "opacity": 1 },
+      "duration": 0.3
+    },
+    {
+      "action": "create",
+      "target": "heroBanner",
+      "type": "shape",
+      "properties": {
+        "x": 960,
+        "y": 320,
+        "width": 1640,
+        "height": 220,
+        "fill": 1974828,
+        "stroke": 3422055,
+        "strokeWidth": 2,
+        "scale": 0.95,
+        "opacity": 0
+      },
+      "start": "navAppear+=0.2"
+    },
+    {
+      "action": "transform",
+      "target": "heroBanner",
+      "name": "heroAppear",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "start": "navAppear+=0.2",
+      "duration": 0.6,
+      "ease": "power2.out"
+    },
+    {
+      "action": "create",
+      "target": "heroLeftBox",
+      "type": "shape",
+      "properties": {
+        "x": 380,
+        "y": 320,
+        "width": 450,
+        "height": 140,
+        "fill": 2831969,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "heroAppear"
+    },
+    {
+      "action": "transform",
+      "target": "heroLeftBox",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "create",
+      "target": "heroRightBtn",
+      "type": "shape",
+      "properties": {
+        "x": 1420,
+        "y": 320,
+        "width": 240,
+        "height": 60,
+        "fill": 4160490,
+        "stroke": 0,
+        "strokeWidth": 0,
+        "opacity": 0,
+        "scale": 0.8
+      },
+      "start": "heroLeftBox"
+    },
+    {
+      "action": "transform",
+      "target": "heroRightBtn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.5)"
+    },
+    {
+      "action": "create",
+      "target": "sidebar",
+      "type": "shape",
+      "properties": {
+        "x": 300,
+        "y": 680,
+        "width": 380,
+        "height": 380,
+        "fill": 1711674,
+        "stroke": 3356247,
+        "strokeWidth": 2,
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "heroAppear+=0.2"
+    },
+    {
+      "action": "transform",
+      "target": "sidebar",
+      "name": "sidebarAppear",
+      "properties": {
+        "opacity": 1,
+        "scale": 1
+      },
+      "start": "heroAppear+=0.2",
+      "duration": 0.6,
+      "ease": "power2.out"
+    },
+    {
+      "action": "create",
+      "target": "card1",
+      "type": "shape",
+      "properties": {
+        "x": 780,
+        "y": 590,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "sidebarAppear"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "name": "card1Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "card2",
+      "type": "shape",
+      "properties": {
+        "x": 1210,
+        "y": 590,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "card1Appear"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "name": "card2Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "card3",
+      "type": "shape",
+      "properties": {
+        "x": 1640,
+        "y": 590,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "card2Appear"
+    },
+    {
+      "action": "transform",
+      "target": "card3",
+      "name": "card3Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "card4",
+      "type": "shape",
+      "properties": {
+        "x": 780,
+        "y": 810,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0.8,
+        "opacity": 0
+      },
+      "start": "card3Appear"
+    },
+    {
+      "action": "transform",
+      "target": "card4",
+      "name": "card4Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "card5",
+      "type": "shape",
+      "properties": {
+        "x": 1210,
+        "y": 810,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0,
+        "opacity": 0
+      },
+      "start": "card4Appear"
+    },
+    {
+      "action": "transform",
+      "target": "card5",
+      "name": "card5Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "card6",
+      "type": "shape",
+      "properties": {
+        "x": 1640,
+        "y": 810,
+        "width": 380,
+        "height": 180,
+        "fill": 2107971,
+        "stroke": 3685458,
+        "strokeWidth": 2,
+        "scale": 0,
+        "opacity": 0
+      },
+      "start": "card5Appear"
+    },
+    {
+      "action": "transform",
+      "target": "card6",
+      "name": "card6Appear",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 0.5,
+      "ease": "back.out(1.4)"
+    },
+    {
+      "action": "create",
+      "target": "accentLine1",
+      "type": "line",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "startX": 120,
+        "startY": 200,
+        "endX": 1800,
+        "endY": 200,
+        "stroke": 3422055,
+        "thickness": 2,
+        "opacity": 0
+      },
+      "start": "card6Appear+=0.3"
+    },
+    {
+      "action": "transform",
+      "target": "accentLine1",
+      "properties": { "opacity": 1 },
+      "duration": 0.5
+    },
+    {
+      "action": "transform",
+      "target": "sidebar",
+      "name": "reflowSidebarCollapse",
+      "properties": {
+        "width": 200,
+        "x": 210
+      },
+      "start": "accentLine1+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "name": "reflowCardsExpand",
+      "properties": {
+        "width": 460,
+        "x": 730
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "properties": {
+        "width": 460,
+        "x": 1230
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card3",
+      "properties": {
+        "width": 460,
+        "x": 1730
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card4",
+      "properties": {
+        "width": 460,
+        "x": 730
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card5",
+      "properties": {
+        "width": 460,
+        "x": 1230
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card6",
+      "properties": {
+        "width": 460,
+        "x": 1730
+      },
+      "start": "reflowSidebarCollapse",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "heroBanner",
+      "name": "heroExpand",
+      "properties": {
+        "height": 320,
+        "y": 380
+      },
+      "start": "reflowSidebarCollapse+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "sidebar",
+      "name": "reflowSidebarRestore",
+      "properties": {
+        "width": 380,
+        "x": 300
+      },
+      "start": "heroExpand+=0.5",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "name": "reflowCardsRestore",
+      "properties": {
+        "width": 380,
+        "x": 780
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "properties": {
+        "width": 380,
+        "x": 1210
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card3",
+      "properties": {
+        "width": 380,
+        "x": 1640
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card4",
+      "properties": {
+        "width": 380,
+        "x": 780
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card5",
+      "properties": {
+        "width": 380,
+        "x": 1210
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card6",
+      "properties": {
+        "width": 380,
+        "x": 1640
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "heroBanner",
+      "properties": {
+        "height": 220,
+        "y": 320
+      },
+      "start": "reflowSidebarRestore",
+      "duration": 1.0,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "browserWindow",
+      "name": "windowPulse",
+      "properties": { "rotation": 0.03, "scale": 1.02 },
+      "start": ">0.5",
+      "duration": 0.8,
+      "ease": "power2.out"
+    },
+    {
+      "action": "transform",
+      "target": "browserWindow",
+      "properties": { "rotation": 0, "scale": 1 },
+      "duration": 0.8,
+      "ease": "power2.in"
+    },
+    {
+      "action": "destroy",
+      "target": "card4",
+      "start": ">1"
+    },
+    {
+      "action": "destroy",
+      "target": "card5",
+      "start": ">0"
+    },
+    {
+      "action": "destroy",
+      "target": "card6",
+      "start": ">0"
+    },
+    {
+      "action": "transform",
+      "target": "card1",
+      "properties": { "height": 400, "y": 700 },
+      "start": ">0",
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card2",
+      "properties": { "height": 400, "y": 700 },
+      "start": "<",
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    },
+    {
+      "action": "transform",
+      "target": "card3",
+      "properties": { "height": 400, "y": 700 },
+      "start": "<",
+      "duration": 0.8,
+      "ease": "power2.inOut"
+    }
+  ]
+}

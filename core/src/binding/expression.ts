@@ -10,22 +10,14 @@
 // like `x`, `y`, width, height, etc., or by selecting `.x` / `.y` from a point prop
 // or the `pos` object). Point props or `pos` may also be preceded by "boundingBox".
 // See spec §8.2 for the invalid examples this is meant to reject.
-//
-// TODO(spec §9): pathX/pathY/pathAngle function-call syntax is not part of
-// this grammar yet — expressions using them will fail to parse.
 
 import type KScene from "@/primitives/kscene";
+import type { KPoint } from "@/primitives/types";
 
 type Token = { type: "number"; value: number } | { type: "ident"; value: string } | { type: "op"; value: string } | { type: "dot" };
 
 function tokenize(source: string): Token[] {
   const tokens: Token[] = [];
-  // Tokenizer regex using the sticky 'y' flag:
-  // - \s* : consumes leading whitespace around tokens
-  // - Group 1 ([0-9]+(?:\.[0-9]+)?): matches integer or floating-point numbers
-  // - Group 2 ([A-Za-z_][A-Za-z0-9_]*): matches identifiers (object IDs, property names)
-  // - Group 3 (\.): matches dots for property/point access chaining
-  // - Group 4 ([+\-*/]): matches arithmetic operators
   const re = /\s*(?:([0-9]+(?:\.[0-9]+)?)|([A-Za-z_][A-Za-z0-9_]*)|(\.)|([+\-*/]))\s*/y;
   let index = 0;
 
@@ -46,7 +38,6 @@ function tokenize(source: string): Token[] {
   return tokens;
 }
 
-/** Resolves an identifier + dotted segment chain generically against the scene. */
 function resolveReference(scene: KScene, identifier: string, segments: string[]): unknown {
   const object = scene.get(identifier) as unknown as Record<string, unknown> | undefined;
   if (!object) {
@@ -59,13 +50,15 @@ function resolveReference(scene: KScene, identifier: string, segments: string[])
     if (current === null || current === undefined) {
       throw new Error(`Presk expression: cannot access property "${segment}" on null or undefined reference "${identifier}".`);
     }
+    if (typeof current !== "object" || !(segment in (current as object))) {
+      throw new Error(`Presk expression: property "${segment}" does not exist on reference "${identifier}" (or intermediate object).`);
+    }
     current = (current as Record<string, unknown>)[segment];
   }
 
   return current;
 }
 
-/** Recursive-descent parser/evaluator. Small enough to inline parsing and evaluation in one pass. */
 class Parser {
   private tokens: Token[];
   private pos = 0;
@@ -87,7 +80,7 @@ class Parser {
     return token;
   }
 
-  parseExpr(): number {
+  parseExpr(): number | KPoint {
     let value = this.parseTerm();
     while (this.peek()?.type === "op" && (this.peek() as { value: string }).value.match(/[+-]/)) {
       const op = (this.next() as { value: string }).value;
@@ -100,7 +93,7 @@ class Parser {
     return value;
   }
 
-  private parseTerm(): number {
+  private parseTerm(): number | KPoint {
     let value = this.parseFactor();
     while (this.peek()?.type === "op" && (this.peek() as { value: string }).value.match(/[*/]/)) {
       const op = (this.next() as { value: string }).value;
@@ -113,7 +106,7 @@ class Parser {
     return value;
   }
 
-  private parseFactor(): number {
+  private parseFactor(): number | KPoint {
     const token = this.next();
     if (token.type === "number") return token.value;
 
@@ -132,19 +125,14 @@ class Parser {
         throw new Error(`Presk expression: "${identifier}" used without a property (e.g. "${identifier}.x").`);
       }
       const val = resolveReference(this.scene, identifier, segments);
-      return val as number;
+      return val as number | KPoint;
     }
 
     throw new Error(`Presk expression: unexpected token "${JSON.stringify(token)}".`);
   }
 }
 
-/**
- * Evaluates a Presk DSL expression string against the current scene state.
- * This is a *pull* evaluation: it always reads live, current values — call
- * it again to get an updated result (see binding/bindingEngine.ts).
- */
-export function evaluateExpression(source: string, scene: KScene): number {
+export function evaluateExpression(source: string, scene: KScene): number | KPoint {
   const tokens = tokenize(source);
   const parser = new Parser(tokens, scene);
   const value = parser.parseExpr();

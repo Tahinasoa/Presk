@@ -145,4 +145,28 @@ describe("compile", () => {
       }, 200);
     });
   });
+
+  it("registers follow bindings directly on create step", () => {
+    const { presk } = makeMockPresk();
+    presk.scene.add(new KRectangle({ id: "title", x: 100, y: 200, width: 40, height: 20 }));
+
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [
+        {
+          action: "create",
+          target: "dot",
+          type: "shape",
+          properties: { width: 10, height: 10 },
+          follow: { x: "title.x", y: "title.y" },
+        },
+      ],
+    };
+
+    compile(doc, presk).progress(1);
+
+    expect(presk.create).toHaveBeenCalledWith("shape", "dot", expect.objectContaining({ x: 100, y: 200 }));
+    expect(presk.binding.follow).toHaveBeenCalledWith("dot", { x: "title.x", y: "title.y" });
+  });
 });

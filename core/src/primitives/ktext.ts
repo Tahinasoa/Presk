@@ -1,5 +1,5 @@
 // KText backs the DSL's `"text"` type (see registry/builtins.ts).
-// It reuses KRectangle for its geometry (a text block still has a
+// It reuses KAbstractRectangle for its geometry (a text block still has a
 // width/height box that other objects can anchor to via §4.2/§4.3), and
 // adds the `text` string content itself.
 //
@@ -8,15 +8,14 @@
 // TextMetrics call in KGraphicText) and write the result back here so that
 // `someText.width` is accurate for other objects to bind against.
 
-import KRectangle, { type KRectangleParams } from "./krectangle";
+import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
+import gsap from "gsap";
 
-export interface KTextParams extends Omit<KRectangleParams, "width" | "height"> {
+export interface KTextParams extends KAbstractRectangleParams {
   text: string;
-  width?: number;
-  height?: number;
 }
 
-class KText extends KRectangle {
+class KText extends KAbstractRectangle {
   private _text: string;
 
   constructor({ text, width = 0, height = 0, ...rest }: KTextParams) {
