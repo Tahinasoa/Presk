@@ -1,12 +1,12 @@
 // KText backs the DSL's `"text"` type (see registry/builtins.ts).
-// It extends KComposite, managing a background frame KRectangle child and text content.
-// Under Option 2 architectural choice, data coordinates remain absolute (frame.x == text.x).
+// It extends KAbstractRectangle, managing a background frame KRectangle child and text content.
 
-import KComposite, { type KCompositeParams } from "./kcomposite";
+import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
 import KRectangle from "./krectangle";
+import type KObject from "./kobject";
 import gsap from "gsap";
 
-export interface KTextParams extends Omit<KCompositeParams, "width" | "height"> {
+export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "height"> {
   text: string;
   width?: number;
   height?: number;
@@ -16,13 +16,15 @@ export interface KTextParams extends Omit<KCompositeParams, "width" | "height"> 
   frame?: boolean | { fill?: number; stroke?: number; strokeWidth?: number; opacity?: number };
 }
 
-class KText extends KComposite {
+class KText extends KAbstractRectangle {
   private _text: string;
   protected _verticalMargins: number;
   protected _horizontalMargins: number;
   private _frame: KRectangle;
 
   constructor({ text, width = 0, height = 0, verticalMargins = 30, horizontalMargins = 30, margins, frame, ...rest }: KTextParams) {
+    super({ ...rest, width, height });
+
     let frameVisible = false;
     let frameFill: number | undefined = 0x22222a;
     let frameStroke: number | undefined = 0x444455;
@@ -40,33 +42,25 @@ class KText extends KComposite {
     const vMargins = margins !== undefined ? margins : verticalMargins;
     const hMargins = margins !== undefined ? margins : horizontalMargins;
 
-    const initialX = rest.x ?? 0;
-    const initialY = rest.y ?? 0;
-
     const frameRect = new KRectangle({
       ...rest,
       id: `${rest.id}_frame`,
-      x: initialX,
-      y: initialY,
+      x: 0,
+      y: 0,
       width: width + hMargins * 2,
       height: height + vMargins * 2,
-      anchorX: rest.anchorX ?? 0.5,
-      anchorY: rest.anchorY ?? 0.5,
-      scale: rest.scale ?? 1,
-      rotation: rest.rotation ?? 0,
-      opacity: rest.opacity ?? 1,
+      anchorX: 0.5,
+      anchorY: 0.5,
+      scale: 1,
+      rotation: 0,
+      opacity: 1,
       fill: frameFill,
       stroke: frameStroke,
       strokeWidth: frameStrokeWidth,
     });
     frameRect.visible = frameVisible;
 
-    super({
-      ...rest,
-      width,
-      height,
-      children: { frame: frameRect },
-    });
+    this.addChild("frame", frameRect);
 
     this._text = text;
     this._verticalMargins = vMargins;
@@ -205,24 +199,6 @@ class KText extends KComposite {
     this._frame.height = this._height + this._verticalMargins * 2;
   }
 
-  override get x(): number {
-    return this._x;
-  }
-
-  override set x(value: number) {
-    this._x = value;
-    this._frame.x = value;
-  }
-
-  override get y(): number {
-    return this._y;
-  }
-
-  override set y(value: number) {
-    this._y = value;
-    this._frame.y = value;
-  }
-
   override set width(value: number) {
     this._width = value;
     this._frame.width = value + this._horizontalMargins * 2;
@@ -231,51 +207,6 @@ class KText extends KComposite {
   override set height(value: number) {
     this._height = value;
     this._frame.height = value + this._verticalMargins * 2;
-  }
-
-  override get scale(): number {
-    return this._scale;
-  }
-
-  override set scale(value: number) {
-    this._scale = value;
-    this._frame.scale = value;
-  }
-
-  override get rotation(): number {
-    return this._rotation;
-  }
-
-  override set rotation(value: number) {
-    this._rotation = value;
-    this._frame.rotation = value;
-  }
-
-  override get opacity(): number {
-    return this._opacity;
-  }
-
-  override set opacity(value: number) {
-    this._opacity = value;
-    this._frame.opacity = value;
-  }
-
-  override get anchorX(): number {
-    return this._anchorX;
-  }
-
-  override set anchorX(value: number) {
-    this._anchorX = value;
-    this._frame.anchorX = value;
-  }
-
-  override get anchorY(): number {
-    return this._anchorY;
-  }
-
-  override set anchorY(value: number) {
-    this._anchorY = value;
-    this._frame.anchorY = value;
   }
 }
 

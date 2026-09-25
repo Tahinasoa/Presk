@@ -12,23 +12,15 @@ of any rendering dependency (no PixiJS import, ever) so that:
 
 - `types.ts` — shared geometry types (`KPoint`) used across the whole engine.
 - `kobject.ts` — `KObject`, the base class every DSL-creatable type extends.
-  Holds the properties common to every object per the spec (§4.1): `x`, `y`,
-  `pos` (as `{ x, y }` getter/setter), `scale`, `rotation`, and `opacity`.
-- `krectangle.ts` — `KRectangle`, backs the DSL's `"shape"` type. Adds
-  `width`/`height` and implements the full corner/bounding-box geometry from
-  spec §4.2-4.3 (`topLeft`, `center`, `boundingBox.*`, ...).
-- `ktext.ts` — `KText`, backs the DSL's `"text"` type. Adds a `text` string
-  property; reuses `KRectangle`'s geometry since text has a width/height box
-  too (needed once it's actually measured by the renderer — see the TODO in
-  `renderer/kgraphicText.ts`).
+  Holds properties common to every object per the spec (§4.1): `x`, `y`,
+  `pos`, `scale`, `rotation`, `opacity`, and `visible` (starts `false` until `create()` is called).
+  Implements generalized parent/child hierarchy (`addChild`, `removeChild`, `getChild`) and 2D transform composition via `transformation-matrix` (`worldMatrix()`, `toWorld()`, `toLocal()`).
+- `kabstractRectangle.ts` — `KAbstractRectangle`, intermediate abstract class for rectangular primitives/scenes. Encapsulates width, height, anchors, and geometry (corners, bounding boxes) using `toWorld()`.
+- `krectangle.ts` — `KRectangle`, backs the DSL's `"shape"` type.
+- `ktext.ts` — `KText`, backs the DSL's `"text"` type. Manages a background frame `KRectangle` child via `addChild()`.
 - `kscene.ts` — `KScene`, the data-only scene graph. Holds the registry of
-  every live `KObject` by id (`get`/`add`/`remove`) — this is what makes
-  `"someId.x"` resolvable from an expression (see `binding/expression.ts`).
-  Also represents the DSL's reserved `"scene"` identifier (§4, `scene.width`,
-  `scene.center.x`, ...).
-- `kcomposite.ts` — `KComposite`, base data class for composite objects holding children.
+  every live `KObject` by id (`get`/`add`/`remove`), supporting nested ID resolution (e.g., `"chart1.bar1"`).
 
-## Composite: local vs absolu (Design Choice §3)
+## Hierarchical Composition & Local Coordinates Convention
 
-We have chosen **Option 2** (Coordinates = absolute in data model, local/hierarchical transformation handled at render time via PixiJS `Container` hierarchy). 
-- *Rationale:* Lowest risk, minimal footprint on the pure data model (`primitives/` remains free of hierarchy math), fully compatible with existing expressions while achieving true rigid-body visual composition through PixiJS `Container.addChild()`. Option 1 remains a recommended future refactor if deep external parent-child path referencing becomes a primary requirement.
+- *Règle pour les auteurs de scènes / DSL* : Les enfants ajoutés à un objet parent via `addChild` doivent être définis avec des **coordonnées locales** (relatives au repère du parent). Le modèle de données `KObject` calcule automatiquement les coordonnées monde via `worldMatrix()` et `toWorld()`, tandis que les getters/setters `x`/`y` gèrent la transparence monde ↔ local.

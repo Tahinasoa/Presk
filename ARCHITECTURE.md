@@ -50,3 +50,14 @@ This document centralizes major architectural decisions, design rationale, and k
 
 * **Decision:** Runtime type registration mapping DSL type strings (e.g., `"shape"`, `"text"`, `"line"`) to `{ ObjectClass, GraphicClass }` pairs.
 * **Rationale:** Provides an open extension point where future domain component packages (`lib/` for electrical circuits, geometry, grammar, etc.) can register new components without modifying core engine code.
+
+---
+
+## 6. Generalized Hierarchical Composition (`KObject` + `transformation-matrix`)
+
+* **Decision:** Generalize parent/child hierarchy capabilities directly onto the base `KObject` class rather than restricting it to a dedicated `KComposite` class, powered by the pure math library `transformation-matrix`.
+* **Rationale:**
+  - Any `KObject` can act as a parent (`addChild`, `removeChild`, `getChild`), providing maximum architectural flexibility (Unity/Pixi-like transform hierarchy on all objects).
+  - `transformation-matrix` provides robust, pure-TS 2D matrix composition (`compose`, `translate`, `rotate`, `scale`, `applyToPoint`, `inverse`) without introducing PixiJS dependencies into `primitives/`.
+  - `KObject.worldMatrix()` computes absolute world matrices, which are directly consumed by the renderer (`KGraphicObject`) via PixiJS matrix setting, eliminating redundant layout/transform calculations.
+  - Nested ID resolution (`chart1.bar1`) is natively supported across the data scene and expression engine.

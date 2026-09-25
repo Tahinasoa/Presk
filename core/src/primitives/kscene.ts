@@ -7,7 +7,6 @@
 
 import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
 import type KObject from "./kobject";
-import KComposite from "./kcomposite";
 
 export interface KSceneParams extends KAbstractRectangleParams {
   // width and height are inherited from KAbstractRectangle
@@ -46,7 +45,7 @@ class KScene extends KAbstractRectangle {
     if (parts.length > 1) {
       let current: KObject | undefined = this._objects.get(parts[0]);
       for (let i = 1; i < parts.length; i++) {
-        if (current && current instanceof KComposite) {
+        if (current) {
           current = current.getChild(parts[i]);
         } else {
           return undefined;

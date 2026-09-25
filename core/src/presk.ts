@@ -15,7 +15,6 @@
 import gsap from "gsap";
 import KScene from "@/primitives/kscene";
 import type KObject from "@/primitives/kobject";
-import KComposite from "@/primitives/kcomposite";
 import KGraphicScene from "@/renderer/kgraphicScene";
 import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";
@@ -107,8 +106,9 @@ class Presk {
     this._scene.add(kObject);
     this._graphicScene.add(id, kGraphicObject, true);
 
-    if (kObject instanceof KComposite) {
-      for (const [childId, childObj, childType] of kObject.getChildrenRegistrations()) {
+    const childrenRegs = kObject.getChildrenRegistrations();
+    if (childrenRegs.length > 0) {
+      for (const [childId, childObj, childType] of childrenRegs) {
         const namespacedId = `${id}.${childId}`;
         this._scene.add(childObj);
         const childEntry = this._registry.get(childType);
@@ -125,7 +125,7 @@ class Presk {
   /** Destroys an object and its visual, and drops any bindings pointing at it. */
   destroy(id: string): void {
     const obj = this._scene.get(id);
-    if (obj instanceof KComposite) {
+    if (obj) {
       for (const [childId] of obj.children()) {
         const namespacedId = `${id}.${childId}`;
         this._graphicScene.remove(namespacedId);

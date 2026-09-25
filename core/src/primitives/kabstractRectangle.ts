@@ -110,18 +110,9 @@ abstract class KAbstractRectangle extends KObject {
    * projected into scene coordinates after scale + rotation around center.
    */
   protected getCorner(localX: number, localY: number): KPoint {
-    const cos = Math.cos(this.rotation);
-    const sin = Math.sin(this.rotation);
     const rx = (localX - this._anchorX) * this._width;
     const ry = (localY - this._anchorY) * this._height;
-
-    const sx = rx * this.scale;
-    const sy = ry * this.scale;
-
-    return {
-      x: this.x + sx * cos - sy * sin,
-      y: this.y + sx * sin + sy * cos,
-    };
+    return this.toWorld({ x: rx, y: ry });
   }
 
   // Point anchors
@@ -158,15 +149,9 @@ abstract class KAbstractRectangle extends KObject {
   }
 
   get center(): KPoint {
-    const cos = Math.cos(this.rotation);
-    const sin = Math.sin(this.rotation);
-    const ox = this.pivotOffsetX * this.scale;
-    const oy = this.pivotOffsetY * this.scale;
-
-    return {
-      x: this.x + ox * cos - oy * sin,
-      y: this.y + ox * sin + oy * cos,
-    };
+    const ox = this.pivotOffsetX;
+    const oy = this.pivotOffsetY;
+    return this.toWorld({ x: ox, y: oy });
   }
 
   set center(value: KPoint) {

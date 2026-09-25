@@ -1,4 +1,4 @@
-import { Graphics } from "pixi.js";
+import { Graphics, Matrix } from "pixi.js";
 import type KLine from "@/primitives/kline";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 
@@ -56,10 +56,9 @@ class KGraphicLine extends KGraphicObject {
       .circle(line.endX, line.endY, this._circleRadius)
       .fill(stroke);
 
-    this._graphics.position.set(line.x, line.y);
-    this._graphics.rotation = line.rotation;
-    this._graphics.scale.set(line.scale);
-    this._graphics.alpha = line.opacity;
+    const wm = this._object.worldMatrix();
+    this._displayObject.setFromMatrix(new Matrix(wm.a, wm.b, wm.c, wm.d, wm.e, wm.f));
+    this._displayObject.alpha = this._object.opacity;
   }
 
   override destroy(): void {

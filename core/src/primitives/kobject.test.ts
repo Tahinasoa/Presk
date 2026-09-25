@@ -15,13 +15,22 @@ describe("KObject", () => {
     expect(obj.opacity).toBe(0.8);
   });
 
-  it("uses default values when optional args are omitted", () => {
+  it("uses default values when optional args are omitted and starts invisible", () => {
     const obj = new KObject({ id: "hero", x: 10, y: 20 });
 
     expect(obj.scale).toBe(1);
     expect(obj.rotation).toBe(0);
     expect(obj.opacity).toBe(1);
     expect(obj.pos).toEqual({ x: 10, y: 20 });
+    expect(obj.visible).toBe(false);
+  });
+
+  it("becomes visible when create() is invoked", () => {
+    const obj = new KObject({ id: "hero", x: 10, y: 20 });
+    expect(obj.visible).toBe(false);
+
+    obj.create({ duration: 1 });
+
     expect(obj.visible).toBe(true);
   });
 

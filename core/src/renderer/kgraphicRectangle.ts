@@ -2,7 +2,7 @@
 // Paired with KRectangle under the "shape" DSL type — see
 // registry/builtins.ts.
 
-import { Graphics } from "pixi.js";
+import { Graphics, Matrix } from "pixi.js";
 import type KRectangle from "@/primitives/krectangle";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 
@@ -49,11 +49,9 @@ class KGraphicRectangle extends KGraphicObject {
       g.stroke({ width: rect.strokeWidth, color: rect.stroke });
     }
 
-    const center = rect.center;
-    this._graphics.position.set(center.x, center.y);
-    this._graphics.rotation = rect.rotation;
-    this._graphics.scale.set(rect.scale);
-    this._graphics.alpha = rect.opacity;
+    const wm = this._object.worldMatrix();
+    this._displayObject.setFromMatrix(new Matrix(wm.a, wm.b, wm.c, wm.d, wm.e, wm.f));
+    this._displayObject.alpha = this._object.opacity;
   }
 
   override destroy(): void {

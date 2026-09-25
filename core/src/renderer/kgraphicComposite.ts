@@ -1,8 +1,7 @@
 // KGraphicComposite is the base visual class for composite objects (spec §7 / GEMINI.md).
-// It owns a PixiJS Container, manages child graphic objects, and delegates
-// transform propagation natively to PixiJS hierarchy (rigid-body).
+// It owns a PixiJS Container for grouping/z-order/destroy, without applying transforms directly.
 
-import { Container } from "pixi.js";
+import { Container, Matrix } from "pixi.js";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 
 export interface KGraphicCompositeParams extends KGraphicObjectParams {
@@ -25,10 +24,10 @@ class KGraphicComposite extends KGraphicObject {
   }
 
   override redraw(): void {
-    this._container.position.set(this._object.x, this._object.y);
-    this._container.rotation = this._object.rotation;
-    this._container.scale.set(this._object.scale);
-    this._container.alpha = this._object.opacity;
+    const wm = this._object.worldMatrix();
+    this._displayObject.setFromMatrix(new Matrix(wm.a, wm.b, wm.c, wm.d, wm.e, wm.f));
+    this._displayObject.alpha = this._object.opacity;
+
     for (const child of this._childrenGraphics.values()) {
       child.redraw();
     }

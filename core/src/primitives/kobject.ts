@@ -2,14 +2,12 @@
 // (spec §4.1). It knows nothing about how it is drawn — no PixiJS import is
 // allowed in this file, ever (see primitives/README.md).
 //
-// It exists so that:
-//   - the binding engine (binding/) can read/write `x`, `y`, `scale`,
-//     `rotation`, `opacity` uniformly on any object type;
-//   - GSAP can tween these same properties directly, e.g.
-//     `gsap.to(kObject, { x: 100 })`, since they're plain getters/setters
-//     on a plain object.
+// It supports hierarchical parent/child composition and 2D transform composition
+// via the pure "transformation-matrix" library.
 
 import gsap from "gsap";
+import { compose, translate, rotate, scale, applyToPoint, inverse, type Matrix } from "transformation-matrix";
+import type { KPoint } from "./types";
 
 export type PropertyAnimator = (
   value: unknown,
@@ -35,17 +33,15 @@ class KObject {
   protected _opacity: number;
   protected _visible: boolean;
 
+  protected _parent: KObject | null = null;
+  protected _children: Map<string, KObject> = new Map();
+
   protected propertyAnimators: Record<string, PropertyAnimator> = {
     x: (value, tl, opts) => {
       tl.to(this, { _x: value, ...opts }, 0);
     },
     y: (value, tl, opts) => {
       tl.to(this, { _y: value, ...opts }, 0);
-    },
-    pos: (value, tl, opts) => {
-      const { x, y } = value as { x: number; y: number };
-      this.propertyAnimators.x(x, tl, opts);
-      this.propertyAnimators.y(y, tl, opts);
     },
     scale: (value, tl, opts) => {
       tl.to(this, { _scale: value, ...opts }, 0);
@@ -56,44 +52,12 @@ class KObject {
     opacity: (value, tl, opts) => {
       tl.to(this, { _opacity: value, ...opts }, 0);
     },
+    pos: (value, tl, opts) => {
+      const { x, y } = value as { x: number; y: number };
+      this.propertyAnimators.x(x, tl, opts);
+      this.propertyAnimators.y(y, tl, opts);
+    },
   };
-
-  create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
-    this._visible = true;
-    const duration = options.duration ?? 0.4;
-    const ease = options.ease ?? "power2.out";
-    const tl = gsap.timeline();
-    
-    const targetX = this._x;
-    const targetY = this._y;
-    const targetOpacity = this._opacity;
-
-    // Start slightly above and transparent, dropping onto the target data
-    this._x = targetX;
-    this._y = targetY - 40;
-    this._opacity = 0;
-
-    tl.to(this, { _x: targetX, _y: targetY, _opacity: targetOpacity, duration, ease }, 0);
-    return tl;
-  }
-
-  transform(data: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
-    const tl = gsap.timeline();
-    for (const [key, value] of Object.entries(data)) {
-      const animator = this.propertyAnimators[key];
-      if (!animator) {
-        throw new Error(`${this.constructor.name}: no animator registered for property "${key}".`);
-      }
-      animator(value, tl, options);
-    }
-    return tl;
-  }
-
-  setNow(data: Record<string, unknown>): gsap.core.Timeline {
-    const tl = this.transform(data, { duration: 0 });
-    tl.progress(1);
-    return tl;
-  }
 
   constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
     this._id = id;
@@ -102,15 +66,7 @@ class KObject {
     this._scale = scale;
     this._rotation = rotation;
     this._opacity = opacity;
-    this._visible = true;
-  }
-
-  get visible(): boolean {
-    return this._visible;
-  }
-
-  set visible(value: boolean) {
-    this._visible = value;
+    this._visible = false;
   }
 
   get id(): string {
@@ -122,28 +78,46 @@ class KObject {
   }
 
   get x(): number {
+    if (this._parent) {
+      return this.toWorld({ x: 0, y: 0 }).x;
+    }
     return this._x;
   }
 
   set x(value: number) {
-    this._x = value;
+    if (this._parent) {
+      const parentInv = inverse(this._parent.worldMatrix());
+      const local = applyToPoint(parentInv, { x: value, y: this.y });
+      this._x = local.x;
+    } else {
+      this._x = value;
+    }
   }
 
   get y(): number {
+    if (this._parent) {
+      return this.toWorld({ x: 0, y: 0 }).y;
+    }
     return this._y;
   }
 
   set y(value: number) {
-    this._y = value;
+    if (this._parent) {
+      const parentInv = inverse(this._parent.worldMatrix());
+      const local = applyToPoint(parentInv, { x: this.x, y: value });
+      this._y = local.y;
+    } else {
+      this._y = value;
+    }
   }
 
-  get pos(): { x: number; y: number } {
-    return { x: this._x, y: this._y };
+  get pos(): KPoint {
+    return { x: this.x, y: this.y };
   }
 
-  set pos(value: { x: number; y: number }) {
-    this._x = value.x;
-    this._y = value.y;
+  set pos(value: KPoint) {
+    this.x = value.x;
+    this.y = value.y;
   }
 
   get scale(): number {
@@ -168,6 +142,124 @@ class KObject {
 
   set opacity(value: number) {
     this._opacity = value;
+  }
+
+  get visible(): boolean {
+    return this._visible;
+  }
+
+  set visible(value: boolean) {
+    this._visible = value;
+  }
+
+  get parent(): KObject | null {
+    return this._parent;
+  }
+
+  addChild(id: string, child: KObject): void {
+    if (this._children.has(id)) {
+      throw new Error(`KObject: a child with id "${id}" already exists.`);
+    }
+    // Anti-cycle guard
+    let curr: KObject | null = this;
+    while (curr !== null) {
+      if (curr === child) {
+        throw new Error(`KObject: cannot add ancestor as child (cycle detected).`);
+      }
+      curr = curr.parent;
+    }
+    child._parent = this;
+    this._children.set(id, child);
+  }
+
+  removeChild(id: string): void {
+    const child = this._children.get(id);
+    if (child) {
+      child._parent = null;
+      this._children.delete(id);
+    }
+  }
+
+  getChild(id: string): KObject | undefined {
+    return this._children.get(id);
+  }
+
+  children(): [string, KObject][] {
+    return [...this._children.entries()];
+  }
+
+  getChildrenRegistrations(): [string, KObject, string][] {
+    return [];
+  }
+
+  localMatrix(): Matrix {
+    return compose(
+      translate(this._x, this._y),
+      rotate(this._rotation),
+      scale(this._scale)
+    );
+  }
+
+  worldMatrix(): Matrix {
+    if (!this._parent) {
+      return this.localMatrix();
+    }
+    return compose(this._parent.worldMatrix(), this.localMatrix());
+  }
+
+  toWorld(point: KPoint): KPoint {
+    return applyToPoint(this.worldMatrix(), point);
+  }
+
+  toLocal(point: KPoint): KPoint {
+    return applyToPoint(inverse(this.worldMatrix()), point);
+  }
+
+  setNow(props: Record<string, unknown>): void {
+    for (const [key, val] of Object.entries(props)) {
+      const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(this), key);
+      if (descriptor && !descriptor.set) {
+        // Getter without setter (e.g. frame), try property animator if available
+        const animator = this.propertyAnimators[key];
+        if (animator) {
+          const dummyTl = gsap.timeline();
+          animator(val, dummyTl, { duration: 0 });
+        }
+        continue;
+      }
+      try {
+        (this as Record<string, unknown>)[key] = val;
+      } catch {
+        // Fallback to property animator if direct assignment fails
+        const animator = this.propertyAnimators[key];
+        if (animator) {
+          const dummyTl = gsap.timeline();
+          animator(val, dummyTl, { duration: 0 });
+        }
+      }
+    }
+  }
+
+  create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    this._visible = true;
+    const tl = gsap.timeline(options);
+    for (const [, child] of this._children) {
+      tl.add(child.create(options), 0);
+    }
+    return tl;
+  }
+
+  transform(properties: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
+    const tl = gsap.timeline();
+    for (const [prop, value] of Object.entries(properties)) {
+      const animator = this.propertyAnimators[prop];
+      if (animator) {
+        animator(value, tl, options);
+      } else {
+        tl.to(this, { [`_${prop}`]: value, ...options }, 0);
+      }
+    }
+    return tl;
   }
 }
 
