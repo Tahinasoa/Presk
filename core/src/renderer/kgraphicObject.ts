@@ -5,6 +5,7 @@
 
 import type KObject from "@/primitives/kobject";
 import type KRenderer from "./krenderer";
+import type { Container } from "pixi.js";
 
 export interface KGraphicObjectParams {
   renderer: KRenderer;
@@ -14,10 +15,15 @@ export interface KGraphicObjectParams {
 abstract class KGraphicObject {
   protected _object: KObject;
   protected _renderer: KRenderer;
+  protected _displayObject!: Container;
 
   constructor({ object, renderer }: KGraphicObjectParams) {
     this._object = object;
     this._renderer = renderer;
+  }
+
+  get displayObject(): Container {
+    return this._displayObject;
   }
 
   /** Re-reads `this._object`'s current state and updates the PixiJS display object. */

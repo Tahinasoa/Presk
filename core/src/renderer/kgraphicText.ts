@@ -1,30 +1,32 @@
-// Draws a KText (primitives/ktext.ts) as a PixiJS Text object. Paired with
-// KText under the "text" DSL type — see registry/builtins.ts.
+// Draws a KText (primitives/ktext.ts) as a PixiJS Text object inside a KGraphicComposite.
 
 import { Text } from "pixi.js";
 import type KText from "@/primitives/ktext";
-import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
+import KGraphicComposite, { type KGraphicCompositeParams } from "./kgraphicComposite";
 import KGraphicRectangle from "./kgraphicRectangle";
 
-export interface KGraphicTextParams extends KGraphicObjectParams {
+export interface KGraphicTextParams extends KGraphicCompositeParams {
   object: KText;
   fill?: number;
   fontSize?: number;
 }
 
-class KGraphicText extends KGraphicObject {
+class KGraphicText extends KGraphicComposite {
   private _text: Text;
   private _graphicFrame: KGraphicRectangle;
 
   constructor(params: KGraphicTextParams) {
     super(params);
+    const obj = params.object as KText;
+
     this._graphicFrame = new KGraphicRectangle({
-      object: this.kText.frame,
+      object: obj.frame,
       renderer: this._renderer,
     });
+    this.addChildGraphic("frame", this._graphicFrame);
 
     this._text = new Text({
-      text: params.object.text,
+      text: obj.text,
       style: {
         fill: params.fill ?? 0xffffff,
         fontSize: params.fontSize ?? 32,
@@ -32,10 +34,12 @@ class KGraphicText extends KGraphicObject {
       },
     });
     this._text.anchor.set(0.5);
-    this._renderer.add(this._text);
+    this._container.addChild(this._text);
 
-    this.kText.width = this._text.width;
-    this.kText.height = this._text.height;
+    obj.width = this._text.width;
+    obj.height = this._text.height;
+    obj.frame.width = this._text.width + obj.horizontalMargins * 2;
+    obj.frame.height = this._text.height + obj.verticalMargins * 2;
 
     this.redraw();
   }
@@ -48,41 +52,25 @@ class KGraphicText extends KGraphicObject {
     const obj = this.kText;
 
     if (!obj.visible) {
-      this._text.visible = false;
-      this._graphicFrame.redraw();
+      this._container.visible = false;
       return;
     }
-    this._text.visible = true;
+    this._container.visible = true;
 
     if (this._text.text !== obj.text) {
       this._text.text = obj.text;
-      this.kText.width = this._text.width;
-      this.kText.height = this._text.height;
+      obj.width = this._text.width;
+      obj.height = this._text.height;
+      obj.frame.width = this._text.width + obj.horizontalMargins * 2;
+      obj.frame.height = this._text.height + obj.verticalMargins * 2;
     }
 
-    const frame = obj.frame;
-    frame.x = obj.x;
-    frame.y = obj.y;
-    frame.width = this._text.width + obj.horizontalMargins * 2;
-    frame.height = this._text.height + obj.verticalMargins * 2;
-    frame.scale = obj.scale;
-    frame.rotation = obj.rotation;
-    frame.opacity = obj.opacity;
-    frame.anchorX = obj.anchorX;
-    frame.anchorY = obj.anchorY;
-
-    this._graphicFrame.redraw();
-
-    this._text.position.set(obj.x, obj.y);
-    this._text.scale.set(obj.scale);
-    this._text.rotation = obj.rotation;
-    this._text.alpha = obj.opacity;
+    super.redraw();
   }
 
   override destroy(): void {
-    this._renderer.remove(this._text);
     this._text.destroy();
-    this._graphicFrame.destroy();
+    super.destroy();
   }
 }
 

@@ -111,20 +111,37 @@ class Parser {
     if (token.type === "number") return token.value;
 
     if (token.type === "ident") {
-      const identifier = token.value;
-      const segments: string[] = [];
+      const parts: string[] = [token.value];
       while (this.peek()?.type === "dot") {
         this.next(); // consume "."
-        const segmentToken = this.next();
-        if (segmentToken.type !== "ident") {
-          throw new Error("Presk expression: expected a property name after \".\".");
+        const nextToken = this.next();
+        if (nextToken.type !== "ident") {
+          throw new Error("Presk expression: expected an identifier after \".\".");
         }
-        segments.push(segmentToken.value);
+        parts.push(nextToken.value);
       }
+
+      // Find the longest prefix that resolves to a KObject in scene (supporting nested IDs like chart1.bar1)
+      let objectId = "";
+      let splitIndex = 0;
+      for (let i = 1; i <= parts.length; i++) {
+        const candidateId = parts.slice(0, i).join(".");
+        if (this.scene.has(candidateId)) {
+          objectId = candidateId;
+          splitIndex = i;
+        }
+      }
+
+      if (!objectId) {
+        objectId = parts[0];
+        splitIndex = 1;
+      }
+
+      const segments = parts.slice(splitIndex);
       if (segments.length === 0) {
-        throw new Error(`Presk expression: "${identifier}" used without a property (e.g. "${identifier}.x").`);
+        throw new Error(`Presk expression: "${objectId}" used without a property (e.g. "${objectId}.x").`);
       }
-      const val = resolveReference(this.scene, identifier, segments);
+      const val = resolveReference(this.scene, objectId, segments);
       return val as number | KPoint;
     }
 

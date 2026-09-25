@@ -15,6 +15,7 @@
 import gsap from "gsap";
 import KScene from "@/primitives/kscene";
 import type KObject from "@/primitives/kobject";
+import KComposite from "@/primitives/kcomposite";
 import KGraphicScene from "@/renderer/kgraphicScene";
 import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";
@@ -62,7 +63,7 @@ class Presk {
 
   /** Sets up the KScene + KRenderer and mounts the PixiJS canvas. Must be called before create(). */
   async init({ root, width, height, background }: PreskInitParams): Promise<void> {
-    this._scene = new KScene({ id: "scene", x: 0, y: 0, anchorX:0,anchorY : 0,width, height });
+    this._scene = new KScene({ id: "scene", x: 0, y: 0, anchorX:0, anchorY:0, width, height });
     this._binding = new BindingEngine(this._scene);
     this._renderer = new KRenderer({ root, width, height, background });
     await this._renderer.init();
@@ -104,14 +105,36 @@ class Presk {
     const kGraphicObject = new entry.GraphicClass({ renderer: this._renderer, object: kObject });
 
     this._scene.add(kObject);
-    this._graphicScene.add(id, kGraphicObject);
+    this._graphicScene.add(id, kGraphicObject, true);
+
+    if (kObject instanceof KComposite) {
+      for (const [childId, childObj, childType] of kObject.getChildrenRegistrations()) {
+        const namespacedId = `${id}.${childId}`;
+        this._scene.add(childObj);
+        const childEntry = this._registry.get(childType);
+        if (childEntry) {
+          const childGraphic = new childEntry.GraphicClass({ renderer: this._renderer, object: childObj });
+          this._graphicScene.add(namespacedId, childGraphic, false);
+        }
+      }
+    }
 
     return kObject as T;
   }
 
   /** Destroys an object and its visual, and drops any bindings pointing at it. */
   destroy(id: string): void {
-    this._graphicScene.remove(id); // also calls the graphic object's destroy()
+    const obj = this._scene.get(id);
+    if (obj instanceof KComposite) {
+      for (const [childId] of obj.children()) {
+        const namespacedId = `${id}.${childId}`;
+        this._graphicScene.remove(namespacedId);
+        this._scene.remove(namespacedId);
+        this._binding.clear(namespacedId);
+      }
+    }
+
+    this._graphicScene.remove(id);
     this._scene.remove(id);
     this._binding.clear(id);
   }

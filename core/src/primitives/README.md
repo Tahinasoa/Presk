@@ -26,3 +26,9 @@ of any rendering dependency (no PixiJS import, ever) so that:
   `"someId.x"` resolvable from an expression (see `binding/expression.ts`).
   Also represents the DSL's reserved `"scene"` identifier (§4, `scene.width`,
   `scene.center.x`, ...).
+- `kcomposite.ts` — `KComposite`, base data class for composite objects holding children.
+
+## Composite: local vs absolu (Design Choice §3)
+
+We have chosen **Option 2** (Coordinates = absolute in data model, local/hierarchical transformation handled at render time via PixiJS `Container` hierarchy). 
+- *Rationale:* Lowest risk, minimal footprint on the pure data model (`primitives/` remains free of hierarchy math), fully compatible with existing expressions while achieving true rigid-body visual composition through PixiJS `Container.addChild()`. Option 1 remains a recommended future refactor if deep external parent-child path referencing becomes a primary requirement.

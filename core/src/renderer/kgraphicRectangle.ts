@@ -20,6 +20,7 @@ class KGraphicRectangle extends KGraphicObject {
   constructor(params: KGraphicRectangleParams) {
     super(params);
     this._graphics = new Graphics();
+    this._displayObject = this._graphics;
     this._renderer.add(this._graphics);
     this.redraw();
   }

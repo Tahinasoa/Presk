@@ -17,6 +17,7 @@ class KGraphicLine extends KGraphicObject {
     this._circleRadius = params.circleRadius ?? 4;
 
     this._graphics = new Graphics();
+    this._displayObject = this._graphics;
     this._renderer.add(this._graphics);
     this.redraw();
   }

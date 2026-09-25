@@ -7,6 +7,7 @@
 
 import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
 import type KObject from "./kobject";
+import KComposite from "./kcomposite";
 
 export interface KSceneParams extends KAbstractRectangleParams {
   // width and height are inherited from KAbstractRectangle
@@ -34,15 +35,30 @@ class KScene extends KAbstractRectangle {
 
   /**
    * Resolves an identifier from an expression (spec §8). The reserved id
-   * "scene" always resolves to this KScene itself.
+   * "scene" always resolves to this KScene itself. Supports nested IDs (e.g. "chart1.bar1").
    */
   get(id: string): KObject | undefined {
     if (id === "scene") return this;
-    return this._objects.get(id);
+    if (this._objects.has(id)) return this._objects.get(id);
+
+    // Support nested ids like "chart1.bar1" or "text1.frame"
+    const parts = id.split(".");
+    if (parts.length > 1) {
+      let current: KObject | undefined = this._objects.get(parts[0]);
+      for (let i = 1; i < parts.length; i++) {
+        if (current && current instanceof KComposite) {
+          current = current.getChild(parts[i]);
+        } else {
+          return undefined;
+        }
+      }
+      return current;
+    }
+    return undefined;
   }
 
   has(id: string): boolean {
-    return id === "scene" || this._objects.has(id);
+    return id === "scene" || this.get(id) !== undefined;
   }
 
   /** All live objects, in insertion order. Used by the binding engine and by tick(). */

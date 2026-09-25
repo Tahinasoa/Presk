@@ -1,14 +1,12 @@
 // KText backs the DSL's `"text"` type (see registry/builtins.ts).
-// It reuses KAbstractRectangle for its geometry (a text block still has a
-// width/height box that other objects can anchor to via §4.2/§4.3), and
-// adds the `text` string content itself, along with margin and framing support.
+// It extends KComposite, managing a background frame KRectangle child and text content.
+// Under Option 2 architectural choice, data coordinates remain absolute (frame.x == text.x).
 
-import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
+import KComposite, { type KCompositeParams } from "./kcomposite";
 import KRectangle from "./krectangle";
-import type { KPoint } from "./types";
 import gsap from "gsap";
 
-export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "height"> {
+export interface KTextParams extends Omit<KCompositeParams, "width" | "height"> {
   text: string;
   width?: number;
   height?: number;
@@ -18,18 +16,13 @@ export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "h
   frame?: boolean | { fill?: number; stroke?: number; strokeWidth?: number; opacity?: number };
 }
 
-class KText extends KAbstractRectangle {
+class KText extends KComposite {
   private _text: string;
   protected _verticalMargins: number;
   protected _horizontalMargins: number;
   private _frame: KRectangle;
 
   constructor({ text, width = 0, height = 0, verticalMargins = 30, horizontalMargins = 30, margins, frame, ...rest }: KTextParams) {
-    super({ ...rest, width, height });
-    this._text = text;
-    this._verticalMargins = margins !== undefined ? margins : verticalMargins;
-    this._horizontalMargins = margins !== undefined ? margins : horizontalMargins;
-
     let frameVisible = false;
     let frameFill: number | undefined = 0x22222a;
     let frameStroke: number | undefined = 0x444455;
@@ -44,23 +37,41 @@ class KText extends KAbstractRectangle {
       frameStrokeWidth = frame.strokeWidth ?? (frameStroke !== undefined ? 2 : 0);
     }
 
-    this._frame = new KRectangle({
+    const vMargins = margins !== undefined ? margins : verticalMargins;
+    const hMargins = margins !== undefined ? margins : horizontalMargins;
+
+    const initialX = rest.x ?? 0;
+    const initialY = rest.y ?? 0;
+
+    const frameRect = new KRectangle({
       ...rest,
-      id: `${this._id}_frame`,
-      x: this._x,
-      y: this._y,
-      width: width + this._horizontalMargins * 2,
-      height: height + this._verticalMargins * 2,
-      anchorX: this._anchorX,
-      anchorY: this._anchorY,
-      scale: this._scale,
-      rotation: this._rotation,
-      opacity: this._opacity,
+      id: `${rest.id}_frame`,
+      x: initialX,
+      y: initialY,
+      width: width + hMargins * 2,
+      height: height + vMargins * 2,
+      anchorX: rest.anchorX ?? 0.5,
+      anchorY: rest.anchorY ?? 0.5,
+      scale: rest.scale ?? 1,
+      rotation: rest.rotation ?? 0,
+      opacity: rest.opacity ?? 1,
       fill: frameFill,
       stroke: frameStroke,
       strokeWidth: frameStrokeWidth,
     });
-    this._frame.visible = frameVisible;
+    frameRect.visible = frameVisible;
+
+    super({
+      ...rest,
+      width,
+      height,
+      children: { frame: frameRect },
+    });
+
+    this._text = text;
+    this._verticalMargins = vMargins;
+    this._horizontalMargins = hMargins;
+    this._frame = frameRect;
 
     Object.assign(this.propertyAnimators, {
       text: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
@@ -145,6 +156,14 @@ class KText extends KAbstractRectangle {
     });
   }
 
+  override getChildrenRegistrations(): [string, KObject, string][] {
+    return [["frame", this._frame, "shape"]];
+  }
+
+  override get boundingBox(): { topLeft: KPoint; topRight: KPoint; bottomLeft: KPoint; bottomRight: KPoint; center: KPoint } {
+    return this._frame.boundingBox;
+  }
+
   get text(): string {
     return this._text;
   }
@@ -186,10 +205,6 @@ class KText extends KAbstractRectangle {
     this._frame.height = this._height + this._verticalMargins * 2;
   }
 
-  override get boundingBox(): { topLeft: KPoint; topRight: KPoint; bottomLeft: KPoint; bottomRight: KPoint; center: KPoint } {
-    return this._frame.boundingBox;
-  }
-
   override get x(): number {
     return this._x;
   }
@@ -208,17 +223,9 @@ class KText extends KAbstractRectangle {
     this._frame.y = value;
   }
 
-  override get width(): number {
-    return this._width;
-  }
-
   override set width(value: number) {
     this._width = value;
     this._frame.width = value + this._horizontalMargins * 2;
-  }
-
-  override get height(): number {
-    return this._height;
   }
 
   override set height(value: number) {
@@ -269,15 +276,6 @@ class KText extends KAbstractRectangle {
   override set anchorY(value: number) {
     this._anchorY = value;
     this._frame.anchorY = value;
-  }
-
-  override create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
-    void gsap;
-    const tl = super.create(options);
-    if (this._frame && this._frame.visible) {
-      tl.add(this._frame.create(options), 0);
-    }
-    return tl;
   }
 }
 
