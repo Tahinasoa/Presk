@@ -241,8 +241,10 @@ class KObject {
   }
 
   create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
-    this._visible = true;
     const tl = gsap.timeline(options);
+    tl.call(() => {
+      this._visible = true;
+    },undefined, 0);
     for (const [, child] of this._children) {
       tl.add(child.create(options), 0);
     }

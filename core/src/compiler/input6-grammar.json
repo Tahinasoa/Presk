@@ -7,10 +7,8 @@
   },
   "steps": [
     { "action": "create", "target": "introTitle", "type": "text",
-      "properties": { "text": "Analysons une phrase", "x": "scene.width / 2", "y": "scene.height / 2", "scale": 1.3 } },
-    { "action": "transform", "target": "introTitle", "name": "introOut",
-      "properties": { "opacity": 0, "scale": 0.7 }, "start": "+=2.0", "duration": 0.6 },
-    { "action": "destroy", "target": "introTitle", "start": "introOut+=0.6" },
+      "properties": { "text": "Analysons une phrase","pos":"scene.center", "scale": 1.3 } },
+    {"action" : "transform", "target" :"introTitle", "properties" : {"y" : "50"},"duration" : 1, "start" : "+1"},
 
     { "action": "create", "target": "wordSujet", "type": "text", "name": "sujetIn",
       "properties": { "text": "Le petit garçon", "x": "scene.width * 0.22", "y": 450, "scale": 1.1 },
