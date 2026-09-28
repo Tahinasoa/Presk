@@ -19,6 +19,7 @@ import KGraphicScene from "@/renderer/kgraphicScene";
 import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";
 import BindingEngine from "@/binding/bindingEngine";
+import { nanoid } from "nanoid";
 
 // A registered "type" is a pair of constructors: one for the data object,
 // one for its paired visual. `any` is used for constructor params here
@@ -81,7 +82,7 @@ class Presk {
    * links them (both keyed by the same id), and adds them to the scene.
    * This is the `create("rectangle", {...})` factory from the design chat.
    */
-  create<T extends KObject = KObject>(type: string, id: string, props: Record<string, unknown>): T {
+  create<T extends KObject = KObject>(type: string, id: string|undefined, props: Record<string, unknown>): T {
     const entry = this._registry.get(type);
     if (!entry) {
       throw new Error(`Presk.create: unknown type "${type}". Did you forget to register() it?`);
@@ -89,8 +90,9 @@ class Presk {
     if (this._scene.has(id)) {
       throw new Error(`Presk.create: an object with id "${id}" already exists.`);
     }
+    const uid = id || nanoid() ;
 
-    const kObject = new entry.ObjectClass({ id, ...props });
+    const kObject = new entry.ObjectClass({ id:uid, ...props });
     
     // Apply any non-constructor initial properties (like center, pos, etc.) via setNow
     const initialProps: Record<string, unknown> = {};
