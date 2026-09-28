@@ -11,13 +11,13 @@
     {"action" : "transform", "target" :"introTitle", "properties" : {"y" : "50"},"duration" : 1, "start" : "+1"},
 
     { "action": "create", "target": "wordSujet", "type": "text", "name": "sujetIn",
-      "properties": { "text": "Le petit garçon", "x": "scene.width * 0.22", "y": 450, "scale": 1.1 },
+      "properties": { "text": "Le petit garçon", "x": "scene.width * 0.22", "y": "scene.center.y", "scale": 1.1 },
       "start": "introOut+=0.3" },
     { "action": "create", "target": "wordVerbe", "type": "text", "name": "verbeIn",
-      "properties": { "text": "mange", "x": "wordSujet.topRight.x + 30", "y": "wordSujet.y", "scale": 1.1 },
+      "properties": { "text": "mange", "x": "wordSujet.right + 30", "y": "wordSujet.y", "scale": 1.1 },
       "start": "sujetIn+=0.3" },
     { "action": "create", "target": "wordCod", "type": "text", "name": "codIn",
-      "properties": { "text": "une pomme", "x": "wordVerbe.topRight.x + 30", "y": "wordVerbe.y", "scale": 1.1 },
+      "properties": { "text": "une pomme", "x": "wordVerbe.right + 30", "y": "wordVerbe.y", "scale": 1.1 },
       "start": "verbeIn+=0.3" },
 
     { "action": "create", "target": "qBox", "type": "shape", "name": "qBoxIn",
