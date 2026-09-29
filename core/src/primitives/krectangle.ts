@@ -56,7 +56,7 @@ class KRectangle extends KAbstractRectangle {
     const finalOpacity = this._opacity;
     this._scale = 0;
     this._opacity = 0;
-    tl.to(this, { _scale: finalScale, _opacity: finalOpacity, duration, ease }, 0);
+    tl.to(this, { _scale: finalScale,_visible : true, _opacity: finalOpacity, duration, ease }, 0);
     return tl;
   }
 

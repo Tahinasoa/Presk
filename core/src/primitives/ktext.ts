@@ -4,7 +4,7 @@
 import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
 import KRectangle from "./krectangle";
 import type KObject from "./kobject";
-import gsap from "gsap";
+import type { KPoint } from "./types";
 
 export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "height"> {
   text: string;
@@ -151,7 +151,7 @@ class KText extends KAbstractRectangle {
   }
 
   override getChildrenRegistrations(): [string, KObject, string][] {
-    return [["frame", this._frame, "shape"]];
+    return [["frame", this._frame, "rectangle"]];
   }
 
   override get boundingBox(): { topLeft: KPoint; topRight: KPoint; bottomLeft: KPoint; bottomRight: KPoint; center: KPoint } {

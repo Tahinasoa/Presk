@@ -25,14 +25,11 @@ describe("KObject", () => {
     expect(obj.visible).toBe(false);
   });
 
-  it("becomes visible when create timeline executes", () => {
+  it("becomes visible when create is called", () => {
     const obj = new KObject({ id: "hero", x: 10, y: 20 });
     expect(obj.visible).toBe(false);
 
-    const tl = obj.create({ duration: 1 });
-    expect(obj.visible).toBe(false);
-
-    tl.progress(0);
+    obj.create({ duration: 1 });
     expect(obj.visible).toBe(true);
   });
 

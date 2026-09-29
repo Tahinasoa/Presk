@@ -27,6 +27,7 @@ abstract class KAbstractRectangle extends KObject {
     this._anchorX = anchorX;
     this._anchorY = anchorY;
 
+
     Object.assign(this.propertyAnimators, {
       width: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
         tl.to(this, { _width: value, ...opts }, 0);
@@ -40,7 +41,7 @@ abstract class KAbstractRectangle extends KObject {
       anchorY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
         tl.to(this, { _anchorY: value, ...opts }, 0);
       },
-      topLeft: this.registerPointAnimator(0, 0),
+      topLeft: ()=>{console.log("animato to topLeft") ; this.registerPointAnimator(0, 0)},
       topRight: this.registerPointAnimator(1, 0),
       bottomRight: this.registerPointAnimator(1, 1),
       bottomLeft: this.registerPointAnimator(0, 1),

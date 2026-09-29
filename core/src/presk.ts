@@ -87,10 +87,10 @@ class Presk {
     if (!entry) {
       throw new Error(`Presk.create: unknown type "${type}". Did you forget to register() it?`);
     }
-    if (this._scene.has(id)) {
-      throw new Error(`Presk.create: an object with id "${id}" already exists.`);
+    const uid = id || nanoid();
+    if (this._scene.has(uid)) {
+      throw new Error(`Presk.create: an object with id "${uid}" already exists.`);
     }
-    const uid = id || nanoid() ;
 
     const kObject = new entry.ObjectClass({ id:uid, ...props });
     
@@ -106,12 +106,12 @@ class Presk {
     const kGraphicObject = new entry.GraphicClass({ renderer: this._renderer, object: kObject });
 
     this._scene.add(kObject);
-    this._graphicScene.add(id, kGraphicObject, true);
+    this._graphicScene.add(uid, kGraphicObject, true);
 
     const childrenRegs = kObject.getChildrenRegistrations();
     if (childrenRegs.length > 0) {
       for (const [childId, childObj, childType] of childrenRegs) {
-        const namespacedId = `${id}.${childId}`;
+        const namespacedId = `${uid}.${childId}`;
         this._scene.add(childObj);
         const childEntry = this._registry.get(childType);
         if (childEntry) {

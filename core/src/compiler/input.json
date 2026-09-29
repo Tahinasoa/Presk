@@ -9,92 +9,16 @@
     {
       "action": "create",
       "target": "centerRect",
-      "type": "shape",
+      "type": "rectangle",
       "properties": {
-        "x": "scene.width / 2",
-        "y": "scene.height / 2",
+        "topLeft" : "scene.center",
         "width": 640,
         "height": 380,
-        "fill": 1779768,
+        "fill": "red",
         "stroke": 3824492,
         "strokeWidth": 3
       },
       "duration": 0.8
-    },
-    {
-      "action": "create",
-      "target": "squareLeft",
-      "type": "shape",
-      "properties": {
-        "pos": "scene.bottomCenter",
-        "width": 140,
-        "height": 140,
-        "fill": 3878390,
-        "stroke": 16777215,
-        "strokeWidth": 2
-      },
-      "start": "<",
-      "duration": 0.6
-    },
-    {
-      "action": "create",
-      "target": "squareTop",
-      "type": "shape",
-      "properties": {
-        "x": "scene.width / 2",
-        "y": 180,
-        "width": 140,
-        "height": 140,
-        "fill": 1098689,
-        "stroke": 16777215,
-        "strokeWidth": 2
-      },
-      "start": "<",
-      "duration": 0.6
-    },
-    {
-      "action": "create",
-      "target": "squareRight",
-      "type": "shape",
-      "properties": {
-        "x": 1540,
-        "y": "scene.height / 2",
-        "width": 140,
-        "height": 140,
-        "fill": 15485081,
-        "stroke": 16777215,
-        "strokeWidth": 2
-      },
-      "start": "<",
-      "duration": 0.6
-    },
-    {
-      "action" : "create",
-      "type" : "text",
-      "target" : "myText",
-      "properties" : {
-        "text" : "textfdghd",
-        "pos" : "scene.center",
-        "frame" : false
-      }
-    },
-        {
-      "action" : "create",
-      "type" : "text",
-      "target" : "myText2",
-      "properties" : {
-        "text" : "textfdghd",
-        "pos" : "myText.boundingBox.topLeft",
-        "frame" : false
-      }
-    },
-    {
-      "action" : "transform",
-      "target" : "myText",
-      "properties" : {
-        "frame" : true
-      },
-      "duration" : 2
     }
-  ]
+ ]
 }

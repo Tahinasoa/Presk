@@ -1,17 +1,17 @@
-// Draws a KText (primitives/ktext.ts) as a PixiJS Text object inside a KGraphicComposite.
+// Draws a KText (primitives/ktext.ts) as a PixiJS Text object directly managed alongside its frame.
 
-import { Text } from "pixi.js";
+import { Text, Matrix } from "pixi.js";
 import type KText from "@/primitives/ktext";
-import KGraphicComposite, { type KGraphicCompositeParams } from "./kgraphicComposite";
+import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 import KGraphicRectangle from "./kgraphicRectangle";
 
-export interface KGraphicTextParams extends KGraphicCompositeParams {
+export interface KGraphicTextParams extends KGraphicObjectParams {
   object: KText;
   fill?: number;
   fontSize?: number;
 }
 
-class KGraphicText extends KGraphicComposite {
+class KGraphicText extends KGraphicObject {
   private _text: Text;
   private _graphicFrame: KGraphicRectangle;
 
@@ -23,7 +23,6 @@ class KGraphicText extends KGraphicComposite {
       object: obj.frame,
       renderer: this._renderer,
     });
-    this.addChildGraphic("frame", this._graphicFrame);
 
     this._text = new Text({
       text: obj.text,
@@ -34,7 +33,7 @@ class KGraphicText extends KGraphicComposite {
       },
     });
     this._text.anchor.set(0.5);
-    this._container.addChild(this._text);
+    this._renderer.add(this._text);
 
     obj.width = this._text.width;
     obj.height = this._text.height;
@@ -52,10 +51,11 @@ class KGraphicText extends KGraphicComposite {
     const obj = this.kText;
 
     if (!obj.visible) {
-      this._container.visible = false;
+      this._text.visible = false;
+      this._graphicFrame.redraw();
       return;
     }
-    this._container.visible = true;
+    this._text.visible = true;
 
     if (this._text.text !== obj.text) {
       this._text.text = obj.text;
@@ -65,12 +65,17 @@ class KGraphicText extends KGraphicComposite {
       obj.frame.height = this._text.height + obj.verticalMargins * 2;
     }
 
-    super.redraw();
+    const wm = this._object.worldMatrix();
+    this._text.setFromMatrix(new Matrix(wm.a, wm.b, wm.c, wm.d, wm.e, wm.f));
+    this._text.alpha = this._object.opacity;
+
+    this._graphicFrame.redraw();
   }
 
   override destroy(): void {
     this._text.destroy();
-    super.destroy();
+    this._renderer.remove(this._text);
+    this._graphicFrame.destroy();
   }
 }
 

@@ -6,7 +6,7 @@ import Presk from "./presk";
 import { registerBuiltins } from "./registry/builtins";
 import { compile } from "./compiler/compiler";
 import type { DslDocument } from "./compiler/types";
-import inputData from "./compiler/input6-grammar.json";
+import inputData from "./compiler/input.json";
 
 const doc = inputData as DslDocument;
 

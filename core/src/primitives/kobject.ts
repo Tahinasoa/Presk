@@ -59,7 +59,7 @@ class KObject {
     },
   };
 
-  constructor({ id, x, y, scale = 1, rotation = 0, opacity = 0 }: KObjectParams) {
+  constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
     this._id = id;
     this._x = x;
     this._y = y;
@@ -241,11 +241,9 @@ class KObject {
   }
 
   create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+    this._visible = true;
     const tl = gsap.timeline(options);
-    tl.call(() => {
-      this._visible = true;
-    },undefined, 0);
-    this.propertyAnimators["opacity"](1,tl,{duration:0.5});
+    this.propertyAnimators["opacity"](1, tl, { duration: 0.5 });
     for (const [, child] of this._children) {
       tl.add(child.create(options), 0);
     }
