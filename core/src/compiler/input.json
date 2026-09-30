@@ -11,7 +11,7 @@
       "target": "centerRect",
       "type": "rectangle",
       "properties": {
-        "topLeft" : "scene.center",
+        "pos" : "scene.center",
         "width": 640,
         "height": 380,
         "fill": "red",
@@ -19,6 +19,13 @@
         "strokeWidth": 3
       },
       "duration": 0.8
+    },{
+      "action" : "transform",
+      "target" : "centerRect",
+      "properties" : {
+        "topLeft" : {"x" : 300, "y" : 200}
+      },
+      "duration" : 1
     }
  ]
 }

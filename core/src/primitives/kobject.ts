@@ -252,6 +252,8 @@ class KObject {
 
   transform(properties: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
     const tl = gsap.timeline();
+          console.log("animator") ;
+
     for (const [prop, value] of Object.entries(properties)) {
       const animator = this.propertyAnimators[prop];
       if (animator) {
