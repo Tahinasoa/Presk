@@ -1,5 +1,4 @@
-import KTween from "../tween";
-import type { KTweenData } from "../tween";
+import KTween, { type KTweenData } from "@/timer/tween/tween"
 import type KObject from "@/primitives/kobject";
 import type { KPoint } from "@/primitives/types";
 
