@@ -5,7 +5,7 @@ The implementations come from `@alloc/easing` (https://github.com/alloc/easing),
 which itself builds on glsl-easings / Robert Penner's equations. Functions were renamed
 (e.g. `sineIn` -> `easeInSine`) and given explicit return types; the maths are unchanged.
 
-License: MIT, see LICENSE (keep this file and its copyright notices if you redistribute).
+License: MIT, see LICENSE .
 
 ## Differences with easings.net
 Identical values (checked): 24 of the 30 functions.
