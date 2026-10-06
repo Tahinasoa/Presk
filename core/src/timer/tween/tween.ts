@@ -23,11 +23,11 @@ import type KObject from '@/primitives/kobject';
  *    the previous tweens (the timeline initialises tweens in `startTime`
  *    order, rendering each one at its end state). It must never read anything
  *    external: window size, scroll position, Date.now(), random values...
- *    `init` is where `startData` and `endData` get filled.
+ *    `init` is where the tween `data` object gets filled.
  *
- * 5. `render` must be a pure function of (target, progress, startData,
- *    endData). It must not depend on what it did on a previous call. This is
- *    what makes seeking and reverse playback correct.
+ * 5. `render` must be a pure function of (target, progress, data). It must not
+ *    depend on what it did on a previous call. This is what makes seeking and
+ *    reverse playback correct.
  *
  * ──────────────────────────────────────────────────────────────────────────
  * RENDER GUARANTEES
@@ -56,8 +56,7 @@ export type KTweenInit = (target: KObject, tween: KTween) => void;
 export type KTweenRender = (
 	target: KObject,
 	progress: number,
-	startData?: KTweenData,
-	endData?: KTweenData,
+	data?: KTweenData,
 ) => void;
 
 export interface KTweenParams {
@@ -67,14 +66,12 @@ export interface KTweenParams {
 	easing?: (t: number) => number;
 	init?: KTweenInit;
 	render: KTweenRender;
-	startData?: KTweenData;
-	endData?: KTweenData;
+	data?: KTweenData;
 }
 
 class KTween {
 	// ── Data filled by `init` (or provided at construction) ───────────────
-	startData?: KTweenData;
-	endData?: KTweenData;
+	data?: KTweenData;
 
 	// ── Configuration ─────────────────────────────────────────────────────
 	protected readonly _target: KObject;
@@ -95,8 +92,7 @@ class KTween {
 		easing = (t) => t,
 		init = () => { },
 		render,
-		startData,
-		endData,
+		data,
 	}: KTweenParams) {
 		this._target = target;
 		this._startTime = startTime;
@@ -104,8 +100,7 @@ class KTween {
 		this._easing = easing;
 		this._init = init;
 		this._render = render;
-		this.startData = startData;
-		this.endData = endData;
+		this.data = data;
 	}
 
 	// ── Accessors ─────────────────────────────────────────────────────────
@@ -127,7 +122,7 @@ class KTween {
 
 	// ── Public API ────────────────────────────────────────────────────────
 
-	/** Captures startData / endData. Called by the timeline, in startTime order, before first playback. */
+	/** Captures tween data. Called by the timeline, in startTime order, before first playback. */
 	init(): void {
 		this._init(this._target, this);
 	}
@@ -146,7 +141,7 @@ class KTween {
 		if (raw === this._lastRaw) return false;
 
 		this._lastRaw = raw;
-		this._render(this._target, this._easing(raw), this.startData, this.endData);
+		this._render(this._target, this._easing(raw), this.data);
 		return true;
 	}
 

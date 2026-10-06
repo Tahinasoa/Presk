@@ -16,9 +16,9 @@ import type { KPoint } from "@/primitives/types";
  *     is not writable, if a provided start / end is not a valid value, or, when
  *     the current value is needed, if the property cannot be read or currently
  *     holds an invalid value (wrong type).
- *   - When both start and end are provided, startData / endData are defined as
- *     soon as the factory returns.
- *   - Otherwise they are defined at the end of init(), because the current value
+ *   - When both start and end are provided, the tween data is defined as soon
+ *     as the factory returns.
+ *   - Otherwise it is filled at the end of init(), because the current value
  *     may only be read there (see the KTween contract). init() re-checks the
  *     value as a safety net; it only throws if the scene changed type since the
  *     factory was called, which breaks the contract.
@@ -102,11 +102,15 @@ function assertValid<V>(kind: ValueKind<V>, value: unknown, property: string, la
 	}
 }
 
-function unwrap<V>(data: KTweenData | undefined, property: string, label: string): V {
-	if (!data || !("value" in data) || data.value === undefined) {
+function unwrap<V>(data: KTweenData | undefined, property: string, label: "startData" | "endData"): V {
+	if (!data || !data[label] || typeof data[label] !== "object") {
 		throw new Error(`Tween on '${property}': ${label} is not defined (was init() called?)`);
 	}
-	return data.value as V;
+	const value = (data[label] as Record<string, unknown>).value;
+	if (value === undefined) {
+		throw new Error(`Tween on '${property}': ${label}.value is not defined`);
+	}
+	return value as V;
 }
 
 // ── Generic factory ───────────────────────────────────────────────────────
@@ -143,11 +147,11 @@ function propertyTween<V>(options: PropertyTweenOptions<V>, kind: ValueKind<V>):
 		easing,
 
 		// Fully explicit: data is defined as soon as the factory returns.
-		startData: explicitStart !== undefined && explicitEnd !== undefined
-			? { value: kind.clone(explicitStart) }
-			: undefined,
-		endData: explicitStart !== undefined && explicitEnd !== undefined
-			? { value: kind.clone(explicitEnd) }
+		data: explicitStart !== undefined && explicitEnd !== undefined
+			? {
+				startData: { value: kind.clone(explicitStart) },
+				endData: { value: kind.clone(explicitEnd) },
+			}
 			: undefined,
 
 		init: (obj, tween) => {
@@ -161,13 +165,15 @@ function propertyTween<V>(options: PropertyTweenOptions<V>, kind: ValueKind<V>):
 				end ??= current;
 			}
 
-			tween.startData = { value: kind.clone(start) };
-			tween.endData = { value: kind.clone(end) };
+			tween.data = {
+				startData: { value: kind.clone(start) },
+				endData: { value: kind.clone(end) },
+			};
 		},
 
-		render: (obj, progress, startData, endData) => {
-			const from = unwrap<V>(startData, property, "startData");
-			const to = unwrap<V>(endData, property, "endData");
+		render: (obj, progress, data) => {
+			const from = unwrap<V>(data, property, "startData");
+			const to = unwrap<V>(data, property, "endData");
 			slot(obj)[property] = kind.lerp(from, to, progress);
 		},
 	});

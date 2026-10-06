@@ -1,4 +1,4 @@
-import KObject from "@/primitives/kobject";
+﻿import KObject from "@/primitives/kobject";
 import { describe, expect, test } from "vitest";
 import { tweenNumber, tweenPoint } from "./tweenFactory";
 
@@ -8,8 +8,7 @@ describe("tween factories", () => {
 	const startX = -100;
 	const endX = 200;
 
-	function createNumberTween() {
-		const target = new KObject({ id: "obj", x: 0, y: 0 });
+	const createNumberTween = (target = new KObject({ id: "obj", x: 0, y: 0 }), overrides = {}) => {
 		const tween = tweenNumber({
 			target,
 			property: "x",
@@ -17,54 +16,38 @@ describe("tween factories", () => {
 			end: endX,
 			startTime,
 			duration,
+			...overrides,
 		});
+		tween.init();
 
 		return { target, tween };
-	}
+	};
 
-	test("renders the start value before the tween starts", () => {
-		const { target, tween } = createNumberTween();
+	const expectXAt = (state, time, expected) => {
+		state.tween.render(time);
+		expect(state.target.x).toBe(expected);
+	};
 
-		tween.render(startTime - 1);
-
-		expect(target.x).toBe(startX);
-	});
-
-	test("renders the start value at the start time", () => {
-		const { target, tween } = createNumberTween();
-
-		tween.render(startTime);
-
-		expect(target.x).toBe(startX);
-	});
-
-	test("interpolates a number at an arbitrary time", () => {
-		const { target, tween } = createNumberTween();
-
-		tween.render(startTime + duration / 2);
-
-		expect(target.x).toBe((startX + endX) / 2);
-	});
-
-	test("renders the end value after the tween ends", () => {
-		const { target, tween } = createNumberTween();
-
-		tween.render(startTime + duration + 1);
-
-		expect(target.x).toBe(endX);
+	test.each([
+		["before the tween starts", startTime - 1, startX],
+		["at the start time", startTime, startX],
+		["halfway through the tween", startTime + duration / 2, (startX + endX) / 2],
+		["after the tween ends", startTime + duration + 1, endX],
+	])("renders the %s value", (_, time, expected) => {
+		const state = createNumberTween();
+		expectXAt(state, time, expected);
 	});
 
 	test("can seek to an arbitrary time after rendering the end value", () => {
-		const { target, tween } = createNumberTween();
+		const state = createNumberTween();
+		const seekTime = startTime + duration / 4;
 
-		tween.render(startTime + duration);
-		tween.render(startTime + duration / 4);
-
-		expect(target.x).toBe(startX + (endX - startX) / 4);
+		state.tween.render(startTime + duration);
+		expectXAt(state, seekTime, startX + (endX - startX) / 4);
 	});
 
 	test("uses the current value at init as the end when end is omitted", () => {
-		const target = new KObject({ id: "obj", x: 0, y: 0 });
+		const target = new KObject({ id: "obj", x: endX, y: 0 });
 		const tween = tweenNumber({
 			target,
 			property: "x",
@@ -72,8 +55,6 @@ describe("tween factories", () => {
 			startTime,
 			duration,
 		});
-		target.x = endX;
-
 		tween.init();
 		tween.render(startTime + duration / 2);
 
@@ -81,7 +62,7 @@ describe("tween factories", () => {
 	});
 
 	test("uses the current value at init as the start when start is omitted", () => {
-		const target = new KObject({ id: "obj", x: 0, y: 0 });
+		const target = new KObject({ id: "obj", x: startX, y: 0 });
 		const tween = tweenNumber({
 			target,
 			property: "x",
@@ -89,8 +70,6 @@ describe("tween factories", () => {
 			startTime,
 			duration,
 		});
-		target.x = startX;
-
 		tween.init();
 		tween.render(startTime + duration / 2);
 
@@ -109,7 +88,7 @@ describe("tween factories", () => {
 			startTime,
 			duration,
 		});
-
+		tween.init();
 		tween.render(startTime + duration / 2);
 
 		expect(target.pos).toEqual({ x: 0, y: 30 });
