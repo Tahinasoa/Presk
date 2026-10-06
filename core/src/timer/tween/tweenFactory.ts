@@ -102,13 +102,13 @@ function assertValid<V>(kind: ValueKind<V>, value: unknown, property: string, la
 	}
 }
 
-function unwrap<V>(data: KTweenData | undefined, property: string, label: "startData" | "endData"): V {
-	if (!data || !data[label] || typeof data[label] !== "object") {
-		throw new Error(`Tween on '${property}': ${label} is not defined (was init() called?)`);
+function unwrap<V>(data: KTweenData | undefined, property: string): V {
+	if (!data || typeof data !== "object") {
+		throw new Error(`Tween on '${property}': data is not defined (was init() called?)`);
 	}
-	const value = (data[label] as Record<string, unknown>).value;
+	const value = (data as Record<string, unknown>).value;
 	if (value === undefined) {
-		throw new Error(`Tween on '${property}': ${label}.value is not defined`);
+		throw new Error(`Tween on '${property}': data.value is not defined`);
 	}
 	return value as V;
 }
@@ -172,8 +172,8 @@ function propertyTween<V>(options: PropertyTweenOptions<V>, kind: ValueKind<V>):
 		},
 
 		render: (obj, progress, data) => {
-			const from = unwrap<V>(data, property, "startData");
-			const to = unwrap<V>(data, property, "endData");
+			const from = unwrap<V>((data?.startData as KTweenData | undefined), property);
+			const to = unwrap<V>((data?.endData as KTweenData | undefined), property);
 			slot(obj)[property] = kind.lerp(from, to, progress);
 		},
 	});
