@@ -1,6 +1,7 @@
 ﻿import KObject from "@/primitives/kobject";
 import { describe, expect, test } from "vitest";
 import { tweenNumber, tweenPoint } from "./tweenFactory";
+import type KTween from "./tween";
 
 describe("tween factories", () => {
 	const startTime = 5;
@@ -23,7 +24,7 @@ describe("tween factories", () => {
 		return { target, tween };
 	};
 
-	const expectXAt = (state, time, expected) => {
+	const expectXAt = (state:{target : KObject, tween : KTween}, time:number, expected:number) => {
 		state.tween.render(time);
 		expect(state.target.x).toBe(expected);
 	};
