@@ -140,10 +140,11 @@ class KTween {
 		const raw = this._rawProgress(time);
 		if (raw === this._lastRaw) return false;
 
-		this._lastRaw = raw;
 		this._render(this._target, this._easing(raw), this.data);
+		this._lastRaw = raw; // only reached if render and easing didn't throw
 		return true;
 	}
+
 
 	/** Forgets the last rendered state so the next `render` always writes. Use after any external change. */
 	reset(): void {
@@ -154,6 +155,7 @@ class KTween {
 
 	/** Raw progress clamped to [0, 1], before easing. Single source of truth for progress() and render(). */
 	protected _rawProgress(time: number): number {
+		if (Number.isNaN(time)) throw new Error("KTween: time must not be NaN");
 		if (this._duration === 0) return time >= this._startTime ? 1 : 0;
 		const raw = (time - this._startTime) / this._duration;
 		return Math.min(1, Math.max(0, raw));
