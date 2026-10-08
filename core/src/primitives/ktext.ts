@@ -4,6 +4,8 @@
 import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
 import KRectangle from "./krectangle";
 import type KObject from "./kobject";
+import type { KObjectTweenOptions } from "./kobject";
+import KTween from "@/timer/tween/tween";
 import type { KPoint } from "./types";
 
 export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "height"> {
@@ -67,84 +69,54 @@ class KText extends KAbstractRectangle {
     this._horizontalMargins = hMargins;
     this._frame = frameRect;
 
-    Object.assign(this.propertyAnimators, {
-      text: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _text: value, ...opts }, 0);
-      },
-      verticalMargins: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _verticalMargins: value, ...opts }, 0);
-      },
-      horizontalMargins: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _horizontalMargins: value, ...opts }, 0);
-      },
-      margins: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _verticalMargins: value, _horizontalMargins: value, ...opts }, 0);
-      },
-      frame: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        const duration = opts.duration ?? 0;
-        if (duration === 0) {
-          if (typeof value === "boolean") {
-            this._frame.visible = value;
-            if (value) {
-              this._frame.setNow({
-                fill: 0x22222a,
-                stroke: 0x444455,
-                strokeWidth: 2,
-                opacity: 1,
-              });
-            } else {
-              this._frame.setNow({ opacity: 0 });
-            }
-          } else if (value && typeof value === "object") {
-            this._frame.visible = true;
-            const frameOpts = value as { fill?: number; stroke?: number; strokeWidth?: number; opacity?: number };
-            const updateData: Record<string, unknown> = {
-              opacity: "opacity" in frameOpts ? frameOpts.opacity : 1,
-              fill: "fill" in frameOpts ? frameOpts.fill : undefined,
-              stroke: "stroke" in frameOpts ? frameOpts.stroke : undefined,
-              strokeWidth: "strokeWidth" in frameOpts ? frameOpts.strokeWidth : ("stroke" in frameOpts && frameOpts.stroke !== undefined ? 2 : 0),
-            };
-            this._frame.setNow(updateData);
+    Object.assign(this.tweenFactors, {
+      text: this.discreteTweenFactor("text"),
+      verticalMargins: this.numberTweenFactor("verticalMargins"),
+      horizontalMargins: this.numberTweenFactor("horizontalMargins"),
+      margins: this.numberTweenFactor("margins"),
+      frame: (value: unknown, options: KObjectTweenOptions) => this.frameTween(value, options),
+    });
+  }
+
+  private frameTween(value: unknown, options: KObjectTweenOptions): KTween {
+    const targetOpacity =
+      value === false
+        ? 0
+        : typeof value === "object" && value !== null && "opacity" in value
+          ? (value as { opacity: number }).opacity
+          : 1;
+    let startOpacity = this._frame.opacity;
+
+    return new KTween({
+      id: `${this.id}:frame`,
+      target: this,
+      startTime: options.startTime ?? 0,
+      duration: options.duration ?? 1,
+      easing: options.easing,
+      init: () => {
+        startOpacity = this._frame.opacity;
+        if (value !== false) {
+          this._frame.visible = true;
+          if (value === true) {
+            this._frame.setNow({ fill: 0x22222a, stroke: 0x444455, strokeWidth: 2 });
+          } else if (typeof value === "object" && value !== null) {
+            const frameOptions = value as { fill?: number; stroke?: number; strokeWidth?: number };
+            this._frame.setNow({
+              fill: "fill" in frameOptions ? frameOptions.fill : undefined,
+              stroke: "stroke" in frameOptions ? frameOptions.stroke : undefined,
+              strokeWidth:
+                frameOptions.strokeWidth ??
+                (frameOptions.stroke !== undefined ? 2 : 0),
+            });
+          } else {
+            throw new Error("KText: frame tween value must be a boolean or an options object.");
           }
-        } else {
-          if (typeof value === "boolean") {
-            if (value) {
-              tl.call(() => {
-                this._frame.visible = true;
-              }, undefined, 0);
-              tl.add(
-                this._frame.transform({
-                  fill: 0x22222a,
-                  stroke: 0x444455,
-                  strokeWidth: 2,
-                  opacity: 1,
-                }, opts),
-                0
-              );
-            } else {
-              tl.add(
-                this._frame.transform({
-                  opacity: 0,
-                }, opts),
-                0
-              );
-              tl.call(() => {
-                this._frame.visible = false;
-              }, undefined, `+=${duration}`);
-            }
-          } else if (value && typeof value === "object") {
-            tl.call(() => {
-              this._frame.visible = true;
-            }, undefined, 0);
-            const frameOpts = value as { fill?: number; stroke?: number; strokeWidth?: number; opacity?: number };
-            const updateData: Record<string, unknown> = {
-              opacity: "opacity" in frameOpts ? frameOpts.opacity : 1,
-              fill: "fill" in frameOpts ? frameOpts.fill : undefined,
-              stroke: "stroke" in frameOpts ? frameOpts.stroke : undefined,
-              strokeWidth: "strokeWidth" in frameOpts ? frameOpts.strokeWidth : ("stroke" in frameOpts && frameOpts.stroke !== undefined ? 2 : 0),
-            };
-            tl.add(this._frame.transform(updateData, opts), 0);
-          }
+        }
+      },
+      render: (_target, progress) => {
+        this._frame.opacity = startOpacity + (targetOpacity - startOpacity) * progress;
+        if (value === false && progress >= 1) {
+          this._frame.visible = false;
         }
       },
     });

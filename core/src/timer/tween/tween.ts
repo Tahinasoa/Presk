@@ -60,6 +60,7 @@ export type KTweenRender = (
 ) => void;
 
 export interface KTweenParams {
+	id: string;
 	target: KObject;
 	startTime: number;
 	duration: number;
@@ -74,6 +75,7 @@ class KTween {
 	data?: KTweenData;
 
 	// ── Configuration ─────────────────────────────────────────────────────
+	protected readonly _id: string;
 	protected readonly _target: KObject;
 	protected readonly _startTime: number;
 	protected readonly _duration: number;
@@ -86,6 +88,7 @@ class KTween {
 	protected _lastRaw: number | null = null;
 
 	constructor({
+		id,
 		target,
 		startTime,
 		duration,
@@ -94,6 +97,7 @@ class KTween {
 		render,
 		data,
 	}: KTweenParams) {
+		this._id = id;
 		this._target = target;
 		this._startTime = startTime;
 		this._duration = Math.max(0, duration);
@@ -104,6 +108,10 @@ class KTween {
 	}
 
 	// ── Accessors ─────────────────────────────────────────────────────────
+	get id(): string {
+		return this._id;
+	}
+
 	get target(): KObject {
 		return this._target;
 	}

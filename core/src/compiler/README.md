@@ -24,7 +24,7 @@ expression string in such a function instead of resolving it up front.
 - `types.ts` — TypeScript types for the DSL JSON document (spec §2-§11).
 - `compiler.ts` — `compile(doc, presk)`, returns a `gsap.core.Timeline`.
   Handles `create` (via `materializeScene` two-pass shell instantiation),
-  `set` (`target.setNow()`), `transform` (`target.transform()`), `follow`,
+  `set` (`target.setNow()`), `transform` (property tweens via `target.tween()`), `follow`,
   `unfollow`, and `destroy`. See the root README's "Known gaps" for what's
   intentionally not handled yet (`group`/`ungroup`, path anchoring).
 - `mockInput.json` — a full example DSL document (used by `main.ts`'s demo

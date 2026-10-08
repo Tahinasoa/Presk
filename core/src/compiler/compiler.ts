@@ -3,10 +3,12 @@
 // on GSAP's own position-parameter syntax and functional values.
 //
 // Uses preapreScene() for sequential two-pass object creation and
-// delegates all animation/setting actions to KObject's transform() and setNow().
+// delegates all animation/setting actions to KObject's tween() and setNow().
 
 import gsap from "gsap";
 import type Presk from "@/presk";
+import type KObject from "@/primitives/kobject";
+import type KTween from "@/timer/tween/tween";
 import { evaluateExpression } from "@/binding/expression";
 import type { DslDocument, DslStep } from "./types";
 
@@ -42,36 +44,68 @@ function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<s
   return resolved;
 }
 
-/**
- * Builds the GSAP tween vars for a "transform" step. Expression-valued
- * properties become *functional values* so GSAP evaluates them once, the
- * first time the tween renders (spec §8.3: transform freezes at start).
- */
-function toTweenVars(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
-  const vars: Record<string, unknown> = {};
-  for (const [key, value] of Object.entries(properties)) {
-    if (typeof value === "number" || typeof value === "boolean") {
-      vars[key] = value;
-    } else if (isExpression(value)) {
-      vars[key] = () => evaluateExpression(value, presk.scene);
-    } else if (value && typeof value === "object") {
-      // Recursively wrap nested objects for transform vars
-      const nested: Record<string, unknown> = {};
-      for (const [subKey, subVal] of Object.entries(value as Record<string, unknown>)) {
-        if (typeof subVal === "number" || typeof subVal === "boolean") {
-          nested[subKey] = subVal;
-        } else if (isExpression(subVal)) {
-          nested[subKey] = () => evaluateExpression(subVal, presk.scene);
-        } else {
-          nested[subKey] = subVal;
-        }
-      }
-      vars[key] = nested;
-    } else {
-      vars[key] = value;
+function resolveTweenValue(value: unknown, presk: Presk): unknown {
+  return resolveNow({ value }, presk).value;
+}
+
+function addKTween(tl: gsap.core.Timeline, tween: KTween, position?: string | number): void {
+  const clock = { time: 0 };
+  let initialized = false;
+  const render = () => {
+    if (!initialized) {
+      tween.init();
+      initialized = true;
     }
-  }
-  return vars;
+    tween.render(clock.time);
+  };
+
+  tl.to(
+    clock,
+    {
+      time: tween.duration,
+      duration: tween.duration,
+      ease: "none",
+      onStart: render,
+      onUpdate: render,
+      onComplete: render,
+    },
+    position,
+  );
+}
+
+function addPropertyTween(
+  tl: gsap.core.Timeline,
+  target: KObject,
+  property: string,
+  value: unknown,
+  duration: number,
+  easing: ((progress: number) => number) | undefined,
+  presk: Presk,
+  position?: string | number,
+): void {
+  const clock = { time: 0 };
+  let tween: KTween | undefined;
+  const render = () => {
+    if (!tween) return;
+    tween.render(clock.time);
+  };
+
+  tl.to(
+    clock,
+    {
+      time: duration,
+      duration,
+      ease: "none",
+      onStart: () => {
+        tween = target.tween(property, resolveTweenValue(value, presk), { duration, easing });
+        tween.init();
+        render();
+      },
+      onUpdate: render,
+      onComplete: render,
+    },
+    position,
+  );
 }
 
 /**
@@ -112,11 +146,13 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
     case "create": {
       const target = presk.scene.get(step.target);
       if (!target) throw new Error(`Presk: "create" step targets unknown object "${step.target}".`);
-      const creationTween = target.create({
+      const easing = step.ease ? gsap.parseEase(step.ease) : undefined;
+      for (const creationTween of target.create({
         duration: step.duration,
-        ease: step.ease,
-      });
-      tl.add(creationTween, position);
+        easing,
+      })) {
+        addKTween(tl, creationTween, position);
+      }
 
       const followMap = step.follow ?? ((step.properties as Record<string, unknown>)?.follow as Record<string, string> | undefined);
       if (followMap) {
@@ -144,12 +180,11 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
       const target = presk.scene.get(step.target);
       if (!target) throw new Error(`Presk: "transform" targets unknown object "${step.target}".`);
       const properties = (step.properties ?? {}) as Record<string, unknown>;
-      const tweenData = toTweenVars(properties, presk);
-      const tween = target.transform(tweenData, {
-        duration: step.duration ?? 0,
-        ease: step.ease,
-      });
-      tl.add(tween, position);
+      const duration = step.duration ?? 0;
+      const easing = step.ease ? gsap.parseEase(step.ease) : undefined;
+      for (const [property, value] of Object.entries(properties)) {
+        addPropertyTween(tl, target, property, value, duration, easing, presk, position);
+      }
       break;
     }
 

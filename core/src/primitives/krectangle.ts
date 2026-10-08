@@ -4,7 +4,8 @@
 // No PixiJS import here — see primitives/README.md.
 
 import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
-import gsap from "gsap";
+import type KTween from "@/timer/tween/tween";
+import type { KObjectCreateOptions, KObjectTweenOptions } from "./kobject";
 
 export interface KRectangleParams extends KAbstractRectangleParams {
   fill?: number | undefined;
@@ -23,41 +24,30 @@ class KRectangle extends KAbstractRectangle {
     this._stroke = stroke;
     this._strokeWidth = strokeWidth;
 
-    Object.assign(this.propertyAnimators, {
-      fill: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        if (value === undefined || opts.duration === 0) {
-          this._fill = value as number | undefined;
-        } else {
-          tl.to(this, { _fill: value, ...opts }, 0);
-        }
-      },
-      stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        if (value === undefined || opts.duration === 0) {
-          this._stroke = value as number | undefined;
-        } else {
-          tl.to(this, { _stroke: value, ...opts }, 0);
-        }
-      },
-      strokeWidth: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        if (opts.duration === 0) {
-          this._strokeWidth = value as number;
-        } else {
-          tl.to(this, { _strokeWidth: value, ...opts }, 0);
-        }
-      },
+    Object.assign(this.tweenFactors, {
+      fill: (value: unknown, options: KObjectTweenOptions) =>
+        value === undefined
+          ? this.discreteTweenFactor("fill")(value, options)
+          : this.numberTweenFactor("fill")(value, options),
+      stroke: (value: unknown, options: KObjectTweenOptions) =>
+        value === undefined
+          ? this.discreteTweenFactor("stroke")(value, options)
+          : this.numberTweenFactor("stroke")(value, options),
+      strokeWidth: this.numberTweenFactor("strokeWidth"),
     });
   }
 
-  override create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+  override create(options: KObjectCreateOptions = {}): KTween[] {
     const duration = options.duration ?? 0.4;
-    const ease = options.ease ?? "power2.out";
-    const tl = gsap.timeline();
     const finalScale = this._scale;
     const finalOpacity = this._opacity;
     this._scale = 0;
     this._opacity = 0;
-    tl.to(this, { _scale: finalScale,_visible : true, _opacity: finalOpacity, duration, ease }, 0);
-    return tl;
+    this.visible = true;
+    return [
+      this.tween("scale", finalScale, { duration, easing: options.easing }),
+      this.tween("opacity", finalOpacity, { duration, easing: options.easing }),
+    ];
   }
 
   get fill(): number | undefined {

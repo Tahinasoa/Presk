@@ -4,7 +4,7 @@
 // point anchors topLeft, bottomLeft, topRight, bottomRight, center, topCenter,
 // bottomCenter, leftCenter, rightCenter). It has no associated renderer.
 
-import KObject, { type KObjectParams, type PropertyAnimator } from "./kobject";
+import KObject, { type KObjectParams } from "./kobject";
 import type { KPoint } from "./types";
 
 export interface KAbstractRectangleParams extends KObjectParams {
@@ -28,40 +28,21 @@ abstract class KAbstractRectangle extends KObject {
     this._anchorY = anchorY;
 
 
-    Object.assign(this.propertyAnimators, {
-      width: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _width: value, ...opts }, 0);
-      },
-      height: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _height: value, ...opts }, 0);
-      },
-      anchorX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _anchorX: value, ...opts }, 0);
-      },
-      anchorY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _anchorY: value, ...opts }, 0);
-      },
-      topLeft: ()=>{console.log("animating to topLeft") ; return this.registerPointAnimator(0, 0)},
-      topRight: this.registerPointAnimator(1, 0),
-      bottomRight: this.registerPointAnimator(1, 1),
-      bottomLeft: this.registerPointAnimator(0, 1),
-      center: this.registerPointAnimator(0.5, 0.5),
-      topCenter: this.registerPointAnimator(0.5, 0),
-      bottomCenter: this.registerPointAnimator(0.5, 1),
-      leftCenter: this.registerPointAnimator(0, 0.5),
-      rightCenter: this.registerPointAnimator(1, 0.5),
+    Object.assign(this.tweenFactors, {
+      width: this.numberTweenFactor("width"),
+      height: this.numberTweenFactor("height"),
+      anchorX: this.numberTweenFactor("anchorX"),
+      anchorY: this.numberTweenFactor("anchorY"),
+      topLeft: this.pointTweenFactor("topLeft"),
+      topRight: this.pointTweenFactor("topRight"),
+      bottomRight: this.pointTweenFactor("bottomRight"),
+      bottomLeft: this.pointTweenFactor("bottomLeft"),
+      center: this.pointTweenFactor("center"),
+      topCenter: this.pointTweenFactor("topCenter"),
+      bottomCenter: this.pointTweenFactor("bottomCenter"),
+      leftCenter: this.pointTweenFactor("leftCenter"),
+      rightCenter: this.pointTweenFactor("rightCenter"),
     });
-  }
-
-  private registerPointAnimator(localX: number, localY: number): PropertyAnimator {
-    return (value, tl, opts) => {
-      const { x, y } = value as { x: number; y: number };
-      const current = this.getCorner(localX, localY);
-      const dx = x - current.x;
-      const dy = y - current.y;
-      this.propertyAnimators.x(this._x + dx, tl, opts);
-      this.propertyAnimators.y(this._y + dy, tl, opts);
-    };
   }
 
   get width(): number {

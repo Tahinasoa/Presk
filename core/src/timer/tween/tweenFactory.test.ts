@@ -1,7 +1,8 @@
 ﻿import KObject from "@/primitives/kobject";
 import { describe, expect, test } from "vitest";
-import { tweenNumber, tweenPoint, type PropertyTweenOptions } from "./tweenFactory";
+import { tweenNumber as makeNumberTween, tweenPoint as makePointTween, type PropertyTweenOptions } from "./tweenFactory";
 import type KTween from "./tween";
+import type { KPoint } from "@/primitives/types";
 
 const startTime = 5;
 const duration = 10;
@@ -15,6 +16,14 @@ const at = (fraction: number) => startTime + duration * fraction;
 const createTarget = (x = 0, y = 0) => new KObject({ id: "obj", x, y });
 
 type CustomTarget = KObject & { custom?: unknown };
+
+const tweenNumber = (
+	options: Omit<PropertyTweenOptions<number>, "id"> & { id?: string },
+) => makeNumberTween({ ...options, id: options.id ?? "factory-test-tween" });
+
+const tweenPoint = (
+	options: Omit<PropertyTweenOptions<KPoint>, "id"> & { id?: string },
+) => makePointTween({ ...options, id: options.id ?? "factory-test-tween" });
 
 /** Builds and inits a number tween on `x`. Pass `from: undefined` / `to: undefined` in overrides to omit an endpoint. */
 const createNumberTween = (
@@ -40,6 +49,17 @@ const renderX = (tween: KTween, target: KObject, time: number) => {
 };
 
 describe("tweenNumber", () => {
+	test("preserves the required tween id", () => {
+		const tween = tweenNumber({
+			id: "move-x",
+			target: createTarget(),
+			property: "x",
+			to: 10,
+		});
+
+		expect(tween.id).toBe("move-x");
+	});
+
 	describe("interpolation", () => {
 		test.each([
 			["before the tween starts", startTime - 1, startX],

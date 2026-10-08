@@ -3,6 +3,7 @@ import type KObject from "@/primitives/kobject";
 import type { KPoint } from "@/primitives/types";
 
 export interface PropertyTweenOptions<V> {
+	id: string;
 	target: KObject;
 	property: string;
 	from?: V;
@@ -65,6 +66,7 @@ function propertyTween<V>(
 	valueType: TweenValue<V>,
 ): KTween {
 	const {
+		id,
 		target,
 		property,
 		from,
@@ -89,6 +91,7 @@ function propertyTween<V>(
 	const explicitTo = hasTo ? valueType.copy(to) : undefined;
 
 	return new KTween({
+		id,
 		target,
 		startTime,
 		duration,

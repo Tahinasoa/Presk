@@ -1,5 +1,6 @@
 import KObject, { type KObjectParams } from "./kobject";
-import gsap from "gsap";
+import type KTween from "@/timer/tween/tween";
+import type { KObjectCreateOptions } from "./kobject";
 
 export interface KLineParams extends KObjectParams {
   startX: number;
@@ -27,41 +28,27 @@ class KLine extends KObject {
     this._stroke = stroke;
     this._thickness = thickness;
 
-    Object.assign(this.propertyAnimators, {
-      startX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { startX: value, ...opts }, 0);
-      },
-      startY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { startY: value, ...opts }, 0);
-      },
-      endX: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { endX: value, ...opts }, 0);
-      },
-      endY: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { endY: value, ...opts }, 0);
-      },
-      stroke: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _stroke: value, ...opts }, 0);
-      },
-      thickness: (value: unknown, tl: gsap.core.Timeline, opts: { duration: number; ease?: string }) => {
-        tl.to(this, { _thickness: value, ...opts }, 0);
-      },
+    Object.assign(this.tweenFactors, {
+      startX: this.numberTweenFactor("startX"),
+      startY: this.numberTweenFactor("startY"),
+      endX: this.numberTweenFactor("endX"),
+      endY: this.numberTweenFactor("endY"),
+      stroke: this.numberTweenFactor("stroke"),
+      thickness: this.numberTweenFactor("thickness"),
     });
   }
 
-  override create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
+  override create(options: KObjectCreateOptions = {}): KTween[] {
     const duration = options.duration ?? 0.6;
-    const ease = options.ease ?? "power2.out";
-    const tl = gsap.timeline();
-    
-    // Animate line drawing from start point to full end point
     const targetEndX = this._endX;
     const targetEndY = this._endY;
     this._endX = this._startX;
     this._endY = this._startY;
-
-    tl.to(this, { endX: targetEndX, endY: targetEndY, duration, ease }, 0);
-    return tl;
+    this.visible = true;
+    return [
+      this.tween("endX", targetEndX, { duration, easing: options.easing }),
+      this.tween("endY", targetEndY, { duration, easing: options.easing }),
+    ];
   }
 
   get startX(): number {

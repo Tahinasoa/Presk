@@ -1,19 +1,9 @@
-// KObject is the base "data" class for every object the DSL can `create`
-// (spec §4.1). It knows nothing about how it is drawn — no PixiJS import is
-// allowed in this file, ever (see primitives/README.md).
-//
-// It supports hierarchical parent/child composition and 2D transform composition
-// via the pure "transformation-matrix" library.
+// KObject is the base data class for every object the DSL can create.
+// It knows nothing about how it is drawn — no PixiJS import is allowed here.
 
-import gsap from "gsap";
 import { compose, translate, rotate, scale, applyToPoint, inverse, type Matrix } from "transformation-matrix";
 import type { KPoint } from "./types";
-
-export type PropertyAnimator = (
-  value: unknown,
-  tl: gsap.core.Timeline,
-  options: { duration: number; ease?: string }
-) => void;
+import type KTween from "@/timer/tween/tween";
 
 export interface KObjectParams {
   id: string;
@@ -22,6 +12,12 @@ export interface KObjectParams {
   scale?: number;
   rotation?: number;
   opacity?: number;
+}
+export interface TweenOptions{
+  id : string,
+  startTime : number,
+  duration : number,
+  easing? : string
 }
 
 class KObject {
@@ -35,29 +31,6 @@ class KObject {
 
   protected _parent: KObject | null = null;
   protected _children: Map<string, KObject> = new Map();
-
-  protected propertyAnimators: Record<string, PropertyAnimator> = {
-    x: (value, tl, opts) => {
-      tl.to(this, { _x: value, ...opts }, 0);
-    },
-    y: (value, tl, opts) => {
-      tl.to(this, { _y: value, ...opts }, 0);
-    },
-    scale: (value, tl, opts) => {
-      tl.to(this, { _scale: value, ...opts }, 0);
-    },
-    rotation: (value, tl, opts) => {
-      tl.to(this, { _rotation: value, ...opts }, 0);
-    },
-    opacity: (value, tl, opts) => {
-      tl.to(this, { _opacity: value, ...opts }, 0);
-    },
-    pos: (value, tl, opts) => {
-      const { x, y } = value as { x: number; y: number };
-      this.propertyAnimators.x(x, tl, opts);
-      this.propertyAnimators.y(y, tl, opts);
-    },
-  };
 
   constructor({ id, x, y, scale = 1, rotation = 0, opacity = 1 }: KObjectParams) {
     this._id = id;
@@ -160,7 +133,6 @@ class KObject {
     if (this._children.has(id)) {
       throw new Error(`KObject: a child with id "${id}" already exists.`);
     }
-    // Anti-cycle guard
     let curr: KObject | null = this;
     while (curr !== null) {
       if (curr === child) {
@@ -216,54 +188,32 @@ class KObject {
   }
 
   setNow(props: Record<string, unknown>): void {
-    for (const [key, val] of Object.entries(props)) {
-      const descriptor = Object.getOwnPropertyDescriptor(Object.getPrototypeOf(this), key);
-      if (descriptor && !descriptor.set) {
-        // Getter without setter (e.g. frame), try property animator if available
-        const animator = this.propertyAnimators[key];
-        if (animator) {
-          const dummyTl = gsap.timeline();
-          animator(val, dummyTl, { duration: 0 });
-        }
-        continue;
+    for (const [key, value] of Object.entries(props)) {
+      const descriptor = this.findPropertyDescriptor(key);
+      if (descriptor && !descriptor.set && !descriptor.writable) {
+        throw new Error(`KObject: property "${key}" is read-only.`);
       }
-      try {
-        (this as Record<string, unknown>)[key] = val;
-      } catch {
-        // Fallback to property animator if direct assignment fails
-        const animator = this.propertyAnimators[key];
-        if (animator) {
-          const dummyTl = gsap.timeline();
-          animator(val, dummyTl, { duration: 0 });
-        }
-      }
+      (this as unknown as Record<string, unknown>)[key] = value;
     }
   }
 
-  create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
-    this._visible = true;
-    const tl = gsap.timeline(options);
-    this.propertyAnimators["opacity"](1, tl, { duration: 0.5 });
-    for (const [, child] of this._children) {
-      tl.add(child.create(options), 0);
+  private findPropertyDescriptor(property: string): PropertyDescriptor | undefined {
+    for (let object: object | null = this; object !== null; object = Object.getPrototypeOf(object)) {
+      const descriptor = Object.getOwnPropertyDescriptor(object, property);
+      if (descriptor) return descriptor;
     }
-    return tl;
+    return undefined;
   }
 
-  transform(properties: Record<string, unknown>, options: { duration: number; ease?: string }): gsap.core.Timeline {
-    const tl = gsap.timeline();
-          console.log("animator") ;
 
-    for (const [prop, value] of Object.entries(properties)) {
-      const animator = this.propertyAnimators[prop];
-      if (animator) {
-        animator(value, tl, options);
-      } else {
-        tl.to(this, { [`_${prop}`]: value, ...options }, 0);
-      }
-    }
-    return tl;
+  tweenfactory:Record<string, ()=>{}> =  {
+    /* implementation agent will work here */ 
   }
+  getTweens(properties:Record<string,unknown>, options:TweenOptions):KTween[]{
+
+    return [] ;
+  }
+
 }
 
 export default KObject;
