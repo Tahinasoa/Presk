@@ -4,8 +4,34 @@
 // point anchors topLeft, bottomLeft, topRight, bottomRight, center, topCenter,
 // bottomCenter, leftCenter, rightCenter). It has no associated renderer.
 
-import KObject, { type KObjectParams } from "./kobject";
+import KObject, { type KObjectParams, type TweenOptions } from "./kobject";
 import type { KPoint } from "./types";
+import type KTween from "@/timer/tween/tween";
+import { tweenPoint } from "@/timer/tween/tweenFactory";
+
+type PointAnchor =
+  | "topLeft"
+  | "topCenter"
+  | "topRight"
+  | "leftCenter"
+  | "center"
+  | "rightCenter"
+  | "bottomLeft"
+  | "bottomCenter"
+  | "bottomRight";
+
+function isKPoint(value: unknown): value is KPoint {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "x" in value &&
+    typeof value.x === "number" &&
+    Number.isFinite(value.x) &&
+    "y" in value &&
+    typeof value.y === "number" &&
+    Number.isFinite(value.y)
+  );
+}
 
 export interface KAbstractRectangleParams extends KObjectParams {
   width: number;
@@ -26,23 +52,32 @@ abstract class KAbstractRectangle extends KObject {
     this._height = height;
     this._anchorX = anchorX;
     this._anchorY = anchorY;
-
-
-    Object.assign(this.tweenFactors, {
-      width: this.numberTweenFactor("width"),
-      height: this.numberTweenFactor("height"),
-      anchorX: this.numberTweenFactor("anchorX"),
-      anchorY: this.numberTweenFactor("anchorY"),
-      topLeft: this.pointTweenFactor("topLeft"),
-      topRight: this.pointTweenFactor("topRight"),
-      bottomRight: this.pointTweenFactor("bottomRight"),
-      bottomLeft: this.pointTweenFactor("bottomLeft"),
-      center: this.pointTweenFactor("center"),
-      topCenter: this.pointTweenFactor("topCenter"),
-      bottomCenter: this.pointTweenFactor("bottomCenter"),
-      leftCenter: this.pointTweenFactor("leftCenter"),
-      rightCenter: this.pointTweenFactor("rightCenter"),
+    Object.assign(this.tweenfactory, {
+      topLeft: this.pointTweenFactory("topLeft"),
+      topCenter: this.pointTweenFactory("topCenter"),
+      topRight: this.pointTweenFactory("topRight"),
+      leftCenter: this.pointTweenFactory("leftCenter"),
+      center: this.pointTweenFactory("center"),
+      rightCenter: this.pointTweenFactory("rightCenter"),
+      bottomLeft: this.pointTweenFactory("bottomLeft"),
+      bottomCenter: this.pointTweenFactory("bottomCenter"),
+      bottomRight: this.pointTweenFactory("bottomRight"),
     });
+  }
+
+  private pointTweenFactory(property: PointAnchor): (value: unknown, options: TweenOptions) => KTween {
+    return (value, options) => {
+      if (!isKPoint(value)) {
+        throw new Error(`Cannot tween '${property}': target value must be a point`);
+      }
+      return tweenPoint({
+        ...options,
+        id: `${options.id}:${property}`,
+        target: this,
+        property,
+        to: value,
+      });
+    };
   }
 
   get width(): number {

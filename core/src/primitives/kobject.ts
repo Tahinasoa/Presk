@@ -4,6 +4,7 @@
 import { compose, translate, rotate, scale, applyToPoint, inverse, type Matrix } from "transformation-matrix";
 import type { KPoint } from "./types";
 import type KTween from "@/timer/tween/tween";
+import { tweenNumber, tweenPoint } from "@/timer/tween/tweenFactory";
 
 export interface KObjectParams {
   id: string;
@@ -17,7 +18,20 @@ export interface TweenOptions{
   id : string,
   startTime : number,
   duration : number,
-  easing? : string
+  easing? : (input:number)=>number
+}
+
+function isKPoint(value: unknown): value is KPoint {
+  return (
+    typeof value === "object" &&
+    value !== null &&
+    "x" in value &&
+    typeof value.x === "number" &&
+    Number.isFinite(value.x) &&
+    "y" in value &&
+    typeof value.y === "number" &&
+    Number.isFinite(value.y)
+  );
 }
 
 class KObject {
@@ -206,12 +220,88 @@ class KObject {
   }
 
 
-  tweenfactory:Record<string, ()=>{}> =  {
-    /* implementation agent will work here */ 
-  }
-  getTweens(properties:Record<string,unknown>, options:TweenOptions):KTween[]{
+  tweenfactory: Record<string, (value: unknown, options: TweenOptions) => KTween> = {
+    x: (value, options) => {
+      if (typeof value !== "number") {
+        throw new Error(`Cannot tween 'x': target value must be a number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:x`,
+        target: this,
+        property: "x",
+        to: value,
+      });
+    },
+    y: (value, options) => {
+      if (typeof value !== "number") {
+        throw new Error(`Cannot tween 'y': target value must be a number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:y`,
+        target: this,
+        property: "y",
+        to: value,
+      });
+    },
+    pos: (value, options) => {
+      if (!isKPoint(value)) {
+        throw new Error(`Cannot tween 'pos': target value must be a point`);
+      }
+      return tweenPoint({
+        ...options,
+        id: `${options.id}:pos`,
+        target: this,
+        property: "pos",
+        to: value,
+      });
+    },
+    rotation: (value, options) => {
+      if (typeof value !== "number") {
+        throw new Error(`Cannot tween 'rotation': target value must be a number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:rotation`,
+        target: this,
+        property: "rotation",
+        to: value,
+      });
+    },
+    scale: (value, options) => {
+      if (typeof value !== "number") {
+        throw new Error(`Cannot tween 'scale': target value must be a number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:scale`,
+        target: this,
+        property: "scale",
+        to: value,
+      });
+    },
+    opacity: (value, options) => {
+      if (typeof value !== "number") {
+        throw new Error(`Cannot tween 'opacity': target value must be a number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:opacity`,
+        target: this,
+        property: "opacity",
+        to: value,
+      });
+    },
+  };
 
-    return [] ;
+  getTweens(properties: Record<string, unknown>, options: TweenOptions): KTween[] {
+    return Object.entries(properties).map(([property, value]) => {
+      if (!Object.hasOwn(this.tweenfactory, property)) {
+        throw new Error(`KObject: no tween factory for property "${property}".`);
+      }
+      return this.tweenfactory[property](value, options);
+    });
   }
 
 }
