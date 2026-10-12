@@ -15,8 +15,7 @@ of any rendering dependency (no PixiJS import, ever) so that:
   Holds properties common to every object per the spec (§4.1): `x`, `y`,
   `pos`, `scale`, `rotation`, `opacity`, and `visible` (starts `false` until `create()` is called).
   Implements generalized parent/child hierarchy (`addChild`, `removeChild`, `getChild`) and 2D transform composition via `transformation-matrix` (`worldMatrix()`, `toWorld()`, `toLocal()`).
-- `kabstractRectangle.ts` — `KAbstractRectangle`, intermediate abstract class for rectangular primitives/scenes. Encapsulates width, height, anchors, and geometry (corners, bounding boxes) using `toWorld()`.
-- `krectangle.ts` — `KRectangle`, backs the DSL's `"shape"` type.
+- `krectangle.ts` — `KRectangle`, the pure-data base for rectangular primitives/scenes. Encapsulates fill/stroke styling, width, height, anchors, and geometry (corners, bounding boxes) using `toWorld()`.
 - `ktext.ts` — `KText`, backs the DSL's `"text"` type. Manages a background frame `KRectangle` child via `addChild()`.
 - `kscene.ts` — `KScene`, the data-only scene graph. Holds the registry of
   every live `KObject` by id (`get`/`add`/`remove`), supporting nested ID resolution (e.g., `"chart1.bar1"`).

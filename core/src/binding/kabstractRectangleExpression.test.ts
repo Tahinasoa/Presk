@@ -3,7 +3,7 @@ import KScene from "@/primitives/kscene";
 import KRectangle from "@/primitives/krectangle";
 import { evaluateExpression } from "./expression";
 
-describe("KAbstractRectangle getters via evaluateExpression", () => {
+describe("KRectangle getters via evaluateExpression", () => {
   it("evaluates scalar base properties and scalar dimensions/anchors", () => {
     const scene = new KScene({ id: "scene", x: 0, y: 0, width: 1000, height: 1000 });
     const rect = new KRectangle({
@@ -130,7 +130,7 @@ describe("KAbstractRectangle getters via evaluateExpression", () => {
     expect(evaluateExpression("box.boundingBox.center.y", scene)).toBe(200);
   });
 
-  it("supports arithmetic expressions involving KAbstractRectangle getters", () => {
+  it("supports arithmetic expressions involving KRectangle getters", () => {
     const scene = new KScene({ id: "scene", x: 0, y: 0, width: 1000, height: 1000 });
     const rect = new KRectangle({
       id: "box",

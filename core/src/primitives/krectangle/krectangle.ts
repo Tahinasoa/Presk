@@ -1,8 +1,5 @@
-// KAbstractRectangle is an intermediate abstract class between KObject and
-// rectangular primitives/scenes (KRectangle, KScene). It encapsulates width,
-// height, anchors, and geometry (scalar anchors top, bottom, left, right and
-// point anchors topLeft, bottomLeft, topRight, bottomRight, center, topCenter,
-// bottomCenter, leftCenter, rightCenter). It has no associated renderer.
+// KRectangle is the pure-data base for rectangular primitives and scenes.
+// It encapsulates visual style, width, height, anchors, and geometry.
 
 import KObject, { type KObjectParams, type TweenOptions } from "./kobject";
 import type { KPoint } from "./types";
@@ -33,25 +30,43 @@ function isKPoint(value: unknown): value is KPoint {
   );
 }
 
-export interface KAbstractRectangleParams extends KObjectParams {
+export interface KRectangleParams extends KObjectParams {
   width: number;
   height: number;
   anchorX?: number;
   anchorY?: number;
+  fill?: number | undefined;
+  stroke?: number | undefined;
+  strokeWidth?: number;
 }
 
-abstract class KAbstractRectangle extends KObject {
+class KRectangle extends KObject {
   protected _width: number;
   protected _height: number;
   protected _anchorX: number;
   protected _anchorY: number;
+  protected _fill: number | undefined;
+  protected _stroke: number | undefined;
+  protected _strokeWidth: number;
 
-  constructor({ width, height, anchorX = 0.5, anchorY = 0.5, ...rest }: KAbstractRectangleParams) {
+  constructor({
+    width,
+    height,
+    anchorX = 0.5,
+    anchorY = 0.5,
+    fill = 0x9c9c9c,
+    stroke = undefined,
+    strokeWidth = 0,
+    ...rest
+  }: KRectangleParams) {
     super(rest);
     this._width = width;
     this._height = height;
     this._anchorX = anchorX;
     this._anchorY = anchorY;
+    this._fill = fill;
+    this._stroke = stroke;
+    this._strokeWidth = strokeWidth;
     Object.assign(this.tweenfactory, {
       topLeft: this.pointTweenFactory("topLeft"),
       topCenter: this.pointTweenFactory("topCenter"),
@@ -110,6 +125,30 @@ abstract class KAbstractRectangle extends KObject {
 
   set anchorY(value: number) {
     this._anchorY = value;
+  }
+
+  get fill(): number | undefined {
+    return this._fill;
+  }
+
+  set fill(value: number | undefined) {
+    this._fill = value;
+  }
+
+  get stroke(): number | undefined {
+    return this._stroke;
+  }
+
+  set stroke(value: number | undefined) {
+    this._stroke = value;
+  }
+
+  get strokeWidth(): number {
+    return this._strokeWidth;
+  }
+
+  set strokeWidth(value: number) {
+    this._strokeWidth = value;
   }
 
   // ---- Geometry & Anchors ----
@@ -273,4 +312,4 @@ abstract class KAbstractRectangle extends KObject {
   }
 }
 
-export default KAbstractRectangle;
+export default KRectangle;

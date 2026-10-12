@@ -1,14 +1,14 @@
 // KText backs the DSL's `"text"` type (see registry/builtins.ts).
-// It extends KAbstractRectangle, managing a background frame KRectangle child and text content.
+// It extends KRectangle, managing a background frame KRectangle child and text content.
 
-import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
+import KRectangle, { type KRectangleParams } from "./krectangle";
 import KRectangle from "./krectangle";
 import type KObject from "./kobject";
 import type { KObjectTweenOptions } from "./kobject";
 import KTween from "@/timer/tween/tween";
 import type { KPoint } from "./types";
 
-export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "height"> {
+export interface KTextParams extends Omit<KRectangleParams, "width" | "height"> {
   text: string;
   width?: number;
   height?: number;
@@ -18,7 +18,7 @@ export interface KTextParams extends Omit<KAbstractRectangleParams, "width" | "h
   frame?: boolean | { fill?: number; stroke?: number; strokeWidth?: number; opacity?: number };
 }
 
-class KText extends KAbstractRectangle {
+class KText extends KRectangle {
   private _text: string;
   protected _verticalMargins: number;
   protected _horizontalMargins: number;

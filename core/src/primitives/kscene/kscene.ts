@@ -5,14 +5,14 @@
 // (renderer/kgraphicScene.ts) for the visual counterpart that mirrors this
 // registry one-to-one via Presk's registry (presk.ts).
 
-import KAbstractRectangle, { type KAbstractRectangleParams } from "./kabstractRectangle";
+import KRectangle, { type KRectangleParams } from "./krectangle";
 import type KObject from "./kobject";
 
-export interface KSceneParams extends KAbstractRectangleParams {
-  // width and height are inherited from KAbstractRectangle
+export interface KSceneParams extends KRectangleParams {
+  // width and height are inherited from KRectangle
 }
 
-class KScene extends KAbstractRectangle {
+class KScene extends KRectangle {
   /** Every live KObject, keyed by its DSL id. Does not include the scene itself. */
   private _objects: Map<string, KObject> = new Map();
 

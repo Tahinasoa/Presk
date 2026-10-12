@@ -1,9 +1,9 @@
 import { describe, it, expect } from "vitest";
-import KAbstractRectangle from "./kabstractRectangle";
+import KRectangle from "./krectangle";
 
-class TestRectangle extends KAbstractRectangle {}
+class TestRectangle extends KRectangle {}
 
-describe("KAbstractRectangle", () => {
+describe("KRectangle", () => {
   it("gets and sets dimension and anchor properties (width, height, anchorX, anchorY)", () => {
     const rect = new TestRectangle({ id: "r1", x: 100, y: 200, width: 80, height: 50, anchorX: 0.25, anchorY: 0.75 });
 
@@ -23,6 +23,40 @@ describe("KAbstractRectangle", () => {
     expect(rect.height).toBe(90);
     expect(rect.anchorX).toBe(0.5);
     expect(rect.anchorY).toBe(0.5);
+  });
+
+  it("gets and sets fill, stroke, and strokeWidth", () => {
+    const rect = new TestRectangle({ id: "r1", x: 0, y: 0, width: 60, height: 40 });
+
+    expect(rect.fill).toBe(0x9c9c9c);
+    expect(rect.stroke).toBeUndefined();
+    expect(rect.strokeWidth).toBe(0);
+
+    const styledRect = new TestRectangle({
+      id: "r2",
+      x: 0,
+      y: 0,
+      width: 60,
+      height: 40,
+      fill: 0xff0000,
+      stroke: 0x00ff00,
+      strokeWidth: 3,
+    });
+    expect(styledRect.fill).toBe(0xff0000);
+    expect(styledRect.stroke).toBe(0x00ff00);
+    expect(styledRect.strokeWidth).toBe(3);
+
+    styledRect.setNow({ fill: 0x0000ff, stroke: 0xffffff, strokeWidth: 5 });
+    expect(styledRect.fill).toBe(0x0000ff);
+    expect(styledRect.stroke).toBe(0xffffff);
+    expect(styledRect.strokeWidth).toBe(5);
+
+    styledRect.fill = undefined;
+    styledRect.stroke = undefined;
+    styledRect.strokeWidth = 0;
+    expect(styledRect.fill).toBeUndefined();
+    expect(styledRect.stroke).toBeUndefined();
+    expect(styledRect.strokeWidth).toBe(0);
   });
 
   it("computes all 9 point anchor getters correctly", () => {

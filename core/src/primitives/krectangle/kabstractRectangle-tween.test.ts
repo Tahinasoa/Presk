@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
-import KAbstractRectangle from "./kabstractRectangle";
+import KRectangle from "./krectangle";
 
-class TestRectangle extends KAbstractRectangle {}
+class TestRectangle extends KRectangle {}
 
 const options = { id: "rectangle-tween", startTime: 0, duration: 10 };
 
@@ -26,7 +26,7 @@ const pointAnchors = [
 	"bottomRight",
 ] as const;
 
-describe("KAbstractRectangle.getTweens", () => {
+describe("KRectangle.getTweens", () => {
 	it.each([
 		["x", { x: 150 }],
 		["rotation", { rotation: Math.PI / 2 }],

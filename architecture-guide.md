@@ -11,7 +11,7 @@ Pour appréhender l'architecture de Presk sans vous perdre, suivez cet ordre de 
 1. **`README.md` (Racine)** : Objectif du projet et vision générale.
 2. **`language/spec.md`** : Spécification du DSL (syntaxe, actions, timing GSAP, expressions).
 3. **`core/src/presk.ts`** : Le chef d'orchestre public et le ticker unifié.
-4. **`core/src/primitives/kobject.ts`** & **`kabstractRectangle.ts`** : Le modèle de données pur, la hiérarchie parent/enfant et les matrices de transformation (`transformation-matrix`).
+4. **`core/src/primitives/kobject.ts`** & **`krectangle.ts`** : Le modèle de données pur, la hiérarchie parent/enfant et les matrices de transformation (`transformation-matrix`).
 5. **`core/src/primitives/kscene.ts`** : Le graphe de scène des données.
 6. **`core/src/binding/expression.ts`** & **`bindingEngine.ts`** : Le parseur d'expressions et le moteur de liaison pull-based (`follow`).
 7. **`core/src/compiler/compiler.ts`** : Le traducteur DSL JSON $\rightarrow$ Timeline GSAP.
@@ -42,10 +42,10 @@ Pour appréhender l'architecture de Presk sans vous perdre, suivez cet ordre de 
   - Porte les propriétés géométriques (`x`, `y`, `scale`, `rotation`, `opacity`, `visible`).
   - Implémente la hiérarchie parent/enfant (`addChild`, `removeChild`, `parent`) et le calcul matriciel 2D via `transformation-matrix` (`worldMatrix()`, `toWorld()`, `toLocal()`).
   - Gère l'invisibilité par défaut (`visible = false`) basculée à `true` lors de l'appel de `create()`.
-- **`kabstractRectangle.ts` (`KAbstractRectangle`)** :
-  - Classe intermédiaire pour les objets rectangulaires (réutilisant `toWorld()` pour les coins, ancres et `boundingBox`).
-- **`krectangle.ts` & `ktext.ts`** :
-  - Implémentations concrètes (`"shape"` et `"text"`). `KText` gère un cadre (`KRectangle`) enfant.
+- **`krectangle.ts` (`KRectangle`)** :
+  - Classe de base des objets rectangulaires, incluant leur style visuel et leur géométrie (coins, ancres et `boundingBox`).
+- **`ktext.ts`** :
+  - Implémentation de `"text"`. `KText` gère un cadre (`KRectangle`) enfant.
 - **`kscene.ts` (`KScene`)** :
   - Registre de tous les objets vivants par ID, supportant la résolution d'IDs imbriqués (ex: `"chart1.bar1"`).
 
