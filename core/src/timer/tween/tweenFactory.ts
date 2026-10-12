@@ -1,5 +1,5 @@
 import KTween from "@/timer/tween/tween";
-import type KObject from "@/primitives/kobject";
+import type KObject from "@/primitives/kobject/kobject";
 import type { KPoint } from "@/primitives/types";
 
 export interface PropertyTweenOptions<V> {
