@@ -1,8 +1,8 @@
 // Tests the spec §8.2 expression grammar: arithmetic, scalar refs, point
 // refs (must end on .x/.y).
 import { describe, it, expect } from "vitest";
-import KScene from "@/primitives/kscene";
-import KRectangle from "@/primitives/krectangle";
+import KScene from "@/primitives/kscene/kscene";
+import KRectangle from "@/primitives/krectangle/krectangle";
 import { evaluateExpression } from "./expression";
 
 function makeScene() {

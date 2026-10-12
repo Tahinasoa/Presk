@@ -3,7 +3,7 @@
 // reading its current state and pushing it to PixiJS — never the reverse.
 // See renderer/README.md for the full contract.
 
-import type KObject from "@/primitives/kobject";
+import type KObject from "@/primitives/kobject/kobject";
 import type KRenderer from "./krenderer";
 import type { Container } from "pixi.js";
 

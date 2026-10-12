@@ -8,7 +8,7 @@
 // driven, and for the known limitations (chained-binding lag, no cycle
 // detection).
 
-import type KScene from "@/primitives/kscene";
+import type KScene from "@/primitives/kscene/kscene";
 import { evaluateExpression } from "./expression";
 
 class BindingEngine {

@@ -7,7 +7,7 @@
 
 import gsap from "gsap";
 import type Presk from "@/presk";
-import type KObject from "@/primitives/kobject";
+import type KObject from "@/primitives/kobject/kobject";
 import type KTween from "@/timer/tween/tween";
 import { evaluateExpression } from "@/binding/expression";
 import type { DslDocument, DslStep } from "./types";

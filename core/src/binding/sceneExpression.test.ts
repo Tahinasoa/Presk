@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import KScene from "@/primitives/kscene";
-import KRectangle from "@/primitives/krectangle";
+import KScene from "@/primitives/kscene/kscene";
+import KRectangle from "@/primitives/krectangle/krectangle";
 import { evaluateExpression } from "./expression";
 
 describe("KScene getters via evaluateExpression", () => {

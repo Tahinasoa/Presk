@@ -13,8 +13,8 @@
 // behind the tick order.
 
 import gsap from "gsap";
-import KScene from "@/primitives/kscene";
-import type KObject from "@/primitives/kobject";
+import KScene from "@/primitives/kscene/kscene";
+import type KObject from "@/primitives/kobject/kobject";
 import KGraphicScene from "@/renderer/kgraphicScene";
 import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";

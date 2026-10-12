@@ -5,8 +5,8 @@
 // API, and drive the resulting timeline with `tl.progress(1)` to play it
 // to completion synchronously.
 import { describe, it, expect, vi } from "vitest";
-import KScene from "@/primitives/kscene";
-import KRectangle from "@/primitives/krectangle";
+import KScene from "@/primitives/kscene/kscene";
+import KRectangle from "@/primitives/krectangle/krectangle";
 import type Presk from "@/presk";
 import { compile } from "./compiler";
 import type { DslDocument } from "./types";

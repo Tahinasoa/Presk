@@ -5,8 +5,10 @@
 // (renderer/kgraphicScene.ts) for the visual counterpart that mirrors this
 // registry one-to-one via Presk's registry (presk.ts).
 
-import KRectangle, { type KRectangleParams } from "./krectangle";
-import type KObject from "./kobject";
+import type KObject from "@/primitives/kobject/kobject";
+import KRectangle, { type KRectangleParams } from "@/primitives/krectangle/krectangle";
+
+
 
 export interface KSceneParams extends KRectangleParams {
   // width and height are inherited from KRectangle

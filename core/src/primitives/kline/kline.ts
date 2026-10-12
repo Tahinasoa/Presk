@@ -1,6 +1,10 @@
-import KObject, { type KObjectParams } from "./kobject";
+import KObject, { type KObjectParams } from "@/primitives/kobject/kobject";
 import type KTween from "@/timer/tween/tween";
-import type { KObjectCreateOptions } from "./kobject";
+
+interface KLineCreateOptions {
+  duration?: number;
+  easing?: (input: number) => number;
+}
 
 export interface KLineParams extends KObjectParams {
   startX: number;
@@ -38,7 +42,7 @@ class KLine extends KObject {
     });
   }
 
-  override create(options: KObjectCreateOptions = {}): KTween[] {
+  override create(options: KLineCreateOptions = {}): KTween[] {
     const duration = options.duration ?? 0.6;
     const targetEndX = this._endX;
     const targetEndY = this._endY;

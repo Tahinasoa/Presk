@@ -2,7 +2,7 @@
 // It knows nothing about how it is drawn — no PixiJS import is allowed here.
 
 import { compose, translate, rotate, scale, applyToPoint, inverse, type Matrix } from "transformation-matrix";
-import type { KPoint } from "./types";
+import type { KPoint } from "@/primitives/types";
 import type KTween from "@/timer/tween/tween";
 import { tweenNumber, tweenPoint } from "@/timer/tween/tweenFactory";
 

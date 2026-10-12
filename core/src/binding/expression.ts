@@ -11,7 +11,7 @@
 // or the `pos` object). Point props or `pos` may also be preceded by "boundingBox".
 // See spec §8.2 for the invalid examples this is meant to reject.
 
-import type KScene from "@/primitives/kscene";
+import type KScene from "@/primitives/kscene/kscene";
 import type { KPoint } from "@/primitives/types";
 
 type Token = { type: "number"; value: number } | { type: "ident"; value: string } | { type: "op"; value: string } | { type: "dot" };

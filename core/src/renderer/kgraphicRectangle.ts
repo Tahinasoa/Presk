@@ -3,7 +3,7 @@
 // registry/builtins.ts.
 
 import { Graphics, Matrix } from "pixi.js";
-import type KRectangle from "@/primitives/krectangle";
+import type KRectangle from "@/primitives/krectangle/krectangle";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 
 export interface KGraphicRectangleParams extends KGraphicObjectParams {

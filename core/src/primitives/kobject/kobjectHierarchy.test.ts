@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
-import KRectangle from "./krectangle";
-import KScene from "./kscene";
+import KRectangle from "@/primitives/krectangle/krectangle";
+import KScene from "@/primitives/kscene/kscene";
 import { evaluateExpression } from "@/binding/expression";
 
 describe("KObject Hierarchy & transformation-matrix", () => {

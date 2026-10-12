@@ -1,12 +1,11 @@
 // KText backs the DSL's `"text"` type (see registry/builtins.ts).
 // It extends KRectangle, managing a background frame KRectangle child and text content.
 
-import KRectangle, { type KRectangleParams } from "./krectangle";
-import KRectangle from "./krectangle";
-import type KObject from "./kobject";
-import type { KObjectTweenOptions } from "./kobject";
+import KRectangle, { type KRectangleParams } from "@/primitives/krectangle/krectangle";
+import type KObject from "@/primitives/kobject/kobject";
+import type { TweenOptions } from "@/primitives/kobject/kobject";
 import KTween from "@/timer/tween/tween";
-import type { KPoint } from "./types";
+import type { KPoint } from "@/primitives/types";
 
 export interface KTextParams extends Omit<KRectangleParams, "width" | "height"> {
   text: string;
@@ -74,11 +73,11 @@ class KText extends KRectangle {
       verticalMargins: this.numberTweenFactor("verticalMargins"),
       horizontalMargins: this.numberTweenFactor("horizontalMargins"),
       margins: this.numberTweenFactor("margins"),
-      frame: (value: unknown, options: KObjectTweenOptions) => this.frameTween(value, options),
+      frame: (value: unknown, options: TweenOptions) => this.frameTween(value, options),
     });
   }
 
-  private frameTween(value: unknown, options: KObjectTweenOptions): KTween {
+  private frameTween(value: unknown, options: TweenOptions): KTween {
     const targetOpacity =
       value === false
         ? 0

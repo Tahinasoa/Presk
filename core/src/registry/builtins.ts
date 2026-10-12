@@ -5,11 +5,11 @@
 // KGraphicObject subclass under renderer/, then register the pair here.
 
 import type Presk from "@/presk";
-import KRectangle from "@/primitives/krectangle";
+import KRectangle from "@/primitives/krectangle/krectangle";
 import KGraphicRectangle from "@/renderer/kgraphicRectangle";
-import KText from "@/primitives/ktext";
+import KText from "@/primitives/ktext/ktext";
 import KGraphicText from "@/renderer/kgraphicText";
-import KLine from "@/primitives/kline";
+import KLine from "@/primitives/kline/kline";
 import KGraphicLine from "@/renderer/kgraphicLine";
 
 export function registerBuiltins(presk: Presk): void {

@@ -1,7 +1,7 @@
 // Tests the pull-based follow/unfollow semantics (spec §10).
 import { describe, it, expect } from "vitest";
-import KScene from "@/primitives/kscene";
-import KRectangle from "@/primitives/krectangle";
+import KScene from "@/primitives/kscene/kscene";
+import KRectangle from "@/primitives/krectangle/krectangle";
 import BindingEngine from "./bindingEngine";
 
 function setup() {

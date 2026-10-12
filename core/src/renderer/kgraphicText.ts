@@ -1,7 +1,7 @@
 // Draws a KText (primitives/ktext.ts) as a PixiJS Text object directly managed alongside its frame.
 
 import { Text, Matrix } from "pixi.js";
-import type KText from "@/primitives/ktext";
+import type KText from "@/primitives/ktext/ktext";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 import KGraphicRectangle from "./kgraphicRectangle";
 

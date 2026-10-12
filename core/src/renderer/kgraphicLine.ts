@@ -1,5 +1,5 @@
 import { Graphics, Matrix } from "pixi.js";
-import type KLine from "@/primitives/kline";
+import type KLine from "@/primitives/kline/kline";
 import KGraphicObject, { type KGraphicObjectParams } from "./kgraphicObject";
 
 export interface KGraphicLineParams extends KGraphicObjectParams {

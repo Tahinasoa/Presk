@@ -1,4 +1,4 @@
-import type KObject from '@/primitives/kobject';
+import type KObject from "@/primitives/kobject/kobject";
 
 /**
  * KTween: a time-bounded, deterministic animation step applied to a KObject.

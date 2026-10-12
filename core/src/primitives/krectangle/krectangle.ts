@@ -1,8 +1,8 @@
 // KRectangle is the pure-data base for rectangular primitives and scenes.
 // It encapsulates visual style, width, height, anchors, and geometry.
 
-import KObject, { type KObjectParams, type TweenOptions } from "./kobject";
-import type { KPoint } from "./types";
+import KObject, { type KObjectParams, type TweenOptions } from "@/primitives/kobject/kobject";
+import type { KPoint } from "@/primitives/types";
 import type KTween from "@/timer/tween/tween";
 import { tweenPoint } from "@/timer/tween/tweenFactory";
 

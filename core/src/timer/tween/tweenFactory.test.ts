@@ -1,4 +1,4 @@
-﻿import KObject from "@/primitives/kobject";
+import KObject from "@/primitives/kobject/kobject";
 import { describe, expect, test } from "vitest";
 import { tweenNumber as makeNumberTween, tweenPoint as makePointTween, type PropertyTweenOptions } from "./tweenFactory";
 import type KTween from "./tween";
