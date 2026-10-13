@@ -6,7 +6,7 @@
 //     lockstep;
 //   - the KRenderer (PixiJS Application wrapper);
 //   - the BindingEngine (pull-based `follow` bindings);
-//   - the single shared GSAP ticker that drives all of the above in a
+//   - the single shared KTimer loop that drives all of the above in a
 //     fixed, deterministic order every frame.
 //
 // See src/README.md for the full architecture diagram and the reasoning
@@ -144,6 +144,33 @@ class Presk {
     this._graphicScene.remove(id);
     this._scene.remove(id);
     this._binding.clear(id);
+  }
+
+  /** Restores a previously destroyed object instance and its registered child visuals. */
+  restore(object: KObject): void {
+    if (this._scene.has(object.id)) return;
+
+    const entry = [...this._registry.values()].find(({ ObjectClass }) => object instanceof ObjectClass);
+    if (!entry) {
+      throw new Error(`Presk.restore: no registered type matches object "${object.id}".`);
+    }
+
+    this._scene.add(object);
+    this._graphicScene.add(
+      object.id,
+      new entry.GraphicClass({ renderer: this._renderer, object }),
+      true,
+    );
+
+    for (const [childId, childObject, childType] of object.getChildrenRegistrations()) {
+      const namespacedId = `${object.id}.${childId}`;
+      if (!this._scene.has(namespacedId)) this._scene.add(childObject);
+      const childEntry = this._registry.get(childType);
+      if (childEntry && !this._graphicScene.get(namespacedId)) {
+        const childGraphic = new childEntry.GraphicClass({ renderer: this._renderer, object: childObject });
+        this._graphicScene.add(namespacedId, childGraphic, false);
+      }
+    }
   }
 
   /**

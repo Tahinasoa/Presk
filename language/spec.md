@@ -124,7 +124,7 @@ create → (set | transform | follow | unfollow | group | ungroup)* → destroy
 
 ### 5.2 `set`
 
-Assigne une valeur **instantanément**, sans interpolation ni consommation de durée sur la timeline. Équivalent du `.set()` de GSAP.
+Assigne une valeur **instantanément**, sans interpolation ni consommation de durée sur la timeline.
 
 ```json
 {
@@ -158,7 +158,7 @@ Anime une ou plusieurs propriétés vers une **valeur constante**, sur une duré
     "scale": 0.7
   },
   "duration": 0.8,
-  "ease": "power2.out"
+  "ease": "easeOutCubic"
 }
 ```
 
@@ -206,7 +206,7 @@ Détermine quand l'action commence. Valeur par défaut :
 
 L'action commence à la fin de l'action précédente. Le moteur doit interpréter `start` comme un **position parameter**, indépendant de l'action elle-même.
 
-Méthodes de timing disponibles (identiques à GSAP) :
+Méthodes de timing disponibles :
 
 | Type / Méthode de timing | Exemple de syntaxe | Description |
 | --- | --- | --- |
@@ -273,18 +273,23 @@ Une action instantanée utilise `{ "duration": 0 }`.
 
 ### 6.3 `ease`
 
-Fonction d'interpolation de la transition, au sens des easing functions GSAP :
+Fonction d'interpolation de la transition. Les noms canoniques sont ceux du module `core/src/timer/easing` :
 
 ```text
+easeInSine / easeOutSine / easeInOutSine
+easeInQuad / easeOutQuad / easeInOutQuad
+easeInCubic / easeOutCubic / easeInOutCubic
+easeInQuart / easeOutQuart / easeInOutQuart
+easeInQuint / easeOutQuint / easeInOutQuint
+easeInExpo / easeOutExpo / easeInOutExpo
+easeInCirc / easeOutCirc / easeInOutCirc
+easeInBack / easeOutBack / easeInOutBack
+easeInElastic / easeOutElastic / easeInOutElastic
+easeInBounce / easeOutBounce / easeInOutBounce
 linear
-power1.in / power1.out / power1.inOut
-power2.in / power2.out / power2.inOut
-power3.in / power3.out / power3.inOut
-power4.in / power4.out / power4.inOut
-back.out
-elastic.out
-bounce.out
 ```
+
+Legacy names such as `power2.out` remain accepted for existing DSL documents.
 
 ### 6.4 Exemples
 
@@ -297,7 +302,7 @@ bounce.out
   "properties": { "x": 0, "y": 0, "scale": 0.7 },
   "start": "<",
   "duration": 1,
-  "ease": "power2.out"
+  "ease": "easeOutCubic"
 }
 ```
 
@@ -315,7 +320,7 @@ bounce.out
   },
   "start": "<1",
   "duration": 0.5,
-  "ease": "power1.out"
+  "ease": "easeOutQuad"
 }
 ```
 
@@ -328,7 +333,7 @@ bounce.out
   "properties": { "opacity": 1 },
   "start": ">-0.5",
   "duration": 0.5,
-  "ease": "power1.out"
+  "ease": "easeOutQuad"
 }
 ```
 
@@ -341,7 +346,7 @@ bounce.out
   "properties": { "scale": 1 },
   "start": 3,
   "duration": 1,
-  "ease": "power2.out"
+  "ease": "easeOutCubic"
 }
 ```
 
@@ -354,7 +359,7 @@ bounce.out
   "properties": { "opacity": 1 },
   "start": "explainCOD+=0.5",
   "duration": 0.5,
-  "ease": "power1.out"
+  "ease": "easeOutQuad"
 }
 ```
 
@@ -397,7 +402,7 @@ Rattache un ou plusieurs objets à un groupe. Le groupe est créé implicitement
     "keepVisual": false
   },
   "duration": 0.6,
-  "ease": "power2.inOut"
+  "ease": "easeInOutCubic"
 }
 ```
 
@@ -581,7 +586,7 @@ Quand les expressions utilisent un path à trois arguments (`pathX(name, start, 
     "y": "sineCurve.pathY(main, 0.2, 0.8)"
   },
   "duration": 2,
-  "ease": "power1.inOut"
+  "ease": "easeInOutQuad"
 }
 ```
 

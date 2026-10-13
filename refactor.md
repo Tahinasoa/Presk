@@ -41,14 +41,8 @@ Ce document récapitule l'ensemble des travaux, des décisions architecturales, 
     this._visible = false; // Invisible par défaut
   }
 
-  create(options: { duration?: number; ease?: string } = {}): gsap.core.Timeline {
-    this._visible = true; // Devient visible à l'appel de create
-    const tl = gsap.timeline(options);
-    for (const [, child] of this._children) {
-      tl.add(child.create(options), 0);
-    }
-    return tl;
-  }
+  // The compiler now schedules create visibility and property tweens on
+  // KTimer; KObject remains a data model and does not own a timeline.
 ```
 
 ---

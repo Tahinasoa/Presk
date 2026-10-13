@@ -52,6 +52,30 @@ class KTimer {
     return this;
   }
 
+  /**
+   * Initializes scheduled tweens in timeline order. Each tween is rendered at
+   * its endpoint before the next tween is initialized, so its endpoint state
+   * is available to the next tween's init callback. The timeline is then
+   * rendered back to time zero, leaving playback ready to start normally.
+   */
+  initialize(): this {
+    for (const scheduled of this._tweens) {
+      const { tween } = scheduled;
+      if (!scheduled.initialized) {
+        tween.init();
+        scheduled.initialized = true;
+      }
+      tween.render(tween.endTime);
+    }
+
+    this._elapsedTime = this.duration;
+    this._lastTimestamp = performance.now();
+    this._lastRenderedTime = this.duration;
+    this._elapsedTime = 0;
+    this._render();
+    return this;
+  }
+
   onUpdate(callback: () => void): this {
     this._updateCallbacks.add(callback);
     return this;

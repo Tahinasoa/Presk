@@ -6,9 +6,9 @@ subscriptions. Every tick, each active binding just re-runs its expression
 and writes the result onto its target.
 
 This was a deliberate simplification for v1 (see the chat/design log this
-project came out of): GSAP already mutates plain object properties directly,
-so a reactive/proxy layer would fight GSAP rather than help it. Polling is
-also trivially easy to reason about and debug.
+project came out of): KTimer writes plain object properties directly, so a
+reactive/proxy layer would add another state mechanism without improving the
+deterministic update order. Polling is also easy to reason about and debug.
 
 ## Files
 

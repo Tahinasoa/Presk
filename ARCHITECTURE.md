@@ -7,7 +7,7 @@ This document centralizes major architectural decisions, design rationale, and k
 ## 1. Separation of Concerns: Primitives vs. Renderer
 
 * **Decision:** Strict separation between pure data models (`primitives/`) and rendering (`renderer/`).
-* **Rationale:** 
+* **Rationale:**
   - `primitives/` (`KObject`, `KRectangle`, `KText`, `KScene`) contains zero graphics framework dependencies (no PixiJS import). This allows complete unit testing of geometry, coordinates, and bounding boxes without a browser, DOM, or canvas.
   - `renderer/` (`KGraphicObject`, `KGraphicScene`, `KRenderer`) holds PixiJS display objects and acts in a strictly **unidirectional** flow: graphic objects read state from primitives during the tick phase and never mutate primitives.
 * **Implications:** Any new DSL primitive requires defining a data class in `primitives/` and a visual representation class in `renderer/`, then registering them together.
@@ -17,8 +17,8 @@ This document centralizes major architectural decisions, design rationale, and k
 ## 2. Pull-Based Binding Engine (`follow` / `unfollow`)
 
 * **Decision:** Implement continuous binding (`follow`, spec §10) via a **pull-based** polling engine (`BindingEngine` + AST expression parser) rather than reactive proxies or event observables.
-* **Rationale:** 
-  - GSAP directly mutates plain object properties (`_x`, `_y`, etc.). Reactive proxy or subscription layers would fight GSAP's animation loop and add unnecessary complexity.
+* **Rationale:**
+  - The timer writes plain object properties deterministically. Polling bindings after tween updates keeps the update order explicit without a proxy or subscription layer.
   - Polling is trivial to reason about, debug, and trace.
 * **Known Limitations & Backlog:**
   - *Chained Binding Lag:* Chained bindings (e.g. C follows B, B follows A) can lag by one frame depending on registration order. A topological sort over the dependency graph (spec §8.4) is required.
@@ -26,20 +26,20 @@ This document centralizes major architectural decisions, design rationale, and k
 
 ---
 
-## 3. DSL Compilation & Direct Delegation to GSAP
+## 3. DSL Compilation & KTimer
 
-* **Decision:** Compile DSL steps directly into a GSAP timeline, leveraging GSAP's native features rather than building a custom animation scheduler.
+* **Decision:** Compile DSL steps into the project-owned `KTimer` timeline and `KTween` property animations.
 * **Rationale:**
-  - The DSL timeline position-parameter specification (spec §6.1) was explicitly designed to mirror GSAP's syntax (`"<"`, `">"`, `"+=1"`, named labels, etc.). Passing `start` directly to GSAP avoids reinvention.
-  - `transform` expressions (evaluated once at action start per spec §8.3) map directly onto GSAP's **functional values** (passing a function instead of a value makes GSAP evaluate it on first render).
+  - The compiler resolves the DSL's timeline positions (`"<"`, `">"`, relative offsets, and labels) into absolute times before adding tweens.
+  - Transform expressions are resolved when the tween initializes, after preceding tweens have rendered their endpoint state.
 
 ---
 
 ## 4. Unified Deterministic Ticker (`Presk`)
 
-* **Decision:** A single GSAP ticker drives all engine subsystems in a fixed, deterministic sequence every frame.
+* **Decision:** A single `KTimer` loop drives all engine subsystems in a fixed, deterministic sequence every frame.
 * **Tick Order:**
-  1. **GSAP Tweens Update:** Internal GSAP engine updates active tweens.
+  1. **KTimer Tweens Update:** The timer evaluates active tweens at the current time.
   2. **Binding Flush:** `BindingEngine.flush()` re-evaluates active `follow` expressions and applies results via `target.setNow()`.
   3. **Graphic Scene Tick:** `KGraphicScene.tick()` calls `redraw()` on all visual components, pushing final values to PixiJS.
 * **Rationale:** Ensures zero frame lag between a tween update, a dependent `follow` binding re-evaluation, and final rendering, all within the same animation frame.

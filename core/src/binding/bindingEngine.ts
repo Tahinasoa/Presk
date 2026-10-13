@@ -50,6 +50,18 @@ class BindingEngine {
     this._bindings.delete(targetId);
   }
 
+  /** Returns a copy of a target's active bindings, for reversible timeline actions. */
+  snapshot(targetId: string): Record<string, string> | undefined {
+    const props = this._bindings.get(targetId);
+    return props ? Object.fromEntries(props) : undefined;
+  }
+
+  /** Restores a snapshot produced by `snapshot()`. */
+  restore(targetId: string, bindings: Record<string, string> | undefined): void {
+    this.unfollow(targetId);
+    if (bindings) this.follow(targetId, bindings);
+  }
+
   isFollowing(targetId: string, prop: string): boolean {
     return this._bindings.get(targetId)?.has(prop) ?? false;
   }

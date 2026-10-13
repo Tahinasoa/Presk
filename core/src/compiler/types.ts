@@ -18,11 +18,11 @@ export interface DslStep {
   follow?: Record<string, string>;
   /** Optional label for this action, referenceable by later steps' `start` (spec §6.1). */
   name?: string;
-  /** GSAP-style position parameter (spec §6.1). Defaults to sequential (same as ">"). */
+  /** Timeline position parameter (spec §6.1). Defaults to sequential (same as ">"). */
   start?: string | number;
   /** Seconds. Required for interpolated `transform`s. */
   duration?: number;
-  /** GSAP easing name (spec §6.3). */
+  /** Easing name from the timer/easing registry (spec §6.3). */
   ease?: string;
 }
 

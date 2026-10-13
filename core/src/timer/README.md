@@ -1,6 +1,6 @@
 # KTimer (`core/src/timer/`)
 
-`KTimer` is a lightweight, zero-dependency timeline and time management engine designed as a clean, performant alternative to GSAP for time-based animation loops, progress tracking, and tween scheduling.
+`KTimer` is a lightweight, zero-dependency timeline and time management engine for deterministic animation, progress tracking, seeking, and tween scheduling.
 
 ---
 

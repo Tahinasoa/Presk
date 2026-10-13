@@ -24,7 +24,7 @@ On applique un comportement **rigid-body** strict :
    - `KObject.worldMatrix()` calcule la matrice monde en pur TS.
    - Le renderer applique directement la matrice monde calculée à l'objet visuel PixiJS (`localTransform.set(...)`), éliminant les redondances de calcul entre data et PixiJS.
 4. **Ticker unifié déterministe (`presk.ts`)** :
-   - Ordre fixe à chaque frame : 1. Mise à jour GSAP → 2. `binding.flush()` → 3. `graphicScene.tick()`.
+   - Ordre fixe à chaque frame : 1. Mise à jour KTimer → 2. `binding.flush()` → 3. `graphicScene.tick()`.
 
 ---
 
@@ -33,6 +33,6 @@ On applique un comportement **rigid-body** strict :
 - **`primitives/`** : Modèle de données hiérarchique, géométrie, calculs de matrices monde (`worldMatrix()`, `toWorld()`, `toLocal()`). Zéro PixiJS.
 - **`renderer/`** : Couche visuelle PixiJS (`KGraphicObject`, `KGraphicComposite`, `KGraphicRectangle`, etc.), appliquant les matrices monde.
 - **`binding/`** : Moteur de liaisons `follow` (pull-based) et parseur d'expressions (`expression.ts`) supportant la résolution d'IDs imbriqués (ex: `chart1.bar1.width`).
-- **`compiler/`** : Traduction du DSL JSON en timeline GSAP.
+- **`compiler/`** : Traduction du DSL JSON en timeline KTimer.
 - **`registry/`** : Enregistrement des types de composants DSL.
 - **`presk.ts`** : Orchestrateur central et ticker unifié.

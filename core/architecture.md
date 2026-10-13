@@ -1,18 +1,5 @@
 # KTimer architecture
-KTimer is a simple object that call functions at the right moment. That's all.
 
-the compler convert relative time to absolute and solve temporal dependencies.
+KTimer calls scheduled tween functions at the right time. The compiler converts relative timeline positions to absolute times and resolves temporal dependencies.
 
-I'm about to switch from a GSAP style into a remotion style because of 2 reasons : it is very hard to seek a given time with GSAP if animation if based on internal function which are not exposet to GSAP.
-GSAP is very powerfull, but it look like an overkill and unnecessary complexity for my use case.
-
-```mermaid
-flowchart TD
-  A[PrivyMermaid Desktop] --> B[Edit Mermaid]
-  B --> C[Preview]
-  C --> D{Export}
-  D -->|SVG| E[Vector]
-  D -->|PNG| F[Image]
-  A --> G[Windows]
-  A --> H[Linux]
-```
+The timeline initializes tweens in order: each tween is initialized, rendered to its endpoint, and then the next tween is initialized. KTimer rewinds to time zero after this initialization pass. Tween state is derived from time and captured start values, so seeking does not depend on an external animation scheduler.

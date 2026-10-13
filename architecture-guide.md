@@ -9,12 +9,12 @@ Ce document sert de guide de lecture et de compréhension globale et détaillée
 Pour appréhender l'architecture de Presk sans vous perdre, suivez cet ordre de lecture pas à pas :
 
 1. **`README.md` (Racine)** : Objectif du projet et vision générale.
-2. **`language/spec.md`** : Spécification du DSL (syntaxe, actions, timing GSAP, expressions).
+2. **`language/spec.md`** : Spécification du DSL (syntaxe, actions, timing, expressions).
 3. **`core/src/presk.ts`** : Le chef d'orchestre public et le ticker unifié.
 4. **`core/src/primitives/kobject.ts`** & **`krectangle.ts`** : Le modèle de données pur, la hiérarchie parent/enfant et les matrices de transformation (`transformation-matrix`).
 5. **`core/src/primitives/kscene.ts`** : Le graphe de scène des données.
 6. **`core/src/binding/expression.ts`** & **`bindingEngine.ts`** : Le parseur d'expressions et le moteur de liaison pull-based (`follow`).
-7. **`core/src/compiler/compiler.ts`** : Le traducteur DSL JSON $\rightarrow$ Timeline GSAP.
+7. **`core/src/compiler/compiler.ts`** : Le traducteur DSL JSON $\rightarrow$ Timeline KTimer.
 8. **`core/src/renderer/kgraphicObject.ts`**, **`kgraphicComposite.ts`** & **`kgraphicRectangle.ts`** : La couche visuelle (PixiJS) et l'application des matrices monde via `setFromMatrix()`.
 9. **`core/src/registry/builtins.ts`** : Le registre liant les types DSL aux paires `{ ObjectClass, GraphicClass }`.
 
@@ -30,8 +30,8 @@ Pour appréhender l'architecture de Presk sans vous perdre, suivez cet ordre de 
 - **`presk.ts` (`Presk`)** : 
   - Point d'entrée public de l'engine.
   - Gère l'initialisation du renderer PixiJS (`KRenderer`), de la scène de données (`KScene`) et du binding engine.
-  - Enregistre les types (`register()`), crée les objets de manière récursive (`create()`) et pilote la boucle d'animation unifiée (ticker GSAP) :
-    1. Mise à jour des tweens GSAP.
+  - Enregistre les types (`register()`), crée les objets de manière récursive (`create()`) et pilote la boucle d'animation unifiée (KTimer) :
+    1. Mise à jour des KTween.
     2. `binding.flush()` (évaluation des liaisons `follow`).
     3. `graphicScene.tick()` (rafraîchissement visuel).
 
@@ -57,7 +57,7 @@ Pour appréhender l'architecture de Presk sans vous perdre, suivez cet ordre de 
 
 ### 5. Compilateur (`core/src/compiler/`)
 - **`compiler.ts` (`compile`, `prepareScene`, `addStep`)** :
-  - Traduit un document JSON DSL en une timeline **GSAP**.
+  - Traduit un document JSON DSL en une timeline **KTimer**.
   - Prépare les coquilles d'objets (pass 1) puis ajoute séquentiellement les actions (`create`, `set`, `transform`, `follow`, `destroy`).
 
 ### 6. Rendu Visuel (`core/src/renderer/`)
