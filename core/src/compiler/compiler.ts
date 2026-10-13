@@ -8,49 +8,9 @@ import { easings, type EasingName, type EasingFunction } from "@/timer/easing/ea
 import { evaluateExpression } from "@/binding/expression";
 import type { DslDocument, DslStep } from "./types";
 
-const easeAliases: Record<string, EasingFunction> = {
-  linear: (t) => t,
-  none: (t) => t,
-  "power0.in": (t) => t,
-  "power0.out": (t) => t,
-  "power0.inOut": (t) => t,
-  "power1.in": easings.quadIn,
-  "power1.out": easings.quadOut,
-  "power1.inOut": easings.quadInOut,
-  "power2.in": easings.cubicIn,
-  "power2.out": easings.cubicOut,
-  "power2.inOut": easings.cubicInOut,
-  "power3.in": easings.quartIn,
-  "power3.out": easings.quartOut,
-  "power3.inOut": easings.quartInOut,
-  "power4.in": easings.quintIn,
-  "power4.out": easings.quintOut,
-  "power4.inOut": easings.quintInOut,
-  "sine.in": easings.sineIn,
-  "sine.out": easings.sineOut,
-  "sine.inOut": easings.sineInOut,
-  "expo.in": easings.expoIn,
-  "expo.out": easings.expoOut,
-  "expo.inOut": easings.expoInOut,
-  "circ.in": easings.circIn,
-  "circ.out": easings.circOut,
-  "circ.inOut": easings.circInOut,
-  "back.in": easings.backIn,
-  "back.out": easings.backOut,
-  "back.inOut": easings.backInOut,
-  "elastic.in": easings.elasticIn,
-  "elastic.out": easings.elasticOut,
-  "elastic.inOut": easings.elasticInOut,
-  "bounce.in": easings.bounceIn,
-  "bounce.out": easings.bounceOut,
-  "bounce.inOut": easings.bounceInOut,
-};
-
 function resolveEase(name: string | undefined): EasingFunction | undefined {
   if (!name) return undefined;
   if (Object.hasOwn(easings, name)) return easings[name as EasingName];
-  const alias = easeAliases[name];
-  if (alias) return alias;
   throw new Error(`Presk compiler: unknown easing "${name}".`);
 }
 
