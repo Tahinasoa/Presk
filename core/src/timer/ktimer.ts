@@ -19,6 +19,11 @@ class KTimer {
   protected _rafId: number | null = null;
 
   get duration(): number {
+    return this.calculateDuration();
+  }
+
+  /** Returns the end time of the latest scheduled tween, in seconds. */
+  calculateDuration(): number {
     return this._tweens.reduce(
       (endTime, scheduled) => Math.max(endTime, scheduled.tween.endTime + scheduled.offset),
       0,
