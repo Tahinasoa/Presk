@@ -1,23 +1,24 @@
-// Tests the DSL -> GSAP timeline compilation in isolation from rendering:
+// Tests DSL compilation in isolation from rendering:
 // PixiJS needs a real <canvas>/WebGL context, which this test suite (run
-// under Node, not a browser) doesn't have. Instead we exercise `compile()`
-// against a minimal mock that behaves like Presk's create/destroy/binding
-// API, and drive the resulting timeline with `tl.progress(1)` to play it
-// to completion synchronously.
+// under Node, not a browser) doesn't have. We exercise `compile()` against
+// a minimal mock and seek its KTimer synchronously.
 import { describe, it, expect, vi } from "vitest";
 import KScene from "@/primitives/kscene/kscene";
 import KRectangle from "@/primitives/krectangle/krectangle";
+import KTimer from "@/timer/ktimer";
 import type Presk from "@/presk";
 import { compile } from "./compiler";
 import type { DslDocument } from "./types";
 
 function makeMockPresk() {
   const scene = new KScene({ id: "scene", x: 0, y: 0, width: 800, height: 600 });
+  const timer = new KTimer();
   const created: string[] = [];
   const destroyed: string[] = [];
 
   const presk = {
     scene,
+    timer,
     binding: { follow: vi.fn(), unfollow: vi.fn() },
     create: vi.fn((_type: string, id: string, props: Record<string, unknown>) => {
       const obj = new KRectangle({ id, x: 0, y: 0, width: 10, height: 10, ...(props as object) });
@@ -34,6 +35,12 @@ function makeMockPresk() {
   return { presk, created, destroyed };
 }
 
+function compileAndFinish(doc: DslDocument, presk: Presk): KTimer {
+  const timer = compile(doc, presk);
+  timer.seek(timer.duration);
+  return timer;
+}
+
 describe("compile", () => {
   it("creates every object declared with a 'create' step", () => {
     const { presk, created } = makeMockPresk();
@@ -46,8 +53,7 @@ describe("compile", () => {
       ],
     };
 
-    const tl = compile(doc, presk);
-    tl.progress(1); // play the whole timeline synchronously
+    compileAndFinish(doc, presk);
 
     expect(created).toEqual(["box", "label"]);
   });
@@ -62,7 +68,7 @@ describe("compile", () => {
       steps: [{ action: "create", target: "dot", type: "shape", properties: { x: "title.topRight.x", y: 0 } }],
     };
 
-    compile(doc, presk).progress(1);
+    compileAndFinish(doc, presk);
 
     expect(presk.create).toHaveBeenCalledWith("shape", "dot", expect.objectContaining({ x: 120 }));
   });
@@ -77,15 +83,8 @@ describe("compile", () => {
       steps: [{ action: "transform", target: "box", properties: { x: 100 }, duration: 0.1 }],
     };
 
-    compile(doc, presk).progress(1);
-    // Give the inner gsap.to() tween (started via tl.call at progress(1)) a
-    // moment to complete; duration is tiny (0.1s) so this settles quickly.
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        expect((presk.scene.get("box") as KRectangle).x).toBeCloseTo(100);
-        resolve();
-      }, 200);
-    });
+    compileAndFinish(doc, presk);
+    expect((presk.scene.get("box") as KRectangle).x).toBeCloseTo(100);
   });
 
   it("registers and clears 'follow'/'unfollow' bindings", () => {
@@ -99,7 +98,7 @@ describe("compile", () => {
       ],
     };
 
-    compile(doc, presk).progress(1);
+    compileAndFinish(doc, presk);
 
     expect(presk.binding.follow).toHaveBeenCalledWith("arrow", { x: "dot.x", y: "dot.y" });
     expect(presk.binding.unfollow).toHaveBeenCalledWith("arrow", ["x"]);
@@ -115,17 +114,12 @@ describe("compile", () => {
       steps: [{ action: "transform", target: "box", properties: { pos: { x: 50, y: 75 } }, duration: 0.1 }],
     };
 
-    compile(doc, presk).progress(1);
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        const box = presk.scene.get("box") as KRectangle;
-        expect(box.x).toBeCloseTo(50);
-        expect(box.y).toBeCloseTo(75);
-        expect(box.center.x).toBeCloseTo(50);
-        expect(box.center.y).toBeCloseTo(75);
-        resolve();
-      }, 200);
-    });
+    compileAndFinish(doc, presk);
+    const box = presk.scene.get("box") as KRectangle;
+    expect(box.x).toBeCloseTo(50);
+    expect(box.y).toBeCloseTo(75);
+    expect(box.center.x).toBeCloseTo(50);
+    expect(box.center.y).toBeCloseTo(75);
   });
 
   it("triggers create animation on a 'create' step", () => {
@@ -136,14 +130,10 @@ describe("compile", () => {
       steps: [{ action: "create", target: "fadeInBox", type: "shape", properties: { x: 100, y: 100, width: 20, height: 20, opacity: 1 }, duration: 0.1 }],
     };
 
-    compile(doc, presk).progress(1);
-    return new Promise<void>((resolve) => {
-      setTimeout(() => {
-        const box = presk.scene.get("fadeInBox") as KRectangle;
-        expect(box.opacity).toBeCloseTo(1);
-        resolve();
-      }, 200);
-    });
+    compileAndFinish(doc, presk);
+    const box = presk.scene.get("fadeInBox") as KRectangle;
+    expect(box.opacity).toBeCloseTo(1);
+    expect(box.visible).toBe(true);
   });
 
   it("registers follow bindings directly on create step", () => {
@@ -164,9 +154,67 @@ describe("compile", () => {
       ],
     };
 
-    compile(doc, presk).progress(1);
+    compileAndFinish(doc, presk);
 
     expect(presk.create).toHaveBeenCalledWith("shape", "dot", expect.objectContaining({ x: 100, y: 200 }));
     expect(presk.binding.follow).toHaveBeenCalledWith("dot", { x: "title.x", y: "title.y" });
+  });
+
+  it("resolves sequential transforms and label-relative starts", () => {
+    const { presk } = makeMockPresk();
+    const box = new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 });
+    presk.scene.add(box);
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [
+        { action: "transform", target: "box", properties: { x: 10 }, duration: 1, name: "move" },
+        { action: "transform", target: "box", properties: { x: 20 }, start: "move+=2", duration: 1 },
+      ],
+    };
+
+    const timer = compile(doc, presk);
+    timer.seek(1.5);
+    expect(box.x).toBeCloseTo(10);
+    timer.seek(2.5);
+    expect(box.x).toBeCloseTo(15);
+    timer.seek(3);
+    expect(box.x).toBeCloseTo(20);
+  });
+
+  it("restores a set value when seeking before its scheduled time", () => {
+    const { presk } = makeMockPresk();
+    const box = new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 });
+    presk.scene.add(box);
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [{ action: "set", target: "box", properties: { x: 50 }, start: 2 }],
+    };
+
+    const timer = compile(doc, presk);
+    timer.seek(2);
+    expect(box.x).toBe(50);
+    timer.seek(1);
+    expect(box.x).toBe(0);
+  });
+
+  it("supports offsets relative to the current timeline end", () => {
+    const { presk } = makeMockPresk();
+    const box = new KRectangle({ id: "box", x: 0, y: 0, width: 10, height: 10 });
+    presk.scene.add(box);
+    const doc: DslDocument = {
+      version: "0.1",
+      scene: { width: 800, height: 600 },
+      steps: [
+        { action: "transform", target: "box", properties: { x: 10 }, duration: 1 },
+        { action: "transform", target: "box", properties: { x: 20 }, start: "+=1", duration: 1 },
+      ],
+    };
+
+    const timer = compile(doc, presk);
+    timer.seek(2.5);
+
+    expect(box.x).toBeCloseTo(15);
   });
 });

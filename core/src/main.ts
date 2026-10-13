@@ -20,7 +20,5 @@ await presk.init({
   background: doc.scene.background,
 });
 
-const timeline = compile(doc, presk);
-
-presk.start(); // starts the single shared ticker (state -> bindings -> redraw)
-timeline.play();
+compile(doc, presk);
+presk.start(); // starts KTimer (tweens -> bindings -> redraw)

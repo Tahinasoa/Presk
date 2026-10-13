@@ -12,13 +12,13 @@
 // See src/README.md for the full architecture diagram and the reasoning
 // behind the tick order.
 
-import gsap from "gsap";
 import KScene from "@/primitives/kscene/kscene";
 import type KObject from "@/primitives/kobject/kobject";
 import KGraphicScene from "@/renderer/kgraphicScene";
 import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";
 import BindingEngine from "@/binding/bindingEngine";
+import KTimer from "@/timer/ktimer";
 import { nanoid } from "nanoid";
 
 // A registered "type" is a pair of constructors: one for the data object,
@@ -50,6 +50,7 @@ class Presk {
   private _graphicScene: KGraphicScene = new KGraphicScene();
   private _renderer!: KRenderer;
   private _binding!: BindingEngine;
+  private _timer = new KTimer();
   private _started = false;
 
   /**
@@ -75,6 +76,10 @@ class Presk {
 
   get binding(): BindingEngine {
     return this._binding;
+  }
+
+  get timer(): KTimer {
+    return this._timer;
   }
 
   /**
@@ -144,18 +149,18 @@ class Presk {
   /**
    * Starts the single shared ticker driving the whole engine. Order, every
    * frame:
-   *   1. GSAP's own internal tween engine updates first (built into GSAP,
-   *      runs before any ticker.add() callback — see src/README.md).
+   *   1. KTimer renders all active KObject tweens.
    *   2. binding.flush() resolves every active `follow` expression.
    *   3. graphicScene.tick() redraws every visual from its current KObject.
    */
   start(): void {
     if (this._started) return;
     this._started = true;
-    gsap.ticker.add(() => {
+    this._timer.onUpdate(() => {
       this._binding.flush();
       this._graphicScene.tick();
     });
+    this._timer.play();
   }
 }
 

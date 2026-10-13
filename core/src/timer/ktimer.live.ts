@@ -1,6 +1,7 @@
-// Test en temps réel de KTimer : vraie horloge, vrais appels, logs console.
+// Test en temps réel de KTimer avec de vrais KObject-generated tweens.
 // Lancement : pnpm tsx KTimer.live.ts
 import KTimer from './ktimer';
+import KObject from "@/primitives/kobject/kobject";
 
 // --- Polyfill requestAnimationFrame pour Node (inutile dans un navigateur) ---
 const g = globalThis as any;
@@ -19,30 +20,17 @@ function check(label: string, ok: boolean, detail = ''): void {
   if (!ok) failures++;
 }
 
-// Log limité à 1 ligne / 250 ms par tween pour ne pas inonder la console
-const lastLog: Record<string, number> = {};
-function log(label: string, progress: number, timer: KTimer): void {
-  const now = performance.now();
-  if (progress !== 1 && now - (lastLog[label] ?? 0) < 250) return;
-  lastLog[label] = now;
-  const bar = '█'.repeat(Math.round(progress * 20)).padEnd(20, '░');
-  console.log(
-    `  [${label}] ${bar} ${(progress * 100).toFixed(0).padStart(3)}%  (t=${timer.progress.toFixed(2)}s)`
-  );
-}
-
 // --- Scénario ---
 async function main(): Promise<void> {
   const timer = new KTimer();
-  let aCompleted = 0;
+  const a = new KObject({ id: "A", x: 0, y: 0 });
+  const b = new KObject({ id: "B", x: 0, y: 0 });
+  const c = new KObject({ id: "C", x: 0, y: 0 });
 
   timer
-    .at(0, 2, (p) => {
-      log('A 0-2s', p, timer);
-      if (p === 1) aCompleted++;
-    })
-    .at(1, 3, (p) => log('B 1-3s', p, timer))
-    .at(2.5, 2.5, (p, d) => console.log(`  [C 2.5s] durée nulle -> p=${p}, data=${String(d)}`), 'hello');
+    .addTweens(a.getTweens({ x: 100 }, { id: "A", startTime: 0, duration: 2 }))
+    .addTweens(b.getTweens({ x: 100 }, { id: "B", startTime: 1, duration: 2 }))
+    .addTweens(c.getTweens({ x: 100 }, { id: "C", startTime: 2.5, duration: 0 }));
 
   console.log('\n▶ play() pendant 1 seconde');
   timer.play();
@@ -64,12 +52,14 @@ async function main(): Promise<void> {
   timer.pause();
   const t3 = timer.progress;
   check('progress ≈ 3.2s après reprise', Math.abs(t3 - 3.2) < 0.25, `(obtenu ${t3.toFixed(3)})`);
-  check('tween A terminé exactement 1 fois', aCompleted === 1, `(${aCompleted})`);
+  check('tween A atteint son état final', a.x === 100, `(x=${a.x})`);
+  check('tween B atteint son état final', b.x === 100, `(x=${b.x})`);
+  check('tween C instantané est appliqué', c.x === 100, `(x=${c.x})`);
 
-  console.log('\n⏪ seek(0) puis seek(5) : le tween A doit être réarmé puis terminé à nouveau');
+  console.log('\n⏪ seek(0) puis seek(5) : les tweens doivent revenir à leur état final');
   timer.seek(0);
   timer.seek(5);
-  check('tween A terminé une 2e fois après réarmement', aCompleted === 2, `(${aCompleted})`);
+  check('tween A atteint à nouveau son état final', a.x === 100, `(x=${a.x})`);
   check('seek(5) -> progress = 5s', Math.abs(timer.progress - 5) < 0.001);
 
   console.log(failures === 0 ? '\n🎉 Tout est OK' : `\n💥 ${failures} vérification(s) en échec`);

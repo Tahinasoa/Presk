@@ -1,14 +1,10 @@
-// Compiles a DSL document (spec §2-§11) into a GSAP timeline that drives a
-// Presk instance. See compiler/README.md for the reasoning behind leaning
-// on GSAP's own position-parameter syntax and functional values.
-//
-// Uses preapreScene() for sequential two-pass object creation and
-// delegates all animation/setting actions to KObject's tween() and setNow().
+// Compiles a DSL document into KTimer-managed KObject tweens and timed actions.
 
 import gsap from "gsap";
 import type Presk from "@/presk";
 import type KObject from "@/primitives/kobject/kobject";
-import type KTween from "@/timer/tween/tween";
+import KTween from "@/timer/tween/tween";
+import KTimer from "@/timer/ktimer";
 import { evaluateExpression } from "@/binding/expression";
 import type { DslDocument, DslStep } from "./types";
 
@@ -16,7 +12,6 @@ function isExpression(value: unknown): value is string {
   return typeof value === "string";
 }
 
-/** Resolves a properties object once, right now, against the current scene state. Used by "create" and "set". */
 function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<string, unknown> {
   const resolved: Record<string, unknown> = {};
   for (const [key, value] of Object.entries(properties)) {
@@ -24,19 +19,15 @@ function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<s
       if (typeof value === "number" || typeof value === "boolean") {
         resolved[key] = value;
       } else if (isExpression(value)) {
-        // "text" properties (e.g. a text object's `text` field) are strings
-        // that are *not* expressions — only try to evaluate them as one if
-        // they look like a Presk reference/arithmetic expression.
         resolved[key] =
-          /^[A-Za-z0-9_.\s+\-*/]+$/.test(value) // 1. Whitelist valid expression characters only
-          && /[A-Za-z]/.test(value)         // 2. Must contain at least one letter (identifies property/variable references)
-          && value.includes(".")            // 3. Must contain at least one dot (identifies object.property access)
+          /^[A-Za-z0-9_.\s+\-*/]+$/.test(value)
+          && /[A-Za-z]/.test(value)
+          && value.includes(".")
           ? evaluateExpression(value, presk.scene)
           : value;
       } else if (Array.isArray(value)) {
         resolved[key] = value;
       } else if (value && typeof value === "object") {
-        // Recursively resolve nested objects (e.g. position: { x: ..., y: ... })
         resolved[key] = resolveNow(value as Record<string, unknown>, presk);
       }
     }
@@ -44,136 +35,191 @@ function resolveNow(properties: Record<string, unknown>, presk: Presk): Record<s
   return resolved;
 }
 
-function resolveTweenValue(value: unknown, presk: Presk): unknown {
-  return resolveNow({ value }, presk).value;
-}
-
-function addKTween(tl: gsap.core.Timeline, tween: KTween, position?: string | number): void {
-  const clock = { time: 0 };
-  let initialized = false;
-  const render = () => {
-    if (!initialized) {
-      tween.init();
-      initialized = true;
-    }
-    tween.render(clock.time);
-  };
-
-  tl.to(
-    clock,
-    {
-      time: tween.duration,
-      duration: tween.duration,
-      ease: "none",
-      onStart: render,
-      onUpdate: render,
-      onComplete: render,
+function makeActionTween(
+  id: string,
+  target: KObject,
+  action: () => void,
+  onReverse?: () => void,
+): KTween {
+  return new KTween({
+    id,
+    target,
+    startTime: 0,
+    duration: 0,
+    render: (_target, progress) => {
+      if (progress === 1) action();
+      else onReverse?.();
     },
-    position,
-  );
+  });
 }
 
-function addPropertyTween(
-  tl: gsap.core.Timeline,
+function makeTransformTween(
+  id: string,
   target: KObject,
   property: string,
   value: unknown,
   duration: number,
   easing: ((progress: number) => number) | undefined,
   presk: Presk,
-  position?: string | number,
-): void {
-  const clock = { time: 0 };
-  let tween: KTween | undefined;
-  const render = () => {
-    if (!tween) return;
-    tween.render(clock.time);
-  };
-
-  tl.to(
-    clock,
-    {
-      time: duration,
-      duration,
-      ease: "none",
-      onStart: () => {
-        tween = target.tween(property, resolveTweenValue(value, presk), { duration, easing });
-        tween.init();
-        render();
-      },
-      onUpdate: render,
-      onComplete: render,
+): KTween {
+  let propertyTween: KTween | undefined;
+  return new KTween({
+    id: `${id}:${property}`,
+    target,
+    startTime: 0,
+    duration,
+    init: () => {
+      const resolvedValue = resolveNow({ value }, presk).value;
+      [propertyTween] = target.getTweens(
+        { [property]: resolvedValue },
+        { id, startTime: 0, duration, easing },
+      );
+      propertyTween.init();
     },
-    position,
-  );
+    render: (_target, progress) => {
+      propertyTween?.render(progress * duration);
+    },
+  });
+}
+
+function getStepPosition(
+  position: DslStep["start"],
+  cursor: number,
+  lastStart: number,
+  lastEnd: number,
+  labels: Map<string, number>,
+): number {
+  if (position === undefined) return cursor;
+  if (typeof position === "number") return position;
+
+  const timelineRelative = /^([+-]=)(\d*\.?\d+)$/.exec(position);
+  if (timelineRelative) {
+    const amount = Number(timelineRelative[2]) * (timelineRelative[1] === "+=" ? 1 : -1);
+    return cursor + amount;
+  }
+
+  const relative = /^([<>])([+-]=)(\d*\.?\d+)$/.exec(position);
+  if (relative) {
+    const anchor = relative[1] === "<" ? lastStart : lastEnd;
+    const amount = Number(relative[3]) * (relative[2] === "+=" ? 1 : -1);
+    return anchor + amount;
+  }
+  if (position === "<") return lastStart;
+  if (position === ">") return lastEnd;
+
+  const labelRelative = /^([A-Za-z_$][\w$]*)([+-]=)(\d*\.?\d+)$/.exec(position);
+  if (labelRelative) {
+    const labelTime = labels.get(labelRelative[1]);
+    if (labelTime === undefined) {
+      throw new Error(`Presk compiler: unknown timeline label "${labelRelative[1]}".`);
+    }
+    const amount = Number(labelRelative[3]) * (labelRelative[2] === "+=" ? 1 : -1);
+    return labelTime + amount;
+  }
+  if (labels.has(position)) return labels.get(position)!;
+
+  const absolute = Number(position);
+  if (Number.isFinite(absolute)) return absolute;
+  throw new Error(`Presk compiler: invalid timeline position "${position}".`);
 }
 
 /**
- * Materializes all "create" steps sequentially prior to timeline compilation
- * (two-pass model: 1. instantiate shells, 2. resolve & apply initial properties).
+ * Materializes all create steps before compiling so expressions can resolve
+ * references to objects declared later in the document.
  */
 export function prepareScene(steps: DslStep[], presk: Presk): void {
-  // Pass 1: Instanciate shells with resolved initial properties and register them immediately in presk.scene
   for (const step of steps) {
     if (step.action === "create") {
       if (!step.type) throw new Error(`Presk compiler: "create" step for "${step.target}" is missing "type".`);
       const properties = (step.properties ?? {}) as Record<string, unknown>;
       const followProps = (step.follow ?? (typeof properties === "object" && properties !== null && "follow" in properties ? (properties.follow as Record<string, unknown>) : {})) as Record<string, unknown>;
       const combined = { ...properties, ...followProps };
-      const resolved = resolveNow(combined, presk);
-      presk.create(step.type, step.target, resolved);
+      presk.create(step.type, step.target, resolveNow(combined, presk));
     }
   }
 }
 
-export function compile(doc: DslDocument, presk: Presk): gsap.core.Timeline {
-  // Pre-materialize all create steps so targets exist as shells for references
+export function compile(doc: DslDocument, presk: Presk): KTimer {
   prepareScene(doc.steps, presk);
 
-  const tl = gsap.timeline({ paused: true });
+  const timer = presk.timer;
+  const labels = new Map<string, number>();
+  let cursor = 0;
+  let lastStart = 0;
+  let lastEnd = 0;
 
   for (const step of doc.steps) {
-    addStep(tl, step, presk);
+    const startTime = getStepPosition(step.start, cursor, lastStart, lastEnd, labels);
+    const endTime = addStep(timer, step, startTime, presk);
+    lastStart = startTime;
+    lastEnd = endTime;
+    cursor = Math.max(cursor, endTime);
+
+    if (step.name) {
+      labels.set(step.name, lastStart);
+    }
   }
 
-  return tl;
+  return timer;
 }
 
-function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
-  const position = step.start; // undefined behaves like the spec's default ">" (sequential)
-
+function addStep(timer: KTimer, step: DslStep, startTime: number, presk: Presk): number {
   switch (step.action) {
     case "create": {
       const target = presk.scene.get(step.target);
       if (!target) throw new Error(`Presk: "create" step targets unknown object "${step.target}".`);
+
+      const duration = step.duration ?? 0.4;
       const easing = step.ease ? gsap.parseEase(step.ease) : undefined;
-      for (const creationTween of target.create({
-        duration: step.duration,
-        easing,
-      })) {
-        addKTween(tl, creationTween, position);
-      }
+      const finalScale = target.scale;
+      const finalOpacity = target.opacity;
+      target.scale = 0;
+      target.opacity = 0;
+
+      timer.addTweens([
+        makeActionTween(`${target.id}:create:visible`, target, () => {
+          target.visible = true;
+        }, () => {
+          target.visible = false;
+        }),
+      ], startTime);
+      timer.addTweens(
+        target.getTweens(
+          { scale: finalScale, opacity: finalOpacity },
+          { id: `${target.id}:create`, startTime: 0, duration, easing },
+        ),
+        startTime,
+      );
 
       const followMap = step.follow ?? ((step.properties as Record<string, unknown>)?.follow as Record<string, string> | undefined);
       if (followMap) {
-        tl.call(() => presk.binding.follow(step.target, followMap), undefined, position);
+        timer.addTweens([
+          makeActionTween(`${target.id}:create:follow`, target, () => presk.binding.follow(step.target, followMap)),
+        ], startTime);
       }
-      break;
+      return startTime + duration;
     }
 
     case "set": {
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "set" targets unknown object "${step.target}".`);
       const properties = (step.properties ?? {}) as Record<string, unknown>;
-      tl.call(
-        () => {
-          const target = presk.scene.get(step.target);
-          if (!target) throw new Error(`Presk: "set" targets unknown object "${step.target}".`);
-          const data = resolveNow(properties, presk);
-          target.setNow(data);
-        },
-        undefined,
-        position,
-      );
-      break;
+      let previous: Record<string, unknown> = {};
+      timer.addTweens([
+        new KTween({
+          id: `${target.id}:set`,
+          target,
+          startTime: 0,
+          duration: 0,
+          init: () => {
+            previous = Object.fromEntries(Object.keys(properties).map((key) => [key, Reflect.get(target, key)]));
+          },
+          render: (_target, progress) => {
+            target.setNow(progress === 1 ? resolveNow(properties, presk) : previous);
+          },
+        }),
+      ], startTime);
+      return startTime;
     }
 
     case "transform": {
@@ -183,9 +229,19 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
       const duration = step.duration ?? 0;
       const easing = step.ease ? gsap.parseEase(step.ease) : undefined;
       for (const [property, value] of Object.entries(properties)) {
-        addPropertyTween(tl, target, property, value, duration, easing, presk, position);
+        timer.addTweens([
+          makeTransformTween(
+            `${target.id}:transform`,
+            target,
+            property,
+            value,
+            duration,
+            easing,
+            presk,
+          ),
+        ], startTime);
       }
-      break;
+      return startTime + duration;
     }
 
     case "follow": {
@@ -197,31 +253,37 @@ function addStep(tl: gsap.core.Timeline, step: DslStep, presk: Presk): void {
         }
         asStrings[key] = value;
       }
-      tl.call(() => presk.binding.follow(step.target, asStrings), undefined, position);
-      break;
+      const target = presk.scene.get(step.target) ?? presk.scene;
+      timer.addTweens([
+        makeActionTween(`${target.id}:follow`, target, () => presk.binding.follow(step.target, asStrings)),
+      ], startTime);
+      return startTime;
     }
 
     case "unfollow": {
       const properties = step.properties as string[] | undefined;
-      tl.call(() => presk.binding.unfollow(step.target, properties), undefined, position);
-      break;
+      const target = presk.scene.get(step.target) ?? presk.scene;
+      timer.addTweens([
+        makeActionTween(`${target.id}:unfollow`, target, () => presk.binding.unfollow(step.target, properties)),
+      ], startTime);
+      return startTime;
     }
 
     case "destroy": {
-      tl.call(() => presk.destroy(step.target), undefined, position);
-      break;
+      const target = presk.scene.get(step.target);
+      if (!target) throw new Error(`Presk: "destroy" targets unknown object "${step.target}".`);
+      timer.addTweens([
+        makeActionTween(`${target.id}:destroy`, target, () => presk.destroy(step.target)),
+      ], startTime);
+      return startTime;
     }
 
     case "group":
     case "ungroup":
       console.warn(`Presk compiler: "${step.action}" is not implemented yet, skipping step for "${step.target}".`);
-      break;
+      return startTime;
 
     default:
       throw new Error(`Presk compiler: unknown action "${step.action satisfies never}".`);
-  }
-
-  if (step.name) {
-    tl.addLabel(step.name, "<");
   }
 }
