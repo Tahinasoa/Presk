@@ -1,10 +1,6 @@
-import KObject, { type KObjectParams } from "@/primitives/kobject/kobject";
+import KObject, { type KObjectParams, type TweenOptions } from "@/primitives/kobject/kobject";
 import type KTween from "@/timer/tween/tween";
-
-interface KLineCreateOptions {
-  duration?: number;
-  easing?: (input: number) => number;
-}
+import { tweenNumber } from "@/timer/tween/tweenFactory";
 
 export interface KLineParams extends KObjectParams {
   startX: number;
@@ -32,27 +28,29 @@ class KLine extends KObject {
     this._stroke = stroke;
     this._thickness = thickness;
 
-    Object.assign(this.tweenFactors, {
-      startX: this.numberTweenFactor("startX"),
-      startY: this.numberTweenFactor("startY"),
-      endX: this.numberTweenFactor("endX"),
-      endY: this.numberTweenFactor("endY"),
-      stroke: this.numberTweenFactor("stroke"),
-      thickness: this.numberTweenFactor("thickness"),
+    Object.assign(this.tweenfactory, {
+      startX: this.numberTweenFactory("startX"),
+      startY: this.numberTweenFactory("startY"),
+      endX: this.numberTweenFactory("endX"),
+      endY: this.numberTweenFactory("endY"),
+      stroke: this.numberTweenFactory("stroke"),
+      thickness: this.numberTweenFactory("thickness"),
     });
   }
 
-  override create(options: KLineCreateOptions = {}): KTween[] {
-    const duration = options.duration ?? 0.6;
-    const targetEndX = this._endX;
-    const targetEndY = this._endY;
-    this._endX = this._startX;
-    this._endY = this._startY;
-    this.visible = true;
-    return [
-      this.tween("endX", targetEndX, { duration, easing: options.easing }),
-      this.tween("endY", targetEndY, { duration, easing: options.easing }),
-    ];
+  private numberTweenFactory(property: "startX" | "startY" | "endX" | "endY" | "stroke" | "thickness") {
+    return (value: unknown, options: TweenOptions): KTween => {
+      if (typeof value !== "number" || !Number.isFinite(value)) {
+        throw new Error(`Cannot tween '${property}': target value must be a finite number`);
+      }
+      return tweenNumber({
+        ...options,
+        id: `${options.id}:${property}`,
+        target: this,
+        property,
+        to: value,
+      });
+    };
   }
 
   get startX(): number {
