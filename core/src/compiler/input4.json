@@ -32,7 +32,7 @@
         "scale": 1
       },
       "duration": 0.7,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -61,7 +61,7 @@
       },
       "start": "windowAppear",
       "duration": 0.5,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "create",
@@ -178,7 +178,7 @@
       },
       "start": "navAppear+=0.2",
       "duration": 0.6,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "create",
@@ -202,7 +202,7 @@
       "target": "heroLeftBox",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.5)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -226,7 +226,7 @@
       "target": "heroRightBtn",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.5)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -255,7 +255,7 @@
       },
       "start": "heroAppear+=0.2",
       "duration": 0.6,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "create",
@@ -280,7 +280,7 @@
       "name": "card1Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -305,7 +305,7 @@
       "name": "card2Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -330,7 +330,7 @@
       "name": "card3Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -355,7 +355,7 @@
       "name": "card4Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -380,7 +380,7 @@
       "name": "card5Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -405,7 +405,7 @@
       "name": "card6Appear",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.5,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "create",
@@ -440,7 +440,7 @@
       },
       "start": "accentLine1+=0.5",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -452,7 +452,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -463,7 +463,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -474,7 +474,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -485,7 +485,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -496,7 +496,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -507,7 +507,7 @@
       },
       "start": "reflowSidebarCollapse",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -519,7 +519,7 @@
       },
       "start": "reflowSidebarCollapse+=0.5",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -531,7 +531,7 @@
       },
       "start": "heroExpand+=0.5",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -543,7 +543,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -554,7 +554,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -565,7 +565,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -576,7 +576,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -587,7 +587,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -598,7 +598,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -609,7 +609,7 @@
       },
       "start": "reflowSidebarRestore",
       "duration": 1.0,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -618,14 +618,14 @@
       "properties": { "rotation": 0.03, "scale": 1.02 },
       "start": ">0.5",
       "duration": 0.8,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "transform",
       "target": "browserWindow",
       "properties": { "rotation": 0, "scale": 1 },
       "duration": 0.8,
-      "ease": "power2.in"
+      "ease": "cubicIn"
     },
     {
       "action": "destroy",
@@ -648,7 +648,7 @@
       "properties": { "height": 400, "y": 700 },
       "start": ">0",
       "duration": 0.8,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -656,7 +656,7 @@
       "properties": { "height": 400, "y": 700 },
       "start": "<",
       "duration": 0.8,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
     {
       "action": "transform",
@@ -664,7 +664,7 @@
       "properties": { "height": 400, "y": 700 },
       "start": "<",
       "duration": 0.8,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     }
   ]
 }

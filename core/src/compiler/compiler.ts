@@ -130,6 +130,11 @@ function getStepPosition(
     const amount = Number(relative[3]) * (relative[2] === "+=" ? 1 : -1);
     return anchor + amount;
   }
+  const shorthandRelative = /^([<>])([+-]?\d*\.?\d+)$/.exec(position);
+  if (shorthandRelative) {
+    const anchor = shorthandRelative[1] === "<" ? lastStart : lastEnd;
+    return anchor + Number(shorthandRelative[2]);
+  }
   if (position === "<") return lastStart;
   if (position === ">") return lastEnd;
 
@@ -370,7 +375,11 @@ function addStep(timer: KTimer, step: DslStep, startTime: number, presk: Presk):
 
 /** Compiler instance owned by Presk; the compiler uses its owning engine's scene and timer. */
 export class PreskCompiler {
-  constructor(private readonly _presk: Presk) {}
+  private readonly _presk: Presk;
+
+  constructor(presk: Presk) {
+    this._presk = presk;
+  }
 
   compile(doc: DslDocument): KTimer {
     return compileWithPresk(doc, this._presk);

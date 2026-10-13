@@ -7,8 +7,8 @@ that drive `transform` animations.
 ## Timeline compilation
 
 The `PreskCompiler` instance is owned by `Presk`. It resolves the DSL's
-timeline positions (`"<"`, `">"`, relative offsets, absolute seconds, and
-named labels) and registers the resulting tweens and actions with the `KTimer`
+timeline positions (`"<"`, `">"`, relative offsets such as `">0.5"` or
+`"<+=0.5"`, absolute seconds, and named labels) and registers the resulting tweens and actions with the `KTimer`
 owned by that same `Presk` instance.
 
 Use `presk.compile(doc)` or `presk.compiler.compile(doc)`. The original

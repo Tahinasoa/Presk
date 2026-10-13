@@ -24,7 +24,7 @@
       "name": "titleIn",
       "properties": { "opacity": 1, "scale": 1 },
       "duration": 0.7,
-      "ease": "back.out(1.6)"
+      "ease": "backOut"
     },
     {
       "action": "transform",
@@ -97,7 +97,7 @@
       "properties": { "opacity": 1, "scale": 1 },
       "start": "titleOut+=0.3",
       "duration": 0.7,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "transform",
@@ -114,7 +114,7 @@
       "properties": { "opacity": 1, "scale": 1 },
       "start": "oceanIn",
       "duration": 0.7,
-      "ease": "back.out(1.4)"
+      "ease": "backOut"
     },
     {
       "action": "transform",
@@ -156,7 +156,7 @@
       },
       "start": "sunLabelIn+=0.4",
       "duration": 0.8,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
 
     {
@@ -218,7 +218,7 @@
       },
       "start": "heatArrowDraw+=0.5",
       "duration": 0.9,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
 
     {
@@ -228,7 +228,7 @@
       "properties": { "opacity": 1, "scale": 1 },
       "start": "evapArrowDraw",
       "duration": 0.6,
-      "ease": "back.out(1.5)"
+      "ease": "backOut"
     },
     {
       "action": "transform",
@@ -256,7 +256,7 @@
       "properties": { "scale": 1.2 },
       "start": "cloudLabelIn+=0.4",
       "duration": 0.5,
-      "ease": "power2.out"
+      "ease": "cubicOut"
     },
     {
       "action": "transform",
@@ -264,7 +264,7 @@
       "name": "cloudSettle",
       "properties": { "scale": 1.05 },
       "duration": 0.4,
-      "ease": "power2.inOut"
+      "ease": "cubicInOut"
     },
 
     {
@@ -371,7 +371,7 @@
       "properties": { "endY": "ocean.topLeft.y" },
       "start": "rainLabelIn+=0.2",
       "duration": 0.5,
-      "ease": "power1.in"
+      "ease": "quadIn"
     },
 
     {
@@ -387,7 +387,7 @@
       "properties": { "endY": "ocean.topLeft.y" },
       "start": "rainLabelIn+=0.35",
       "duration": 0.5,
-      "ease": "power1.in"
+      "ease": "quadIn"
     },
 
     {
@@ -403,7 +403,7 @@
       "properties": { "endY": "ocean.topLeft.y" },
       "start": "rainLabelIn+=0.5",
       "duration": 0.5,
-      "ease": "power1.in"
+      "ease": "quadIn"
     },
 
     {
@@ -413,7 +413,7 @@
       "properties": { "scale": 1.02 },
       "start": "rain3Fall",
       "duration": 0.2,
-      "ease": "power1.out"
+      "ease": "quadOut"
     },
     {
       "action": "transform",
@@ -421,7 +421,7 @@
       "name": "oceanRippleBack",
       "properties": { "scale": 1 },
       "duration": 0.3,
-      "ease": "power1.in"
+      "ease": "quadIn"
     },
 
     {
@@ -460,7 +460,7 @@
       "properties": { "opacity": 1, "scale": 0.9 },
       "start": "oceanRippleBack+=0.3",
       "duration": 0.5,
-      "ease": "back.out(1.5)"
+      "ease": "backOut"
     },
     {
       "action": "transform",
