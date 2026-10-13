@@ -1,23 +1,15 @@
-# Easing functions (MIT)
+# Easing functions
 
-Function names and the `easings` map follow https://easings.net/.
-The implementations come from `@alloc/easing` (https://github.com/alloc/easing), MIT,
-which itself builds on glsl-easings / Robert Penner's equations. Functions were renamed
-(e.g. `sineIn` -> `easeInSine`) and given explicit return types; the maths are unchanged.
+The implementations and their names in `easing/easing/` follow the downloaded
+`@alloc/easing` library (MIT). Presk uses the library's native function names,
+such as `quadIn`, `sineOut`, and `backInOut`, without aliases.
 
-License: MIT, see LICENSE .
+The library's MIT license is retained in [LICENSE](./LICENSE).
 
-## Differences with easings.net
-Identical values (checked): 24 of the 30 functions.
-Slightly different curves (same family, other formula):
-- easeInElastic, easeOutElastic, easeInOutElastic
-- easeInBounce, easeOutBounce, easeInOutBounce
-
-## Usage
 ```ts
-import { easings, easeOutBack, type EasingName } from "./easing";
+import { easings, quadIn, type EasingName } from "./easing";
 
-const name: EasingName = "easeInOutCubic";
+const name: EasingName = "quadIn";
 easings[name](0.5);
-easeOutBack(0.3);
+quadIn(0.3);
 ```

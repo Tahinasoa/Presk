@@ -1,4 +1,4 @@
-export function easeOutBounce(t: number): number {
+export function bounceOut(t: number) {
   const a = 4.0 / 11.0;
   const b = 8.0 / 11.0;
   const c = 9.0 / 10.0;

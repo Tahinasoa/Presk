@@ -11,9 +11,9 @@ other's implementation details. This is the single most important design
 rule in this codebase — respect it when adding code:
 
 ```
-compiler/    DSL (JSON) -> calls into Presk + a KTimer timeline
+presk.ts     public API + registry + owns compiler and KTimer
                  |
-presk.ts     the public API + registry + the unified ticker
+compiler/    DSL (JSON) -> preloaded scene + KTimer timeline
                  |
         +--------+--------+
         |                 |
@@ -39,17 +39,17 @@ binding/     (pull-based `follow` expression evaluation)
   expression and writes the result directly onto the target `KObject`. No
   proxies, no event subscriptions — see `binding/README.md` for why, and for
   the known limitation (chained bindings can lag one frame).
-- **`compiler/`** — turns a DSL JSON document into: (1) calls to `Presk`'s
+- **`compiler/`** — the `PreskCompiler` owned by `Presk` turns a DSL JSON document into: (1) calls to `Presk`'s
   registry to create/destroy objects, and (2) KTimer-managed `KTween`s and
   timed actions. It resolves the DSL's timeline positions (`"<"`, `">"`,
   `"+=1"`, labels, ...) and creates property tweens through `KObject.getTweens()`.
 - **`registry/`** — where concrete DSL types (`"shape"`, `"text"`, ...) are
   registered as `{ KObject subclass, KGraphicObject subclass }` pairs. This
   is the extension point for the future `lib/` component packages.
-- **`presk.ts`** — the `Presk` class: the object the end user (or the
-  compiler) actually talks to. Owns the registry, the `KScene`, the
+- **`presk.ts`** — the `Presk` class: the public engine object. Owns the
+  registry, `KScene`, `PreskCompiler`, the
   `KGraphicScene`, the `KRenderer`, the binding engine, and the single
-  shared KTimer that drives all four of them in a fixed, deterministic
+  shared KTimer that drives its subsystems in a fixed, deterministic
   order every frame (state update -> binding flush -> redraw).
 
 ## Tick order (why it's deterministic)

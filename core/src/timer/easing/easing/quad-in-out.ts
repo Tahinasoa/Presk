@@ -1,4 +1,4 @@
-export function easeInOutQuad(t: number): number {
+export function quadInOut(t: number) {
     t /= 0.5
     if (t < 1) return 0.5*t*t
     t--

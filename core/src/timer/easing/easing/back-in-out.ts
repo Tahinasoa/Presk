@@ -1,4 +1,4 @@
-export function easeInOutBack(t: number): number {
+export function backInOut(t: number) {
   const s = 1.70158 * 1.525
   if ((t *= 2) < 1)
     return 0.5 * (t * t * ((s + 1) * t - s))

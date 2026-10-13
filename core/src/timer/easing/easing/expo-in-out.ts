@@ -1,4 +1,4 @@
-export function easeInOutExpo(t: number): number {
+export function expoInOut(t: number) {
   return (t === 0.0 || t === 1.0)
     ? t
     : t < 0.5

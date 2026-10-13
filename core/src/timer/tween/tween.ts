@@ -42,7 +42,7 @@ import type KObject from "@/primitives/kobject/kobject";
  *   always produces exactly one render at progress 0.
  * - Outside its interval a tween costs only a comparison.
  * - Easing is applied after clamping and its output is not clamped, so
- *   overshooting easings (easeOutBack, elastic...) work as expected.
+ *   overshooting easings (backOut, elastic...) work as expected.
  *
  * Ordering between tweens (forward order for forward playback, reverse order
  * for backward playback) is the responsibility of the timeline, not of the

@@ -4,9 +4,8 @@
 import "./style.css";
 import Presk from "./presk";
 import { registerBuiltins } from "./registry/builtins";
-import { compile } from "./compiler/compiler";
 import type { DslDocument } from "./compiler/types";
-import inputData from "./compiler/input.json";
+import inputData from "./compiler/input2.json";
 
 const doc = inputData as DslDocument;
 
@@ -20,7 +19,8 @@ await presk.init({
   background: doc.scene.background,
 });
 
-const timer = compile(doc, presk);
+presk.compile(doc);
+const timer = presk.timer;
 const playButton = document.querySelector<HTMLButtonElement>("#play-button");
 const pauseButton = document.querySelector<HTMLButtonElement>("#pause-button");
 const timelineCursor = document.querySelector<HTMLInputElement>("#timeline-cursor");
@@ -37,9 +37,9 @@ playButton.disabled = duration === 0;
 
 function updateTimelineControls(): void {
   const time = Math.min(timer.currentProgress, duration);
-  timelineCursor.value = String(time);
-  timelineCursor.setAttribute("aria-valuetext", `${time.toFixed(2)} seconds`);
-  timelineTime.value = `${time.toFixed(2)} / ${duration.toFixed(2)} s`;
+  timelineCursor!.value = String(time);
+  timelineCursor!.setAttribute("aria-valuetext", `${time.toFixed(2)} seconds`);
+  timelineTime!.value = `${time.toFixed(2)} / ${duration.toFixed(2)} s`;
 }
 
 playButton.addEventListener("click", () => {

@@ -14,36 +14,36 @@ const easeAliases: Record<string, EasingFunction> = {
   "power0.in": (t) => t,
   "power0.out": (t) => t,
   "power0.inOut": (t) => t,
-  "power1.in": easings.easeInQuad,
-  "power1.out": easings.easeOutQuad,
-  "power1.inOut": easings.easeInOutQuad,
-  "power2.in": easings.easeInCubic,
-  "power2.out": easings.easeOutCubic,
-  "power2.inOut": easings.easeInOutCubic,
-  "power3.in": easings.easeInQuart,
-  "power3.out": easings.easeOutQuart,
-  "power3.inOut": easings.easeInOutQuart,
-  "power4.in": easings.easeInQuint,
-  "power4.out": easings.easeOutQuint,
-  "power4.inOut": easings.easeInOutQuint,
-  "sine.in": easings.easeInSine,
-  "sine.out": easings.easeOutSine,
-  "sine.inOut": easings.easeInOutSine,
-  "expo.in": easings.easeInExpo,
-  "expo.out": easings.easeOutExpo,
-  "expo.inOut": easings.easeInOutExpo,
-  "circ.in": easings.easeInCirc,
-  "circ.out": easings.easeOutCirc,
-  "circ.inOut": easings.easeInOutCirc,
-  "back.in": easings.easeInBack,
-  "back.out": easings.easeOutBack,
-  "back.inOut": easings.easeInOutBack,
-  "elastic.in": easings.easeInElastic,
-  "elastic.out": easings.easeOutElastic,
-  "elastic.inOut": easings.easeInOutElastic,
-  "bounce.in": easings.easeInBounce,
-  "bounce.out": easings.easeOutBounce,
-  "bounce.inOut": easings.easeInOutBounce,
+  "power1.in": easings.quadIn,
+  "power1.out": easings.quadOut,
+  "power1.inOut": easings.quadInOut,
+  "power2.in": easings.cubicIn,
+  "power2.out": easings.cubicOut,
+  "power2.inOut": easings.cubicInOut,
+  "power3.in": easings.quartIn,
+  "power3.out": easings.quartOut,
+  "power3.inOut": easings.quartInOut,
+  "power4.in": easings.quintIn,
+  "power4.out": easings.quintOut,
+  "power4.inOut": easings.quintInOut,
+  "sine.in": easings.sineIn,
+  "sine.out": easings.sineOut,
+  "sine.inOut": easings.sineInOut,
+  "expo.in": easings.expoIn,
+  "expo.out": easings.expoOut,
+  "expo.inOut": easings.expoInOut,
+  "circ.in": easings.circIn,
+  "circ.out": easings.circOut,
+  "circ.inOut": easings.circInOut,
+  "back.in": easings.backIn,
+  "back.out": easings.backOut,
+  "back.inOut": easings.backInOut,
+  "elastic.in": easings.elasticIn,
+  "elastic.out": easings.elasticOut,
+  "elastic.inOut": easings.elasticInOut,
+  "bounce.in": easings.bounceIn,
+  "bounce.out": easings.bounceOut,
+  "bounce.inOut": easings.bounceInOut,
 };
 
 function resolveEase(name: string | undefined): EasingFunction | undefined {
@@ -194,7 +194,7 @@ function getStepPosition(
  * properties so forward references exist in the scene. Then resolve and apply
  * expression-valued properties now that every target can be looked up.
  */
-export function prepareScene(steps: DslStep[], presk: Presk): void {
+function prepareSceneWithPresk(steps: DslStep[], presk: Presk): void {
   const createSteps = steps.filter((step) => step.action === "create");
 
   // Pass 1: create all objects before evaluating any expressions. This makes
@@ -222,8 +222,8 @@ export function prepareScene(steps: DslStep[], presk: Presk): void {
   }
 }
 
-export function compile(doc: DslDocument, presk: Presk): KTimer {
-  prepareScene(doc.steps, presk);
+function compileWithPresk(doc: DslDocument, presk: Presk): KTimer {
+  prepareSceneWithPresk(doc.steps, presk);
 
   const timer = presk.timer;
   const labels = new Map<string, number>();
@@ -406,4 +406,22 @@ function addStep(timer: KTimer, step: DslStep, startTime: number, presk: Presk):
     default:
       throw new Error(`Presk compiler: unknown action "${step.action satisfies never}".`);
   }
+}
+
+/** Compiler instance owned by Presk; the compiler uses its owning engine's scene and timer. */
+export class PreskCompiler {
+  constructor(private readonly _presk: Presk) {}
+
+  compile(doc: DslDocument): KTimer {
+    return compileWithPresk(doc, this._presk);
+  }
+}
+
+// Compatibility helpers for callers that used the original standalone API.
+export function prepareScene(steps: DslStep[], presk: Presk): void {
+  prepareSceneWithPresk(steps, presk);
+}
+
+export function compile(doc: DslDocument, presk: Presk): KTimer {
+  return new PreskCompiler(presk).compile(doc);
 }

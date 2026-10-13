@@ -6,6 +6,7 @@
 //     lockstep;
 //   - the KRenderer (PixiJS Application wrapper);
 //   - the BindingEngine (pull-based `follow` bindings);
+//   - the PreskCompiler that preloads a DSL scene and builds the timeline;
 //   - the single shared KTimer loop that drives all of the above in a
 //     fixed, deterministic order every frame.
 //
@@ -19,6 +20,8 @@ import KRenderer from "@/renderer/krenderer";
 import type KGraphicObject from "@/renderer/kgraphicObject";
 import BindingEngine from "@/binding/bindingEngine";
 import KTimer from "@/timer/ktimer";
+import { PreskCompiler } from "@/compiler/compiler";
+import type { DslDocument } from "@/compiler/types";
 import { nanoid } from "nanoid";
 
 // A registered "type" is a pair of constructors: one for the data object,
@@ -51,7 +54,12 @@ class Presk {
   private _renderer!: KRenderer;
   private _binding!: BindingEngine;
   private _timer = new KTimer();
+  private _compiler: PreskCompiler;
   private _started = false;
+
+  constructor() {
+    this._compiler = new PreskCompiler(this);
+  }
 
   /**
    * Registers a DSL type name as a pair of constructors (data object + graphic object).
@@ -80,6 +88,15 @@ class Presk {
 
   get timer(): KTimer {
     return this._timer;
+  }
+
+  get compiler(): PreskCompiler {
+    return this._compiler;
+  }
+
+  /** Preloads the document and builds its timeline on this Presk instance. */
+  compile(doc: DslDocument): KTimer {
+    return this._compiler.compile(doc);
   }
 
   /**
