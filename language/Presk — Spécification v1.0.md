@@ -4,7 +4,7 @@ Oct 14, 2026 · @Randrianarimanana tahinasoa
 
 ## 1. Objectif et principes
 
-Presk décrit une présentation pédagogique animée comme une suite d'actions JSON, rendue sous forme de vidéo. Ill est conçu pour être facilement générable par une IA, déterministe et strict, lisible par un humain, et indépendant du moteur graphique.
+Presk décrit une présentation pédagogique animée comme une suite d'actions JSON, rendue sous forme de vidéo. Il est conçu pour être facilement générable par une IA, déterministe et strict, lisible par un humain, et indépendant du moteur graphique.
 
 Six principes structurent la spécification :
 
@@ -12,7 +12,7 @@ Six principes structurent la spécification :
 2. **Positionnement relatif par défaut.** Un objet se place par rapport aux points d'un autre objet (`"topLeft": "title.bottomLeft"`), pas par des coordonnées figées.
 3. **Une action, une sémantique.** `set` est instantané, `animate` va vers une constante, `travel` parcourt un chemin, `bind` maintient une liaison, `stop` interrompt. Aucune action n'a deux modes aux règles opposées.
 4. **Une couche sémantique par les effets.** `reveal`, `powerOn`, `state`… sont des effets déclenchés par `animate`, et non des propriétés : ils n'ont ni valeur lisible ni état enregistré, et leur rendu est défini par la classe de l'objet (§5).
-5. **Strict plutôt que deviné.** Toute ambiguïté (cycle, référence inconnue, champ interdit, chemin infini) est une erreur de compilation.
+5. **Strict plutôt que deviné.** Toute ambiguïté (référence inconnue, champ interdit, chemin infini) est une erreur de compilation.
 6. **Noyau et catalogue séparés.** Ce document définit le noyau et les primitives géométriques. Les objets complexes (`axes`, `plot`, `math`, `lamp`, `switch`…) et la documentation propre à chaque classe vivent dans des documents distincts.
 
 Le rendu est une vidéo linéaire : il n'y a pas d'interaction pendant la lecture. Un mécanisme de pause sur événement (`checkpoint`) est noté comme extension future (§12).
@@ -97,7 +97,7 @@ Seuls les rectangles et leurs descendants (`text`, `image`, `group`, `scene`) ex
 
 Ces points suivent la rotation de l'objet : `topRight` désigne toujours le coin réel, tourné ou non. Une ancre s'utilise de deux façons :
 
-- **Affectation de point à point** : `"topLeft": "title.bottomLeft"`. L'ancre cible doit appartenir à l'objet modifié.
+- **Affectation de point à point** : `"topLeft": "title.bottomLeft"`. L'ancre assignée doit appartenir à l'objet modifié.
 - **Scalaire** dans une expression arithmétique, avec `.x` ou `.y` : `"x": "title.topRight.x + 20"`.
 
 Une ancre assignée équivaut à `x` + `y` (§9.4). Pour un objet qui n'est pas un rectangle, les 9 ancres standard ne sont pas assignables, mais elles restent lisibles via `boundingBox`.
@@ -176,7 +176,7 @@ La rotation de la vue et des marges différentes par côté sont des extensions 
 
 ## 4. Cycle de vie : `create` et `set`
 
-Tous les objets sont déclarés par `create` et instanciés à l'initialisation de la scène. Ils existent pendant toute sa durée et ne sont jamais détruits. L'existence d'un objet est dissociée de son apparition : un objet créé est invisible tant que l'effet `reveal` n'a pas été déclenché (§5).
+Tous les objets sont déclarés par `create` et instanciés à l'initialisation de la scène, dans l'ordre de leurs `create` dans `steps`. Ils existent pendant toute sa durée et ne sont jamais détruits. Seul le groupe nommé dans un `group` sans `create` est déduit à la compilation (§10). L'existence d'un objet est dissociée de son apparition : un objet créé est invisible tant que l'effet `reveal` n'a pas été déclenché (§5).
 
 ```
 create (à l'initialisation) → (set | animate | travel | bind | stop | group | ungroup)*
@@ -202,8 +202,8 @@ Règles :
 
 - `create` n'est pas placé sur la timeline : `start`, `duration`, `ease`, `repeat`, `repeatMode` et `name` sont interdits.
 - Après `create`, l'objet est invisible : c'est l'état initial géré par le moteur, qui n'est pas une valeur lisible dans le langage. Pour un objet visible dès le début, on écrit l'effet `reveal` dans `properties` : il est appliqué directement à son résultat final, sans animation (valeurs possibles et variantes : §5.3), ce qui évite un `set` par objet.
-- Les expressions de `properties` sont évaluées une seule fois, à l'initialisation, dans l'ordre topologique du graphe de dépendances (§7.3). Elles ne créent aucune liaison : pour qu'une position suive un autre objet, on utilise `bind`.
-- Un objet ne peut référencer qu'un objet créé dans la même scène, mais l'ordre des `create` dans `steps` n'a pas d'importance.
+- Les expressions de `properties` sont évaluées une seule fois, à l'initialisation, dans l'ordre des create de steps. Elles ne créent aucune liaison : pour qu'une position suive un autre objet, on utilise `bind`.
+- Un `create` ne peut référencer qu'un objet créé plus haut dans `steps` : une référence vers un objet futur est une erreur de compilation. Les propriétés d'un objet (par exemple les dimensions calculées d'un `text`) ne sont connues qu'une fois l'objet créé.
 
 ### 4.2 `set`
 
@@ -276,12 +276,12 @@ Règles communes :
 - **Retour en arrière.** `false` joue l'inverse, précalculé par le moteur, de la dernière variante jouée ; ce suivi est interne au moteur et n'est pas accessible dans le langage. `animate reveal: false` fait donc disparaître l'objet, sans action `hide` dédiée.
 - **`set`.** `set` sur un effet applique son résultat final instantanément (§4.2).
 - **Durée et easing.** `duration` et `ease` sont optionnels : la classe fournit des valeurs par défaut.
-- **Pas de pilotage fin.** Un effet n'a pas de valeur : il ne peut être lu dans aucune expression (obj.reveal n'existe pas), ni animé par un chemin, ni lié par `bind`.
+- **Pas de valeur lisible.** Un effet n'a pas de valeur : il ne peut être lu dans aucune expression (obj.reveal n'existe pas), ni animé par un chemin, ni lié par `bind`.
 - **Effets libres.** Un effet modifie ce que sa classe décide : opacité, tracé, couleur, géométrie, enfants. Ce que chaque effet touche est documenté dans la doc de la classe, pas dans le moteur.
 
 ### 5.3 `reveal`
 
-`reveal` est universel : tous les objets l'implémentent grâce à une valeur par défaut dans la classe parente, qui ne modifie que `opacity` (fondu entre 0 et 1).
+`reveal` est universel : tous les objets l'implémentent grâce à une implémentation par défaut dans la classe parente, qui ne modifie que `opacity` (fondu entre 0 et 1).
 
 - Après `create`, l'objet est invisible : c'est l'état initial géré par le moteur, pas une valeur lisible.
 - `reveal: true` est l'apparition par défaut de la classe.
@@ -320,7 +320,7 @@ Une action nommée par `name` (§2.1) sert d'ancre pour les suivantes :
   "start": "menuOpen<0.5", "duration": 0.5 }
 ```
 
-Un `start` qui aboutit à un instant négatif, qui référence un nom inconnu, ou qui référence la fin d'une action infinie (§6.5), est une erreur de compilation.
+Un `start` qui aboutit à un instant négatif, qui référence un nom inconnu, ou qui référence la fin d'une action infinie (§6.5), y compris par le start par défaut, est une erreur de compilation.
 
 ### 6.2 `duration`
 
@@ -423,9 +423,10 @@ Il n'existe pas de mode intermédiaire : une valeur relative qui doit suivre un 
 Le moteur doit :
 
 1. parser chaque expression au moment du `create`, `set`, `animate`, `bind` ou `travel` ;
-2. construire le graphe de dépendances entre objets (par exemple `codLabel.topLeft` dépend de `title.bottomLeft`) ;
-3. détecter les cycles à la compilation, jamais à l'exécution ;
-4. évaluer dans l'ordre topologique, à chaque frame pour les liaisons actives.
+2. lire la valeur courante d'un objet **au moment où l'expression est évaluée** : il n'y a ni graphe de dépendances précalculé, ni ordre topologique ;
+3. à chaque frame, évaluer les liaisons actives (`bind` et chemins de `travel`) dans l'ordre de déclaration des actions dans `steps`. Une lecture voit les valeurs déjà mises à jour pendant cette frame par les liaisons précédentes.
+
+**Les cycles ne sont pas une erreur.** Si A dépend de B, B de C et C de A, la frame lit les valeurs courantes : A lit C, B lit A, C lit B. À la frame suivante on recommence : la valeur avance d'un cran dans le cycle, sans rien bloquer. L'ordre d'évaluation fixe rend le résultat déterministe.
 
 ### 7.4 Fonctions de chemin
 
@@ -450,7 +451,6 @@ Un objet qui expose un chemin nommé (§8.2) fournit trois fonctions de projecti
 ### 7.5 Erreurs à gérer explicitement
 
 - Référence à un objet inexistant : erreur claire.
-- Cycle de dépendance : erreur à la compilation.
 - Segment inconnu ou mal formé, ou point entier dans une formule arithmétique : erreur de parsing.
 - Référence à une valeur infinie (`line`, côté infini de `ray`) : erreur.
 
@@ -565,7 +565,7 @@ Sur un chemin fermé, `from: "current"` sans `to` reprend pour un tour complet, 
 
 ### 8.9 Exemple : orbites imbriquées
 
-Le centre de l'orbite de la lune est lié à la position de la Terre. Le graphe de dépendances reste sans cycle (lune → orbite lunaire → Terre → orbite terrestre).
+Le centre de l'orbite de la lune est lié à la position de la Terre. La lune lit la position de son orbite, qui lit celle de la Terre, qui parcourt sa propre orbite : à chaque frame, la valeur se propage dans cet ordre.
 
 ```json
 { "action": "bind", "target": "moonOrbit", "properties": { "pos": "earth.pos" } }
@@ -764,10 +764,11 @@ Ce catalogue décrit les primitives géométriques. Les objets complexes (`axes`
 
 `name` est autorisé sur toutes les actions sauf `create`.
 
+`scene` est une cible valide pour `set`, `animate`, `bind`, `stop` et `unbind`, avec les seules propriétés de la vue (§3.5). Elle est interdite pour `create`, `travel`, `group` et `ungroup`.
+
 ### 12.2 Erreurs de compilation
 
 - Référence à un objet, une propriété ou un chemin inexistant.
-- Cycle de dépendance entre expressions.
 - Expression mal formée, point entier utilisé dans une formule arithmétique, valeur infinie référencée.
 - Champ interdit pour l'action (par exemple `duration` dans un `set` ou un `bind`).
 - `travel` sur un chemin infini (`line`, `ray`), ou `from`/`to` hors de \[0, 1\] sur un chemin ouvert.
@@ -776,6 +777,8 @@ Ce catalogue décrit les primitives géométriques. Les objets complexes (`axes`
 - `unbind` sans `bind` actif, `stop` sans `animate` ou `travel` actif, ou action d'arrêt mal appariée (`stop` sur un `bind`, `unbind` sur un `animate`).
 - Action infinie qui démarre à l'instant de fin de scène calculé ou après (elle ne serait jamais jouée).
 - `repeat` à zéro ou négatif, ou valeur autre qu'un entier ≥ 1 et `"infinite"`.
+
+Les erreurs propres à une section sont décrites dans cette section : vue de la scène (§3.5), ancres en lecture seule (§3.4), effets lus ou liés (§5.2, §9.1) et `pivot` animé (§3.1).
 
 ### 12.3 Extensions futures
 
