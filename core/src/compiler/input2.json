@@ -1,290 +1,288 @@
 {
   "version": "0.1",
-  "scene": {
-    "width": 1920,
-    "height": 1080,
-    "background": "#080c14"
-  },
+  "scene": { "width": 1920, "height": 1080, "background": "#080c14" },
   "steps": [
     {
-      "action": "create",
-      "target": "demoRect",
-      "type": "shape",
+      "action": "create", "target": "core", "type": "shape",
       "properties": {
-        "x": "scene.width / 2",
-        "y": "scene.height / 2",
-        "width": 800,
-        "height": 500,
-        "fill": 1644825,
-        "stroke": 3950140,
-        "strokeWidth": 4,
-        "scale": 0.8,
-        "opacity": 0
+        "x": "scene.width / 2", "y": "scene.height / 2",
+        "width": 520, "height": 520,
+        "fill": 725544, "stroke": 5032432, "strokeWidth": 4,
+        "scale": 0.2, "opacity": 0
       },
-      "duration": 0.8
+      "duration": 0.5
     },
     {
-      "action": "transform",
-      "target": "demoRect",
-      "name": "rectAppear",
+      "action": "transform", "target": "core", "name": "coreIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "duration": 1.0, "ease": "backOut"
+    },
+
+    {
+      "action": "create", "target": "frame", "type": "shape",
       "properties": {
-        "opacity": 1,
-        "scale": 1
+        "width": 760, "height": 760,
+        "fill": 1780298, "stroke": 16196997, "strokeWidth": 3,
+        "scale": 0, "opacity": 0
       },
-      "duration": 0.8,
-      "ease": "backOut"
+      "follow": { "x": "core.center.x", "y": "core.center.y" },
+      "start": "coreIn+=0.3"
     },
     {
-      "action": "create",
-      "target": "markerTL",
-      "type": "shape",
+      "action": "transform", "target": "frame", "name": "frameIn",
+      "properties": { "opacity": 0.55, "scale": 1 },
+      "start": "coreIn+=0.3", "duration": 1.0, "ease": "backOut"
+    },
+
+    {
+      "action": "create", "target": "nucleus", "type": "shape",
       "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 1098689,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
+        "width": 90, "height": 90,
+        "fill": 16765286, "stroke": 16777215, "strokeWidth": 3,
+        "scale": 0, "opacity": 0
       },
-      "follow": {
-        "x": "demoRect.topLeft.x",
-        "y": "demoRect.topLeft.y"
-      },
-      "start": "rectAppear"
+      "follow": { "x": "core.center.x", "y": "core.center.y" },
+      "start": "frameIn"
     },
     {
-      "action": "create",
-      "target": "markerTC",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 389332,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.topCenter.x",
-        "y": "demoRect.topCenter.y"
-      },
-      "start": "rectAppear"
+      "action": "transform", "target": "nucleus", "name": "nucleusIn",
+      "properties": { "opacity": 1, "scale": 1 },
+      "start": "frameIn+=0.2", "duration": 0.6, "ease": "backOut"
+    },
+
+    {
+      "action": "create", "target": "markTL", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 16731501, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.topLeft.x", "y": "core.topLeft.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerTR",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 3878390,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.topRight.x",
-        "y": "demoRect.topRight.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markTC", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 16765286, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.topCenter.x", "y": "core.topCenter.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerRC",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 9133046,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.rightCenter.x",
-        "y": "demoRect.rightCenter.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markTR", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 5032432, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.topRight.x", "y": "core.topRight.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerBR",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 15485081,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.bottomRight.x",
-        "y": "demoRect.bottomRight.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markRC", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 448160, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.rightCenter.x", "y": "core.rightCenter.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerBC",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 15679556,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.bottomCenter.x",
-        "y": "demoRect.bottomCenter.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markBR", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 16196997, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.bottomRight.x", "y": "core.bottomRight.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerBL",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 16096779,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.bottomLeft.x",
-        "y": "demoRect.bottomLeft.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markBC", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 7473591, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.bottomCenter.x", "y": "core.bottomCenter.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "create",
-      "target": "markerLC",
-      "type": "shape",
-      "properties": {
-        "width": 36,
-        "height": 36,
-        "fill": 5227749,
-        "stroke": 16777215,
-        "strokeWidth": 3,
-        "scale": 0,
-        "opacity": 0
-      },
-      "follow": {
-        "x": "demoRect.leftCenter.x",
-        "y": "demoRect.leftCenter.y"
-      },
-      "start": "rectAppear"
+      "action": "create", "target": "markBL", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 4415982, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.bottomLeft.x", "y": "core.bottomLeft.y" },
+      "start": "nucleusIn"
     },
     {
-      "action": "transform",
-      "target": "markerTL",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "markLC", "type": "shape",
+      "properties": { "width": 36, "height": 36, "fill": 15681391, "stroke": 16777215, "strokeWidth": 3, "scale": 0, "opacity": 0 },
+      "follow": { "x": "core.leftCenter.x", "y": "core.leftCenter.y" },
+      "start": "nucleusIn"
+    },
+
+    { "action": "transform", "target": "markTL", "name": "markersIn", "properties": { "scale": 1, "opacity": 1 }, "start": "nucleusIn+=0.3", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markTC", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.08", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markTR", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.16", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markRC", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.24", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markBR", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.32", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markBC", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.4", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markBL", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.48", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "markLC", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=0.56", "duration": 0.5, "ease": "backOut" },
+
+    {
+      "action": "create", "target": "dotTL", "type": "shape",
+      "properties": { "width": 28, "height": 28, "fill": 448160, "stroke": 16777215, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "frame.topLeft.x", "y": "frame.topLeft.y" },
+      "start": "markersIn+=1.2"
     },
     {
-      "action": "transform",
-      "target": "markerTC",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.05",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "dotTR", "type": "shape",
+      "properties": { "width": 28, "height": 28, "fill": 16765286, "stroke": 16777215, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "frame.topRight.x", "y": "frame.topRight.y" },
+      "start": "markersIn+=1.2"
     },
     {
-      "action": "transform",
-      "target": "markerTR",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.1",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "dotBR", "type": "shape",
+      "properties": { "width": 28, "height": 28, "fill": 16731501, "stroke": 16777215, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "frame.bottomRight.x", "y": "frame.bottomRight.y" },
+      "start": "markersIn+=1.2"
     },
     {
-      "action": "transform",
-      "target": "markerRC",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.15",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "dotBL", "type": "shape",
+      "properties": { "width": 28, "height": 28, "fill": 7473591, "stroke": 16777215, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "frame.bottomLeft.x", "y": "frame.bottomLeft.y" },
+      "start": "markersIn+=1.2"
+    },
+    { "action": "transform", "target": "dotTL", "name": "dotsIn", "properties": { "scale": 1, "opacity": 1 }, "start": "markersIn+=1.2", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "dotTR", "properties": { "scale": 1, "opacity": 1 }, "start": "dotsIn+=0.1", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "dotBR", "properties": { "scale": 1, "opacity": 1 }, "start": "dotsIn+=0.2", "duration": 0.5, "ease": "backOut" },
+    { "action": "transform", "target": "dotBL", "properties": { "scale": 1, "opacity": 1 }, "start": "dotsIn+=0.3", "duration": 0.5, "ease": "backOut" },
+
+    {
+      "action": "create", "target": "satTL", "type": "shape",
+      "properties": { "width": 18, "height": 18, "fill": 16777215, "stroke": 16731501, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "markTL.topLeft.x", "y": "markTL.topLeft.y" },
+      "start": "dotsIn+=0.4"
     },
     {
-      "action": "transform",
-      "target": "markerBR",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.2",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "satTR", "type": "shape",
+      "properties": { "width": 18, "height": 18, "fill": 16777215, "stroke": 5032432, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "markTR.topRight.x", "y": "markTR.topRight.y" },
+      "start": "dotsIn+=0.4"
     },
     {
-      "action": "transform",
-      "target": "markerBC",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.25",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "satBR", "type": "shape",
+      "properties": { "width": 18, "height": 18, "fill": 16777215, "stroke": 16196997, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "markBR.bottomRight.x", "y": "markBR.bottomRight.y" },
+      "start": "dotsIn+=0.4"
     },
     {
-      "action": "transform",
-      "target": "markerBL",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.3",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "satBL", "type": "shape",
+      "properties": { "width": 18, "height": 18, "fill": 16777215, "stroke": 4415982, "strokeWidth": 2, "scale": 0, "opacity": 0 },
+      "follow": { "x": "markBL.bottomLeft.x", "y": "markBL.bottomLeft.y" },
+      "start": "dotsIn+=0.4"
+    },
+    { "action": "transform", "target": "satTL", "name": "satsIn", "properties": { "scale": 1, "opacity": 1 }, "start": "dotsIn+=0.4", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "satTR", "properties": { "scale": 1, "opacity": 1 }, "start": "satsIn+=0.08", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "satBR", "properties": { "scale": 1, "opacity": 1 }, "start": "satsIn+=0.16", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "satBL", "properties": { "scale": 1, "opacity": 1 }, "start": "satsIn+=0.24", "duration": 0.4, "ease": "backOut" },
+
+    {
+      "action": "create", "target": "sparkTL", "type": "shape",
+      "properties": { "width": 14, "height": 14, "fill": 16765286, "stroke": 16777215, "strokeWidth": 1, "scale": 0, "opacity": 0 },
+      "follow": { "x": "dotTL.bottomRight.x", "y": "dotTL.bottomRight.y" },
+      "start": "satsIn+=0.5"
     },
     {
-      "action": "transform",
-      "target": "markerLC",
-      "properties": { "scale": 1, "opacity": 1 },
-      "start": "rectAppear+=0.35",
-      "duration": 0.5,
-      "ease": "backOut"
+      "action": "create", "target": "sparkTR", "type": "shape",
+      "properties": { "width": 14, "height": 14, "fill": 16765286, "stroke": 16777215, "strokeWidth": 1, "scale": 0, "opacity": 0 },
+      "follow": { "x": "dotTR.bottomLeft.x", "y": "dotTR.bottomLeft.y" },
+      "start": "satsIn+=0.5"
     },
     {
-      "action": "transform",
-      "target": "demoRect",
-      "name": "rotateRect1",
-      "properties": {
-        "rotation": 1.5708,
-        "scale": 1.15
-      },
-      "start": ">0.5",
-      "duration": 1.5,
-      "ease": "cubicInOut"
+      "action": "create", "target": "sparkBR", "type": "shape",
+      "properties": { "width": 14, "height": 14, "fill": 16765286, "stroke": 16777215, "strokeWidth": 1, "scale": 0, "opacity": 0 },
+      "follow": { "x": "dotBR.topLeft.x", "y": "dotBR.topLeft.y" },
+      "start": "satsIn+=0.5"
     },
     {
-      "action": "transform",
-      "target": "demoRect",
-      "name": "rotateRect2",
-      "properties": {
-        "rotation": 3.14159,
-        "scale": 1.0
-      },
-      "start": ">0.5",
-      "duration": 1.5,
-      "ease": "cubicInOut"
+      "action": "create", "target": "sparkBL", "type": "shape",
+      "properties": { "width": 14, "height": 14, "fill": 16765286, "stroke": 16777215, "strokeWidth": 1, "scale": 0, "opacity": 0 },
+      "follow": { "x": "dotBL.topRight.x", "y": "dotBL.topRight.y" },
+      "start": "satsIn+=0.5"
     },
+    { "action": "transform", "target": "sparkTL", "name": "sparksIn", "properties": { "scale": 1, "opacity": 1 }, "start": "satsIn+=0.5", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "sparkTR", "properties": { "scale": 1, "opacity": 1 }, "start": "sparksIn+=0.08", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "sparkBR", "properties": { "scale": 1, "opacity": 1 }, "start": "sparksIn+=0.16", "duration": 0.4, "ease": "backOut" },
+    { "action": "transform", "target": "sparkBL", "properties": { "scale": 1, "opacity": 1 }, "start": "sparksIn+=0.24", "duration": 0.4, "ease": "backOut" },
+
     {
-      "action": "transform",
-      "target": "demoRect",
-      "name": "rotateRect3",
-      "properties": {
-        "rotation": 6.28318,
-        "scale": 1.0
-      },
-      "start": ">0.5",
-      "duration": 2.0,
-      "ease": "cubicInOut"
-    }
+      "action": "transform", "target": "core", "name": "spin1",
+      "properties": { "rotation": 1.5708, "scale": 1.1 },
+      "start": "sparksIn+=1.0", "duration": 1.8, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "rotation": -1.5708, "scale": 1.15 }, "start": "spin1", "duration": 1.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTL", "properties": { "rotation": 3.14159 }, "start": "spin1", "duration": 1.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTR", "properties": { "rotation": 3.14159 }, "start": "spin1", "duration": 1.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBR", "properties": { "rotation": 3.14159 }, "start": "spin1", "duration": 1.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBL", "properties": { "rotation": 3.14159 }, "start": "spin1", "duration": 1.8, "ease": "cubicInOut" },
+
+    {
+      "action": "transform", "target": "core", "name": "moveA",
+      "properties": { "x": 560, "y": 340, "rotation": 3.14159, "scale": 0.8 },
+      "start": "spin1+=2.0", "duration": 2.0, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "rotation": -3.14159, "scale": 1.25 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTC", "properties": { "rotation": 3.14159, "scale": 1.4 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markRC", "properties": { "rotation": 3.14159, "scale": 1.4 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBC", "properties": { "rotation": 3.14159, "scale": 1.4 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markLC", "properties": { "rotation": 3.14159, "scale": 1.4 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTL", "properties": { "rotation": 3.14159 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTR", "properties": { "rotation": 3.14159 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBR", "properties": { "rotation": 3.14159 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBL", "properties": { "rotation": 3.14159 }, "start": "moveA", "duration": 2.0, "ease": "cubicInOut" },
+
+    {
+      "action": "transform", "target": "core", "name": "moveB",
+      "properties": { "x": 1360, "y": 740, "rotation": 4.71239, "scale": 1.25 },
+      "start": "moveA+=2.2", "duration": 2.2, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "rotation": -4.71239, "scale": 0.8 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTL", "properties": { "rotation": 6.28318, "scale": 1.6 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTR", "properties": { "rotation": 6.28318, "scale": 1.6 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBR", "properties": { "rotation": 6.28318, "scale": 1.6 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBL", "properties": { "rotation": 6.28318, "scale": 1.6 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTL", "properties": { "rotation": 6.28318, "scale": 1.5 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBR", "properties": { "rotation": 6.28318, "scale": 1.5 }, "start": "moveB", "duration": 2.2, "ease": "cubicInOut" },
+
+    {
+      "action": "transform", "target": "core", "name": "moveC",
+      "properties": { "x": 960, "y": 540, "rotation": 6.28318, "scale": 1 },
+      "start": "moveB+=2.4", "duration": 2.0, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "rotation": -6.28318, "scale": 1 }, "start": "moveC", "duration": 2.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "nucleus", "properties": { "scale": 1.8 }, "start": "moveC", "duration": 2.0, "ease": "backOut" },
+
+    {
+      "action": "transform", "target": "core", "name": "bloom",
+      "properties": { "rotation": 12.56636, "scale": 1.7 },
+      "start": "moveC+=2.3", "duration": 2.5, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "rotation": -12.56636, "scale": 0.5 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTL", "properties": { "rotation": 12.56636, "scale": 2 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTR", "properties": { "rotation": -12.56636, "scale": 2 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBR", "properties": { "rotation": 12.56636, "scale": 2 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBL", "properties": { "rotation": -12.56636, "scale": 2 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTL", "properties": { "rotation": -12.56636 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTR", "properties": { "rotation": 12.56636 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBR", "properties": { "rotation": -12.56636 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBL", "properties": { "rotation": 12.56636 }, "start": "bloom", "duration": 2.5, "ease": "cubicInOut" },
+
+    {
+      "action": "transform", "target": "core", "name": "fadeOut",
+      "properties": { "opacity": 0, "scale": 0.1 },
+      "start": "bloom+=2.8", "duration": 1.2, "ease": "cubicInOut"
+    },
+    { "action": "transform", "target": "frame", "properties": { "opacity": 0, "scale": 0.1 }, "start": "fadeOut", "duration": 1.2, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTC", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.05", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markTR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.1", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markRC", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.15", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.2", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBC", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.25", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markBL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.3", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "markLC", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.35", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotTR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.1", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.2", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "dotBL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.3", "duration": 1.0, "ease": "cubicInOut" },
+    { "action": "transform", "target": "satTL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "satTR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.1", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "satBR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.2", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "satBL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.3", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "sparkTL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "sparkTR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.1", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "sparkBR", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.2", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "sparkBL", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.3", "duration": 0.8, "ease": "cubicInOut" },
+    { "action": "transform", "target": "nucleus", "properties": { "scale": 0, "opacity": 0 }, "start": "fadeOut+=0.6", "duration": 1.0, "ease": "cubicInOut" }
   ]
 }
