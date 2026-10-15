@@ -75,13 +75,15 @@ Les positions s'expriment dans le repère de la scène : origine (0, 0) en haut 
 | --- | --- |
 | `x`, `y` | Position de l'origine locale de l'objet. |
 | `pos` | Même position sous forme de point. `pos` équivaut à `x` + `y` (§9.4). |
-| `rotation` | Rotation en degrés, sens horaire. |
-| `scale` | Échelle uniforme (un seul nombre). Une déformation non uniforme passe par `width` et `height`. |
+| `rotation` | Rotation en degrés, sens horaire, autour du pivot (voir ci-dessous). |
+| `scale` | Échelle uniforme (un seul nombre), autour du pivot. Une déformation non uniforme passe par `width` et `height`. |
 | `opacity` | Opacité de 0 à 1. |
 | `reveal` | Effet universel, sans valeur lisible (§5). |
 | `width`, `height` | Dimensions locales, avant rotation. Portées par les rectangles et leurs descendants, et par `ellipse`. `circle` expose `radius`. |
 
-La propriété `pos` désigne l'origine du repère local, dont le sens dépend du type (§11) : centre pour un rectangle (et ses descendants), un cercle, une ellipse ou un arc ; point de départ pour un segment. La rotation et l'échelle s'appliquent autour de pos : pour un rectangle, elles sont donc centrées sur l'objet.
+La propriété `pos` désigne l'origine du repère local, dont le sens dépend du type (§11) : coin haut-gauche pour un rectangle (et ses descendants), centre pour un cercle, une ellipse ou un arc, point de départ pour un segment. `pos` est la translation de l'objet : elle ne bouge pas quand l'objet tourne.
+
+La rotation et l'échelle s'appliquent autour du **pivot**, qui est par défaut le **centre** de l'objet : le `center` d'un rectangle, le centre de la boîte englobante locale pour les autres formes bornées, `pos` pour `ray`, `line` et `point`. La propriété `pivot` permet de choisir une autre ancre : l'une des 9 ancres pour un rectangle (`"pivot": "topLeft"`), ou `"pos"` pour les autres types. Elle se définit à `create` ou `set` et ne s'anime pas.
 
 ### 3.2 Les 9 ancres du rectangle
 
@@ -132,6 +134,45 @@ Règles :
 4. Une ancre propre est un point : elle suit les mêmes règles de grammaire que les ancres standard (§7.2).
 
 Les fonctions de projection le long d'un chemin (`pathX`, `pathY`, `pathAngle`) sont décrites au §7.4.
+
+### 3.5 Vue de la scène : viewport et zoom
+
+La scène est le monde, de taille `scene.width` × `scene.height`. Ce que montre la vidéo est une **vue** : une région rectangulaire de ce monde, affichée sur tout le cadre. Par défaut la vue couvre toute la scène. La modifier permet de zoomer sur un objet, de se déplacer ou de revenir au plan d'ensemble.
+
+La vue se pilote avec `scene` comme `target`, par `set`, `animate`, `bind`, `stop` et `unbind`. Elle expose quatre propriétés :
+
+| Propriété | Valeur | Effet |
+| --- | --- | --- |
+| `focusOn` | un objet, ou un tableau d'objets | La vue cadre la boîte englobante de l'objet (ou l'union des boîtes), élargie de `focusMargin`. `"focusOn": "scene"` revient au plan d'ensemble. |
+| `focusMargin` | un nombre | Marge ajoutée de chaque côté, en unités de scène. 0 par défaut. Elle n'a de sens qu'avec `focusOn`. |
+| `view` | une région `{ x, y, width, height }` | La vue cadre cette région. `x` et `y` désignent son coin haut-gauche, comme pour tout rectangle (§3.1). Un champ omis garde sa valeur courante ; si seule `width` ou `height` est donnée, l'autre suit le ratio de la scène. Chaque champ est un nombre ou une expression scalaire. |
+| `zoom` | un nombre > 0 | 1 montre toute la scène, 2 montre une région deux fois plus petite, centrée sur la même position. La largeur de la vue vaut `width = scene.width / zoom`. |
+
+```json
+{ "action": "animate", "target": "scene",
+  "properties": { "focusOn": "earth", "focusMargin": 80 },
+  "duration": 1.5, "ease": "cubicInOut" }
+
+{ "action": "animate", "target": "scene",
+  "properties": { "view": { "x": 400, "y": 200, "width": 800, "height": 450 } },
+  "duration": 1 }
+
+{ "action": "bind", "target": "scene",
+  "properties": { "focusOn": "earth", "focusMargin": 200 } }
+
+{ "action": "set", "target": "scene", "properties": { "focusOn": "scene" } }
+```
+
+Règles :
+
+1. **Évaluation.** Elle suit le §7.3. Avec `animate`, la région visée est calculée une fois au démarrage (la boîte de l'objet à cet instant). Avec `bind`, elle est recalculée à chaque frame : la vue suit l'objet. Avec `set`, la vue change instantanément, sans transition.
+2. **Ratio.** La vue garde toujours le ratio de la scène. Si la région demandée a un autre ratio, elle est agrandie sur son plus petit côté, autour du même centre, pour rester entièrement visible.
+3. **Un seul état.** `focusOn`, `view` et `zoom` pilotent le même état (centre et zoom). Ils sont donc en conflit entre eux (§9.3), au contraire de `focusMargin` qui accompagne `focusOn`.
+4. **Interpolation.** Un `animate` interpole le centre linéairement et le zoom de façon géométrique, pour un mouvement perçu comme régulier.
+5. **Lecture.** `scene.view` expose les 9 ancres, `width` et `height` de la vue courante : `scene.view.center.x`, `scene.view.topLeft`, `scene.view.width`. Les points `scene.*` restent ceux de la scène entière, jamais ceux de la vue. On peut ainsi accrocher un objet au bord de ce qui est visible avec un `bind`.
+6. **Erreurs.** `focusOn` sur un objet non borné (`line`, `ray`), `zoom` ou dimension de région inférieur ou égal à 0, `focusMargin` sans `focusOn`, ou toute autre propriété que ces quatre sur `scene`. `create`, `travel`, `group` et `ungroup` sont interdits avec `scene` pour cible.
+
+La rotation de la vue et des marges différentes par côté sont des extensions possibles.
 
 ## 4. Cycle de vie : `create` et `set`
 
@@ -475,7 +516,7 @@ Un objet qui expose un chemin nommé (§8.2) fournit trois fonctions de projecti
 | `ease` | `linear` | Easing par passage. |
 | `repeat`, `repeatMode` | `1`, `restart` | Répétition (§6.4). Avec `yoyo`, le passage retour parcourt le chemin de `to` vers `from`. |
 | `orient` | absent | `true` ou `{ "offset": <degrés> }` : oriente l'objet selon la tangente (§8.5). |
-| `anchor` | `pos` | Point de l'objet posé sur le chemin : `pos` ou l'une des 9 ancres pour un rectangle (par exemple `"bottomCenter"`). |
+| `anchor` | `pos` | Point de l'objet posé sur le chemin : `pos` ou l'une des 9 ancres pour un rectangle (par exemple `"center"`). |
 
 Effets :
 
@@ -602,6 +643,8 @@ Le conflit se juge sur les propriétés équivalentes (§9.4), pas sur leur nom 
 
 Les points de `boundingBox` et les ancres déclarées en lecture seule par leur classe ne sont pas assignables. Les ancres propres en lecture/écriture se traitent comme des propriétés de point (§3.4).
 
+Sur `scene`, `focusOn`, `view` et `zoom` désignent le même état de la vue : ils sont en conflit entre eux (§3.5).
+
 ## 10. Groupes et layouts
 
 Un groupe est un objet à part entière, descendant de `rectangle`. Il expose donc les 9 ancres standard (§3.2), qui sont par défaut la boîte englobante de ses enfants ou celle du layout. Un `animate`, un `travel` ou un `bind` appliqué au groupe (`x`, `y`, `scale`, `rotation`) affecte récursivement tous ses enfants.
@@ -676,10 +719,10 @@ Ce catalogue décrit les primitives géométriques. Les objets complexes (`axes`
 
 | Type | `pos` | Propriétés propres | Ancres propres | Chemin `main` |
 | --- | --- | --- | --- | --- |
-| `rectangle` | centre | `width`, `height` | 9 ancres | contour, fermé |
-| `text` | centre | `text`, style (§11.3) ; dimensions calculées par le moteur | 9 ancres | contour, fermé |
-| `image` | centre | `url`, `width`, `height` (si un seul est donné, le ratio est conservé) | 9 ancres | contour, fermé |
-| `group` | centre de la boîte englobante | `children`, `layout`, `gap`, `margin` (§10) | 9 ancres | contour, fermé |
+| `rectangle` | coin haut-gauche | `width`, `height` | 9 ancres | contour, fermé |
+| `text` | coin haut-gauche | `text`, style (§11.3) ; dimensions calculées par le moteur | 9 ancres | contour, fermé |
+| `image` | coin haut-gauche | `url`, `width`, `height` (si un seul est donné, le ratio est conservé) | 9 ancres | contour, fermé |
+| `group` | coin haut-gauche de la boîte englobante | `children`, `layout`, `gap`, `margin` (§10) | 9 ancres | contour, fermé |
 | `circle` | centre | `radius` | `boundingBox` | cercle, fermé |
 | `ellipse` | centre | `width`, `height` | `boundingBox` | ellipse, fermé |
 | `arc` | centre du cercle porteur | `radius`, `startAngle`, `endAngle` (degrés, sens horaire) | `start`, `end` | tracé, ouvert |
@@ -753,7 +796,7 @@ Ces choix ont été faits pour que la spécification soit complète ; ils mérit
 
 - **`start` par défaut** : si omis, l'action démarre à la fin de la précédente (`">"`).
 - **Conflits d'effets** : pas d'empreinte déclarée dans le code ; elle est documentée dans les classes, et l'auteur évite les actions simultanées sur un même objet (§5.4).
-- **`travel.anchor`** : option ajoutée pour poser sur le chemin un autre point que l'origine de l'objet (par exemple le bas d'une voiture, avec "bottomCenter").
+- **`travel.anchor`** : option ajoutée pour poser sur le chemin un autre point que l'origine de l'objet (par exemple le centre d'un rectangle, pour une voiture).
 - **`group`** : créé avec `reveal = true`.
 - **`line`, `ray`, `segment`, `arrow`** : propriétés de définition `p1`/`p2`, `origin`/`through`, `start`/`end`.
 - **`curve`** : `interpolation` entre `"spline"` et `"bezier"`, détail à confirmer.
