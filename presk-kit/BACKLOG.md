@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T040-model-values-ports-effect-types (BLOCKED)
-- Dernière étape terminée : T040.1 tests ports écrits; leur échec initial confirme l’absence de `ports.ts`
-- Prochaine action : clarifier les types `RefSegment` et `RefDescription` requis par `ClassDef.refExtension`, puis reprendre T040.2
-- État du code : seul `ports.test.ts` a été créé; aucun module modèle n’a encore été ajouté
+- Tâche courante : T040-model-values-ports-effect-types
+- Dernière étape terminée : T040.2–T040.5 terminées; tests ports 3/3, tsc, arch et suite complète verts
+- Prochaine action : commit exact de T040
+- État du code : ports, types modèle, EffectDef et squelette SceneObject présents; suite 414 passée, 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -36,7 +36,7 @@
 | T033-geom-color | P2 | DONE | T030 | T034-geom-flat-path | 2231000 |
 | T034-geom-flat-path | P2 | DONE | T030 | T035-geom-flatten-shapes | 1118c2e |
 | T035-geom-flatten-shapes | P2 | DONE | T034 | T040-model-values-ports-effect-types | 941f738 |
-| T040-model-values-ports-effect-types | P3 | BLOCKED | T034, T010 | T041-model-scene-object | - |
+| T040-model-values-ports-effect-types | P3 | IN_PROGRESS | T034, T010 | T041-model-scene-object | - |
 | T041-model-scene-object | P3 | TODO | T040, T031, T032 | T042-model-base-props | - |
 | T042-model-base-props | P3 | TODO | T041 | T043-model-world | - |
 | T043-model-world | P3 | TODO | T041 | T044-model-effects-reveal | - |
@@ -152,6 +152,7 @@
 2026-10-19 | T034 | DONE | commit 1118c2e | FlatPath tests 6/6; arch 12/12; tsc propre; suite 408 passés, 3 skipped
 2026-10-19 | T035 | DONE | commit 941f738 | flatten tests 9/9; arch 12/12; tsc propre; suite 411 passés, 3 skipped
 2026-10-19 | T040 | BLOCKED | sans commit | `ClassDef.refExtension` référence `RefSegment` et `RefDescription` sans définition ni import indiqué; arrêt selon §4
+2026-10-19 | T040 | DONE | commit à inscrire | imports et définition clarifiés par l’architecte; validations vertes
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
@@ -159,7 +160,6 @@
 T001 | La baseline correspond à T001.4 (184 passés, 3 échoués, 2 erreurs tsc), mais la section Validation exige zéro échec et zéro erreur; `vitest run src/__arch__` ne trouve aucun test. La tâche doit-elle être DONE avec la baseline attendue malgré ces critères, ou BLOCKED jusqu’à clarification ? | fiche T001 : résultats attendus aux étapes T001.3–T001.4; section Validation : tsc et tous les tests doivent passer, dont `src/__arch__`; exécution : chiffres attendus reproduits et aucun test arch détecté | considérer les échecs/types annoncés comme base acceptée et l’arch guard absent comme non applicable, ou exiger une validation verte avant DONE
 
 T001 | Quel est l’état attendu des suppressions de agent/ et de l’ajout de presk_kit/ visibles dans git status, et peux-tu fournir un arbre propre pour reprendre T001.1 ? | agent.md et T001 exigent git status propre avant branche/tests; status montre de nombreux D agent/** et ?? presk_kit/; essai git switch -c presk-v1 a échoué avec Permission denied sur .git/refs/heads/presk-v1.lock | conserver ces changements et les committer, ou restaurer la suppression/annuler le déplacement puis retenter
-T040 | Où `RefSegment` et `RefDescription` sont-ils définis/importés pour `ClassDef.refExtension`, et quelle est leur signature exacte ? | `C-model-core.md` les utilise mais ne les déclare pas; fiche T040.5 liste les imports de `values.ts` sans ces types | fournir leurs définitions/imports exacts, ou confirmer leurs formes/types attendus
 
 ## Contrôles humains
 (à faire par l'humain, jamais par l'agent)
