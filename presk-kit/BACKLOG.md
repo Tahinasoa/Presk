@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T012-lang-ease-names (IN_PROGRESS)
-- Dernière étape terminée : validations T012 complètes : tests 3/3, arch 12/12, tsc propre, suite 208 passés/3 skipped
-- Prochaine action : committer T012, puis démarrer T013
-- État du code : toutes les validations T012 passent
+- Tâche courante : T013-lang-start-parse (IN_PROGRESS)
+- Dernière étape terminée : validations T013 complètes : cas 32/32, arch 12/12, tsc propre, suite 240 passés/3 skipped
+- Prochaine action : committer T013, puis démarrer T014
+- État du code : toutes les validations T013 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -20,8 +20,8 @@
 | T004-arch-lint-layers | P0 | DONE | T003 | T010-lang-diagnostics | 0bfb04b |
 | T010-lang-diagnostics | P1 | DONE | T004 | T011-lang-dsl-types | 2e7bb50 |
 | T011-lang-dsl-types | P1 | DONE | T010 | T012-lang-ease-names | e742eb0 |
-| T012-lang-ease-names | P1 | IN_PROGRESS | T011 | T013-lang-start-parse | - |
-| T013-lang-start-parse | P1 | TODO | T010 | T014-lang-expr-tokenizer | - |
+| T012-lang-ease-names | P1 | DONE | T011 | T013-lang-start-parse | ecd1d8d |
+| T013-lang-start-parse | P1 | IN_PROGRESS | T010 | T014-lang-expr-tokenizer | - |
 | T014-lang-expr-tokenizer | P1 | TODO | T010 | T015-lang-expr-parser-arithmetic | - |
 | T015-lang-expr-parser-arithmetic | P1 | TODO | T014 | T016-lang-expr-parser-references | - |
 | T016-lang-expr-parser-references | P1 | TODO | T015 | T017-lang-validate-shell | - |
@@ -135,6 +135,7 @@
 2026-10-19 | T004 | DONE | commit 0bfb04b | tests arch 12/12; tsc propre; suite 196 passés, 3 skipped
 2026-10-19 | T010 | DONE | commit 2e7bb50 | diagnostics 7/7; arch 12/12; tsc propre; suite 203 passés, 3 skipped
 2026-10-19 | T011 | DONE | commit e742eb0 | tests types 2/2; arch 12/12; tsc propre; suite 205 passés, 3 skipped
+2026-10-19 | T012 | DONE | commit ecd1d8d | easing tests 3/3; arch 12/12; tsc propre; suite 208 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
