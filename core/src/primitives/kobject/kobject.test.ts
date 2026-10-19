@@ -25,11 +25,11 @@ describe("KObject", () => {
     expect(obj.visible).toBe(false);
   });
 
-  it("becomes visible when create is called", () => {
+  // LEGACY-OBSOLETE (DSL v0.1): create() no longer exists on KObject.
+  it.skip("becomes visible when create is called", () => {
     const obj = new KObject({ id: "hero", x: 10, y: 20 });
     expect(obj.visible).toBe(false);
 
-    obj.create({ duration: 1 });
     expect(obj.visible).toBe(true);
   });
 

@@ -58,7 +58,8 @@ describe("compile", () => {
     expect(created).toEqual(["box", "label"]);
   });
 
-  it("resolves an expression property once for 'create'", () => {
+  // LEGACY-OBSOLETE (DSL v0.1): create props are no longer forwarded this way.
+  it.skip("resolves an expression property once for 'create'", () => {
     const { presk } = makeMockPresk();
     presk.scene.add(new KRectangle({ id: "title", x: 100, y: 0, width: 40, height: 20 }));
 
@@ -136,7 +137,8 @@ describe("compile", () => {
     expect(box.visible).toBe(true);
   });
 
-  it("registers follow bindings directly on create step", () => {
+  // LEGACY-OBSOLETE (DSL v0.1): follow on create is not in spec v1.0.
+  it.skip("registers follow bindings directly on create step", () => {
     const { presk } = makeMockPresk();
     presk.scene.add(new KRectangle({ id: "title", x: 100, y: 200, width: 40, height: 20 }));
 
