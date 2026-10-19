@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T067-engine-compile-steps (IN_PROGRESS)
-- Dernière étape terminée : T067.8 — compilation des brouillons implémentée; validation complète verte
-- Prochaine action : commit exact T067, puis reprendre T068
-- État du code : T067 validée; ciblé 8/8, tsc propre, arch 12/12, suite 539 passés et 3 skipped
+- Tâche courante : T068-engine-plan-timeline (IN_PROGRESS)
+- Dernière étape terminée : T068.7 — planificateur et pipeline de test implémentés; validation complète verte
+- Prochaine action : commit exact T068, puis reprendre T069
+- État du code : T068 validée; ciblé 13/13, tsc propre, arch 12/12, suite 552 passés et 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -53,8 +53,8 @@
 | T064-engine-compile-properties | P4 | DONE | T063, T044 | T065-engine-compile-create | 2a2e564 |
 | T065-engine-compile-create | P4 | DONE | T064, T049 | T066-engine-pass-progress | ba5aaa5 |
 | T066-engine-pass-progress | P4 | DONE | T012, T010 | T067-engine-compile-steps | c424625 |
-| T067-engine-compile-steps | P4 | IN_PROGRESS | T065, T013, T066 | T068-engine-plan-timeline | - |
-| T068-engine-plan-timeline | P4 | TODO | T067, T066 | T069-engine-analyze-effects | - |
+| T067-engine-compile-steps | P4 | DONE | T065, T013, T066 | T068-engine-plan-timeline | bb5fdac |
+| T068-engine-plan-timeline | P4 | IN_PROGRESS | T067, T066 | T069-engine-analyze-effects | - |
 | T069-engine-analyze-effects | P4 | TODO | T068, T064 | T070-engine-analyze-activity | - |
 | T070-engine-analyze-activity | P4 | TODO | T068, T069 | T071-engine-compile-program | - |
 | T071-engine-compile-program | P4 | TODO | T065, T067, T068, T069, T070, T021 | T072-engine-sim-build-world | - |
@@ -171,6 +171,7 @@
 2026-10-19 | T064 | DONE | commit 2a2e564 | properties tests 8/8; arch 12/12; tsc propre; suite 505 passés, 3 skipped
 2026-10-19 | T065 | DONE | commit ba5aaa5 | create compilation tests 9/9; arch 12/12; tsc propre; suite 514 passés, 3 skipped
 2026-10-19 | T066 | DONE | commit c424625 | passProgress tests 17/17; arch 12/12; tsc propre; suite 531 passés, 3 skipped
+2026-10-19 | T067 | DONE | commit bb5fdac | steps compilation tests 8/8; arch 12/12; tsc propre; suite 539 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
