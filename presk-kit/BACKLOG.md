@@ -5,10 +5,11 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T048-model-scene-root (IN_PROGRESS)
-- Dernière étape terminée : T048.4 — `makeReadOnly`, `SCENE_DEF` et `createSceneRoot` implémentés; test ciblé 5/5
-- Prochaine action : commit exact T048, puis mettre à jour le statut et reprendre T049
-- État du code : implémentation T048 présente; ciblé 5/5, tsc propre, arch 12/12, suite 459 passés et 3 skipped
+- Tâche courante : T049-model-catalog (IN_PROGRESS)
+- Dernière étape terminée : T049.3 — `Catalog` et `createDefaultCatalog` implémentés; ciblé 2/2
+- Prochaine action : commit exact T049, puis prendre T060
+- État du code : T049 validée; tsc propre, arch 12/12, suite 461 passés et 3 skipped
+- État du code : T048 validée et commitée; reprise T049 prête
 - Branche git : presk-v1
 
 ## État des tâches
@@ -44,8 +45,8 @@
 | T045-model-rectangle-object | P3 | DONE | T042, T044, T043 | T046-model-refs | 7d12a75 |
 | T046-model-refs | P3 | DONE | T045 | T047-model-text-object | 57eab34 |
 | T047-model-text-object | P3 | DONE | T045 | T048-model-scene-root | 495cf0d |
-| T048-model-scene-root | P3 | IN_PROGRESS | T045 | T049-model-catalog | - |
-| T049-model-catalog | P3 | TODO | T047, T048 | T060-engine-program-types | - |
+| T048-model-scene-root | P3 | DONE | T045 | T049-model-catalog | 2ed98d6 |
+| T049-model-catalog | P3 | IN_PROGRESS | T047, T048 | T060-engine-program-types | - |
 | T060-engine-program-types | P4 | TODO | T049, T021 | T061-engine-analyze-expr | - |
 | T061-engine-analyze-expr | P4 | TODO | T060, T046, T016 | T062-engine-compile-expr | - |
 | T062-engine-compile-expr | P4 | TODO | T061 | T063-engine-compile-value | - |
@@ -162,6 +163,7 @@
 2026-10-19 | T046 | DONE | commit 57eab34 | refs tests 9/9; arch 12/12; tsc propre; suite 451 passés, 3 skipped
 2026-10-19 | T047 | DONE | commit 495cf0d | TextObject tests 3/3; arch 12/12; tsc propre; suite 454 passés, 3 skipped
 2026-10-19 | T048 | BLOCKED | sans commit | la fiche demande `classes/sceneRoot.ts`, le contrat `classes/scene.md` indique `classes/sceneObject.ts`; arrêt selon §4
+2026-10-19 | T048 | DONE | commit 2ed98d6 | scene root tests 5/5; arch 12/12; tsc propre; suite 459 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)

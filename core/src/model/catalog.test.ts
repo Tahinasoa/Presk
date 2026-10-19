@@ -1,0 +1,24 @@
+import { describe, expect, it } from "vitest";
+import { Catalog } from "@/model/catalog";
+import { createDefaultCatalog } from "@/model/defaultCatalog";
+import { RECTANGLE_DEF } from "@/model/classes/rectangleObject";
+
+describe("Catalog", () => {
+  it("creates a sorted default catalog with scene, rectangle and text", () => {
+    const catalog = createDefaultCatalog();
+
+    expect(catalog.types()).toEqual(["rectangle", "scene", "text"]);
+    expect(catalog.get("text")?.family).toBe("rectangle");
+    expect(catalog.get("nope")).toBeUndefined();
+    expect(catalog.has("scene")).toBe(true);
+    expect(catalog.get("scene")?.creatable).toBe(false);
+    expect(catalog.get("rectangle")?.creatable).toBe(true);
+  });
+
+  it("rejects registering a type more than once", () => {
+    const catalog = new Catalog();
+    catalog.register(RECTANGLE_DEF);
+
+    expect(() => catalog.register(RECTANGLE_DEF)).toThrow();
+  });
+});
