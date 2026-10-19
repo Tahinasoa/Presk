@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T044-model-effects-reveal (IN_PROGRESS)
-- Dernière étape terminée : T044.1 tests écrits, échec initial confirmé; reveal implémenté, tests 3/3
-- Prochaine action : commit exact de T044 après validations complètes
-- État du code : REVEAL_FADE et revealWithDraw présents; tsc, arch et suite complète verts (437 passés, 3 skipped)
+- Tâche courante : T045-model-rectangle-object (IN_PROGRESS)
+- Dernière étape terminée : T045.1 tests écrits, échec initial confirmé; RectangleObject implémenté, tests 5/5
+- Prochaine action : commit exact de T045 après validations complètes
+- État du code : classe rectangle, ancres, props réutilisables et chemin créés; validations vertes (442 passés, 3 skipped)
 - Branche git : presk-v1
 
 ## État des tâches
@@ -40,8 +40,8 @@
 | T041-model-scene-object | P3 | DONE | T040, T031, T032 | T042-model-base-props | 3e165f0 |
 | T042-model-base-props | P3 | DONE | T041 | T043-model-world | 03df63d |
 | T043-model-world | P3 | DONE | T041 | T044-model-effects-reveal | 379e04c |
-| T044-model-effects-reveal | P3 | IN_PROGRESS | T041, T040 | T045-model-rectangle-object | - |
-| T045-model-rectangle-object | P3 | TODO | T042, T044, T043 | T046-model-refs | - |
+| T044-model-effects-reveal | P3 | DONE | T041, T040 | T045-model-rectangle-object | d022178 |
+| T045-model-rectangle-object | P3 | IN_PROGRESS | T042, T044, T043 | T046-model-refs | - |
 | T046-model-refs | P3 | TODO | T045 | T047-model-text-object | - |
 | T047-model-text-object | P3 | TODO | T045 | T048-model-scene-root | - |
 | T048-model-scene-root | P3 | TODO | T045 | T049-model-catalog | - |
@@ -157,6 +157,7 @@
 2026-10-19 | T042 | DONE | commit 03df63d | baseProps tests 4/4; arch 12/12; tsc propre; suite 427 passés, 3 skipped
 2026-10-19 | T043 | BLOCKED | sans commit | T043.1 exige `model/testing.ts`, absent de la liste autorisée « Fichiers »; arrêt selon §4
 2026-10-19 | T043 | DONE | commit 379e04c | World tests 7/7; arch 12/12; tsc propre; suite 434 passés, 3 skipped
+2026-10-19 | T044 | DONE | commit d022178 | effects tests 3/3; arch 12/12; tsc propre; suite 437 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
