@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T062-engine-compile-expr (IN_PROGRESS)
-- Dernière étape terminée : T062.4 — évaluateur implémenté; tests ciblés 11/11
-- Prochaine action : commit exact T062, puis reprendre T063
-- État du code : T062 validée; ciblé 11/11, tsc propre, arch 12/12, suite 490 passés et 3 skipped
+- Tâche courante : T063-engine-compile-value (IN_PROGRESS)
+- Dernière étape terminée : T063.9 — compilateur de valeurs implémenté; tests ciblés 7/7 et tsc propre
+- Prochaine action : commit exact T063, puis reprendre T064
+- État du code : T063 validée; ciblé 7/7, tsc propre, arch 12/12, suite 497 passés et 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -48,8 +48,8 @@
 | T049-model-catalog | P3 | DONE | T047, T048 | T060-engine-program-types | eed9b05 |
 | T060-engine-program-types | P4 | DONE | T049, T021 | T061-engine-analyze-expr | 4c609ab |
 | T061-engine-analyze-expr | P4 | DONE | T060, T046, T016 | T062-engine-compile-expr | 18e898b |
-| T062-engine-compile-expr | P4 | IN_PROGRESS | T061 | T063-engine-compile-value | - |
-| T063-engine-compile-value | P4 | TODO | T062, T033 | T064-engine-compile-properties | - |
+| T062-engine-compile-expr | P4 | DONE | T061 | T063-engine-compile-value | 27548c4 |
+| T063-engine-compile-value | P4 | IN_PROGRESS | T062, T033 | T064-engine-compile-properties | - |
 | T064-engine-compile-properties | P4 | TODO | T063, T044 | T065-engine-compile-create | - |
 | T065-engine-compile-create | P4 | TODO | T064, T049 | T066-engine-pass-progress | - |
 | T066-engine-pass-progress | P4 | TODO | T012, T010 | T067-engine-compile-steps | - |
@@ -166,6 +166,7 @@
 2026-10-19 | T049 | DONE | commit eed9b05 | catalog tests 2/2; arch 12/12; tsc propre; suite 461 passés, 3 skipped
 2026-10-19 | T060 | DONE | commit 4c609ab | program/scope tests 3/3; arch 12/12; tsc propre; suite 464 passés, 3 skipped
 2026-10-19 | T061 | DONE | commit 18e898b | expression analysis tests 15/15; arch 12/12; tsc propre; suite 479 passés, 3 skipped
+2026-10-19 | T062 | DONE | commit 27548c4 | expression evaluation tests 11/11; arch 12/12; tsc propre; suite 490 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
