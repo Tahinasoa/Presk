@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T020-lang-validate-properties-shape (IN_PROGRESS)
-- Dernière étape terminée : validations T020 complètes après correction : tests 21/21, arch 12/12, tsc propre, suite 360 passés/3 skipped
-- Prochaine action : committer T020, puis démarrer T021
-- État du code : toutes les validations T020 passent
+- Tâche courante : T021-lang-validate-document (IN_PROGRESS)
+- Dernière étape terminée : validations T021 complètes : tests 7/7, arch 12/12, tsc propre, suite 367 passés/3 skipped
+- Prochaine action : committer T021, puis démarrer T030
+- État du code : toutes les validations T021 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -28,8 +28,8 @@
 | T017-lang-validate-shell | P1 | DONE | T010, T011 | T018-lang-validate-step-fields | 7f0f6c3 |
 | T018-lang-validate-step-fields | P1 | DONE | T017 | T019-lang-validate-timing-values | de210c5 |
 | T019-lang-validate-timing-values | P1 | DONE | T018, T012, T013 | T020-lang-validate-properties-shape | 10611c5 |
-| T020-lang-validate-properties-shape | P1 | IN_PROGRESS | T018 | T021-lang-validate-document | - |
-| T021-lang-validate-document | P1 | TODO | T017, T018, T019, T020 | T030-geom-vec | - |
+| T020-lang-validate-properties-shape | P1 | DONE | T018 | T021-lang-validate-document | 78ff38c |
+| T021-lang-validate-document | P1 | IN_PROGRESS | T017, T018, T019, T020 | T030-geom-vec | - |
 | T030-geom-vec | P2 | TODO | T004 | T031-geom-matrix | - |
 | T031-geom-matrix | P2 | TODO | T030 | T032-geom-bounds | - |
 | T032-geom-bounds | P2 | TODO | T031 | T033-geom-color | - |
@@ -143,6 +143,7 @@
 2026-10-19 | T017 | DONE | commit 7f0f6c3 | shell tests 16/16; arch 12/12; tsc propre; suite 294 passés, 3 skipped
 2026-10-19 | T018 | DONE | commit de210c5 | step fields tests 24/24; arch 12/12; tsc propre; suite 318 passés, 3 skipped
 2026-10-19 | T019 | DONE | commit 10611c5 | timing tests 21/21; arch 12/12; tsc propre; suite 339 passés, 3 skipped
+2026-10-19 | T020 | DONE | commit 78ff38c | properties tests 21/21; arch 12/12; tsc propre; suite 360 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
