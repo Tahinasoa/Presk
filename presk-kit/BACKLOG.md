@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T015-lang-expr-parser-arithmetic (IN_PROGRESS)
-- Dernière étape terminée : validations T015 complètes : tests 13/13, arch 12/12, tsc propre, suite 261 passés/3 skipped
-- Prochaine action : committer T015, puis démarrer T016
-- État du code : toutes les validations T015 passent
+- Tâche courante : T016-lang-expr-parser-references (IN_PROGRESS)
+- Dernière étape terminée : validations T016 complètes : parser 30/30, arch 12/12, tsc propre, suite 278 passés/3 skipped
+- Prochaine action : committer T016, puis démarrer T017
+- État du code : toutes les validations T016 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -23,8 +23,8 @@
 | T012-lang-ease-names | P1 | DONE | T011 | T013-lang-start-parse | ecd1d8d |
 | T013-lang-start-parse | P1 | DONE | T010 | T014-lang-expr-tokenizer | afb9d64 |
 | T014-lang-expr-tokenizer | P1 | DONE | T010 | T015-lang-expr-parser-arithmetic | a1054a2 |
-| T015-lang-expr-parser-arithmetic | P1 | IN_PROGRESS | T014 | T016-lang-expr-parser-references | - |
-| T016-lang-expr-parser-references | P1 | TODO | T015 | T017-lang-validate-shell | - |
+| T015-lang-expr-parser-arithmetic | P1 | DONE | T014 | T016-lang-expr-parser-references | 2f44ece |
+| T016-lang-expr-parser-references | P1 | IN_PROGRESS | T015 | T017-lang-validate-shell | - |
 | T017-lang-validate-shell | P1 | TODO | T010, T011 | T018-lang-validate-step-fields | - |
 | T018-lang-validate-step-fields | P1 | TODO | T017 | T019-lang-validate-timing-values | - |
 | T019-lang-validate-timing-values | P1 | TODO | T018, T012, T013 | T020-lang-validate-properties-shape | - |
@@ -138,6 +138,7 @@
 2026-10-19 | T012 | DONE | commit ecd1d8d | easing tests 3/3; arch 12/12; tsc propre; suite 208 passés, 3 skipped
 2026-10-19 | T013 | DONE | commit afb9d64 | start tests 32/32; arch 12/12; tsc propre; suite 240 passés, 3 skipped
 2026-10-19 | T014 | DONE | commit a1054a2 | tokenizer tests 8/8; arch 12/12; tsc propre; suite 248 passés, 3 skipped
+2026-10-19 | T015 | DONE | commit 2f44ece | parser tests 13/13; arch 12/12; tsc propre; suite 261 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
