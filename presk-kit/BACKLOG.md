@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T030-geom-vec (IN_PROGRESS)
-- Dernière étape terminée : validations T030 complètes : tests 7/7, arch 12/12, tsc propre, suite 374 passés/3 skipped
-- Prochaine action : committer T030, puis démarrer T031
-- État du code : toutes les validations T030 passent
+- Tâche courante : T031-geom-matrix (IN_PROGRESS)
+- Dernière étape terminée : T031.1 tests écrits puis échec initial confirmé; module implémenté, tests ciblés 10/10
+- Prochaine action : lancer tsc, arch guard et suite complète
+- État du code : matrix.ts et matrix.test.ts créés; tests ciblés verts
 - Branche git : presk-v1
 
 ## État des tâches
@@ -30,8 +30,8 @@
 | T019-lang-validate-timing-values | P1 | DONE | T018, T012, T013 | T020-lang-validate-properties-shape | 10611c5 |
 | T020-lang-validate-properties-shape | P1 | DONE | T018 | T021-lang-validate-document | 78ff38c |
 | T021-lang-validate-document | P1 | DONE | T017, T018, T019, T020 | T030-geom-vec | 7cb6cfc |
-| T030-geom-vec | P2 | IN_PROGRESS | T004 | T031-geom-matrix | - |
-| T031-geom-matrix | P2 | TODO | T030 | T032-geom-bounds | - |
+| T030-geom-vec | P2 | DONE | T004 | T031-geom-matrix | cccb18d |
+| T031-geom-matrix | P2 | IN_PROGRESS | T030 | T032-geom-bounds | - |
 | T032-geom-bounds | P2 | TODO | T031 | T033-geom-color | - |
 | T033-geom-color | P2 | TODO | T030 | T034-geom-flat-path | - |
 | T034-geom-flat-path | P2 | TODO | T030 | T035-geom-flatten-shapes | - |
@@ -145,6 +145,7 @@
 2026-10-19 | T019 | DONE | commit 10611c5 | timing tests 21/21; arch 12/12; tsc propre; suite 339 passés, 3 skipped
 2026-10-19 | T020 | DONE | commit 78ff38c | properties tests 21/21; arch 12/12; tsc propre; suite 360 passés, 3 skipped
 2026-10-19 | T021 | DONE | commit 7cb6cfc | document tests 7/7; arch 12/12; tsc propre; suite 367 passés, 3 skipped
+2026-10-19 | T030 | DONE | commit cccb18d | vec tests 7/7; arch 12/12; tsc propre; suite 374 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
