@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T017-lang-validate-shell (IN_PROGRESS)
-- Dernière étape terminée : validations T017 complètes : tests 16/16, arch 12/12, tsc propre, suite 294 passés/3 skipped
-- Prochaine action : committer T017, puis démarrer T018
-- État du code : toutes les validations T017 passent
+- Tâche courante : T018-lang-validate-step-fields (IN_PROGRESS)
+- Dernière étape terminée : validations T018 complètes : tests 24/24, arch 12/12, tsc propre, suite 318 passés/3 skipped
+- Prochaine action : committer T018, puis démarrer T019
+- État du code : toutes les validations T018 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -25,8 +25,8 @@
 | T014-lang-expr-tokenizer | P1 | DONE | T010 | T015-lang-expr-parser-arithmetic | a1054a2 |
 | T015-lang-expr-parser-arithmetic | P1 | DONE | T014 | T016-lang-expr-parser-references | 2f44ece |
 | T016-lang-expr-parser-references | P1 | DONE | T015 | T017-lang-validate-shell | 974dd36 |
-| T017-lang-validate-shell | P1 | IN_PROGRESS | T010, T011 | T018-lang-validate-step-fields | - |
-| T018-lang-validate-step-fields | P1 | TODO | T017 | T019-lang-validate-timing-values | - |
+| T017-lang-validate-shell | P1 | DONE | T010, T011 | T018-lang-validate-step-fields | 7f0f6c3 |
+| T018-lang-validate-step-fields | P1 | IN_PROGRESS | T017 | T019-lang-validate-timing-values | - |
 | T019-lang-validate-timing-values | P1 | TODO | T018, T012, T013 | T020-lang-validate-properties-shape | - |
 | T020-lang-validate-properties-shape | P1 | TODO | T018 | T021-lang-validate-document | - |
 | T021-lang-validate-document | P1 | TODO | T017, T018, T019, T020 | T030-geom-vec | - |
@@ -140,6 +140,7 @@
 2026-10-19 | T014 | DONE | commit a1054a2 | tokenizer tests 8/8; arch 12/12; tsc propre; suite 248 passés, 3 skipped
 2026-10-19 | T015 | DONE | commit 2f44ece | parser tests 13/13; arch 12/12; tsc propre; suite 261 passés, 3 skipped
 2026-10-19 | T016 | DONE | commit 974dd36 | parser tests 30/30; arch 12/12; tsc propre; suite 278 passés, 3 skipped
+2026-10-19 | T017 | DONE | commit 7f0f6c3 | shell tests 16/16; arch 12/12; tsc propre; suite 294 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
