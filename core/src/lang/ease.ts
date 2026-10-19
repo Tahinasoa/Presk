@@ -1,0 +1,37 @@
+export const EASE_NAMES: readonly string[] = [
+  "linear",
+  "sineIn",
+  "sineOut",
+  "sineInOut",
+  "quadIn",
+  "quadOut",
+  "quadInOut",
+  "cubicIn",
+  "cubicOut",
+  "cubicInOut",
+  "quartIn",
+  "quartOut",
+  "quartInOut",
+  "quintIn",
+  "quintOut",
+  "quintInOut",
+  "expoIn",
+  "expoOut",
+  "expoInOut",
+  "circIn",
+  "circOut",
+  "circInOut",
+  "backIn",
+  "backOut",
+  "backInOut",
+  "elasticIn",
+  "elasticOut",
+  "elasticInOut",
+  "bounceIn",
+  "bounceOut",
+  "bounceInOut",
+];
+
+export function isEaseName(s: unknown): s is string {
+  return typeof s === "string" && EASE_NAMES.includes(s);
+}
