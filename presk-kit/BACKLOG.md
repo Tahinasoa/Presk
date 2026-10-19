@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T047-model-text-object (IN_PROGRESS)
-- Dernière étape terminée : T047.1 tests écrits, échec initial confirmé; TextObject implémenté, tests 3/3
-- Prochaine action : commit exact de T047 après validations complètes
-- État du code : mesure texte et props read-only/remeasured disponibles; tsc, arch et suite verts (454 passés, 3 skipped)
+- Tâche courante : T048-model-scene-root (IN_PROGRESS)
+- Dernière étape terminée : T048.4 — `makeReadOnly`, `SCENE_DEF` et `createSceneRoot` implémentés; test ciblé 5/5
+- Prochaine action : commit exact T048, puis mettre à jour le statut et reprendre T049
+- État du code : implémentation T048 présente; ciblé 5/5, tsc propre, arch 12/12, suite 459 passés et 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -43,8 +43,8 @@
 | T044-model-effects-reveal | P3 | DONE | T041, T040 | T045-model-rectangle-object | d022178 |
 | T045-model-rectangle-object | P3 | DONE | T042, T044, T043 | T046-model-refs | 7d12a75 |
 | T046-model-refs | P3 | DONE | T045 | T047-model-text-object | 57eab34 |
-| T047-model-text-object | P3 | IN_PROGRESS | T045 | T048-model-scene-root | - |
-| T048-model-scene-root | P3 | TODO | T045 | T049-model-catalog | - |
+| T047-model-text-object | P3 | DONE | T045 | T048-model-scene-root | 495cf0d |
+| T048-model-scene-root | P3 | IN_PROGRESS | T045 | T049-model-catalog | - |
 | T049-model-catalog | P3 | TODO | T047, T048 | T060-engine-program-types | - |
 | T060-engine-program-types | P4 | TODO | T049, T021 | T061-engine-analyze-expr | - |
 | T061-engine-analyze-expr | P4 | TODO | T060, T046, T016 | T062-engine-compile-expr | - |
@@ -160,6 +160,8 @@
 2026-10-19 | T044 | DONE | commit d022178 | effects tests 3/3; arch 12/12; tsc propre; suite 437 passés, 3 skipped
 2026-10-19 | T045 | DONE | commit 7d12a75 | rectangle tests 5/5; arch 12/12; tsc propre; suite 442 passés, 3 skipped
 2026-10-19 | T046 | DONE | commit 57eab34 | refs tests 9/9; arch 12/12; tsc propre; suite 451 passés, 3 skipped
+2026-10-19 | T047 | DONE | commit 495cf0d | TextObject tests 3/3; arch 12/12; tsc propre; suite 454 passés, 3 skipped
+2026-10-19 | T048 | BLOCKED | sans commit | la fiche demande `classes/sceneRoot.ts`, le contrat `classes/scene.md` indique `classes/sceneObject.ts`; arrêt selon §4
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
