@@ -99,3 +99,43 @@ export class FlatPath {
     return this.segments.find((segment) => segment.startDistance <= distance && distance <= segment.endDistance);
   }
 }
+
+export function flattenEllipse(rx: number, ry: number, segments = 720): Pt[] {
+  const points: Pt[] = [];
+  for (let index = 0; index < segments; index += 1) {
+    const theta = (2 * Math.PI * index) / segments;
+    points.push({ x: rx * Math.cos(theta), y: ry * Math.sin(theta) });
+  }
+  return points;
+}
+
+export function flattenArc(rx: number, ry: number, startDeg: number, endDeg: number): Pt[] {
+  const rawSweep = endDeg - startDeg;
+  const sweep = rawSweep === 360 ? 360 : ((rawSweep % 360) + 360) % 360;
+  const segments = Math.max(8, Math.ceil(sweep));
+  const startRad = (startDeg * Math.PI) / 180;
+  const sweepRad = (sweep * Math.PI) / 180;
+  const points: Pt[] = [];
+  for (let index = 0; index <= segments; index += 1) {
+    const theta = startRad + (sweepRad * index) / segments;
+    points.push({ x: rx * Math.cos(theta), y: ry * Math.sin(theta) });
+  }
+  return points;
+}
+
+export function flattenCubic(p0: Pt, c1: Pt, c2: Pt, p1: Pt, segments = 48): Pt[] {
+  const points: Pt[] = [];
+  for (let index = 0; index <= segments; index += 1) {
+    const t = index / segments;
+    const inverseT = 1 - t;
+    const startWeight = inverseT * inverseT * inverseT;
+    const firstWeight = 3 * inverseT * inverseT * t;
+    const secondWeight = 3 * inverseT * t * t;
+    const endWeight = t * t * t;
+    points.push({
+      x: startWeight * p0.x + firstWeight * c1.x + secondWeight * c2.x + endWeight * p1.x,
+      y: startWeight * p0.y + firstWeight * c1.y + secondWeight * c2.y + endWeight * p1.y,
+    });
+  }
+  return points;
+}

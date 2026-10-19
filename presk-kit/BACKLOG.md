@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T034-geom-flat-path (IN_PROGRESS)
-- Dernière étape terminée : T034.1 tests écrits, échec initial confirmé; FlatPath implémentée, tests ciblés 6/6
-- Prochaine action : commit exact de T034 après validations complètes
-- État du code : FlatPath arc-length implémentée; tsc, architecture et suite complète verts
+- Tâche courante : T035-geom-flatten-shapes (IN_PROGRESS)
+- Dernière étape terminée : T035.1 tests ajoutés, échec initial confirmé; fonctions implémentées, tests ciblés 9/9
+- Prochaine action : commit exact de T035 après validations complètes
+- État du code : FlatPath et flattenEllipse/Arc/Cubic disponibles; tsc, architecture et suite complète verts
 - Branche git : presk-v1
 
 ## État des tâches
@@ -34,8 +34,8 @@
 | T031-geom-matrix | P2 | DONE | T030 | T032-geom-bounds | 8864c30 |
 | T032-geom-bounds | P2 | DONE | T031 | T033-geom-color | c1c64a4 |
 | T033-geom-color | P2 | DONE | T030 | T034-geom-flat-path | 2231000 |
-| T034-geom-flat-path | P2 | IN_PROGRESS | T030 | T035-geom-flatten-shapes | - |
-| T035-geom-flatten-shapes | P2 | TODO | T034 | T040-model-values-ports-effect-types | - |
+| T034-geom-flat-path | P2 | DONE | T030 | T035-geom-flatten-shapes | 1118c2e |
+| T035-geom-flatten-shapes | P2 | IN_PROGRESS | T034 | T040-model-values-ports-effect-types | - |
 | T040-model-values-ports-effect-types | P3 | TODO | T034, T010 | T041-model-scene-object | - |
 | T041-model-scene-object | P3 | TODO | T040, T031, T032 | T042-model-base-props | - |
 | T042-model-base-props | P3 | TODO | T041 | T043-model-world | - |
@@ -149,6 +149,7 @@
 2026-10-19 | T031 | DONE | commit 8864c30 | matrix tests 10/10; arch 12/12; tsc propre; suite 384 passés, 3 skipped
 2026-10-19 | T032 | DONE | commit c1c64a4 | bounds tests 5/5; arch 12/12; tsc propre; suite 389 passés, 3 skipped
 2026-10-19 | T033 | DONE | commit 2231000 | color tests 13/13; arch 12/12; tsc propre; suite 402 passés, 3 skipped
+2026-10-19 | T034 | DONE | commit 1118c2e | FlatPath tests 6/6; arch 12/12; tsc propre; suite 408 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)

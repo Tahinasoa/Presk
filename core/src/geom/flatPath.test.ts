@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { FlatPath } from "@/geom/flatPath";
+import { FlatPath, flattenArc, flattenCubic, flattenEllipse } from "@/geom/flatPath";
 import type { Pt } from "@/geom/vec";
 
 const squarePoints: Pt[] = [
@@ -62,5 +62,46 @@ describe("FlatPath", () => {
     expect(path.length).toBe(0);
     expectPoint(path.pointAt(0.5), { x: 3, y: 4 });
     expect(path.angleAt(0)).toBe(0);
+  });
+});
+
+describe("path flattening", () => {
+  it("flattens an ellipse clockwise from its rightmost point", () => {
+    const points = flattenEllipse(10, 10);
+    expect(points).toHaveLength(720);
+    expectPoint(points[0], { x: 10, y: 0 });
+    expectPoint(points[180], { x: 0, y: 10 });
+    const path = new FlatPath(points, true);
+    expect(path.length).toBeCloseTo(62.83, 1);
+    expect(path.pointAt(0.25).x).toBeCloseTo(0, 1);
+    expect(path.pointAt(0.25).y).toBeCloseTo(10, 1);
+  });
+
+  it("flattens arcs with the prescribed sweep and minimum point count", () => {
+    const quarter = flattenArc(10, 10, 0, 90);
+    expect(quarter).toHaveLength(91);
+    expectPoint(quarter[0], { x: 10, y: 0 });
+    expect(quarter[quarter.length - 1].x).toBeCloseTo(0, 6);
+    expect(quarter[quarter.length - 1].y).toBeCloseTo(10, 6);
+
+    const wrap = flattenArc(10, 10, 350, 10);
+    expect(wrap[0].x).toBeCloseTo(9.85, 2);
+    expect(wrap[0].y).toBeCloseTo(-1.74, 2);
+    const zeroSweep = flattenArc(10, 10, 0, 0);
+    expect(zeroSweep).toHaveLength(9);
+    zeroSweep.forEach((point) => expectPoint(point, { x: 10, y: 0 }));
+  });
+
+  it("samples cubic Bezier curves including both endpoints", () => {
+    const points = flattenCubic(
+      { x: 0, y: 0 },
+      { x: 0, y: 10 },
+      { x: 10, y: 10 },
+      { x: 10, y: 0 },
+    );
+    expect(points).toHaveLength(49);
+    expectPoint(points[0], { x: 0, y: 0 });
+    expectPoint(points[24], { x: 5, y: 7.5 });
+    expectPoint(points[48], { x: 10, y: 0 });
   });
 });
