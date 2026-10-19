@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T003-types-node-for-tsc (IN_PROGRESS)
-- Dernière étape terminée : T003.1 `@types/node` ajouté; T003.2 types Node activés dans tsconfig
-- Prochaine action : exécuter les deux validations tsc, le garde-fou architecture et la suite complète
-- État du code : dépendance et tsconfig modifiés selon la tâche; validations en attente
+- Tâche courante : T004-arch-lint-layers (IN_PROGRESS)
+- Dernière étape terminée : T004.3; arch 12/12, tsc 0 erreur, suite 196 passés/3 skipped/0 échec
+- Prochaine action : committer T004, puis démarrer T010
+- État du code : toutes les validations T004 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -16,8 +16,8 @@
 |----|-------|--------|-----------|----------|----------------|
 | T001-baseline-report-environment | P0 | DONE | — | T002-skip-obsolete-legacy-tests | - |
 | T002-skip-obsolete-legacy-tests | P0 | DONE | T001 | T003-types-node-for-tsc | abc0470 |
-| T003-types-node-for-tsc | P0 | IN_PROGRESS | T002 | T004-arch-lint-layers | - |
-| T004-arch-lint-layers | P0 | TODO | T003 | T010-lang-diagnostics | - |
+| T003-types-node-for-tsc | P0 | DONE | T002 | T004-arch-lint-layers | 04488f9 |
+| T004-arch-lint-layers | P0 | IN_PROGRESS | T003 | T010-lang-diagnostics | - |
 | T010-lang-diagnostics | P1 | TODO | T004 | T011-lang-dsl-types | - |
 | T011-lang-dsl-types | P1 | TODO | T010 | T012-lang-ease-names | - |
 | T012-lang-ease-names | P1 | TODO | T011 | T013-lang-start-parse | - |
@@ -130,7 +130,8 @@
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
 2026-10-19 | T001 | DONE | sans commit | baseline acceptée selon T001.4 : 184 passés, 3 échoués; tsc 2 erreurs attendues; aucun code modifié
-2026-10-19 | T002 | DONE | commit a81af28 | 184 tests passés, 3 skipped, 0 échec; `tsc` erreur `process` restante (T003); aucun test `src/__arch__` trouvé (T004)
+2026-10-19 | T002 | DONE | commit abc0470 | 184 tests passés, 3 skipped, 0 échec; `tsc` erreur `process` restante (T003); aucun test `src/__arch__` trouvé (T004)
+2026-10-19 | T003 | DONE | commit 04488f9 | tsc 0 erreur; suite 184 passés, 3 skipped; arch guard non présent avant T004
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
