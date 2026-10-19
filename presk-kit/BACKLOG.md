@@ -5,9 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T073-engine-sim-ticks (IN_PROGRESS)
-- Dernière étape terminée : T073.2 — `tickTimes` implémenté; tests ciblés 7/7
-- Prochaine action : commit exact T073, puis marquer T073 DONE avant d’ouvrir T074
+- Tâche courante : T074-engine-sim-context-ownership (IN_PROGRESS)
+- Dernière étape terminée : T074.4 — `Ownership` et `SimContext` implémentés; tests ciblés 8/8
+- Prochaine action : commit exact T074, puis marquer T074 DONE avant d’ouvrir T075
+- État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
 - État du code : T072 validée; tests 7/7, tsc propre, arch 12/12, suite 586 passés et 3 skipped
 - État du code : T071 validée; tests 7/7, tsc propre, arch 12/12, suite 579 passés et 3 skipped
@@ -62,8 +63,8 @@
 | T070-engine-analyze-activity | P4 | DONE | T068, T069 | T071-engine-compile-program | 1a95d32 |
 | T071-engine-compile-program | P4 | DONE | T065, T067, T068, T069, T070, T021 | T072-engine-sim-build-world | c1ff049 |
 | T072-engine-sim-build-world | P4 | DONE | T071 | T073-engine-sim-ticks | b54e54d |
-| T073-engine-sim-ticks | P4 | IN_PROGRESS | T071 | T074-engine-sim-context-ownership | - |
-| T074-engine-sim-context-ownership | P4 | TODO | T071 | T075-engine-mech-animate | - |
+| T073-engine-sim-ticks | P4 | DONE | T071 | T074-engine-sim-context-ownership | fbd1f60 |
+| T074-engine-sim-context-ownership | P4 | IN_PROGRESS | T071 | T075-engine-mech-animate | - |
 | T075-engine-mech-animate | P4 | TODO | T074, T066, T033 | T076-engine-mech-bind | - |
 | T076-engine-mech-bind | P4 | TODO | T075 | T077-engine-mech-effect | - |
 | T077-engine-mech-effect | P4 | TODO | T075, T044 | T078-engine-sim-instant-actions | - |
@@ -136,6 +137,7 @@
 2026-10-19 | T070 | DONE | commit 1a95d32 | analyse stop/unbind; tests 13/13, tsc, arch 12/12, suite 572/3 skipped
 2026-10-19 | T071 | DONE | commit c1ff049 | orchestrateur; tests 7/7, tsc, arch 12/12, suite 579/3 skipped
 2026-10-19 | T072 | DONE | commit b54e54d | buildWorld; tests 7/7, tsc, arch 12/12, suite 586/3 skipped
+2026-10-19 | T073 | DONE | commit fbd1f60 | tickTimes; tests 7/7, tsc, arch 12/12, suite 593/3 skipped
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
