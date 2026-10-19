@@ -5,18 +5,18 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T002-skip-obsolete-legacy-tests (DONE)
-- Dernière étape terminée : T002.1–T002.4, validations propres à la tâche et commit `a81af28` terminés
-- Prochaine action : démarrer T003 (dépendance T002 satisfaite)
-- État du code : suite complète 184 passés/3 skipped/0 échec; tsc garde l’erreur `process` prévue pour T003; garde-fou arch prévu pour T004
+- Tâche courante : T003-types-node-for-tsc (IN_PROGRESS)
+- Dernière étape terminée : T003.1 `@types/node` ajouté; T003.2 types Node activés dans tsconfig
+- Prochaine action : exécuter les deux validations tsc, le garde-fou architecture et la suite complète
+- État du code : dépendance et tsconfig modifiés selon la tâche; validations en attente
 - Branche git : presk-v1
 
 ## État des tâches
 | ID | Phase | Statut | Dépend de | Suivante | Dernier commit |
 |----|-------|--------|-----------|----------|----------------|
 | T001-baseline-report-environment | P0 | DONE | — | T002-skip-obsolete-legacy-tests | - |
-| T002-skip-obsolete-legacy-tests | P0 | DONE | T001 | T003-types-node-for-tsc | a81af28 |
-| T003-types-node-for-tsc | P0 | TODO | T002 | T004-arch-lint-layers | - |
+| T002-skip-obsolete-legacy-tests | P0 | DONE | T001 | T003-types-node-for-tsc | abc0470 |
+| T003-types-node-for-tsc | P0 | IN_PROGRESS | T002 | T004-arch-lint-layers | - |
 | T004-arch-lint-layers | P0 | TODO | T003 | T010-lang-diagnostics | - |
 | T010-lang-diagnostics | P1 | TODO | T004 | T011-lang-dsl-types | - |
 | T011-lang-dsl-types | P1 | TODO | T010 | T012-lang-ease-names | - |
