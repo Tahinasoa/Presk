@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T004-arch-lint-layers (IN_PROGRESS)
-- Dernière étape terminée : T004.3; arch 12/12, tsc 0 erreur, suite 196 passés/3 skipped/0 échec
-- Prochaine action : committer T004, puis démarrer T010
-- État du code : toutes les validations T004 passent
+- Tâche courante : T010-lang-diagnostics (IN_PROGRESS)
+- Dernière étape terminée : T010 validations complètes : 7 tests ciblés, arch 12/12, tsc propre, suite 203 passés/3 skipped
+- Prochaine action : committer T010, puis démarrer T011
+- État du code : toutes les validations T010 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -17,8 +17,8 @@
 | T001-baseline-report-environment | P0 | DONE | — | T002-skip-obsolete-legacy-tests | - |
 | T002-skip-obsolete-legacy-tests | P0 | DONE | T001 | T003-types-node-for-tsc | abc0470 |
 | T003-types-node-for-tsc | P0 | DONE | T002 | T004-arch-lint-layers | 04488f9 |
-| T004-arch-lint-layers | P0 | IN_PROGRESS | T003 | T010-lang-diagnostics | - |
-| T010-lang-diagnostics | P1 | TODO | T004 | T011-lang-dsl-types | - |
+| T004-arch-lint-layers | P0 | DONE | T003 | T010-lang-diagnostics | 0bfb04b |
+| T010-lang-diagnostics | P1 | IN_PROGRESS | T004 | T011-lang-dsl-types | - |
 | T011-lang-dsl-types | P1 | TODO | T010 | T012-lang-ease-names | - |
 | T012-lang-ease-names | P1 | TODO | T011 | T013-lang-start-parse | - |
 | T013-lang-start-parse | P1 | TODO | T010 | T014-lang-expr-tokenizer | - |
@@ -132,6 +132,7 @@
 2026-10-19 | T001 | DONE | sans commit | baseline acceptée selon T001.4 : 184 passés, 3 échoués; tsc 2 erreurs attendues; aucun code modifié
 2026-10-19 | T002 | DONE | commit abc0470 | 184 tests passés, 3 skipped, 0 échec; `tsc` erreur `process` restante (T003); aucun test `src/__arch__` trouvé (T004)
 2026-10-19 | T003 | DONE | commit 04488f9 | tsc 0 erreur; suite 184 passés, 3 skipped; arch guard non présent avant T004
+2026-10-19 | T004 | DONE | commit 0bfb04b | tests arch 12/12; tsc propre; suite 196 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
