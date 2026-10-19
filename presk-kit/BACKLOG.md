@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T042-model-base-props (IN_PROGRESS)
-- Dernière étape terminée : T042.1 tests écrits, échec initial confirmé; baseProps implémentée, tests 4/4
-- Prochaine action : commit exact de T042 après validations complètes
-- État du code : baseProps disponible; tsc, arch et suite complète verts (427 passés, 3 skipped)
+- Tâche courante : T043-model-world (IN_PROGRESS)
+- Dernière étape terminée : T043.1–T043.4 terminées; tests World 7/7 et validations complètes vertes
+- Prochaine action : commit exact de T043
+- État du code : World, tests et helper partagé créés; tsc, arch et suite complète verts (434 passés, 3 skipped)
 - Branche git : presk-v1
 
 ## État des tâches
@@ -38,8 +38,8 @@
 | T035-geom-flatten-shapes | P2 | DONE | T034 | T040-model-values-ports-effect-types | 941f738 |
 | T040-model-values-ports-effect-types | P3 | DONE | T034, T010 | T041-model-scene-object | 9299d44 |
 | T041-model-scene-object | P3 | DONE | T040, T031, T032 | T042-model-base-props | 3e165f0 |
-| T042-model-base-props | P3 | IN_PROGRESS | T041 | T043-model-world | - |
-| T043-model-world | P3 | TODO | T041 | T044-model-effects-reveal | - |
+| T042-model-base-props | P3 | DONE | T041 | T043-model-world | 03df63d |
+| T043-model-world | P3 | IN_PROGRESS | T041 | T044-model-effects-reveal | - |
 | T044-model-effects-reveal | P3 | TODO | T041, T040 | T045-model-rectangle-object | - |
 | T045-model-rectangle-object | P3 | TODO | T042, T044, T043 | T046-model-refs | - |
 | T046-model-refs | P3 | TODO | T045 | T047-model-text-object | - |
@@ -154,6 +154,8 @@
 2026-10-19 | T040 | BLOCKED | sans commit | `ClassDef.refExtension` référence `RefSegment` et `RefDescription` sans définition ni import indiqué; arrêt selon §4
 2026-10-19 | T040 | DONE | commit 9299d44 | ports 3/3; arch 12/12; tsc propre; suite 414 passés, 3 skipped
 2026-10-19 | T041 | DONE | commit 3e165f0 | SceneObject tests 9/9; arch 12/12; tsc propre; suite 423 passés, 3 skipped
+2026-10-19 | T042 | DONE | commit 03df63d | baseProps tests 4/4; arch 12/12; tsc propre; suite 427 passés, 3 skipped
+2026-10-19 | T043 | BLOCKED | sans commit | T043.1 exige `model/testing.ts`, absent de la liste autorisée « Fichiers »; arrêt selon §4
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
