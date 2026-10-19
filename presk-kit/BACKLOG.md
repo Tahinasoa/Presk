@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T019-lang-validate-timing-values (IN_PROGRESS)
-- Dernière étape terminée : validations T019 complètes : tests 21/21, arch 12/12, tsc propre, suite 339 passés/3 skipped
-- Prochaine action : committer T019, puis démarrer T020
-- État du code : toutes les validations T019 passent
+- Tâche courante : T020-lang-validate-properties-shape (IN_PROGRESS)
+- Dernière étape terminée : validations T020 complètes après correction : tests 21/21, arch 12/12, tsc propre, suite 360 passés/3 skipped
+- Prochaine action : committer T020, puis démarrer T021
+- État du code : toutes les validations T020 passent
 - Branche git : presk-v1
 
 ## État des tâches
@@ -27,8 +27,8 @@
 | T016-lang-expr-parser-references | P1 | DONE | T015 | T017-lang-validate-shell | 974dd36 |
 | T017-lang-validate-shell | P1 | DONE | T010, T011 | T018-lang-validate-step-fields | 7f0f6c3 |
 | T018-lang-validate-step-fields | P1 | DONE | T017 | T019-lang-validate-timing-values | de210c5 |
-| T019-lang-validate-timing-values | P1 | IN_PROGRESS | T018, T012, T013 | T020-lang-validate-properties-shape | - |
-| T020-lang-validate-properties-shape | P1 | TODO | T018 | T021-lang-validate-document | - |
+| T019-lang-validate-timing-values | P1 | DONE | T018, T012, T013 | T020-lang-validate-properties-shape | 10611c5 |
+| T020-lang-validate-properties-shape | P1 | IN_PROGRESS | T018 | T021-lang-validate-document | - |
 | T021-lang-validate-document | P1 | TODO | T017, T018, T019, T020 | T030-geom-vec | - |
 | T030-geom-vec | P2 | TODO | T004 | T031-geom-matrix | - |
 | T031-geom-matrix | P2 | TODO | T030 | T032-geom-bounds | - |
@@ -142,6 +142,7 @@
 2026-10-19 | T016 | DONE | commit 974dd36 | parser tests 30/30; arch 12/12; tsc propre; suite 278 passés, 3 skipped
 2026-10-19 | T017 | DONE | commit 7f0f6c3 | shell tests 16/16; arch 12/12; tsc propre; suite 294 passés, 3 skipped
 2026-10-19 | T018 | DONE | commit de210c5 | step fields tests 24/24; arch 12/12; tsc propre; suite 318 passés, 3 skipped
+2026-10-19 | T019 | DONE | commit 10611c5 | timing tests 21/21; arch 12/12; tsc propre; suite 339 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
