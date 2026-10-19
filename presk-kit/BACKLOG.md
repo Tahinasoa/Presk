@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T069-engine-analyze-effects (IN_PROGRESS)
-- Dernière étape terminée : T069.5 — résolveur implémenté; tests ciblés effects + timeline 20/20
-- Prochaine action : commit exact T069, puis marquer T069 DONE avant d’ouvrir T070
-- État du code : T069 validée; tsc propre, arch 12/12, suite 559 passés et 3 skipped
+- Tâche courante : T070-engine-analyze-activity (IN_PROGRESS)
+- Dernière étape terminée : T070.7 — tests ajustés aux starts explicites de la fiche corrigée
+- Prochaine action : commit exact T070, puis marquer T070 DONE avant d’ouvrir T071
+- État du code : T070 validée; tests 13/13, tsc propre, arch 12/12, suite 572 passés et 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -55,8 +55,8 @@
 | T066-engine-pass-progress | P4 | DONE | T012, T010 | T067-engine-compile-steps | c424625 |
 | T067-engine-compile-steps | P4 | DONE | T065, T013, T066 | T068-engine-plan-timeline | bb5fdac |
 | T068-engine-plan-timeline | P4 | DONE | T067, T066 | T069-engine-analyze-effects | 2e2fbc8 |
-| T069-engine-analyze-effects | P4 | IN_PROGRESS | T068, T064 | T070-engine-analyze-activity | - |
-| T070-engine-analyze-activity | P4 | TODO | T068, T069 | T071-engine-compile-program | - |
+| T069-engine-analyze-effects | P4 | DONE | T068, T064 | T070-engine-analyze-activity | c83672d |
+| T070-engine-analyze-activity | P4 | IN_PROGRESS | T068, T069 | T071-engine-compile-program | - |
 | T071-engine-compile-program | P4 | TODO | T065, T067, T068, T069, T070, T021 | T072-engine-sim-build-world | - |
 | T072-engine-sim-build-world | P4 | TODO | T071 | T073-engine-sim-ticks | - |
 | T073-engine-sim-ticks | P4 | TODO | T071 | T074-engine-sim-context-ownership | - |
@@ -128,6 +128,8 @@
 (une ligne par événement : `AAAA-MM-JJ | Txxx | DONE/FAILED/BLOCKED | commit abc1234 | remarque`)
 
 2026-10-19 | T068 | DONE | commit 2e2fbc8 | planificateur et pipeline de test validés; commit présent dans l’historique Git
+2026-10-19 | T069 | DONE | commit c83672d | résolution des variantes d’effet; tsc, architecture et suite complète validés
+2026-10-19 | T070 | BLOCKED | sans commit | cas de test contradictoire avec le start séquentiel de T068; 12/13 tests passent
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
