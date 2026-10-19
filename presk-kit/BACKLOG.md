@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T033-geom-color (IN_PROGRESS)
-- Dernière étape terminée : T033.1 tests écrits, échec initial confirmé; module implémenté, tests ciblés 13/13
-- Prochaine action : commit exact de T033 après validations complètes
-- État du code : parseColor/lerpColor implémentés; tsc, architecture et suite complète verts
+- Tâche courante : T034-geom-flat-path (IN_PROGRESS)
+- Dernière étape terminée : T034.1 tests écrits, échec initial confirmé; FlatPath implémentée, tests ciblés 6/6
+- Prochaine action : commit exact de T034 après validations complètes
+- État du code : FlatPath arc-length implémentée; tsc, architecture et suite complète verts
 - Branche git : presk-v1
 
 ## État des tâches
@@ -33,8 +33,8 @@
 | T030-geom-vec | P2 | DONE | T004 | T031-geom-matrix | cccb18d |
 | T031-geom-matrix | P2 | DONE | T030 | T032-geom-bounds | 8864c30 |
 | T032-geom-bounds | P2 | DONE | T031 | T033-geom-color | c1c64a4 |
-| T033-geom-color | P2 | IN_PROGRESS | T030 | T034-geom-flat-path | - |
-| T034-geom-flat-path | P2 | TODO | T030 | T035-geom-flatten-shapes | - |
+| T033-geom-color | P2 | DONE | T030 | T034-geom-flat-path | 2231000 |
+| T034-geom-flat-path | P2 | IN_PROGRESS | T030 | T035-geom-flatten-shapes | - |
 | T035-geom-flatten-shapes | P2 | TODO | T034 | T040-model-values-ports-effect-types | - |
 | T040-model-values-ports-effect-types | P3 | TODO | T034, T010 | T041-model-scene-object | - |
 | T041-model-scene-object | P3 | TODO | T040, T031, T032 | T042-model-base-props | - |
@@ -148,6 +148,7 @@
 2026-10-19 | T030 | DONE | commit cccb18d | vec tests 7/7; arch 12/12; tsc propre; suite 374 passés, 3 skipped
 2026-10-19 | T031 | DONE | commit 8864c30 | matrix tests 10/10; arch 12/12; tsc propre; suite 384 passés, 3 skipped
 2026-10-19 | T032 | DONE | commit c1c64a4 | bounds tests 5/5; arch 12/12; tsc propre; suite 389 passés, 3 skipped
+2026-10-19 | T033 | DONE | commit 2231000 | color tests 13/13; arch 12/12; tsc propre; suite 402 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
