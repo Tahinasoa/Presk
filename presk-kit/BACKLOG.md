@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T060-engine-program-types (IN_PROGRESS)
-- Dernière étape terminée : T060.3 — types programme, scope et tests ajoutés; ciblé 3/3
-- Prochaine action : commit exact T060, puis reprendre T061
-- État du code : T060 validée; ciblé 3/3, tsc propre, arch 12/12, suite 464 passés et 3 skipped
+- Tâche courante : T061-engine-analyze-expr (IN_PROGRESS)
+- Dernière étape terminée : T061.5 — analyseur implémenté; tests ciblés 15/15 et tsc propre
+- Prochaine action : commit exact T061, puis reprendre T062
+- État du code : T061 validée; ciblé 15/15, tsc propre, arch 12/12, suite 479 passés et 3 skipped
 - Branche git : presk-v1
 
 ## État des tâches
@@ -46,8 +46,8 @@
 | T047-model-text-object | P3 | DONE | T045 | T048-model-scene-root | 495cf0d |
 | T048-model-scene-root | P3 | DONE | T045 | T049-model-catalog | 2ed98d6 |
 | T049-model-catalog | P3 | DONE | T047, T048 | T060-engine-program-types | eed9b05 |
-| T060-engine-program-types | P4 | IN_PROGRESS | T049, T021 | T061-engine-analyze-expr | - |
-| T061-engine-analyze-expr | P4 | TODO | T060, T046, T016 | T062-engine-compile-expr | - |
+| T060-engine-program-types | P4 | DONE | T049, T021 | T061-engine-analyze-expr | 4c609ab |
+| T061-engine-analyze-expr | P4 | IN_PROGRESS | T060, T046, T016 | T062-engine-compile-expr | - |
 | T062-engine-compile-expr | P4 | TODO | T061 | T063-engine-compile-value | - |
 | T063-engine-compile-value | P4 | TODO | T062, T033 | T064-engine-compile-properties | - |
 | T064-engine-compile-properties | P4 | TODO | T063, T044 | T065-engine-compile-create | - |
@@ -164,6 +164,7 @@
 2026-10-19 | T048 | BLOCKED | sans commit | la fiche demande `classes/sceneRoot.ts`, le contrat `classes/scene.md` indique `classes/sceneObject.ts`; arrêt selon §4
 2026-10-19 | T048 | DONE | commit 2ed98d6 | scene root tests 5/5; arch 12/12; tsc propre; suite 459 passés, 3 skipped
 2026-10-19 | T049 | DONE | commit eed9b05 | catalog tests 2/2; arch 12/12; tsc propre; suite 461 passés, 3 skipped
+2026-10-19 | T060 | DONE | commit 4c609ab | program/scope tests 3/3; arch 12/12; tsc propre; suite 464 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
