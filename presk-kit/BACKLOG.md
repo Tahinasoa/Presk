@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T032-geom-bounds (IN_PROGRESS)
-- Dernière étape terminée : T032.1 tests écrits, échec initial confirmé; module implémenté, tests ciblés 5/5
-- Prochaine action : commit exact de T032 après validations complètes
-- État du code : bounds/ancres implémentés; tsc, architecture et suite complète verts
+- Tâche courante : T033-geom-color (IN_PROGRESS)
+- Dernière étape terminée : T033.1 tests écrits, échec initial confirmé; module implémenté, tests ciblés 13/13
+- Prochaine action : commit exact de T033 après validations complètes
+- État du code : parseColor/lerpColor implémentés; tsc, architecture et suite complète verts
 - Branche git : presk-v1
 
 ## État des tâches
@@ -32,8 +32,8 @@
 | T021-lang-validate-document | P1 | DONE | T017, T018, T019, T020 | T030-geom-vec | 7cb6cfc |
 | T030-geom-vec | P2 | DONE | T004 | T031-geom-matrix | cccb18d |
 | T031-geom-matrix | P2 | DONE | T030 | T032-geom-bounds | 8864c30 |
-| T032-geom-bounds | P2 | IN_PROGRESS | T031 | T033-geom-color | - |
-| T033-geom-color | P2 | TODO | T030 | T034-geom-flat-path | - |
+| T032-geom-bounds | P2 | DONE | T031 | T033-geom-color | c1c64a4 |
+| T033-geom-color | P2 | IN_PROGRESS | T030 | T034-geom-flat-path | - |
 | T034-geom-flat-path | P2 | TODO | T030 | T035-geom-flatten-shapes | - |
 | T035-geom-flatten-shapes | P2 | TODO | T034 | T040-model-values-ports-effect-types | - |
 | T040-model-values-ports-effect-types | P3 | TODO | T034, T010 | T041-model-scene-object | - |
@@ -147,6 +147,7 @@
 2026-10-19 | T021 | DONE | commit 7cb6cfc | document tests 7/7; arch 12/12; tsc propre; suite 367 passés, 3 skipped
 2026-10-19 | T030 | DONE | commit cccb18d | vec tests 7/7; arch 12/12; tsc propre; suite 374 passés, 3 skipped
 2026-10-19 | T031 | DONE | commit 8864c30 | matrix tests 10/10; arch 12/12; tsc propre; suite 384 passés, 3 skipped
+2026-10-19 | T032 | DONE | commit c1c64a4 | bounds tests 5/5; arch 12/12; tsc propre; suite 389 passés, 3 skipped
 
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
