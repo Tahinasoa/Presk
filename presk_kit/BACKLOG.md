@@ -5,16 +5,16 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : (aucune — commencer par la première `TODO` dont les dépendances sont `DONE`)
-- Dernière étape terminée : —
-- Prochaine action : lire `tasks/T001-baseline-report-environment.md`
-- État du code : (sain / CASSÉ — préciser les tests ou erreurs tsc en cours)
+- Tâche courante : T001-baseline-report-environment (BLOCKED)
+- Dernière étape terminée : lecture de la fiche T001 et vérification de l’existence de la spec; T001.1 non réalisée car l’arbre git est déjà modifié
+- Prochaine action : résoudre le statut git préexistant, puis reprendre T001.1
+- État du code : non vérifié; aucun test ni changement de code effectué
 - Branche git : presk-v1
 
 ## État des tâches
 | ID | Phase | Statut | Dépend de | Suivante | Dernier commit |
 |----|-------|--------|-----------|----------|----------------|
-| T001-baseline-report-environment | P0 | TODO | — | T002-skip-obsolete-legacy-tests | - |
+| T001-baseline-report-environment | P0 | BLOCKED | — | T002-skip-obsolete-legacy-tests | - |
 | T002-skip-obsolete-legacy-tests | P0 | TODO | T001 | T003-types-node-for-tsc | - |
 | T003-types-node-for-tsc | P0 | TODO | T002 | T004-arch-lint-layers | - |
 | T004-arch-lint-layers | P0 | TODO | T003 | T010-lang-diagnostics | - |
@@ -127,8 +127,12 @@
 ## Journal
 (une ligne par événement : `AAAA-MM-JJ | Txxx | DONE/FAILED/BLOCKED | commit abc1234 | remarque`)
 
+2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
+
 ## Questions pour l'architecte
 (format : `Txxx | question précise | ce que tu as lu | options que tu vois`)
+
+T001 | Quel est l’état attendu des suppressions de agent/ et de l’ajout de presk_kit/ visibles dans git status, et peux-tu fournir un arbre propre pour reprendre T001.1 ? | agent.md et T001 exigent git status propre avant branche/tests; status montre de nombreux D agent/** et ?? presk_kit/; essai git switch -c presk-v1 a échoué avec Permission denied sur .git/refs/heads/presk-v1.lock | conserver ces changements et les committer, ou restaurer la suppression/annuler le déplacement puis retenter
 
 ## Contrôles humains
 (à faire par l'humain, jamais par l'agent)
