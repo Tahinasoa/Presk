@@ -1,0 +1,100 @@
+import type { DiagnosticCollector } from "@/lang/diagnostics";
+import type { Step } from "@/lang/types";
+import { DEFAULT_START, parseStart } from "@/lang/start";
+import type { Catalog } from "@/model/catalog";
+import { createScope } from "@/engine/analyze/scope";
+import { compileProperties } from "@/engine/compile/properties";
+import type { CompiledEffect, CompiledProp, DraftAction } from "@/engine/program";
+
+export function compileSteps(
+  steps: readonly Step[],
+  types: ReadonlyMap<string, string>,
+  catalog: Catalog,
+  d: DiagnosticCollector,
+): DraftAction[] {
+  const drafts: DraftAction[] = [];
+  const scope = createScope(catalog, types);
+
+  steps.forEach((step, index) => {
+    if (step.action === "create") return;
+    const type = step.target === "scene" ? "scene" : types.get(step.target);
+    if (type === undefined) {
+      d.error("E_OBJECT_UNKNOWN", `Unknown object '${step.target}'`, { stepIndex: index, field: "target" });
+      return;
+    }
+    const def = catalog.get(type);
+    if (!def) {
+      d.error("E_TYPE_UNKNOWN", `Unknown type '${type}'`, { stepIndex: index, field: "target" });
+      return;
+    }
+
+    const startSpec = parseStart(step.start) ?? DEFAULT_START;
+    const name = step.name === undefined ? {} : { name: step.name };
+    const where = { stepIndex: index, field: "properties" };
+
+    switch (step.action) {
+      case "set": {
+        const entries = compileProperties(step.properties, "set", def, { scope, d, stepIndex: index });
+        if (entries) drafts.push({ action: "set", index, target: step.target, ...name, startSpec, entries });
+        return;
+      }
+      case "animate": {
+        const entries = compileProperties(step.properties, "animate", def, { scope, d, stepIndex: index });
+        if (!entries) return;
+        const hasInterp = entries.some((entry) => entry.kind === "prop");
+        if (hasInterp && step.duration === undefined) {
+          d.error("E_DURATION_MISSING", "Animated properties require a duration", { stepIndex: index, field: "duration" });
+          return;
+        }
+        const effects = entries.filter((entry): entry is CompiledEffect => entry.kind === "effect");
+        const effectDefaultDuration = hasInterp || effects.length === 0
+          ? undefined
+          : Math.max(...effects.map(({ def: effect }) => effect.defaultDuration));
+        const ease = step.ease
+          ?? (!hasInterp && effects.length > 0 ? effects[0].def.defaultEase : "linear");
+        drafts.push({
+          action: "animate",
+          index,
+          target: step.target,
+          ...name,
+          startSpec,
+          entries,
+          ease,
+          repeat: step.repeat ?? 1,
+          repeatMode: step.repeatMode ?? "restart",
+          ...(step.duration === undefined ? {} : { explicitDuration: step.duration }),
+          ...(effectDefaultDuration === undefined ? {} : { effectDefaultDuration }),
+        });
+        return;
+      }
+      case "bind": {
+        const entries = compileProperties(step.properties, "bind", def, { scope, d, stepIndex: index });
+        if (entries) {
+          const props = entries.filter((entry): entry is CompiledProp => entry.kind === "prop");
+          drafts.push({ action: "bind", index, target: step.target, ...name, startSpec, entries: props });
+        }
+        return;
+      }
+      case "unbind":
+      case "stop": {
+        const keys = step.properties ?? null;
+        let invalid = false;
+        for (const key of keys ?? []) {
+          if (!def.props[key] && !def.effects[key]) {
+            d.error("E_PROPERTY_UNKNOWN", `Unknown property '${key}'`, { ...where, field: `properties.${key}` });
+            invalid = true;
+          }
+        }
+        if (!invalid) drafts.push({ action: step.action, index, target: step.target, ...name, startSpec, keys });
+        return;
+      }
+      case "travel":
+      case "group":
+      case "ungroup":
+        d.error("E_ACTION_UNKNOWN", "action not implemented yet", { stepIndex: index, field: "action" });
+        return;
+    }
+  });
+
+  return drafts;
+}
