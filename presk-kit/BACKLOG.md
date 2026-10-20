@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T113-engine-compile-travel (IN_PROGRESS)
-- Dernière étape terminée : T113.6 — tests ciblés 26/26, tsc propre, arch 12/12, suite complète 510/510
-- Prochaine action : créer le commit exact de T113, puis noter son hash et marquer DONE
-- État du code : T113 validée; compilation travel produit des drafts provisoires
+- Tâche courante : T114-engine-travel-resolver (IN_PROGRESS)
+- Dernière étape terminée : T114.9 — tests ciblés 39/39, tsc propre, arch 12/12, suite complète 523/523
+- Prochaine action : créer le commit exact de T114, puis noter son hash et marquer DONE
+- État du code : T114 validée; sonde créée seulement pour les programmes contenant un travel
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -86,8 +86,8 @@
 | T110-model-circle | P6 | DONE | T049 | T111-model-ellipse | cab6aee |
 | T111-model-ellipse | P6 | DONE | T110 | T112-engine-expr-pathfn | 9c7ccb8 |
 | T112-engine-expr-pathfn | P6 | DONE | T110, T062, T061 | T113-engine-compile-travel | ba59ff9 |
-| T113-engine-compile-travel | P6 | IN_PROGRESS | T112, T067 | T114-engine-travel-resolver | - |
-| T114-engine-travel-resolver | P6 | TODO | T113, T068, T070, T072 | T115-engine-mech-travel | - |
+| T113-engine-compile-travel | P6 | DONE | T112, T067 | T114-engine-travel-resolver | 633f255 |
+| T114-engine-travel-resolver | P6 | IN_PROGRESS | T113, T068, T070, T072 | T115-engine-mech-travel | - |
 | T115-engine-mech-travel | P6 | TODO | T114, T079 | T116-engine-golden-travel | - |
 | T116-engine-golden-travel | P6 | TODO | T115 | T117-model-segment-arrow | - |
 | T117-model-segment-arrow | P6 | TODO | T116 | T118-model-polygon-triangle | - |
@@ -160,6 +160,7 @@
 2026-10-20 | T110 | DONE | commit cab6aee | classe circle et enregistrement catalogue; tsc, arch 12/12, suite 476/476
 2026-10-20 | T111 | DONE | commit 9c7ccb8 | classe ellipse et enregistrement catalogue; tsc, arch 12/12, suite 480/480
 2026-10-20 | T112 | DONE | commit ba59ff9 | analyse/évaluation pathFn; tsc, arch 12/12, suite 492/492
+2026-10-20 | T113 | DONE | commit 633f255 | compilateur travel en drafts provisoires; tsc, arch 12/12, suite 510/510
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé

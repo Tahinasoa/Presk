@@ -31,9 +31,12 @@ export function planTimeline(
     } else if (draft.action === "group") {
       duration = draft.explicitDuration ?? 0;
     } else if (draft.action === "travel") {
-      if (!hooks?.resolveTravel) throw new Error("Presk internal: travel planning requires resolveTravel hook");
-      resolvedTravel = hooks.resolveTravel(draft as Parameters<NonNullable<PlanHooks["resolveTravel"]>>[0], start) ?? undefined;
-      if (!resolvedTravel) continue;
+      if (hooks?.resolveTravel) {
+        resolvedTravel = hooks.resolveTravel(draft as Parameters<NonNullable<PlanHooks["resolveTravel"]>>[0], start) ?? undefined;
+        if (!resolvedTravel) continue;
+      } else {
+        resolvedTravel = { fromT: draft.fromT, toT: draft.toT, duration: draft.explicitDuration ?? 0 };
+      }
       duration = resolvedTravel.duration;
     } else {
       duration = 0;
@@ -41,12 +44,28 @@ export function planTimeline(
 
     const repeat = draft.action === "animate" || draft.action === "travel" ? draft.repeat : 1;
     const end = repeat === "infinite" ? Infinity : roundInstant(start + duration * repeat);
-    const {
-      startSpec: _startSpec,
-      explicitDuration: _explicitDuration,
-      effectDefaultDuration: _effectDefaultDuration,
-      ...actionFields
-    } = draft;
+    const actionFields = draft.action === "travel"
+      ? (() => {
+          const {
+            startSpec: _startSpec,
+            explicitDuration: _explicitDuration,
+            effectDefaultDuration: _effectDefaultDuration,
+            speed: _speed,
+            fromSpec: _fromSpec,
+            toSpec: _toSpec,
+            ...fields
+          } = draft;
+          return fields;
+        })()
+      : (() => {
+          const {
+            startSpec: _startSpec,
+            explicitDuration: _explicitDuration,
+            effectDefaultDuration: _effectDefaultDuration,
+            ...fields
+          } = draft;
+          return fields;
+        })();
     const action = {
       ...actionFields,
       ...(resolvedTravel ?? {}),

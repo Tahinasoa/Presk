@@ -1,18 +1,17 @@
 import { describe, expect, it } from "vitest";
-import { analyzeActivity } from "@/engine/analyze/activity";
-import { DiagnosticCollector } from "@/lang/diagnostics";
+import { tryCompileProgram } from "@/engine/compileProgram";
 import { createDefaultCatalog } from "@/model/defaultCatalog";
-import { planForTest } from "@/engine/testing";
+import { createTestEnv } from "@/model/ports";
 
 const catalog = createDefaultCatalog();
+const objectEnv = createTestEnv();
 
 function codes(steps: unknown[]): string[] {
-  const planned = planForTest(steps);
-  expect(planned.diagnostics).toEqual([]);
-  const types = new Map(planned.init.map(({ id, type }) => [id, type]));
-  const diagnostics = new DiagnosticCollector();
-  analyzeActivity(planned.actions, (id) => types.get(id), catalog, diagnostics);
-  return diagnostics.items.map(({ code }) => code);
+  const result = tryCompileProgram(
+    { version: "1.0", scene: { width: 800, height: 600 }, steps },
+    { catalog, objectEnv },
+  );
+  return result.diagnostics.map(({ code }) => code);
 }
 
 const pair = (steps: unknown[]) => [
@@ -110,6 +109,27 @@ describe("analyzeActivity", () => {
     expect(codes(pair([
       { action: "animate", target: "a", properties: { x: 100 }, duration: 4 },
       { action: "stop", target: "a", start: "1" },
+    ]))).toEqual([]);
+  });
+
+  it("rejects stopping only x on an active travel", () => {
+    expect(codes(pair([
+      { action: "travel", target: "a", along: "b", duration: 4, orient: true },
+      { action: "stop", target: "a", properties: ["x"], start: "1" },
+    ]))).toEqual(["E_STOP_PARTIAL_TRAVEL"]);
+  });
+
+  it("allows stopping both position keys through pos", () => {
+    expect(codes(pair([
+      { action: "travel", target: "a", along: "b", duration: 4 },
+      { action: "stop", target: "a", properties: ["pos"], start: "1" },
+    ]))).toEqual([]);
+  });
+
+  it("allows animation to take ownership of x during a travel", () => {
+    expect(codes(pair([
+      { action: "travel", target: "a", along: "b", duration: 4 },
+      { action: "animate", target: "a", properties: { x: 0 }, duration: 1, start: "1" },
     ]))).toEqual([]);
   });
 });

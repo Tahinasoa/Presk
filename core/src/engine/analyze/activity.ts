@@ -72,6 +72,13 @@ export function analyzeActivity(
       continue;
     }
 
+    if (action.action === "travel") {
+      current.set("x", { kind: "travel", end: action.end });
+      current.set("y", { kind: "travel", end: action.end });
+      if (action.orient !== null) current.set("rotation", { kind: "travel", end: action.end });
+      continue;
+    }
+
     if (action.action === "bind") {
       for (const key of keysOfEntries(action.entries)) current.set(key, { kind: "bind", end: Infinity });
       continue;
@@ -90,6 +97,14 @@ export function analyzeActivity(
         } else {
           for (const [key] of active) current.delete(key);
         }
+        continue;
+      }
+      const ownsTravelPosition = current.get("x")?.kind === "travel" && current.get("y")?.kind === "travel";
+      if (ownsTravelPosition && !(keys.includes("x") && keys.includes("y"))) {
+        d.error("E_STOP_PARTIAL_TRAVEL", "Cannot stop only part of a travel position", {
+          stepIndex: action.index,
+          field: "properties",
+        });
         continue;
       }
       for (const key of keys) {

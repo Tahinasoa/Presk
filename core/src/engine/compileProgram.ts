@@ -1,9 +1,11 @@
 import { analyzeActivity } from "@/engine/analyze/activity";
 import { resolveEffectVariants } from "@/engine/analyze/effects";
+import { createTravelHooks } from "@/engine/analyze/travelPlan";
 import { compileCreates } from "@/engine/compile/create";
 import { compileSteps } from "@/engine/compile/steps";
 import { planTimeline } from "@/engine/plan/timeline";
 import type { Program } from "@/engine/program";
+import { buildWorld } from "@/engine/sim/buildWorld";
 import { DiagnosticCollector, PreskCompileError } from "@/lang/diagnostics";
 import type { Diagnostic } from "@/lang/diagnostics";
 import { validateDocument } from "@/lang/validate/document";
@@ -26,7 +28,16 @@ export function tryCompileProgram(raw: unknown, env: CompileEnv): { program?: Pr
   const drafts = compileSteps(parsed.steps, creates.types, env.catalog, d);
   if (d.hasErrors) return { diagnostics: [...d.items] };
 
-  const planned = planTimeline(drafts, d);
+  const travelHooks = drafts.some((draft) => draft.action === "travel")
+    ? createTravelHooks(buildWorld({
+        scene: parsed.scene,
+        init: creates.init,
+        actions: [],
+        duration: 0,
+        warnings: [...d.warnings],
+      }, env), env.catalog, d)
+    : undefined;
+  const planned = planTimeline(drafts, d, travelHooks);
   if (d.hasErrors) return { diagnostics: [...d.items] };
 
   resolveEffectVariants(creates.init, planned.actions);
