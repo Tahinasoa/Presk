@@ -91,6 +91,6 @@ describe("compileValue", () => {
   it("rejects unregistered custom compilers and unsupported kinds", () => {
     expect(compile("number", 1, { customKind: "x.y" }).diagnostics[0]?.message).toBe("custom compiler not registered");
     expect(compile("objectRef", "a").diagnostics[0]?.message).toBe("not supported yet");
-    expect(CUSTOM_COMPILERS).toEqual({});
+    expect(Object.keys(CUSTOM_COMPILERS).sort()).toEqual(["scene.focusOn", "scene.view", "scene.zoom"]);
   });
 });

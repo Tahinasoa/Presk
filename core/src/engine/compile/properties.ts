@@ -17,8 +17,28 @@ export function compileProperties(
   const compiled: { entry: CompiledEntry; sourceIndex: number; order: number }[] = [];
   const seenWrites = new Set<string>();
   let failed = false;
+  let focusMargin = 0;
+
+  if (def.type === "scene" && Object.hasOwn(raw, "focusMargin")) {
+    if (!Object.hasOwn(raw, "focusOn")) {
+      ctx.d.error("E_VIEW_MARGIN_WITHOUT_FOCUS", "focusMargin requires focusOn", {
+        stepIndex: ctx.stepIndex,
+        field: "properties.focusMargin",
+      });
+      failed = true;
+    } else if (typeof raw.focusMargin !== "number" || !Number.isFinite(raw.focusMargin)) {
+      ctx.d.error("E_VALUE_TYPE", "focusMargin must be a finite number", {
+        stepIndex: ctx.stepIndex,
+        field: "properties.focusMargin",
+      });
+      failed = true;
+    } else {
+      focusMargin = raw.focusMargin;
+    }
+  }
 
   for (const [key, rawValue] of Object.entries(raw)) {
+    if (def.type === "scene" && key === "focusMargin") continue;
     const where = { stepIndex: ctx.stepIndex, field: `properties.${key}` };
     const prop = def.props[key];
     if (prop) {
@@ -32,12 +52,18 @@ export function compileProperties(
         failed = true;
         continue;
       }
-      if (mode === "bind" && !(prop.mode === "rw" && (prop.kind === "number" || prop.kind === "point"))) {
+      if (mode === "bind" && !(prop.mode === "rw"
+        && (prop.kind === "number" || prop.kind === "point" || prop.kind === "view"))) {
         ctx.d.error("E_PROPERTY_NOT_BINDABLE", `Property '${key}' is not bindable`, where);
         failed = true;
         continue;
       }
-      const value = compileValue(prop, rawValue, { scope: ctx.scope, d: ctx.d, where });
+      const value = compileValue(prop, rawValue, {
+        scope: ctx.scope,
+        d: ctx.d,
+        where,
+        ...(def.type === "scene" && key === "focusOn" ? { focusMargin } : {}),
+      });
       if (!value) {
         failed = true;
         continue;

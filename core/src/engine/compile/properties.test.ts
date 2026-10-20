@@ -47,6 +47,7 @@ describe("compileProperties", () => {
     expect(compile({ pivot: "topLeft" }, "set").entries?.[0]?.kind).toBe("prop");
     expect(codes(compile({ pivot: "pos" }, "bind"))).toEqual(["E_PROPERTY_NOT_BINDABLE"]);
     expect(codes(compile({ reveal: true }, "bind"))).toEqual(["E_EFFECT_BIND"]);
+    expect(compile({ zoom: 2 }, "bind", SCENE_DEF).entries).toHaveLength(1);
   });
 
   it("validates effect values and preserves false for later resolution", () => {

@@ -5,6 +5,7 @@ import { parseExpression } from "@/lang/expr/parser";
 import { analyzeExpr } from "@/engine/analyze/expr";
 import type { AnalyzeScope } from "@/engine/analyze/scope";
 import { compileExpr } from "@/engine/compile/exprEval";
+import { registerSceneViewCompilers } from "@/engine/compile/sceneView";
 import type { Evaluator } from "@/engine/program";
 import type { PropSpec, StateValue } from "@/model/values";
 import type { World } from "@/model/world";
@@ -13,6 +14,7 @@ export interface CompileValueContext {
   scope: AnalyzeScope;
   d: DiagnosticCollector;
   where: DiagnosticWhere;
+  focusMargin?: number;
 }
 
 export type CustomCompiler = (
@@ -22,6 +24,7 @@ export type CustomCompiler = (
 ) => { value: Evaluator; reads: string[] } | null;
 
 export const CUSTOM_COMPILERS: Record<string, CustomCompiler> = {};
+registerSceneViewCompilers(CUSTOM_COMPILERS);
 
 export function compileValue(
   spec: PropSpec,
