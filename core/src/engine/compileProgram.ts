@@ -2,6 +2,7 @@ import { analyzeActivity } from "@/engine/analyze/activity";
 import { resolveEffectVariants } from "@/engine/analyze/effects";
 import { createTravelHooks } from "@/engine/analyze/travelPlan";
 import { compileCreates } from "@/engine/compile/create";
+import { addImplicitGroups } from "@/engine/compile/groups";
 import { compileSteps } from "@/engine/compile/steps";
 import { planTimeline } from "@/engine/plan/timeline";
 import type { Program } from "@/engine/program";
@@ -25,6 +26,7 @@ export function tryCompileProgram(raw: unknown, env: CompileEnv): { program?: Pr
   if (!parsed || d.hasErrors) return { diagnostics: [...d.items] };
 
   const creates = compileCreates(parsed.steps, env.catalog, d);
+  addImplicitGroups(parsed.steps, creates.init, creates.types);
   const drafts = compileSteps(parsed.steps, creates.types, env.catalog, d);
   if (d.hasErrors) return { diagnostics: [...d.items] };
 

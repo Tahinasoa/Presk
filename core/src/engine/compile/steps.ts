@@ -4,6 +4,7 @@ import { DEFAULT_START, parseStart } from "@/lang/start";
 import type { Catalog } from "@/model/catalog";
 import { createScope } from "@/engine/analyze/scope";
 import { compileProperties } from "@/engine/compile/properties";
+import { GROUP_DEF } from "@/model/classes/groupObject";
 import type { CompiledEffect, CompiledProp, DraftAction, TravelDraft } from "@/engine/program";
 
 export function compileSteps(
@@ -14,6 +15,14 @@ export function compileSteps(
 ): DraftAction[] {
   const drafts: DraftAction[] = [];
   const scope = createScope(catalog, types);
+  const staticParent = new Map<string, string>();
+  const groupLayouts = new Map<string, string>();
+  for (const step of steps) {
+    if (step.action === "create" && step.type === "group") {
+      const layout = step.properties?.layout;
+      if (typeof layout === "string") groupLayouts.set(step.target, layout);
+    }
+  }
 
   steps.forEach((step, index) => {
     if (step.action === "create") return;
@@ -163,12 +172,145 @@ export function compileSteps(
         drafts.push(draft);
         return;
       }
-      case "group":
-      case "ungroup":
-        d.error("E_ACTION_UNKNOWN", "action not implemented yet", { stepIndex: index, field: "action" });
+      case "group": {
+        if (type !== "group") {
+          d.error("E_GROUP_TARGET_NOT_GROUP", `Target '${step.target}' is not a group`, {
+            stepIndex: index,
+            field: "target",
+          });
+          return;
+        }
+        const children = normalizeChildren(step.properties.children, index, d);
+        if (children === null) return;
+        let invalid = false;
+        for (const child of children) {
+          const childType = types.get(child);
+          const childDef = childType === undefined ? undefined : catalog.get(childType);
+          if (child === "scene" || !childDef) {
+            d.error("E_GROUP_CHILD_UNKNOWN", `Unknown group child '${child}'`, {
+              stepIndex: index,
+              field: "properties.children",
+            });
+            invalid = true;
+            continue;
+          }
+          let ancestor: string | undefined = step.target;
+          while (ancestor !== undefined) {
+            if (ancestor === child) {
+              d.error("E_GROUP_CYCLE", `Grouping '${child}' under '${step.target}' would create a cycle`, {
+                stepIndex: index,
+                field: "properties.children",
+              });
+              invalid = true;
+              break;
+            }
+            ancestor = staticParent.get(ancestor);
+          }
+        }
+
+        const layoutValue = step.properties.layout;
+        const effectiveLayout = typeof layoutValue === "string"
+          ? layoutValue
+          : groupLayouts.get(step.target) ?? "none";
+        const properties = Object.fromEntries(
+          Object.entries(step.properties).filter(([key]) => key !== "children"),
+        );
+        const props = compileProperties(properties, "set", GROUP_DEF, {
+          scope,
+          d,
+          stepIndex: index,
+        });
+        if (!props) invalid = true;
+
+        if (effectiveLayout === "vertical" || effectiveLayout === "horizontal") {
+          for (const child of children) {
+            const childType = types.get(child);
+            const childDef = childType === undefined ? undefined : catalog.get(childType);
+            if (childDef && (childDef.family === "unbounded" || childDef.family === "point")) {
+              d.error("E_GROUP_LAYOUT", `Object '${child}' cannot be placed in a group with layout`, {
+                stepIndex: index,
+                field: "properties.children",
+              });
+              invalid = true;
+            }
+          }
+        }
+        if (typeof layoutValue === "string" && ["vertical", "horizontal", "none"].includes(layoutValue)) {
+          groupLayouts.set(step.target, layoutValue);
+        }
+        if (invalid || !props) return;
+
+        for (const child of children) staticParent.set(child, step.target);
+        drafts.push({
+          action: "group",
+          index,
+          target: step.target,
+          ...name,
+          startSpec,
+          props,
+          children,
+          ease: step.ease ?? "linear",
+          ...(step.duration === undefined ? {} : { explicitDuration: step.duration }),
+        });
         return;
+      }
+      case "ungroup": {
+        if (type !== "group") {
+          d.error("E_GROUP_TARGET_NOT_GROUP", `Target '${step.target}' is not a group`, {
+            stepIndex: index,
+            field: "target",
+          });
+          return;
+        }
+        const requested = step.properties?.children;
+        const children = requested === undefined
+          ? null
+          : normalizeChildren(requested, index, d);
+        if (requested !== undefined && children === null) return;
+        const ungroupChildren = children ?? [...staticParent]
+          .filter(([, parent]) => parent === step.target)
+          .map(([child]) => child);
+        let invalid = false;
+        for (const child of ungroupChildren) {
+          if (staticParent.get(child) !== step.target) {
+            d.error("E_UNGROUP_NOT_MEMBER", `Object '${child}' is not a child of '${step.target}'`, {
+              stepIndex: index,
+              field: "properties.children",
+            });
+            invalid = true;
+          }
+        }
+        if (invalid) return;
+        for (const child of ungroupChildren) staticParent.delete(child);
+        drafts.push({
+          action: "ungroup",
+          index,
+          target: step.target,
+          ...name,
+          startSpec,
+          children: requested === undefined ? null : ungroupChildren,
+        });
+        return;
+      }
     }
   });
 
   return drafts;
+}
+
+function normalizeChildren(
+  value: unknown,
+  stepIndex: number,
+  d: DiagnosticCollector,
+): string[] | null {
+  if (typeof value === "string") return [value];
+  if (Array.isArray(value) && value.every((child) => typeof child === "string")) {
+    return value;
+  }
+  d.error(
+    value === undefined ? "E_FIELD_REQUIRED" : "E_FIELD_TYPE",
+    "Group children must be a string or an array of strings",
+    { stepIndex, field: "properties.children" },
+  );
+  return null;
 }
