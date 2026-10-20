@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T115-engine-mech-travel (IN_PROGRESS)
-- Dernière étape terminée : T115.5 — branchement de TravelMechanism dans Simulation; validations complètes (tests ciblés 17/17, tsc propre, arch 12/12, suite 531/531)
-- Prochaine action : créer le commit exact de T115, puis noter son hash et marquer DONE
-- État du code : T115 implémentée et validée; aucun échec
+- Tâche courante : T116-engine-golden-travel (IN_PROGRESS)
+- Dernière étape terminée : T116.1 — cas golden V1–V6 écrits; tests ciblés 6/6, tsc propre, arch 12/12, suite 537/537
+- Prochaine action : créer le commit exact de T116, puis noter son hash et marquer DONE
+- État du code : tests golden de travel validés; aucun échec
 - Branche git : presk-v1
 
 ## État des tâches
@@ -82,8 +82,8 @@
 | T112-engine-expr-pathfn | P6 | DONE | T110, T062, T061 | T113-engine-compile-travel | ba59ff9 |
 | T113-engine-compile-travel | P6 | DONE | T112, T067 | T114-engine-travel-resolver | 633f255 |
 | T114-engine-travel-resolver | P6 | DONE | T113, T068, T070, T072 | T115-engine-mech-travel | fdc32c6 |
-| T115-engine-mech-travel | P6 | IN_PROGRESS | T114, T079 | T116-engine-golden-travel | - |
-| T116-engine-golden-travel | P6 | TODO | T115 | T117-model-segment-arrow | - |
+| T115-engine-mech-travel | P6 | DONE | T114, T079 | T116-engine-golden-travel | 8403a2c |
+| T116-engine-golden-travel | P6 | IN_PROGRESS | T115 | T117-model-segment-arrow | - |
 | T117-model-segment-arrow | P6 | TODO | T116 | T118-model-polygon-triangle | - |
 | T118-model-polygon-triangle | P6 | TODO | T117 | T119-model-polyline | - |
 | T119-model-polyline | P6 | TODO | T118 | T120-model-arc | - |
@@ -156,6 +156,7 @@
 2026-10-20 | T112 | DONE | commit ba59ff9 | analyse/évaluation pathFn; tsc, arch 12/12, suite 492/492
 2026-10-20 | T113 | DONE | commit 633f255 | compilateur travel en drafts provisoires; tsc, arch 12/12, suite 510/510
 2026-10-20 | T114 | DONE | commit fdc32c6 | résolveur, suivi from current et ownership travel; tsc, arch 12/12, suite 523/523
+2026-10-20 | T115 | DONE | commit 8403a2c | mécanisme travel activé dans Simulation; tsc, arch 12/12, suite 531/531
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
