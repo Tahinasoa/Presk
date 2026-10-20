@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T096-app-main-and-examples (IN_PROGRESS)
-- Dernière étape terminée : T096.4 — tsc propre, architecture 12/12, suite 652 passés/3 skipped; navigateur: canvas, durée 2,80 s, rendu et play/pause/curseur vérifiés
-- Prochaine action : créer le commit exact de T096, puis noter son hash et marquer DONE
-- État du code : T096 entièrement validée; contrôle visuel navigateur réussi
+- Tâche courante : T097-delete-legacy-top-layers (IN_PROGRESS)
+- Dernière étape terminée : T097.3 — tsc propre, architecture 12/12, suite 468/468; `timer/easing/` intact
+- Prochaine action : committer toutes les suppressions avec le message exact T097, puis terminer T097 et T098
+- État du code : suppression complète du legacy hors `timer/easing/`; validations vertes
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -79,10 +79,10 @@
 | T093-view-text-view-and-measurer | P5 | DONE | T091, T047 | T094-view-sync | c4a6b8d |
 | T094-view-sync | P5 | DONE | T092, T093 | T095-app-presk-facade | 4649d5a |
 | T095-app-presk-facade | P5 | DONE | T094, T079 | T096-app-main-and-examples | 8a2db49 |
-| T096-app-main-and-examples | P5 | IN_PROGRESS | T095 | T097-delete-legacy-top-layers | - |
-| T097-delete-legacy-top-layers | P5 | TODO | T096 | T098-delete-legacy-primitives-timer | - |
+| T096-app-main-and-examples | P5 | DONE | T095 | T097-delete-legacy-top-layers | 7276578 |
+| T097-delete-legacy-top-layers | P5 | IN_PROGRESS | T096 | T098-delete-legacy-primitives-timer | - |
 | T098-delete-legacy-primitives-timer | P5 | TODO | T097 | T099-mark-stale-docs | - |
-| T099-mark-stale-docs | P5 | TODO | T098 | T110-model-circle | - |
+| T099-mark-stale-docs | P5 | IN_PROGRESS | T098 | T110-model-circle | - |
 | T110-model-circle | P6 | TODO | T049 | T111-model-ellipse | - |
 | T111-model-ellipse | P6 | TODO | T110 | T112-engine-expr-pathfn | - |
 | T112-engine-expr-pathfn | P6 | TODO | T110, T062, T061 | T113-engine-compile-travel | - |
@@ -153,6 +153,8 @@
 2026-10-20 | T093 | DONE | commit c4a6b8d | TextView et PixiTextMeasurer; tsc, arch 12/12, suite 652/3 skipped
 2026-10-20 | T094 | DONE | commit 4649d5a | ViewSync et registre par défaut; tsc, arch 12/12, suite 652/3 skipped
 2026-10-20 | T095 | DONE | commit 8a2db49 | Presk façade; tsc, arch 12/12, suite 652/3 skipped
+2026-10-20 | T096 | DONE | commit 7276578 | démo HELLO v1 et CSS dans index; tsc, arch 12/12, suite 652/3 skipped; contrôle navigateur validé
+2026-10-20 | T097 | BLOCKED | sans commit | suppression des six cibles faite; validation bloquée par un test legacy résiduel important `@/binding/expression` (tsc TS2307, suite 1 échec)
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
