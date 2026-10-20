@@ -1,4 +1,5 @@
 import { Catalog } from "@/model/catalog";
+import { ARC_DEF } from "@/model/classes/arcObject";
 import { SCENE_DEF } from "@/model/classes/sceneRoot";
 import { CIRCLE_DEF } from "@/model/classes/circleObject";
 import { ELLIPSE_DEF } from "@/model/classes/ellipseObject";
@@ -11,6 +12,7 @@ import { TEXT_DEF } from "@/model/classes/textObject";
 export function createDefaultCatalog(): Catalog {
   const catalog = new Catalog();
   catalog.register(SCENE_DEF);
+  catalog.register(ARC_DEF);
   catalog.register(CIRCLE_DEF);
   catalog.register(ELLIPSE_DEF);
   catalog.register(POLYGON_DEF);

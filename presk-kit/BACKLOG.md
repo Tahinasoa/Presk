@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T119-model-polyline (IN_PROGRESS)
-- Dernière étape terminée : T119.2 — tests ciblés 8/8, tsc propre, arch 12/12, suite 566/566
-- Prochaine action : créer le commit exact de T119, puis noter son hash et marquer DONE
-- État du code : T119 implémentée et validée; factories points/vertex réutilisées sans régression
+- Tâche courante : T120-model-arc (IN_PROGRESS)
+- Dernière étape terminée : T120.4 — tests ciblés 9/9, tsc propre, arch 12/12, suite 573/573
+- Prochaine action : créer le commit exact de T120, puis noter son hash et marquer DONE
+- État du code : T120 implémentée et validée; test compile engine autorisé pour cette tâche
 - Branche git : presk-v1
 
 ## État des tâches
@@ -86,8 +86,8 @@
 | T116-engine-golden-travel | P6 | DONE | T115 | T117-model-segment-arrow | 279b07c |
 | T117-model-segment-arrow | P6 | DONE | T116 | T118-model-polygon-triangle | 5d3ad4c |
 | T118-model-polygon-triangle | P6 | DONE | T117 | T119-model-polyline | dc771bb |
-| T119-model-polyline | P6 | IN_PROGRESS | T118 | T120-model-arc | - |
-| T120-model-arc | P6 | TODO | T119 | T121-model-point-ray-line | - |
+| T119-model-polyline | P6 | DONE | T118 | T120-model-arc | c0d3f02 |
+| T120-model-arc | P6 | IN_PROGRESS | T119 | T121-model-point-ray-line | - |
 | T121-model-point-ray-line | P6 | TODO | T120 | T122-view-circle-ellipse | - |
 | T122-view-circle-ellipse | P6 | TODO | T121, T094 | T123-view-path-views | - |
 | T123-view-path-views | P6 | TODO | T122 | T124-view-polygon-views | - |
@@ -163,6 +163,8 @@
 2026-10-20 | T118 | BLOCKED | sans commit | conflit entre cas compile/validation et ADR-003; débloquée par autorisation d'un test d'intégration dans engine
 2026-10-20 | T118 | DONE | commit dc771bb | classes polygon/triangle, ancres vertex indexées et catalogue; tsc, arch 12/12, suite 560/560
 2026-10-20 | T119 | BLOCKED | sans commit | conflit résolu par autorisation architecte d'un test d'intégration dans engine
+2026-10-20 | T119 | DONE | commit c0d3f02 | classe polyline ouverte/fermée et factories partagées; tsc, arch 12/12, suite 566/566
+2026-10-20 | T120 | BLOCKED | sans commit | conflit résolu par autorisation limitée à T120 d'un test de compilation dans engine
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
