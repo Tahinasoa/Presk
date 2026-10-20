@@ -1,4 +1,5 @@
 import { ANCHOR_NAMES, anchorOfBounds } from "@/geom/bounds";
+import type { Bounds } from "@/geom/bounds";
 import { applyLinear, applyMat, invertMat } from "@/geom/matrix";
 import type { Pt } from "@/geom/vec";
 import { FlatPath } from "@/geom/flatPath";
@@ -20,7 +21,7 @@ export class RectangleObject extends SceneObject {
     });
   }
 
-  localBounds() {
+  localBounds(): Bounds | null {
     return { minX: 0, minY: 0, maxX: this.getNumber("width"), maxY: this.getNumber("height") };
   }
 }
