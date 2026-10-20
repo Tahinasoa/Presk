@@ -1,3 +1,5 @@
+> ⚠️ PÉRIMÉ — décrit la v0.1 du moteur. Source de vérité : `language/Presk — Spécification v1.0.md`. Ne pas utiliser pour décider.
+
 # Presk Architectural Decisions & Design Log
 
 This document centralizes major architectural decisions, design rationale, and known structural trade-offs for the Presk engine.

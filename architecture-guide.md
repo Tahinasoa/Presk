@@ -1,3 +1,5 @@
+> ⚠️ PÉRIMÉ — décrit la v0.1 du moteur. Source de vérité : `language/Presk — Spécification v1.0.md`. Ne pas utiliser pour décider.
+
 # Guide d'Architecture et d'Exploration du Projet Presk
 
 Ce document sert de guide de lecture et de compréhension globale et détaillée du moteur **Presk** (`core/`). Il propose un **ordre de lecture vertical** rigoureux pour mener une relecture de code (code review) efficace, de la vision macroscopique vers les détails d'implémentation.
