@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T078-engine-sim-instant-actions (IN_PROGRESS)
-- Dernière étape terminée : T078.5 — validation complète verte; tests ciblés 8/8, tsc propre, arch 12/12, suite 630/3 skipped
-- Prochaine action : créer le commit exact de T078, puis noter son hash et marquer DONE
-- État du code : T076/T077 validées; T078 implémentée et entièrement validée
+- Tâche courante : T079-engine-simulation (IN_PROGRESS)
+- Dernière étape terminée : T079.8 — validation complète verte; simulation tests 9/9, tsc propre, arch 12/12, suite 639/3 skipped
+- Prochaine action : créer le commit exact de T079, puis noter son hash et marquer DONE
+- État du code : T076–T078 validées; T079 implémentée et entièrement validée
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -70,8 +70,8 @@
 | T075-engine-mech-animate | P4 | DONE | T074, T066, T033 | T076-engine-mech-bind | 9a32bd4 |
 | T076-engine-mech-bind | P4 | DONE | T075 | T077-engine-mech-effect | 7c28cb0 |
 | T077-engine-mech-effect | P4 | DONE | T075, T044 | T078-engine-sim-instant-actions | 34c61bd |
-| T078-engine-sim-instant-actions | P4 | IN_PROGRESS | T074, T075 | T079-engine-simulation | - |
-| T079-engine-simulation | P4 | TODO | T072, T073, T075, T076, T077, T078 | T080-engine-golden-core | - |
+| T078-engine-sim-instant-actions | P4 | DONE | T074, T075 | T079-engine-simulation | 8f36433 |
+| T079-engine-simulation | P4 | IN_PROGRESS | T072, T073, T075, T076, T077, T078 | T080-engine-golden-core | - |
 | T080-engine-golden-core | P4 | TODO | T079 | T090-view-pixi-host | - |
 | T090-view-pixi-host | P5 | TODO | T080 | T091-view-object-view-registry | - |
 | T091-view-object-view-registry | P5 | TODO | T090 | T092-view-rectangle-view | - |
@@ -144,6 +144,7 @@
 2026-10-19 | T075 | DONE | commit 9a32bd4 | animate/interpolation; tests 11/11, tsc, arch 12/12, suite 612/3 skipped
 2026-10-20 | T076 | DONE | commit 7c28cb0 | revalidation après interruption; bind tests 6/6, tsc propre, arch 12/12, suite 618/3 skipped
 2026-10-20 | T077 | DONE | commit 34c61bd | mécanisme d’effet et propriété `@effect`; tests 4/4, tsc, arch 12/12, suite 622/3 skipped
+2026-10-20 | T078 | DONE | commit 8f36433 | activateSet/Stop/Unbind; tests 8/8, tsc, arch 12/12, suite 630/3 skipped
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
