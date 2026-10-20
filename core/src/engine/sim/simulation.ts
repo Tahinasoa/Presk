@@ -2,6 +2,7 @@ import type { Program, PlannedAction } from "@/engine/program";
 import { AnimateMechanism } from "@/engine/sim/mechanisms/animate";
 import { BindMechanism } from "@/engine/sim/mechanisms/bind";
 import { EffectMechanism } from "@/engine/sim/mechanisms/effect";
+import { TravelMechanism } from "@/engine/sim/mechanisms/travel";
 import { activateSet, activateStop, activateUnbind } from "@/engine/sim/instant";
 import { buildWorld } from "@/engine/sim/buildWorld";
 import { Ownership } from "@/engine/sim/context";
@@ -113,6 +114,8 @@ export class Simulation {
         this.addMechanism(new BindMechanism(action), now);
         return;
       case "travel":
+        this.addMechanism(new TravelMechanism(action), now);
+        return;
       case "group":
       case "ungroup":
         throw new Error(`Presk internal: action '${action.action}' not implemented`);
