@@ -19,6 +19,10 @@ function rectangle(target: string, properties: Record<string, unknown>): unknown
   return { action: "create", target, type: "rectangle", properties };
 }
 
+function circle(target: string, properties: Record<string, unknown>): unknown {
+  return { action: "create", target, type: "circle", properties };
+}
+
 function run(doc: unknown, time: number): Simulation {
   const program = compileProgram(doc, env);
   const simulation = new Simulation(program, { ...env, fps: 60 });
@@ -109,5 +113,15 @@ describe("scene view golden documents", () => {
       { action: "travel", target: "scene", along: "earth", duration: 1 },
     ]));
     expect(travelError.diagnostics.map(({ code }) => code)).toContain("E_SCENE_ACTION");
+  });
+
+  it("W9 binds a circle position to the visible top-right scene view anchor", () => {
+    const simulation = run(document([
+      circle("d", { radius: 1 }),
+      { action: "set", target: "scene", properties: { zoom: 2 } },
+      { action: "bind", target: "d", properties: { pos: "scene.view.topRight" }, start: "<" },
+    ]), 0);
+
+    expect(simulation.world.require("d").readProp("pos")).toEqual({ x: 1200, y: 225 });
   });
 });

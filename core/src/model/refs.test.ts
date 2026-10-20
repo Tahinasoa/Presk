@@ -5,6 +5,7 @@ import { PreskRuntimeError } from "@/lang/diagnostics";
 import type { RefSegment } from "@/lang/expr/ast";
 import { describeRef, readRef } from "@/model/refs";
 import type { ClassDef } from "@/model/values";
+import { SCENE_DEF, createSceneRoot } from "@/model/classes/sceneRoot";
 
 const ref = (name: string, index?: number): RefSegment => index === undefined ? { name } : { name, index };
 const path = (...segments: RefSegment[]): RefSegment[] => segments;
@@ -69,6 +70,23 @@ describe("describeRef", () => {
     };
     expect(describeRef(extendedDef, path(ref("special")))).toEqual({ ok: true, type: "scalar" });
   });
+
+  it("describes scene view anchors, coordinates, and dimensions", () => {
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("center")))).toEqual({ ok: true, type: "point" });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("center"), ref("x")))).toEqual({ ok: true, type: "scalar" });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("topLeft")))).toEqual({ ok: true, type: "point" });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("bottomRight")))).toEqual({ ok: true, type: "point" });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("width")))).toEqual({ ok: true, type: "scalar" });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("height")))).toEqual({ ok: true, type: "scalar" });
+    expect(describeRef(SCENE_DEF, path(ref("view")))).toMatchObject({
+      ok: false,
+      code: "E_EXPR_BOUNDINGBOX_ALONE",
+    });
+    expect(describeRef(SCENE_DEF, path(ref("view"), ref("left")))).toMatchObject({
+      ok: false,
+      code: "E_EXPR_SEGMENT_UNKNOWN",
+    });
+  });
 });
 
 describe("readRef", () => {
@@ -115,4 +133,18 @@ describe("readRef", () => {
     expect(() => readRef(object, path(ref("vertex", 5)))).toThrow(PreskRuntimeError);
     expect(() => readRef(object, path(ref("vertex", 5)))).toThrow("E_ANCHOR_INDEX");
   });
+
+  it("reads view anchors and dimensions while preserving scene anchors", () => {
+    const scene = createSceneRoot(1600, 900, createTestEnv());
+    scene.writeProp("view", { cx: 400, cy: 300, zoom: 2 });
+
+    expect(readRef(scene, path(ref("view"), ref("center")))).toEqual({ x: 400, y: 300 });
+    expect(readRef(scene, path(ref("view"), ref("center"), ref("x")))).toBe(400);
+    expect(readRef(scene, path(ref("view"), ref("topLeft")))).toEqual({ x: 0, y: 75 });
+    expect(readRef(scene, path(ref("view"), ref("bottomRight")))).toEqual({ x: 800, y: 525 });
+    expect(readRef(scene, path(ref("view"), ref("width")))).toBe(800);
+    expect(readRef(scene, path(ref("view"), ref("height")))).toBe(450);
+    expect(readRef(scene, path(ref("center")))).toEqual({ x: 800, y: 450 });
+  });
+
 });
