@@ -1,12 +1,15 @@
 import { describe, expect, it } from "vitest";
+import { FlatPath } from "@/geom/flatPath";
 import { compileExpr } from "@/engine/compile/exprEval";
 import { parseExpression } from "@/lang/expr/parser";
 import { PreskRuntimeError } from "@/lang/diagnostics";
 import { createTestEnv } from "@/model/ports";
 import { RECTANGLE_DEF } from "@/model/classes/rectangleObject";
+import { RectangleObject } from "@/model/classes/rectangleObject";
 import { createSceneRoot } from "@/model/classes/sceneRoot";
 import { World } from "@/model/world";
 import type { Expr } from "@/lang/expr/ast";
+import type { ClassDef } from "@/model/values";
 
 function p(source: string): Expr {
   const result = parseExpression(source);
@@ -14,10 +17,10 @@ function p(source: string): Expr {
   return result.expr;
 }
 
-function createWorld(): World {
+function createWorld(rectangleDef: ClassDef = RECTANGLE_DEF): World {
   const env = createTestEnv();
   const world = new World(createSceneRoot(800, 600, env));
-  const a = RECTANGLE_DEF.create("a", env);
+  const a = rectangleDef.create("a", env);
   a.setState("x", 10);
   a.setState("y", 20);
   a.setState("width", 100);
@@ -29,6 +32,18 @@ function createWorld(): World {
   world.add(b);
   return world;
 }
+
+const OPEN_RECTANGLE_DEF: ClassDef = {
+  ...RECTANGLE_DEF,
+  paths: {
+    main: {
+      ...RECTANGLE_DEF.paths.main,
+      closed: "never",
+      build: (object) => new FlatPath(RECTANGLE_DEF.paths.main.build(object).points, false),
+    },
+  },
+  create: (id, env) => new RectangleObject(id, OPEN_RECTANGLE_DEF, env),
+};
 
 describe("compileExpr", () => {
   const world = createWorld();
@@ -61,7 +76,26 @@ describe("compileExpr", () => {
     expect(evaluate(world)).toBe(250);
   });
 
-  it("rejects path functions until path evaluation is implemented", () => {
-    expect(() => compileExpr(p("a.pathX(main, 0)"))(world)).toThrow("Presk internal: pathFn not supported yet");
+  it.each([
+    ["a.pathX(main, 0)", 10],
+    ["a.pathY(main, 0)", 20],
+    ["a.pathX(main, 0.5)", 110],
+    ["a.pathY(main, 0.5)", 70],
+    ["a.pathX(main, -0.25)", 35],
+    ["a.pathAngle(main, 0.4)", 90],
+    ["a.pathX(main, 0) + 5", 15],
+  ] as const)("evaluates path function %s", (source, expected) => {
+    expect(compileExpr(p(source))(createWorld())).toBeCloseTo(expected, 6);
+  });
+
+  it("adds the object's rotation to pathAngle", () => {
+    const rotatedWorld = createWorld();
+    rotatedWorld.require("a").setState("rotation", 90);
+    expect(compileExpr(p("a.pathAngle(main, 0.4)"))(rotatedWorld)).toBeCloseTo(180, 6);
+  });
+
+  it("throws a runtime error for out-of-range t on an open path", () => {
+    const openWorld = createWorld(OPEN_RECTANGLE_DEF);
+    expect(() => compileExpr(p("a.pathX(main, 1.5)"))(openWorld)).toThrow(PreskRuntimeError);
   });
 });

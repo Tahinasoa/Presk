@@ -56,9 +56,31 @@ export function analyzeExpr(
       }
       return { type: description.type, reads: [expr.object] };
     }
-    case "pathFn":
-      d.error("E_EXPR_PATH", "path functions not supported yet", where);
-      return null;
+    case "pathFn": {
+      const objectType = scope.typeOf(expr.object);
+      if (objectType === undefined) {
+        const code = scope.isForward?.(expr.object) ? "E_FORWARD_REFERENCE" : "E_OBJECT_UNKNOWN";
+        d.error(code, code === "E_FORWARD_REFERENCE" ? `Object '${expr.object}' is created later` : `Unknown object '${expr.object}'`, where);
+        return null;
+      }
+
+      const def = scope.catalog.get(objectType);
+      if (!def) {
+        d.error("E_OBJECT_UNKNOWN", `Unknown object type '${objectType}'`, where);
+        return null;
+      }
+
+      const path = def.paths[expr.pathName];
+      if (!path) {
+        d.error("E_EXPR_PATH", `Unknown path '${expr.pathName}' on '${expr.object}'`, where);
+        return null;
+      }
+      if (path.closed === "never" && (expr.t < 0 || expr.t > 1)) {
+        d.error("E_EXPR_PATH", `Parameter t is outside the open path '${expr.pathName}'`, where);
+        return null;
+      }
+      return { type: "scalar", reads: [expr.object] };
+    }
   }
 }
 

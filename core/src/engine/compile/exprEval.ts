@@ -1,5 +1,6 @@
 import { PreskRuntimeError } from "@/lang/diagnostics";
 import type { Expr } from "@/lang/expr/ast";
+import { applyMat, matRotationDeg } from "@/geom/matrix";
 import { readRef } from "@/model/refs";
 import type { Pt } from "@/geom/vec";
 import type { World } from "@/model/world";
@@ -40,6 +41,21 @@ export function compileExpr(expr: Expr): (world: World) => number | Pt {
     case "ref":
       return (world) => readRef(world.require(expr.object), expr.path);
     case "pathFn":
-      throw new Error("Presk internal: pathFn not supported yet");
+      return (world) => {
+        const object = world.require(expr.object);
+        const pathSpec = object.def.paths[expr.pathName];
+        if (!pathSpec) {
+          throw new PreskRuntimeError(`Unknown path '${expr.pathName}' on '${expr.object}'`);
+        }
+        const flat = pathSpec.build(object);
+        if (!flat.closed && (expr.t < 0 || expr.t > 1)) {
+          throw new PreskRuntimeError(`Parameter t is outside the open path '${expr.pathName}'`);
+        }
+
+        const worldMatrix = object.worldMatrix();
+        if (expr.fn === "pathAngle") return flat.angleAt(expr.t) + matRotationDeg(worldMatrix);
+        const point = applyMat(worldMatrix, flat.pointAt(expr.t));
+        return expr.fn === "pathX" ? point.x : point.y;
+      };
   }
 }
