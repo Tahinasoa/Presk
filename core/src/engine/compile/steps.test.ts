@@ -12,7 +12,7 @@ const objectTypes = new Map([
   ["orbit", "circle"],
   ["dot", "circle"],
   ["r", "rectangle"],
-  ["ray1", "unboundedTest"],
+  ["ray1", "ray"],
   ["open1", "openTest"],
 ]);
 
@@ -122,6 +122,12 @@ describe("compileSteps", () => {
 
   it("rejects unbounded paths before checking their path name", () => {
     expect(errors(compile([{ action: "travel", target: "dot", along: "ray1.missing", duration: 4 }]))).toEqual([
+      "E_TRAVEL_INFINITE_PATH",
+    ]);
+  });
+
+  it("rejects travel along a ray", () => {
+    expect(errors(compile([{ action: "travel", target: "dot", along: "ray1", duration: 4 }]))).toEqual([
       "E_TRAVEL_INFINITE_PATH",
     ]);
   });
