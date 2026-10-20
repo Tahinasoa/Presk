@@ -23,6 +23,15 @@ export class ViewSync {
     }
 
     for (const view of this.views.values()) view.update();
+
+    const root = this.world.root;
+    this.host.setViewport(
+      root.getNumber("viewCx"),
+      root.getNumber("viewCy"),
+      root.getNumber("viewZoom"),
+      root.getNumber("width"),
+      root.getNumber("height"),
+    );
   }
 
   destroy(): void {
