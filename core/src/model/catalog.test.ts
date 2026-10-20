@@ -4,10 +4,10 @@ import { createDefaultCatalog } from "@/model/defaultCatalog";
 import { RECTANGLE_DEF } from "@/model/classes/rectangleObject";
 
 describe("Catalog", () => {
-  it("creates a sorted default catalog with circle, rectangle, scene and text", () => {
+  it("creates a sorted default catalog with circle, ellipse, rectangle, scene and text", () => {
     const catalog = createDefaultCatalog();
 
-    expect(catalog.types()).toEqual(["circle", "rectangle", "scene", "text"]);
+    expect(catalog.types()).toEqual(["circle", "ellipse", "rectangle", "scene", "text"]);
     expect(catalog.get("text")?.family).toBe("rectangle");
     expect(catalog.get("nope")).toBeUndefined();
     expect(catalog.has("scene")).toBe(true);
