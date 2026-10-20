@@ -22,6 +22,14 @@ describe("compileProgram", () => {
     expect(program.duration).toBe(1);
   });
 
+  it("rejects a negative circle radius during compilation", () => {
+    const result = tryCompileProgram(document([
+      { action: "create", target: "circle", type: "circle", properties: { radius: -1 } },
+    ]), env);
+    expect(result.diagnostics.map(({ code }) => code)).toContain("E_VALUE_RANGE");
+    expect(result.program).toBeUndefined();
+  });
+
   it("returns validation diagnostics without a program", () => {
     const result = tryCompileProgram(document([], "0.1"), env);
     expect(result.diagnostics.map(({ code }) => code)).toContain("E_DOC_VERSION");

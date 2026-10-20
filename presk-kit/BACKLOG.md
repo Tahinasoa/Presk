@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T099-mark-stale-docs (IN_PROGRESS)
-- Dernière étape terminée : T099.2 — diff de deux lignes par document confirmé; tsc deux fois propre, arch 12/12, suite 468/468
-- Prochaine action : créer le commit exact de T099, puis noter son hash et marquer DONE
-- État du code : T097/T098 commises 05e5e57; T099 validée
+- Tâche courante : T110-model-circle (IN_PROGRESS)
+- Dernière étape terminée : T110.3 — tests ciblés 17/17, tsc propre, arch 12/12, suite complète 476/476
+- Prochaine action : créer le commit exact de T110, puis noter son hash et marquer DONE
+- État du code : T110 validée; couverture compile en couche engine, test catalogue actualisé avec autorisation
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -82,8 +82,8 @@
 | T096-app-main-and-examples | P5 | DONE | T095 | T097-delete-legacy-top-layers | 7276578 |
 | T097-delete-legacy-top-layers | P5 | DONE | T096 | T098-delete-legacy-primitives-timer | 05e5e57 |
 | T098-delete-legacy-primitives-timer | P5 | DONE | T097 | T099-mark-stale-docs | 05e5e57 |
-| T099-mark-stale-docs | P5 | IN_PROGRESS | T098 | T110-model-circle | - |
-| T110-model-circle | P6 | TODO | T049 | T111-model-ellipse | - |
+| T099-mark-stale-docs | P5 | DONE | T098 | T110-model-circle | aa3d466 |
+| T110-model-circle | P6 | IN_PROGRESS | T049 | T111-model-ellipse | - |
 | T111-model-ellipse | P6 | TODO | T110 | T112-engine-expr-pathfn | - |
 | T112-engine-expr-pathfn | P6 | TODO | T110, T062, T061 | T113-engine-compile-travel | - |
 | T113-engine-compile-travel | P6 | TODO | T112, T067 | T114-engine-travel-resolver | - |
@@ -156,6 +156,7 @@
 2026-10-20 | T096 | DONE | commit 7276578 | démo HELLO v1 et CSS dans index; tsc, arch 12/12, suite 652/3 skipped; contrôle navigateur validé
 2026-10-20 | T097 | DONE | commit 05e5e57 | tout legacy supprimé sauf `timer/easing/`; tsc propre, arch 12/12, suite 468/468
 2026-10-20 | T098 | DONE | commit 05e5e57 | arborescence finale vérifiée; `timer/` ne contient que `easing/`; validations vertes
+2026-10-20 | T099 | DONE | commit aa3d466 | bannière périmé ajoutée aux quatre documents présents; tsc, arch 12/12, suite 468/468
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
