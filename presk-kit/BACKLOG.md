@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T080-engine-golden-core (IN_PROGRESS)
-- Dernière étape terminée : T080.2 — validation complète verte; golden 13/13, tsc propre, arch 12/12, suite 652/3 skipped
-- Prochaine action : créer le commit exact de T080, puis noter son hash et marquer DONE
-- État du code : T076–T079 validées; T080 corrigée et entièrement validée
+- Tâche courante : T090-view-pixi-host (IN_PROGRESS)
+- Dernière étape terminée : T090.6 — validation complète verte; tsc propre, arch 12/12, suite 652/3 skipped
+- Prochaine action : créer le commit exact de T090, puis noter son hash et marquer DONE
+- État du code : T076–T080 validées; T090 implémentée et entièrement validée
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -72,8 +72,8 @@
 | T077-engine-mech-effect | P4 | DONE | T075, T044 | T078-engine-sim-instant-actions | 34c61bd |
 | T078-engine-sim-instant-actions | P4 | DONE | T074, T075 | T079-engine-simulation | 8f36433 |
 | T079-engine-simulation | P4 | DONE | T072, T073, T075, T076, T077, T078 | T080-engine-golden-core | 5731ec6 |
-| T080-engine-golden-core | P4 | IN_PROGRESS | T079 | T090-view-pixi-host | - |
-| T090-view-pixi-host | P5 | TODO | T080 | T091-view-object-view-registry | - |
+| T080-engine-golden-core | P4 | DONE | T079 | T090-view-pixi-host | 23547bd |
+| T090-view-pixi-host | P5 | IN_PROGRESS | T080 | T091-view-object-view-registry | - |
 | T091-view-object-view-registry | P5 | TODO | T090 | T092-view-rectangle-view | - |
 | T092-view-rectangle-view | P5 | TODO | T091 | T093-view-text-view-and-measurer | - |
 | T093-view-text-view-and-measurer | P5 | TODO | T091, T047 | T094-view-sync | - |
@@ -146,6 +146,7 @@
 2026-10-20 | T077 | DONE | commit 34c61bd | mécanisme d’effet et propriété `@effect`; tests 4/4, tsc, arch 12/12, suite 622/3 skipped
 2026-10-20 | T078 | DONE | commit 8f36433 | activateSet/Stop/Unbind; tests 8/8, tsc, arch 12/12, suite 630/3 skipped
 2026-10-20 | T079 | DONE | commit 5731ec6 | Simulation seek/reset, mécanismes et exports; tests 9/9, tsc, arch 12/12, suite 639/3 skipped
+2026-10-20 | T080 | DONE | commit 23547bd | G11 corrigé d'après JSON fiche, G12 attendu rectifié; golden 13/13, tsc, arch 12/12, suite 652/3 skipped
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
