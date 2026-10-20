@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T117-model-segment-arrow (IN_PROGRESS)
-- Dernière étape terminée : T117.6 — tests ciblés 13/13, tsc propre, arch 12/12, suite 548/548
-- Prochaine action : créer le commit exact de T117, puis noter son hash et marquer DONE
-- État du code : T117 validée; test d'intégration ajouté dans engine avec autorisation architecte, garde inchangée
+- Tâche courante : T118-model-polygon-triangle (IN_PROGRESS)
+- Dernière étape terminée : T118.4 — tests ciblés 14/14, tsc propre, arch 12/12, suite 560/560
+- Prochaine action : créer le commit exact de T118, puis noter son hash et marquer DONE
+- État du code : T118 implémentée et validée; tests d'intégration engine autorisés, garde inchangée
 - Branche git : presk-v1
 
 ## État des tâches
@@ -84,8 +84,8 @@
 | T114-engine-travel-resolver | P6 | DONE | T113, T068, T070, T072 | T115-engine-mech-travel | fdc32c6 |
 | T115-engine-mech-travel | P6 | DONE | T114, T079 | T116-engine-golden-travel | 8403a2c |
 | T116-engine-golden-travel | P6 | DONE | T115 | T117-model-segment-arrow | 279b07c |
-| T117-model-segment-arrow | P6 | IN_PROGRESS | T116 | T118-model-polygon-triangle | - |
-| T118-model-polygon-triangle | P6 | TODO | T117 | T119-model-polyline | - |
+| T117-model-segment-arrow | P6 | DONE | T116 | T118-model-polygon-triangle | 5d3ad4c |
+| T118-model-polygon-triangle | P6 | IN_PROGRESS | T117 | T119-model-polyline | - |
 | T119-model-polyline | P6 | TODO | T118 | T120-model-arc | - |
 | T120-model-arc | P6 | TODO | T119 | T121-model-point-ray-line | - |
 | T121-model-point-ray-line | P6 | TODO | T120 | T122-view-circle-ellipse | - |
@@ -159,6 +159,8 @@
 2026-10-20 | T115 | DONE | commit 8403a2c | mécanisme travel activé dans Simulation; tsc, arch 12/12, suite 531/531
 2026-10-20 | T116 | DONE | commit 279b07c | tests golden travel V1–V6; tsc, arch 12/12, suite 537/537
 2026-10-20 | T117 | BLOCKED | sans commit | conflit entre test engine exigé et ADR-003; débloquée par autorisation d'un test d'intégration dans engine
+2026-10-20 | T117 | DONE | commit 5d3ad4c | classes segment/arrow, catalogue et tests; tsc, arch 12/12, suite 548/548
+2026-10-20 | T118 | BLOCKED | sans commit | conflit entre cas compile/validation et ADR-003; débloquée par autorisation d'un test d'intégration dans engine
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
