@@ -5,10 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : T094-view-sync (IN_PROGRESS)
-- Dernière étape terminée : T094.4 — validation complète verte; tsc propre, arch 12/12, suite 652/3 skipped
-- Prochaine action : créer le commit exact de T094, puis noter son hash et marquer DONE
-- État du code : T076–T080 et T090–T093 validées; T094 implémentée et entièrement validée
+- Tâche courante : T095-app-presk-facade (IN_PROGRESS)
+- Dernière étape terminée : T095.5 — validation complète verte; tsc propre, arch 12/12, suite 652/3 skipped
+- Prochaine action : créer le commit exact de T095, puis noter son hash et marquer DONE
+- État du code : T076–T080 et T090–T094 validées; T095 implémentée et entièrement validée
 - État du code : T075 validée; tests 11/11, tsc propre, arch 12/12, suite 612 passés et 3 skipped
 - État du code : T074 validée; tests 8/8, tsc propre, arch 12/12, suite 601 passés et 3 skipped
 - État du code : T073 validée; tests 7/7, tsc propre, arch 12/12, suite 593 passés et 3 skipped
@@ -77,8 +77,8 @@
 | T091-view-object-view-registry | P5 | DONE | T090 | T092-view-rectangle-view | e81accb |
 | T092-view-rectangle-view | P5 | DONE | T091 | T093-view-text-view-and-measurer | d219b0f |
 | T093-view-text-view-and-measurer | P5 | DONE | T091, T047 | T094-view-sync | c4a6b8d |
-| T094-view-sync | P5 | IN_PROGRESS | T092, T093 | T095-app-presk-facade | - |
-| T095-app-presk-facade | P5 | TODO | T094, T079 | T096-app-main-and-examples | - |
+| T094-view-sync | P5 | DONE | T092, T093 | T095-app-presk-facade | 4649d5a |
+| T095-app-presk-facade | P5 | IN_PROGRESS | T094, T079 | T096-app-main-and-examples | - |
 | T096-app-main-and-examples | P5 | TODO | T095 | T097-delete-legacy-top-layers | - |
 | T097-delete-legacy-top-layers | P5 | TODO | T096 | T098-delete-legacy-primitives-timer | - |
 | T098-delete-legacy-primitives-timer | P5 | TODO | T097 | T099-mark-stale-docs | - |
@@ -151,6 +151,7 @@
 2026-10-20 | T091 | DONE | commit e81accb | ObjectView, conversion de matrice et ViewRegistry; tsc, arch 12/12, suite 652/3 skipped
 2026-10-20 | T092 | DONE | commit d219b0f | RectangleView; tsc, arch 12/12, suite 652/3 skipped
 2026-10-20 | T093 | DONE | commit c4a6b8d | TextView et PixiTextMeasurer; tsc, arch 12/12, suite 652/3 skipped
+2026-10-20 | T094 | DONE | commit 4649d5a | ViewSync et registre par défaut; tsc, arch 12/12, suite 652/3 skipped
 
 2026-10-19 | T001 | BLOCKED | sans commit | git status contient des suppressions suivies dans agent/ et presk_kit/ non suivi; arrêt avant baseline
 2026-10-19 | T001 | BLOCKED | sans commit | baseline conforme : 184 tests passés, 3 échoués (compiler.test.ts ×2, kobject.test.ts ×1); tsc : 2 erreurs (kobject.test.ts `create`, ktimer.live.ts `process`); `vitest run src/__arch__` : aucun test trouvé
