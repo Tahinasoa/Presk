@@ -4,7 +4,7 @@ import { DEFAULT_START, parseStart } from "@/lang/start";
 import type { Catalog } from "@/model/catalog";
 import { createScope } from "@/engine/analyze/scope";
 import { compileProperties } from "@/engine/compile/properties";
-import type { CompiledEffect, CompiledProp, DraftAction } from "@/engine/program";
+import type { CompiledEffect, CompiledProp, DraftAction, TravelDraft } from "@/engine/program";
 
 export function compileSteps(
   steps: readonly Step[],
@@ -88,7 +88,81 @@ export function compileSteps(
         if (!invalid) drafts.push({ action: step.action, index, target: step.target, ...name, startSpec, keys });
         return;
       }
-      case "travel":
+      case "travel": {
+        const separator = step.along.indexOf(".");
+        const alongObject = separator === -1 ? step.along : step.along.slice(0, separator);
+        const pathName = separator === -1 ? "main" : step.along.slice(separator + 1);
+        const alongType = types.get(alongObject);
+        const alongDef = alongType === undefined ? undefined : catalog.get(alongType);
+        if (!alongDef) {
+          d.error("E_TRAVEL_ALONG", `Unknown path object '${alongObject}'`, { stepIndex: index, field: "along" });
+          return;
+        }
+        if (alongDef.family === "unbounded") {
+          d.error("E_TRAVEL_INFINITE_PATH", `Cannot travel along an unbounded object '${alongObject}'`, {
+            stepIndex: index,
+            field: "along",
+          });
+          return;
+        }
+        const path = alongDef.paths[pathName];
+        if (!path) {
+          d.error("E_TRAVEL_ALONG", `Unknown path '${pathName}' on '${alongObject}'`, { stepIndex: index, field: "along" });
+          return;
+        }
+
+        const anchor = step.anchor ?? "pos";
+        const anchorProp = def.props[anchor];
+        if (anchor !== "pos" && !(
+          anchorProp?.kind === "point"
+          && anchorProp.mode === "rw"
+          && anchorProp.writes.length === 2
+          && anchorProp.writes[0] === "x"
+          && anchorProp.writes[1] === "y"
+        )) {
+          d.error("E_TRAVEL_OPTION", `Invalid travel anchor '${anchor}'`, { stepIndex: index, field: "anchor" });
+          return;
+        }
+
+        const orient = step.orient === true
+          ? { offset: 0 }
+          : step.orient && typeof step.orient === "object"
+            ? step.orient
+            : null;
+        const fromSpec = step.from ?? 0;
+        const toSpec = step.to;
+        if (path.closed === "never"
+          && ((typeof fromSpec === "number" && (fromSpec < 0 || fromSpec > 1))
+            || (toSpec !== undefined && (toSpec < 0 || toSpec > 1)))) {
+          d.error("E_TRAVEL_RANGE", "Travel range must be between 0 and 1 on an open path", {
+            stepIndex: index,
+            field: "from",
+          });
+          return;
+        }
+
+        const draft: TravelDraft = {
+          action: "travel",
+          index,
+          target: step.target,
+          ...name,
+          startSpec,
+          along: { object: alongObject, path: pathName },
+          fromT: 0,
+          toT: 1,
+          anchor,
+          orient,
+          ease: step.ease ?? "linear",
+          repeat: step.repeat ?? 1,
+          repeatMode: step.repeatMode ?? "restart",
+          fromSpec,
+          ...(toSpec === undefined ? {} : { toSpec }),
+          ...(step.speed === undefined ? {} : { speed: step.speed }),
+          ...(step.duration === undefined ? {} : { explicitDuration: step.duration }),
+        };
+        drafts.push(draft);
+        return;
+      }
       case "group":
       case "ungroup":
         d.error("E_ACTION_UNKNOWN", "action not implemented yet", { stepIndex: index, field: "action" });

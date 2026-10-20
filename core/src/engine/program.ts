@@ -33,21 +33,26 @@ export type PlannedAction = SetAction | AnimateAction | BindAction | UnbindActio
 export interface Program { scene: SceneConfig; init: InitStep[]; actions: PlannedAction[]; duration: number; warnings: Diagnostic[] }
 
 export type DraftOf<T> = T extends ActionBase ? Omit<T, "start" | "end" | "duration"> : never;
-export type DraftAction = DraftOf<PlannedAction> & {
+
+export type TravelDraft = DraftOf<TravelAction> & {
   startSpec: StartSpec;
   explicitDuration?: number;
-  effectDefaultDuration?: number;
+  speed?: number;
+  fromSpec: number | "current";
+  toSpec?: number;
 };
+
+export type DraftAction =
+  | (DraftOf<Exclude<PlannedAction, TravelAction>> & {
+      startSpec: StartSpec;
+      explicitDuration?: number;
+      effectDefaultDuration?: number;
+    })
+  | (TravelDraft & { effectDefaultDuration?: number });
 
 export interface PlanHooks {
   resolveTravel?(
-    draft: DraftOf<TravelAction> & {
-      startSpec: StartSpec;
-      explicitDuration?: number;
-      speed?: number;
-      fromSpec: number | "current";
-      toSpec?: number;
-    },
+    draft: TravelDraft,
     start: number,
   ): { fromT: number; toT: number; duration: number } | null;
   onPlanned?(action: PlannedAction): void;
