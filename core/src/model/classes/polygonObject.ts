@@ -34,7 +34,7 @@ export class PolygonObject extends SceneObject {
   }
 }
 
-function pointsProp(minItems: number, maxItems?: number): PropSpec {
+export function pointsProp(minItems: number, maxItems?: number): PropSpec {
   return {
     kind: "pointList",
     writes: ["points"],
@@ -58,21 +58,23 @@ function assertVertexIndex(object: SceneObject, index: number): void {
   if (!Number.isInteger(index) || index < 0 || index >= count) throw indexError(object, index);
 }
 
-const vertices: IndexedPropSpec = {
-  count: (object) => pointsOf(object).length,
-  get(object, index) {
-    assertVertexIndex(object, index);
-    return applyMat(object.worldMatrix(), pointsOf(object)[index]);
-  },
-  set(object, index, worldPoint) {
-    assertVertexIndex(object, index);
-    const inverse = invertMat(object.worldMatrix());
-    const points = pointsOf(object);
-    points[index] = applyMat(inverse, worldPoint);
-    object.setState("points", points);
-  },
-  writeKey: (index) => `points.${index}`,
-};
+export function vertexIndexed(): IndexedPropSpec {
+  return {
+    count: (object) => pointsOf(object).length,
+    get(object, index) {
+      assertVertexIndex(object, index);
+      return applyMat(object.worldMatrix(), pointsOf(object)[index]);
+    },
+    set(object, index, worldPoint) {
+      assertVertexIndex(object, index);
+      const inverse = invertMat(object.worldMatrix());
+      const points = pointsOf(object);
+      points[index] = applyMat(inverse, worldPoint);
+      object.setState("points", points);
+    },
+    writeKey: (index) => `points.${index}`,
+  };
+}
 
 const mainPath: PathSpec = {
   closed: "always",
@@ -95,7 +97,7 @@ export const POLYGON_DEF: ClassDef = {
   family: "bounded",
   creatable: true,
   props: polygonProps(pointsProp(3)),
-  indexed: { vertex: vertices },
+  indexed: { vertex: vertexIndexed() },
   effects,
   paths: { main: mainPath },
   create: (id, env) => new PolygonObject(id, POLYGON_DEF, env),
@@ -106,7 +108,7 @@ export const TRIANGLE_DEF: ClassDef = {
   family: "bounded",
   creatable: true,
   props: polygonProps(pointsProp(3, 3)),
-  indexed: { vertex: vertices },
+  indexed: { vertex: vertexIndexed() },
   effects,
   paths: { main: mainPath },
   create: (id, env) => new PolygonObject(id, TRIANGLE_DEF, env),
