@@ -1,11 +1,11 @@
 import { Presk } from "@/app/presk";
-import { HELLO } from "@/app/examples";
+import { EXEMPLE } from "@/app/exemples-orbites";
 import { PreskCompileError } from "@/lang/diagnostics";
 
 async function main(): Promise<void> {
   const presk = await Presk.create({ root: "#app" });
   try {
-    await presk.load(HELLO);
+    await presk.load(EXEMPLE);
   } catch (error) {
     if (!(error instanceof PreskCompileError)) throw error;
     const message = error.diagnostics.map(({ code, message: detail }) => `${code}: ${detail}`).join("\n");
