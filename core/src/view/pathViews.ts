@@ -189,6 +189,7 @@ export function registerPathViews(registry: ViewRegistry): void {
   registerPathView(registry, "segment", PathStrokeView);
   registerPathView(registry, "polyline", PathStrokeView);
   registerPathView(registry, "arc", PathStrokeView);
+  registerPathView(registry, "curve", PathStrokeView);
   registerPathView(registry, "arrow", ArrowView);
   registerPathView(registry, "ray", RayView);
   registerPathView(registry, "line", LineView);
