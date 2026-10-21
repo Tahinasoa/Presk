@@ -130,3 +130,50 @@ describe("travel resolver", () => {
     );
   });
 });
+
+describe("speed path warning", () => {
+  const travelBySpeed = { action: "travel", target: "dot", along: "track", speed: 100 };
+  const warningCodes = (result: ReturnType<typeof compileTravel>): string[] =>
+    result.diagnostics.filter(({ severity }) => severity === "warning").map(({ code }) => code);
+
+  it("does not warn when nothing acts on the path object", () => {
+    const result = compileTravel([travelBySpeed]);
+    expect(warningCodes(result)).toEqual([]);
+    expect(result.program).toBeDefined();
+  });
+
+  it("warns when a length-changing property is animated before a speed travel", () => {
+    const result = compileTravel([
+      { action: "animate", target: "track", properties: { scale: 2 }, duration: 1 },
+      travelBySpeed,
+    ]);
+    expect(warningCodes(result)).toEqual(["W_SPEED_PATH_MAY_CHANGE"]);
+    expect(result.diagnostics.find(({ code }) => code === "W_SPEED_PATH_MAY_CHANGE")?.stepIndex).toBe(3);
+    expect(result.program).toBeDefined();
+    expect(result.program?.warnings.map(({ code }) => code)).toEqual(["W_SPEED_PATH_MAY_CHANGE"]);
+  });
+
+  it("does not warn for a translation, which keeps the path length", () => {
+    const result = compileTravel([
+      { action: "animate", target: "track", properties: { x: 100 }, duration: 1 },
+      travelBySpeed,
+    ]);
+    expect(warningCodes(result)).toEqual([]);
+  });
+
+  it("does not warn when the change is planned after the travel", () => {
+    const result = compileTravel([
+      travelBySpeed,
+      { action: "animate", target: "track", properties: { width: 200 }, duration: 1 },
+    ]);
+    expect(warningCodes(result)).toEqual([]);
+  });
+
+  it("does not warn when the travel has an explicit duration", () => {
+    const result = compileTravel([
+      { action: "animate", target: "track", properties: { scale: 2 }, duration: 1 },
+      { action: "travel", target: "dot", along: "track", duration: 2 },
+    ]);
+    expect(warningCodes(result)).toEqual([]);
+  });
+});

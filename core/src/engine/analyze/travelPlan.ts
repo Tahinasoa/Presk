@@ -3,6 +3,7 @@ import type { PlanHooks, PlannedAction, TravelAction, TravelDraft } from "@/engi
 import type { DiagnosticCollector } from "@/lang/diagnostics";
 import { matScale } from "@/geom/matrix";
 import type { Catalog } from "@/model/catalog";
+import type { SceneObject } from "@/model/sceneObject";
 import type { World } from "@/model/world";
 import { easings } from "@/timer/easing/easing";
 import type { EasingName } from "@/timer/easing/easing";
@@ -21,8 +22,29 @@ interface TravelRecord {
   stoppedAt?: number;
 }
 
+const PATH_LENGTH_KEYS: ReadonlySet<string> = new Set([
+  "scale", "width", "height", "radius", "points", "p0", "p1", "startAngle", "endAngle", "closed",
+]);
+
+function writesPathLengthKey(action: PlannedAction): boolean {
+  if (action.action !== "set" && action.action !== "animate" && action.action !== "bind") return false;
+  return action.entries.some((entry) =>
+    entry.kind === "prop"
+    && entry.spec.writes.some((key) => PATH_LENGTH_KEYS.has(key.split(".")[0] ?? key)));
+}
+
 export function createTravelHooks(probe: World, catalog: Catalog, d: DiagnosticCollector): PlanHooks {
   const records: TravelRecord[] = [];
+  const planned: PlannedAction[] = [];
+
+  const pathMayChangeBefore = (objectId: string, start: number): boolean => {
+    const owners = new Set<string>();
+    for (let current: SceneObject | null = probe.require(objectId); current; current = current.parent) {
+      owners.add(current.id);
+    }
+    return planned.some((action) =>
+      owners.has(action.target) && action.start < start && writesPathLengthKey(action));
+  };
 
   const lastParam = (target: string, along: TravelAction["along"], start: number): number | null => {
     const record = records.findLast((candidate) =>
@@ -88,6 +110,13 @@ export function createTravelHooks(probe: World, catalog: Catalog, d: DiagnosticC
       if (draft.explicitDuration !== undefined) {
         duration = draft.explicitDuration;
       } else if (draft.speed !== undefined && draft.speed > 0) {
+        if (pathMayChangeBefore(draft.along.object, start)) {
+          d.warning(
+            "W_SPEED_PATH_MAY_CHANGE",
+            `Travel duration from speed is measured on '${draft.along.object}', which may change before the travel`,
+            { stepIndex: draft.index },
+          );
+        }
         const length = pathSpec.build(object).length
           * matScale(object.worldMatrix())
           * Math.abs(toT - fromT);
@@ -111,6 +140,7 @@ export function createTravelHooks(probe: World, catalog: Catalog, d: DiagnosticC
     },
 
     onPlanned(action: PlannedAction) {
+      planned.push(action);
       if (action.action === "travel") {
         records.push({
           target: action.target,
