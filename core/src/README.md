@@ -1,3 +1,5 @@
+> ⚠️ PÉRIMÉ — décrit la v0.1 du moteur. Source de vérité : `language/Presk — Spécification v1.0.md`. Ne pas utiliser pour décider.
+
 # core/src — engine internals
 
 This folder implements the Presk engine described in the root `README.md`.
@@ -11,9 +13,9 @@ other's implementation details. This is the single most important design
 rule in this codebase — respect it when adding code:
 
 ```
-compiler/    DSL (JSON) -> calls into Presk + a GSAP timeline
+presk.ts     public API + registry + owns compiler and KTimer
                  |
-presk.ts     the public API + registry + the unified ticker
+compiler/    DSL (JSON) -> preloaded scene + KTimer timeline
                  |
         +--------+--------+
         |                 |
@@ -39,28 +41,24 @@ binding/     (pull-based `follow` expression evaluation)
   expression and writes the result directly onto the target `KObject`. No
   proxies, no event subscriptions — see `binding/README.md` for why, and for
   the known limitation (chained bindings can lag one frame).
-- **`compiler/`** — turns a DSL JSON document into: (1) calls to `Presk`'s
-  registry to create/destroy objects, and (2) a GSAP timeline that drives
-  `transform` animations and `follow` binding windows. It leans heavily on
-  GSAP's own timeline position-parameter syntax (`"<"`, `">"`, `"+=1"`,
-  labels, ...) because the DSL's `start` field (§6.1) was designed to be a
-  1:1 mirror of it.
+- **`compiler/`** — the `PreskCompiler` owned by `Presk` turns a DSL JSON document into: (1) calls to `Presk`'s
+  registry to create/destroy objects, and (2) KTimer-managed `KTween`s and
+  timed actions. It resolves the DSL's timeline positions (`"<"`, `">"`,
+  `"+=1"`, labels, ...) and creates property tweens through `KObject.getTweens()`.
 - **`registry/`** — where concrete DSL types (`"shape"`, `"text"`, ...) are
   registered as `{ KObject subclass, KGraphicObject subclass }` pairs. This
   is the extension point for the future `lib/` component packages.
-- **`presk.ts`** — the `Presk` class: the object the end user (or the
-  compiler) actually talks to. Owns the registry, the `KScene`, the
+- **`presk.ts`** — the `Presk` class: the public engine object. Owns the
+  registry, `KScene`, `PreskCompiler`, the
   `KGraphicScene`, the `KRenderer`, the binding engine, and the single
-  shared GSAP ticker that drives all four of them in a fixed, deterministic
+  shared KTimer that drives its subsystems in a fixed, deterministic
   order every frame (state update -> binding flush -> redraw).
 
 ## Tick order (why it's deterministic)
 
-`Presk.start()` registers exactly one `gsap.ticker.add()` callback. On every
-frame, in this order:
+`Presk.start()` starts the shared KTimer. On every frame, in this order:
 
-1. GSAP's own internal engine updates all active tweens (this happens before
-   any `ticker.add()` callback runs — it's built into GSAP itself).
+1. KTimer renders all active KObject tweens and timed DSL actions.
 2. `bindingEngine.flush()` re-evaluates every active `follow` expression and
    writes the result onto its target `KObject`.
 3. `graphicScene.tick()` calls `redraw()` on every `KGraphicObject`, which
