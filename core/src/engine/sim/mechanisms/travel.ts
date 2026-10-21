@@ -3,7 +3,7 @@ import { passProgress } from "@/engine/plan/passProgress";
 import type { Mechanism, SimContext } from "@/engine/sim/context";
 import { writeSpecValue } from "@/engine/sim/write";
 import { applyMat, invertMat, matRotationDeg } from "@/geom/matrix";
-import { easings } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
 
 export class TravelMechanism implements Mechanism {
   readonly actionIndex: number;

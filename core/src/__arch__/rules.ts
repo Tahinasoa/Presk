@@ -11,7 +11,6 @@ const ALLOWED: Record<Layer, readonly Layer[]> = {
   view: ["model", "geom", "view"],
   app: ["lang", "geom", "model", "engine", "view", "app"],
 };
-const EASING_MODULE = "@/timer/easing/easing";
 const PIXI_LAYERS: readonly Layer[] = ["view", "app"];
 const PURE_LAYERS: readonly Layer[] = ["lang", "geom", "model", "engine"];
 
@@ -35,7 +34,6 @@ export function checkFile(relPath: string, source: string): string[] {
   const problems: string[] = [];
   for (const spec of extractSpecifiers(source)) {
     if (spec.startsWith("@/")) {
-      if (spec === EASING_MODULE && (layer === "lang" || layer === "engine")) continue;
       const target = layerOf(spec.slice(2));
       if (!target) {
         problems.push(`${relPath}: imports legacy or unknown module "${spec}"`);

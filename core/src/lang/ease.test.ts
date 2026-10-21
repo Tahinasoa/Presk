@@ -1,9 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { easings } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
 import { EASE_NAMES, isEaseName } from "./ease";
 
 describe("ease names", () => {
-  it("matches the timer easing library", () => {
+  it("matches the easing library", () => {
     expect(new Set(EASE_NAMES)).toEqual(new Set(Object.keys(easings)));
     expect(EASE_NAMES).toHaveLength(31);
   });

@@ -3,7 +3,7 @@ import { interpolate } from "@/engine/sim/interpolate";
 import type { Mechanism, SimContext } from "@/engine/sim/context";
 import { writeSpecValue } from "@/engine/sim/write";
 import { passProgress } from "@/engine/plan/passProgress";
-import { easings } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
 import type { StateValue } from "@/model/values";
 
 interface CapturedValue {

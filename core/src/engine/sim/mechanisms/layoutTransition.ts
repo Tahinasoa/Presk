@@ -3,7 +3,7 @@ import { passProgress } from "@/engine/plan/passProgress";
 import type { Mechanism, SimContext } from "@/engine/sim/context";
 import { lerp } from "@/geom/vec";
 import type { Pt } from "@/geom/vec";
-import { easings } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
 
 export class LayoutTransitionMechanism implements Mechanism {
   readonly actionIndex: number;

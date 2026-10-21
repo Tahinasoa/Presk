@@ -5,8 +5,8 @@ import { matScale } from "@/geom/matrix";
 import type { Catalog } from "@/model/catalog";
 import type { SceneObject } from "@/model/sceneObject";
 import type { World } from "@/model/world";
-import { easings } from "@/timer/easing/easing";
-import type { EasingName } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
+import type { EasingName } from "@/lang/easing/easing";
 
 interface TravelRecord {
   target: string;

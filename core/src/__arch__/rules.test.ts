@@ -19,7 +19,7 @@ describe("extractSpecifiers", () => {
 describe("checkFile", () => {
   it("accepts allowed imports", () => {
     expect(checkFile("model/a.ts", `import type { Pt } from "@/geom/vec";`)).toEqual([]);
-    expect(checkFile("engine/a.ts", `import { easings } from "@/timer/easing/easing";`)).toEqual([]);
+    expect(checkFile("engine/a.ts", `import { easings } from "@/lang/easing/easing";`)).toEqual([]);
   });
   it("rejects upward imports", () => {
     expect(checkFile("model/a.ts", `import { X } from "@/engine/x";`)).toHaveLength(1);

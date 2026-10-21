@@ -1,7 +1,7 @@
 import type { AnimateAction, CompiledEffect } from "@/engine/program";
 import { passProgress } from "@/engine/plan/passProgress";
 import type { Mechanism, SimContext } from "@/engine/sim/context";
-import { easings } from "@/timer/easing/easing";
+import { easings } from "@/lang/easing/easing";
 
 export class EffectMechanism implements Mechanism {
   readonly actionIndex: number;
