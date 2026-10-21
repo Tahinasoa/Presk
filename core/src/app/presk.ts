@@ -5,10 +5,27 @@ import { createDefaultCatalog } from "@/model/defaultCatalog";
 import type { Catalog } from "@/model/catalog";
 import type { ObjectEnv } from "@/model/ports";
 import { PixiHost } from "@/view/pixiHost";
+import { PixiImageInfo } from "@/view/pixiImageInfo";
 import { PixiTextMeasurer } from "@/view/pixiTextMeasurer";
 import { createDefaultViewRegistry } from "@/view";
 import { ViewSync } from "@/view/viewSync";
 import type { ViewRegistry } from "@/view/viewRegistry";
+
+function collectImageUrls(raw: unknown): string[] {
+  if (typeof raw !== "object" || raw === null) return [];
+  const steps = (raw as { steps?: unknown }).steps;
+  if (!Array.isArray(steps)) return [];
+  const urls: string[] = [];
+  for (const step of steps) {
+    if (typeof step !== "object" || step === null) continue;
+    const { action, type, properties } = step as { action?: unknown; type?: unknown; properties?: unknown };
+    if (action !== "create" || type !== "image") continue;
+    if (typeof properties !== "object" || properties === null) continue;
+    const url = (properties as { url?: unknown }).url;
+    if (typeof url === "string") urls.push(url);
+  }
+  return urls;
+}
 
 interface PreskOptions {
   root: string;
@@ -20,6 +37,7 @@ export class Presk {
   private readonly catalog: Catalog;
   private readonly registry: ViewRegistry;
   private readonly objectEnv: ObjectEnv;
+  private readonly imageInfo: PixiImageInfo;
   private readonly fps: number | undefined;
   private initialized = false;
   private simulation: Simulation | null = null;
@@ -30,7 +48,8 @@ export class Presk {
   private constructor(options: PreskOptions) {
     this.host = new PixiHost(options.root);
     this.catalog = createDefaultCatalog();
-    this.objectEnv = { measurer: new PixiTextMeasurer(), images: { sizeOf: () => undefined } };
+    this.imageInfo = new PixiImageInfo();
+    this.objectEnv = { measurer: new PixiTextMeasurer(), images: this.imageInfo };
     this.registry = createDefaultViewRegistry();
     this.fps = options.fps;
   }
@@ -45,6 +64,7 @@ export class Presk {
     this.viewSync = null;
     this.simulation = null;
 
+    await this.imageInfo.preload(collectImageUrls(raw));
     const program = compileProgram(raw, { catalog: this.catalog, objectEnv: this.objectEnv });
     if (!this.initialized) {
       await this.host.init(program.scene.width, program.scene.height, program.scene.background);

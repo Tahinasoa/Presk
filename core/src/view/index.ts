@@ -1,3 +1,4 @@
+import { registerImageView } from "@/view/imageView";
 import { registerRectangleView } from "@/view/rectangleView";
 import { registerCircleView, registerEllipseView } from "@/view/circleEllipseView";
 import { registerPathViews } from "@/view/pathViews";
@@ -9,6 +10,7 @@ export function createDefaultViewRegistry(): ViewRegistry {
   const registry = new ViewRegistry();
   registerCircleView(registry);
   registerEllipseView(registry);
+  registerImageView(registry);
   registerPathViews(registry);
   registerPolygonView(registry);
   registerRectangleView(registry);
