@@ -3,6 +3,7 @@ import { ARC_DEF } from "@/model/classes/arcObject";
 import { SCENE_DEF } from "@/model/classes/sceneRoot";
 import { GROUP_DEF } from "@/model/classes/groupObject";
 import { CIRCLE_DEF } from "@/model/classes/circleObject";
+import { CURVE_DEF } from "@/model/classes/curveObject";
 import { ELLIPSE_DEF } from "@/model/classes/ellipseObject";
 import { POLYGON_DEF, TRIANGLE_DEF } from "@/model/classes/polygonObject";
 import { POLYLINE_DEF } from "@/model/classes/polylineObject";
@@ -17,6 +18,7 @@ export function createDefaultCatalog(): Catalog {
   catalog.register(SCENE_DEF);
   catalog.register(ARC_DEF);
   catalog.register(CIRCLE_DEF);
+  catalog.register(CURVE_DEF);
   catalog.register(ELLIPSE_DEF);
   catalog.register(GROUP_DEF);
   catalog.register(POLYGON_DEF);

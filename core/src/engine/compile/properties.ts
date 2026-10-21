@@ -174,9 +174,32 @@ export function compileProperties(
     }
   }
 
+  if (mode === "create" && def.type === "curve" && !checkBezierPointCount(raw, ctx)) failed = true;
+
   if (failed || ctx.d.errors.length > errorsBefore) return null;
   compiled.sort((a, b) => a.order - b.order || a.sourceIndex - b.sourceIndex);
   return compiled.map(({ entry }) => entry);
+}
+
+function checkBezierPointCount(
+  raw: PropertiesObject,
+  ctx: { d: DiagnosticCollector; stepIndex: number },
+): boolean {
+  const points = raw.points;
+  if (raw.interpolation !== "bezier" || !Array.isArray(points)) return true;
+  const closed = raw.closed === true;
+  if (raw.closed !== undefined && typeof raw.closed !== "boolean") return true;
+  const count = points.length;
+  const valid = closed ? count % 3 === 0 : (count - 1) % 3 === 0;
+  if (valid) return true;
+  ctx.d.error(
+    "E_VALUE_RANGE",
+    closed
+      ? `A closed bezier curve needs 3n points, got ${count}`
+      : `An open bezier curve needs 3n+1 points, got ${count}`,
+    { stepIndex: ctx.stepIndex, field: "properties.points" },
+  );
+  return false;
 }
 
 function unknownProperty(

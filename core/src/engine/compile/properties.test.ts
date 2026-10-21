@@ -5,6 +5,7 @@ import { compileProperties } from "@/engine/compile/properties";
 import { createDefaultCatalog } from "@/model/defaultCatalog";
 import { RECTANGLE_DEF } from "@/model/classes/rectangleObject";
 import { TEXT_DEF } from "@/model/classes/textObject";
+import { CURVE_DEF } from "@/model/classes/curveObject";
 import { SCENE_DEF } from "@/model/classes/sceneRoot";
 import type { ClassDef } from "@/model/values";
 import type { PropertiesObject } from "@/lang/types";
@@ -89,5 +90,32 @@ describe("compileProperties", () => {
       indexed: { vertex: { count: () => 3, get: () => ({ x: 0, y: 0 }), writeKey: (index) => `points.${index}` } },
     };
     expect(codes(compile({ "vertex[1]": "a.center" }, "set", readonlyIndexed))).toEqual(["E_PROPERTY_READONLY"]);
+  });
+
+  describe("curve bezier point count", () => {
+    const pts = (count: number) => Array.from({ length: count }, (_, index) => ({ x: index, y: index }));
+    const curve = (points: unknown, extra: PropertiesObject = {}): PropertiesObject => ({
+      points,
+      interpolation: "bezier",
+      ...extra,
+    } as PropertiesObject);
+
+    it("accepts 3n+1 points for an open bezier and 3n for a closed one", () => {
+      expect(codes(compile(curve(pts(4)), "create", CURVE_DEF))).toEqual([]);
+      expect(codes(compile(curve(pts(7), { closed: false }), "create", CURVE_DEF))).toEqual([]);
+      expect(codes(compile(curve(pts(6), { closed: true }), "create", CURVE_DEF))).toEqual([]);
+    });
+
+    it("rejects other point counts with E_VALUE_RANGE on properties.points", () => {
+      const open = compile(curve(pts(5)), "create", CURVE_DEF);
+      expect(codes(open)).toEqual(["E_VALUE_RANGE"]);
+      expect(open.diagnostics.find(({ code }) => code === "E_VALUE_RANGE")?.field).toBe("properties.points");
+      expect(codes(compile(curve(pts(5), { closed: true }), "create", CURVE_DEF))).toEqual(["E_VALUE_RANGE"]);
+    });
+
+    it("does not constrain the count of a spline", () => {
+      expect(codes(compile({ points: pts(5) } as PropertiesObject, "create", CURVE_DEF))).toEqual([]);
+      expect(codes(compile({ points: pts(5), interpolation: "spline" } as PropertiesObject, "create", CURVE_DEF))).toEqual([]);
+    });
   });
 });
