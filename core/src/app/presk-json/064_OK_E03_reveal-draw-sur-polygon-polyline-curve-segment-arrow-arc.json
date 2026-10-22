@@ -1,0 +1,218 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "pg",
+      "type": "polygon",
+      "properties": {
+        "pos": {
+          "x": 100,
+          "y": 150
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 100,
+            "y": -60
+          },
+          {
+            "x": 200,
+            "y": 0
+          },
+          {
+            "x": 150,
+            "y": 80
+          },
+          {
+            "x": 50,
+            "y": 80
+          }
+        ],
+        "stroke": "#facc15",
+        "strokeWidth": 3,
+        "fill": "#00000000"
+      }
+    },
+    {
+      "action": "create",
+      "target": "pl",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 450,
+          "y": 150
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 100,
+            "y": -60
+          },
+          {
+            "x": 200,
+            "y": 0
+          },
+          {
+            "x": 150,
+            "y": 80
+          },
+          {
+            "x": 50,
+            "y": 80
+          }
+        ],
+        "stroke": "#60a5fa",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "create",
+      "target": "cv",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 800,
+          "y": 150
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 100,
+            "y": -60
+          },
+          {
+            "x": 200,
+            "y": 0
+          },
+          {
+            "x": 150,
+            "y": 80
+          },
+          {
+            "x": 50,
+            "y": 80
+          }
+        ],
+        "stroke": "#f472b6",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "create",
+      "target": "sg",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 100,
+          "y": 450
+        },
+        "end": {
+          "x": 350,
+          "y": 550
+        },
+        "stroke": "white",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "create",
+      "target": "ar",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 450,
+          "y": 450
+        },
+        "end": {
+          "x": 700,
+          "y": 550
+        },
+        "stroke": "white",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "create",
+      "target": "ac",
+      "type": "arc",
+      "properties": {
+        "x": 950,
+        "y": 500,
+        "radius": 80,
+        "startAngle": 0,
+        "endAngle": 270,
+        "stroke": "#34d399",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pg",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "pl",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "cv",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "sg",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "ar",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "ac",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 2,
+      "start": 0
+    }
+  ]
+}

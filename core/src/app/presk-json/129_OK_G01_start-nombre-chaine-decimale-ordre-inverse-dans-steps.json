@@ -1,0 +1,90 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 300,
+        "radius": 30,
+        "fill": "#3b82f6"
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "circle",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "radius": 30,
+        "fill": "#10b981"
+      }
+    },
+    {
+      "action": "create",
+      "target": "C",
+      "type": "circle",
+      "properties": {
+        "x": 600,
+        "y": 300,
+        "radius": 30,
+        "fill": "#f59e0b"
+      }
+    },
+    {
+      "action": "create",
+      "target": "D",
+      "type": "circle",
+      "properties": {
+        "x": 800,
+        "y": 300,
+        "radius": 30,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "D",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": 2.5
+    },
+    {
+      "action": "animate",
+      "target": "A",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": 0.5
+    },
+    {
+      "action": "animate",
+      "target": "B",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "1"
+    },
+    {
+      "action": "animate",
+      "target": "C",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "1.5"
+    }
+  ]
+}

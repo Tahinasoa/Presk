@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "width": 200,
+        "height": 100,
+        "fill": "#3b82f6",
+        "stroke": "white",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "reveal": "draw"
+      },
+      "duration": 1
+    }
+  ]
+}

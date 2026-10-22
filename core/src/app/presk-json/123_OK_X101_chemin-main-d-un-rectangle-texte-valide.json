@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "title",
+      "type": "text",
+      "properties": {
+        "text": "Presk",
+        "fontSize": 40,
+        "color": "white",
+        "x": 300,
+        "y": 200,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": "title.pathX(main, 0.5)",
+        "y": "title.pathY(main, 0.5)",
+        "radius": 8,
+        "fill": "#facc15",
+        "reveal": true
+      }
+    }
+  ]
+}

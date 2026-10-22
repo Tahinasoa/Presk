@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "Évolution → π ≈ 3,14 ✓ 🚀",
+        "fontSize": 48,
+        "color": "white",
+        "x": 200,
+        "y": 300,
+        "reveal": true
+      }
+    }
+  ]
+}

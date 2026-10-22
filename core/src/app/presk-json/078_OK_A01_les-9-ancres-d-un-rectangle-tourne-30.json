@@ -1,0 +1,123 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 400,
+        "y": 260,
+        "width": 300,
+        "height": 160,
+        "rotation": 30,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.topLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topCenter",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.topCenter"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.topRight"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_centerLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.centerLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_center",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "r.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_centerRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.centerRight"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.bottomLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomCenter",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.bottomCenter"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "r.bottomRight"
+      }
+    }
+  ]
+}

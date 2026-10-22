@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "radius": 100,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "c",
+      "duration": 1,
+      "anchor": "center"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "leader",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 200,
+        "radius": 12,
+        "fill": "white",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "A1",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 300,
+        "radius": 12,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "A2",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 400,
+        "radius": 12,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B1",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 500,
+        "radius": 12,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B2",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 600,
+        "radius": 12,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leader",
+      "properties": {
+        "x": 1200
+      },
+      "duration": 0.6,
+      "start": 0,
+      "ease": "linear"
+    },
+    {
+      "action": "bind",
+      "target": "A1",
+      "properties": {
+        "x": "leader.pos.x"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "A2",
+      "properties": {
+        "x": "A1.pos.x"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "B2",
+      "properties": {
+        "x": "B1.pos.x"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "B1",
+      "properties": {
+        "x": "leader.pos.x"
+      },
+      "start": 0
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "open",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 150,
+          "y": 250
+        },
+        "stroke": "#60a5fa",
+        "strokeWidth": 4,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 80,
+            "y": 120
+          },
+          {
+            "x": 160,
+            "y": 0
+          },
+          {
+            "x": 240,
+            "y": 120
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "closed",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 750,
+          "y": 250
+        },
+        "closed": true,
+        "stroke": "#f472b6",
+        "strokeWidth": 4,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 80,
+            "y": 120
+          },
+          {
+            "x": 160,
+            "y": 0
+          },
+          {
+            "x": 240,
+            "y": 120
+          }
+        ]
+      }
+    }
+  ]
+}

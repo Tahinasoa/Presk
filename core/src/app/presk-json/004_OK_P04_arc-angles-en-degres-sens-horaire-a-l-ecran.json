@@ -1,0 +1,84 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "arc",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "radius": 120,
+        "startAngle": 0,
+        "endAngle": 90,
+        "stroke": "#facc15",
+        "strokeWidth": 4,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "as",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "a.start"
+      }
+    },
+    {
+      "action": "create",
+      "target": "ae",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "a.end"
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "arc",
+      "properties": {
+        "x": 800,
+        "y": 400,
+        "radius": 120,
+        "startAngle": 180,
+        "endAngle": 360,
+        "stroke": "#a78bfa",
+        "strokeWidth": 4,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "bs",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "b.start"
+      }
+    },
+    {
+      "action": "create",
+      "target": "be",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "b.end"
+      }
+    }
+  ]
+}

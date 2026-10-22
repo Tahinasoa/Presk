@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 100,
+          "y": 100
+        },
+        "end": {
+          "x": 400,
+          "y": 100
+        },
+        "stroke": "white",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "x": "s.pathX(main, 1.5)",
+        "y": 100,
+        "radius": 5
+      }
+    }
+  ]
+}

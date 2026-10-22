@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "p",
+      "type": "point",
+      "properties": {
+        "x": 100,
+        "y": 100
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "p",
+      "duration": 1
+    }
+  ]
+}

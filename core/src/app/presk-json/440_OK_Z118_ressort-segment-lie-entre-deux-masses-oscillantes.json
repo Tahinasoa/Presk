@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "m1",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 360,
+        "radius": 30,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "m2",
+      "type": "circle",
+      "properties": {
+        "x": 900,
+        "y": 360,
+        "radius": 30,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "sp",
+      "type": "segment",
+      "properties": {
+        "start": "m1.pos",
+        "end": "m2.pos",
+        "stroke": "white",
+        "strokeWidth": 4,
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "sp",
+      "properties": {
+        "start": "m1.pos",
+        "end": "m2.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "m1",
+      "properties": {
+        "x": 500
+      },
+      "duration": 1,
+      "start": 0,
+      "ease": "sineInOut",
+      "repeat": "infinite",
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "m2",
+      "properties": {
+        "x": 700
+      },
+      "duration": 1,
+      "start": 0,
+      "ease": "sineInOut",
+      "repeat": "infinite",
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 4
+    }
+  ]
+}

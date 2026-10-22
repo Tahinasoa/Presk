@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "leader",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 300,
+        "radius": 20,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "follower",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 500,
+        "radius": 12,
+        "fill": "#22c55e",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leader",
+      "properties": {
+        "x": 1000
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "linear"
+    },
+    {
+      "action": "set",
+      "target": "follower",
+      "properties": {
+        "x": "leader.pos.x",
+        "y": "leader.pos.y"
+      },
+      "start": 1
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "ray",
+      "properties": {
+        "origin": {
+          "x": 300,
+          "y": 300
+        },
+        "through": {
+          "x": 500,
+          "y": 300
+        },
+        "stroke": "#facc15",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "o",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "x": 300,
+        "y": 300
+      }
+    },
+    {
+      "action": "create",
+      "target": "l",
+      "type": "line",
+      "properties": {
+        "p1": {
+          "x": 800,
+          "y": 300
+        },
+        "p2": {
+          "x": 1000,
+          "y": 300
+        },
+        "stroke": "#60a5fa",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "p",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "x": 800,
+        "y": 300
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "rotation": 60
+      },
+      "duration": 2,
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "l",
+      "properties": {
+        "rotation": 60
+      },
+      "duration": 2,
+      "start": 0.2
+    }
+  ]
+}

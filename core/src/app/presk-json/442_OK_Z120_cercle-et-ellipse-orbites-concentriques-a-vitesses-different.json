@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "o1",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 120,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "o2",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 220,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "p1",
+      "type": "circle",
+      "properties": {
+        "radius": 8,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "o1.pathX(main, 0)",
+        "y": "o1.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "p2",
+      "type": "circle",
+      "properties": {
+        "radius": 12,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "o2.pathX(main, 0)",
+        "y": "o2.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "p1",
+      "along": "o1",
+      "duration": 2,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "p2",
+      "along": "o2",
+      "duration": 5,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 6
+    }
+  ]
+}

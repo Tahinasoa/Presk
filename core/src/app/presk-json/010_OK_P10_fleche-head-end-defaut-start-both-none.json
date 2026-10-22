@@ -1,0 +1,104 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a0",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 100
+        },
+        "end": {
+          "x": 700,
+          "y": 100
+        },
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a1",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 200
+        },
+        "end": {
+          "x": 700,
+          "y": 200
+        },
+        "head": "end",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a2",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 300
+        },
+        "end": {
+          "x": 700,
+          "y": 300
+        },
+        "head": "start",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a3",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 400
+        },
+        "end": {
+          "x": 700,
+          "y": 400
+        },
+        "head": "both",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a4",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 500
+        },
+        "end": {
+          "x": 700,
+          "y": 500
+        },
+        "head": "none",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 120,
+        "height": 80,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "rectangle",
+      "properties": {
+        "pos": {
+          "x": 300,
+          "y": 100
+        },
+        "width": 120,
+        "height": 80,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "C",
+      "type": "rectangle",
+      "properties": {
+        "pos": "B.pos",
+        "width": 120,
+        "height": 80,
+        "fill": "#f59e0b",
+        "reveal": true
+      }
+    },
+    {
+      "action": "set",
+      "target": "C",
+      "properties": {
+        "x": 500
+      },
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "A",
+      "properties": {
+        "y": 300
+      },
+      "duration": 1,
+      "start": 1
+    },
+    {
+      "action": "animate",
+      "target": "B",
+      "properties": {
+        "pos": {
+          "x": 300,
+          "y": 300
+        }
+      },
+      "duration": 1,
+      "start": 1
+    },
+    {
+      "action": "animate",
+      "target": "C",
+      "properties": {
+        "y": 300
+      },
+      "duration": 1,
+      "start": 1
+    }
+  ]
+}

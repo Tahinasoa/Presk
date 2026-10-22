@@ -1,0 +1,174 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 160,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 70,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "C",
+      "type": "ellipse",
+      "properties": {
+        "x": 1050,
+        "y": 580,
+        "width": 240,
+        "height": 100,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "D",
+      "type": "rectangle",
+      "properties": {
+        "x": 1000,
+        "y": 80,
+        "width": 120,
+        "height": 120,
+        "fill": "#f59e0b",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "fr",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true,
+        "x": 2,
+        "y": 2,
+        "width": 1276,
+        "height": 716
+      }
+    },
+    {
+      "action": "create",
+      "target": "hud",
+      "type": "text",
+      "properties": {
+        "text": "Vue d'ensemble",
+        "fontSize": 26,
+        "color": "white",
+        "topLeft": "scene.view.topLeft",
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "hud",
+      "properties": {
+        "topLeft": "scene.view.topLeft"
+      },
+      "start": 0
+    },
+    {
+      "action": "set",
+      "target": "hud",
+      "properties": {
+        "text": "Zoom sur A"
+      },
+      "start": 1
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "A",
+        "focusMargin": 80
+      },
+      "duration": 1.2,
+      "start": 1,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "set",
+      "target": "hud",
+      "properties": {
+        "text": "Zoom sur B"
+      },
+      "start": 3
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "B",
+        "focusMargin": 80
+      },
+      "duration": 1.2,
+      "start": 3,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "set",
+      "target": "hud",
+      "properties": {
+        "text": "C et D ensemble"
+      },
+      "start": 5
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": [
+          "C",
+          "D"
+        ],
+        "focusMargin": 50
+      },
+      "duration": 1.2,
+      "start": 5,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "set",
+      "target": "hud",
+      "properties": {
+        "text": "Retour"
+      },
+      "start": 7
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "scene"
+      },
+      "duration": 1.2,
+      "start": 7,
+      "ease": "cubicInOut"
+    }
+  ]
+}

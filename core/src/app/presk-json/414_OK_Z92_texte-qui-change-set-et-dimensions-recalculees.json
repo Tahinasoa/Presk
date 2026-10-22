@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "court",
+        "fontSize": 40,
+        "color": "white",
+        "x": 300,
+        "y": 300,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "o",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#e5e7eb",
+        "strokeWidth": 2,
+        "reveal": true,
+        "topLeft": "t.topLeft",
+        "width": "t.width",
+        "height": "t.height"
+      }
+    },
+    {
+      "action": "bind",
+      "target": "o",
+      "properties": {
+        "width": "t.width",
+        "height": "t.height"
+      },
+      "start": 0
+    },
+    {
+      "action": "set",
+      "target": "t",
+      "properties": {
+        "text": "un texte beaucoup plus long"
+      },
+      "start": 1
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 2
+    }
+  ]
+}

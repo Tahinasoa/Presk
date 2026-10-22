@@ -1,0 +1,105 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "polygon",
+      "properties": {
+        "pos": {
+          "x": 300,
+          "y": 250
+        },
+        "pivot": "pos",
+        "fill": "#3b82f6",
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 120,
+            "y": 0
+          },
+          {
+            "x": 60,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "polygon",
+      "properties": {
+        "pos": {
+          "x": 800,
+          "y": 250
+        },
+        "fill": "#f59e0b",
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 120,
+            "y": 0
+          },
+          {
+            "x": 60,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "pa",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "a.pos"
+      }
+    },
+    {
+      "action": "create",
+      "target": "pb",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "b.pos"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "a",
+      "properties": {
+        "rotation": 180
+      },
+      "duration": 2,
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "b",
+      "properties": {
+        "rotation": 180
+      },
+      "duration": 2,
+      "start": 0.2
+    }
+  ]
+}

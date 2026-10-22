@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "x": "scene.zoom * 100",
+        "y": 100,
+        "radius": 5
+      }
+    }
+  ]
+}
