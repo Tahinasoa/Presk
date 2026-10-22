@@ -1,0 +1,97 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 640,
+        "y": 360,
+        "radius": 200
+      }
+    },
+    {
+      "action": "create",
+      "target": "r",
+      "type": "triangle",
+      "properties": {
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)",
+        "fill": "#ef4444",
+        "reveal": true,
+        "points": [
+          {
+            "x": -14,
+            "y": -9
+          },
+          {
+            "x": 14,
+            "y": 0
+          },
+          {
+            "x": -14,
+            "y": 9
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "triangle",
+      "properties": {
+        "x": "c.pathX(main, 0.5)",
+        "y": "c.pathY(main, 0.5)",
+        "fill": "#3b82f6",
+        "reveal": true,
+        "points": [
+          {
+            "x": -9,
+            "y": 14
+          },
+          {
+            "x": 0,
+            "y": -14
+          },
+          {
+            "x": 9,
+            "y": 14
+          }
+        ]
+      }
+    },
+    {
+      "action": "travel",
+      "target": "r",
+      "along": "c",
+      "from": 0,
+      "duration": 5,
+      "ease": "linear",
+      "orient": true,
+      "start": 0.3
+    },
+    {
+      "action": "travel",
+      "target": "b",
+      "along": "c",
+      "from": 0.5,
+      "to": 1.5,
+      "duration": 5,
+      "ease": "linear",
+      "orient": {
+        "offset": 90
+      },
+      "start": "<"
+    }
+  ]
+}

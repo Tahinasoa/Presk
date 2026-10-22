@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 360
+        },
+        "end": {
+          "x": 1000,
+          "y": 360
+        },
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 640,
+        "y": 200
+      }
+    },
+    {
+      "action": "create",
+      "target": "a",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "s.pathX(main, 0.25)",
+        "y": "s.pathY(main, 0.25)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "s.pathX(main, 0.75)",
+        "y": "s.pathY(main, 0.75)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "s",
+      "from": 0.25,
+      "to": 0.75,
+      "duration": 2,
+      "ease": "linear",
+      "start": 0.3
+    }
+  ]
+}

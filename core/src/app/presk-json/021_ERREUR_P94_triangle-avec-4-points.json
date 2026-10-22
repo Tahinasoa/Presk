@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "triangle",
+      "properties": {
+        "pos": {
+          "x": 100,
+          "y": 100
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 50,
+            "y": 0
+          },
+          {
+            "x": 50,
+            "y": 50
+          },
+          {
+            "x": 0,
+            "y": 50
+          }
+        ]
+      }
+    }
+  ]
+}

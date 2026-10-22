@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "width": 200,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "opacity": 1.5
+      },
+      "duration": 1
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "opacity": -0.5
+      },
+      "duration": 1
+    }
+  ]
+}

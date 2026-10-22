@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+        "fontSize": 28,
+        "color": "white",
+        "x": 20,
+        "y": 300,
+        "reveal": true
+      }
+    }
+  ]
+}

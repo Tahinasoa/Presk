@@ -1,0 +1,145 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "b1",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 300,
+        "width": 180,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "b2",
+      "type": "rectangle",
+      "properties": {
+        "x": 550,
+        "y": 300,
+        "width": 180,
+        "height": 100,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "b3",
+      "type": "rectangle",
+      "properties": {
+        "x": 1000,
+        "y": 300,
+        "width": 180,
+        "height": 100,
+        "fill": "#f59e0b",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a1",
+      "type": "arrow",
+      "properties": {
+        "start": "b1.centerRight",
+        "end": "b2.centerLeft",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a2",
+      "type": "arrow",
+      "properties": {
+        "start": "b2.centerRight",
+        "end": "b3.centerLeft",
+        "stroke": "white",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "p1",
+      "type": "circle",
+      "properties": {
+        "radius": 7,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "a1.pathX(main, 0)",
+        "y": "a1.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "p2",
+      "type": "circle",
+      "properties": {
+        "radius": 7,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "a2.pathX(main, 0)",
+        "y": "a2.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "b2",
+      "properties": {
+        "y": 100
+      },
+      "duration": 1.5,
+      "start": 0,
+      "ease": "sineInOut",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "bind",
+      "target": "a1",
+      "properties": {
+        "start": "b1.centerRight",
+        "end": "b2.centerLeft"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "a2",
+      "properties": {
+        "start": "b2.centerRight",
+        "end": "b3.centerLeft"
+      },
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "p1",
+      "along": "a1",
+      "duration": 1,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "p2",
+      "along": "a2",
+      "duration": 1,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    }
+  ]
+}

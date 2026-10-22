@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "fontSize": 20,
+        "x": 10,
+        "y": 10
+      }
+    }
+  ]
+}

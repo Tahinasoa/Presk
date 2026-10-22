@@ -1,0 +1,88 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "ellipse",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "width": 600,
+        "height": 300,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "a",
+      "type": "circle",
+      "properties": {
+        "radius": 10,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "circle",
+      "properties": {
+        "radius": 10,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "c.pathX(main, 1)",
+        "y": "c.pathY(main, 1)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "a",
+      "along": "c",
+      "from": 0,
+      "to": 1,
+      "duration": 4,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "b",
+      "along": "c",
+      "from": 1,
+      "to": 0,
+      "duration": 4,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 5
+    }
+  ]
+}

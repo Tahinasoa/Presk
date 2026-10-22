@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "leader",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 300,
+        "radius": 20,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "frozen",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 450,
+        "radius": 12,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "follower",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 600,
+        "radius": 12,
+        "fill": "#22c55e",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leader",
+      "properties": {
+        "x": 1000
+      },
+      "duration": 3,
+      "start": 0,
+      "ease": "linear"
+    },
+    {
+      "action": "animate",
+      "target": "frozen",
+      "properties": {
+        "pos": "leader.pos"
+      },
+      "duration": 3,
+      "start": 0,
+      "ease": "linear"
+    },
+    {
+      "action": "bind",
+      "target": "follower",
+      "properties": {
+        "pos": "leader.pos"
+      },
+      "start": 0
+    }
+  ]
+}

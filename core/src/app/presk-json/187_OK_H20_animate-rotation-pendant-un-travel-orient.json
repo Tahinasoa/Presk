@@ -1,0 +1,85 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 640,
+        "y": 360,
+        "radius": 200
+      }
+    },
+    {
+      "action": "create",
+      "target": "t",
+      "type": "triangle",
+      "properties": {
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)",
+        "fill": "#ef4444",
+        "reveal": true,
+        "points": [
+          {
+            "x": -16,
+            "y": -10
+          },
+          {
+            "x": 16,
+            "y": 0
+          },
+          {
+            "x": -16,
+            "y": 10
+          }
+        ]
+      }
+    },
+    {
+      "action": "travel",
+      "target": "t",
+      "along": "c",
+      "duration": 4,
+      "ease": "linear",
+      "orient": true,
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "t",
+      "properties": {
+        "rotation": 0
+      },
+      "duration": 0.5,
+      "start": 2
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 5
+    }
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "ac",
+      "type": "arc",
+      "properties": {
+        "x": 200,
+        "y": 200,
+        "radius": 80,
+        "startAngle": 180,
+        "endAngle": 360,
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "sg",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 400,
+          "y": 150
+        },
+        "end": {
+          "x": 600,
+          "y": 250
+        },
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "ar",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 700,
+          "y": 150
+        },
+        "end": {
+          "x": 900,
+          "y": 250
+        },
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "pl",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 150,
+          "y": 450
+        },
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 120,
+            "y": -60
+          },
+          {
+            "x": 240,
+            "y": 0
+          },
+          {
+            "x": 180,
+            "y": 90
+          },
+          {
+            "x": 40,
+            "y": 90
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "cv",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 650,
+          "y": 450
+        },
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 120,
+            "y": -60
+          },
+          {
+            "x": 240,
+            "y": 0
+          },
+          {
+            "x": 180,
+            "y": 90
+          },
+          {
+            "x": 40,
+            "y": 90
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "d0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "ac.pathX(main, 0)",
+        "y": "ac.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "sg.pathX(main, 0)",
+        "y": "sg.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "ar.pathX(main, 0)",
+        "y": "ar.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "pl.pathX(main, 0)",
+        "y": "pl.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d4",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "cv.pathX(main, 0)",
+        "y": "cv.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d0",
+      "along": "ac",
+      "duration": 3,
+      "ease": "linear",
+      "start": 0.3
+    },
+    {
+      "action": "travel",
+      "target": "d1",
+      "along": "sg",
+      "duration": 3,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d2",
+      "along": "ar",
+      "duration": 3,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d3",
+      "along": "pl",
+      "duration": 3,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d4",
+      "along": "cv",
+      "duration": 3,
+      "ease": "linear",
+      "start": "<"
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "radius": 20,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "pos": "c.vertex[0]",
+        "radius": 5
+      }
+    }
+  ]
+}

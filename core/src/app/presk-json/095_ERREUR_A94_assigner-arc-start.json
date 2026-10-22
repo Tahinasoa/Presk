@@ -1,0 +1,40 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "arc",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "radius": 100,
+        "startAngle": 0,
+        "endAngle": 90,
+        "stroke": "white",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "p",
+      "type": "point",
+      "properties": {
+        "x": 500,
+        "y": 100
+      }
+    },
+    {
+      "action": "bind",
+      "target": "a",
+      "properties": {
+        "start": "p.pos"
+      }
+    }
+  ]
+}

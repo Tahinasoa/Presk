@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "circuit",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 300,
+          "y": 200
+        },
+        "closed": true,
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 600,
+            "y": 0
+          },
+          {
+            "x": 600,
+            "y": 300
+          },
+          {
+            "x": 0,
+            "y": 300
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "car",
+      "type": "triangle",
+      "properties": {
+        "x": "circuit.pathX(main, 0)",
+        "y": "circuit.pathY(main, 0)",
+        "fill": "#ef4444",
+        "reveal": true,
+        "points": [
+          {
+            "x": -16,
+            "y": -10
+          },
+          {
+            "x": 16,
+            "y": 0
+          },
+          {
+            "x": -16,
+            "y": 10
+          }
+        ]
+      }
+    },
+    {
+      "action": "travel",
+      "target": "car",
+      "along": "circuit",
+      "duration": 6,
+      "ease": "linear",
+      "orient": true,
+      "start": 0.3
+    }
+  ]
+}

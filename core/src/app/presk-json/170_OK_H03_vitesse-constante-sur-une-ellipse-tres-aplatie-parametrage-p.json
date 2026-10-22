@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "e",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 640,
+        "y": 360,
+        "width": 600,
+        "height": 80
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "e.pathX(main, 0)",
+        "y": "e.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "m0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "e.pathX(main, 0.25)",
+        "y": "e.pathY(main, 0.25)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "m1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "e.pathX(main, 0.5)",
+        "y": "e.pathY(main, 0.5)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "m2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "e.pathX(main, 0.75)",
+        "y": "e.pathY(main, 0.75)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "e",
+      "duration": 4,
+      "ease": "linear",
+      "start": 0.3
+    }
+  ]
+}

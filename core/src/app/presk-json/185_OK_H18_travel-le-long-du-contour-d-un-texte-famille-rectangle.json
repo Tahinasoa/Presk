@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "Presk",
+        "fontSize": 90,
+        "color": "white",
+        "x": 450,
+        "y": 250,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "t.pathX(main, 0)",
+        "y": "t.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "t",
+      "duration": 3,
+      "ease": "linear",
+      "repeat": 2,
+      "start": 0.3
+    }
+  ]
+}

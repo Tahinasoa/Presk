@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "Presk — Hello",
+        "fontSize": 48,
+        "color": "white",
+        "x": 200,
+        "y": 200,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "frame",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#10b981",
+        "strokeWidth": 2,
+        "reveal": true,
+        "topLeft": "t.topLeft",
+        "width": "t.width",
+        "height": "t.height"
+      }
+    },
+    {
+      "action": "create",
+      "target": "t2",
+      "type": "text",
+      "properties": {
+        "text": "Petit",
+        "fontSize": 20,
+        "color": "#facc15",
+        "topLeft": "t.bottomLeft",
+        "reveal": true
+      }
+    }
+  ]
+}

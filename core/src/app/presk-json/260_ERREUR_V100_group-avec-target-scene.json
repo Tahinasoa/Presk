@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "rectangle",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "width": 10,
+        "height": 10,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "group",
+      "target": "scene",
+      "properties": {
+        "children": [
+          "a"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,230 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "e",
+      "type": "ellipse",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "width": 300,
+        "height": 100,
+        "rotation": 45,
+        "fill": "#06b6d4",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "bb",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#10b981",
+        "strokeWidth": 2,
+        "reveal": true,
+        "x": "e.boundingBox.topLeft.x",
+        "y": "e.boundingBox.topLeft.y",
+        "width": "e.boundingBox.width",
+        "height": "e.boundingBox.height"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.topLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topCenter",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.topCenter"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_topRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.topRight"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_centerLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.centerLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_center",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_centerRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.centerRight"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomLeft",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.bottomLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomCenter",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.bottomCenter"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d_bottomRight",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.boundingBox.bottomRight"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "e",
+      "properties": {
+        "rotation": 90
+      },
+      "duration": 2,
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "bb",
+      "properties": {
+        "x": "e.boundingBox.topLeft.x",
+        "y": "e.boundingBox.topLeft.y",
+        "width": "e.boundingBox.width",
+        "height": "e.boundingBox.height"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_topLeft",
+      "properties": {
+        "pos": "e.boundingBox.topLeft"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_topCenter",
+      "properties": {
+        "pos": "e.boundingBox.topCenter"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_topRight",
+      "properties": {
+        "pos": "e.boundingBox.topRight"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_centerLeft",
+      "properties": {
+        "pos": "e.boundingBox.centerLeft"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_center",
+      "properties": {
+        "pos": "e.boundingBox.center"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_centerRight",
+      "properties": {
+        "pos": "e.boundingBox.centerRight"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_bottomLeft",
+      "properties": {
+        "pos": "e.boundingBox.bottomLeft"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_bottomCenter",
+      "properties": {
+        "pos": "e.boundingBox.bottomCenter"
+      },
+      "start": 0.5
+    },
+    {
+      "action": "bind",
+      "target": "d_bottomRight",
+      "properties": {
+        "pos": "e.boundingBox.bottomRight"
+      },
+      "start": 0.5
+    }
+  ]
+}

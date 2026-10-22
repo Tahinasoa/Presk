@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "rectangle",
+      "properties": {
+        "x": 500,
+        "y": 280,
+        "width": 240,
+        "height": 120,
+        "rotation": 30,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 8,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "A.topRight"
+      }
+    }
+  ]
+}

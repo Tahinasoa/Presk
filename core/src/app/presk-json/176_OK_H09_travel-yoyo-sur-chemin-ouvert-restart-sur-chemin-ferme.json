@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 200
+        },
+        "end": {
+          "x": 600,
+          "y": 200
+        },
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 900,
+        "y": 200,
+        "radius": 80
+      }
+    },
+    {
+      "action": "create",
+      "target": "c2",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 900,
+        "y": 500,
+        "radius": 80
+      }
+    },
+    {
+      "action": "create",
+      "target": "a",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "s.pathX(main, 0)",
+        "y": "s.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "c2.pathX(main, 0)",
+        "y": "c2.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "a",
+      "along": "s",
+      "duration": 2,
+      "ease": "sineInOut",
+      "repeat": 2,
+      "repeatMode": "yoyo",
+      "start": 0.3
+    },
+    {
+      "action": "travel",
+      "target": "b",
+      "along": "c",
+      "duration": 2,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "e",
+      "along": "c2",
+      "duration": 2,
+      "ease": "linear",
+      "repeat": 3,
+      "start": "<"
+    }
+  ]
+}

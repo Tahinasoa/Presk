@@ -1,0 +1,18 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusMargin": 50
+      },
+      "duration": 1
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "e",
+      "type": "ellipse",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "width": 300,
+        "height": 120,
+        "fill": "#06b6d4",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "pos": "e.pos"
+      }
+    }
+  ]
+}

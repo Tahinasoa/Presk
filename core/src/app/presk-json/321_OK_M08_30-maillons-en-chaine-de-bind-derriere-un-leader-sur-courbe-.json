@@ -1,0 +1,694 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "path",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "stroke": "#334155",
+        "strokeWidth": 2,
+        "reveal": true,
+        "points": [
+          {
+            "x": 200,
+            "y": 400
+          },
+          {
+            "x": 450,
+            "y": 150
+          },
+          {
+            "x": 750,
+            "y": 600
+          },
+          {
+            "x": 1050,
+            "y": 300
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "lead",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 10,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k0",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 8,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k1",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.9,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k2",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.8,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k3",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.7,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k4",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.6,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k5",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.5,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k6",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.4,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k7",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.3,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k8",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.2,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k9",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7.1,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k10",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 7,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k11",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.9,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k12",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.8,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k13",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.7,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k14",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.6,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k15",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.5,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k16",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.4,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k17",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.3,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k18",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.2,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k19",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6.1,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k20",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 6,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k21",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.9,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k22",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.8,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k23",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.699999999999999,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k24",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.6,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k25",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.5,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k26",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.4,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k27",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.3,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k28",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.199999999999999,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "k29",
+      "type": "circle",
+      "properties": {
+        "x": "path.pathX(main, 0)",
+        "y": "path.pathY(main, 0)",
+        "radius": 5.1,
+        "fill": "#38bdf8",
+        "reveal": true
+      }
+    },
+    {
+      "action": "travel",
+      "target": "lead",
+      "along": "path",
+      "duration": 3,
+      "ease": "linear",
+      "repeat": 2,
+      "repeatMode": "yoyo",
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k0",
+      "properties": {
+        "x": "lead.pos.x - 18",
+        "y": "lead.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k1",
+      "properties": {
+        "x": "k0.pos.x - 18",
+        "y": "k0.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k2",
+      "properties": {
+        "x": "k1.pos.x - 18",
+        "y": "k1.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k3",
+      "properties": {
+        "x": "k2.pos.x - 18",
+        "y": "k2.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k4",
+      "properties": {
+        "x": "k3.pos.x - 18",
+        "y": "k3.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k5",
+      "properties": {
+        "x": "k4.pos.x - 18",
+        "y": "k4.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k6",
+      "properties": {
+        "x": "k5.pos.x - 18",
+        "y": "k5.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k7",
+      "properties": {
+        "x": "k6.pos.x - 18",
+        "y": "k6.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k8",
+      "properties": {
+        "x": "k7.pos.x - 18",
+        "y": "k7.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k9",
+      "properties": {
+        "x": "k8.pos.x - 18",
+        "y": "k8.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k10",
+      "properties": {
+        "x": "k9.pos.x - 18",
+        "y": "k9.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k11",
+      "properties": {
+        "x": "k10.pos.x - 18",
+        "y": "k10.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k12",
+      "properties": {
+        "x": "k11.pos.x - 18",
+        "y": "k11.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k13",
+      "properties": {
+        "x": "k12.pos.x - 18",
+        "y": "k12.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k14",
+      "properties": {
+        "x": "k13.pos.x - 18",
+        "y": "k13.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k15",
+      "properties": {
+        "x": "k14.pos.x - 18",
+        "y": "k14.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k16",
+      "properties": {
+        "x": "k15.pos.x - 18",
+        "y": "k15.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k17",
+      "properties": {
+        "x": "k16.pos.x - 18",
+        "y": "k16.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k18",
+      "properties": {
+        "x": "k17.pos.x - 18",
+        "y": "k17.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k19",
+      "properties": {
+        "x": "k18.pos.x - 18",
+        "y": "k18.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k20",
+      "properties": {
+        "x": "k19.pos.x - 18",
+        "y": "k19.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k21",
+      "properties": {
+        "x": "k20.pos.x - 18",
+        "y": "k20.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k22",
+      "properties": {
+        "x": "k21.pos.x - 18",
+        "y": "k21.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k23",
+      "properties": {
+        "x": "k22.pos.x - 18",
+        "y": "k22.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k24",
+      "properties": {
+        "x": "k23.pos.x - 18",
+        "y": "k23.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k25",
+      "properties": {
+        "x": "k24.pos.x - 18",
+        "y": "k24.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k26",
+      "properties": {
+        "x": "k25.pos.x - 18",
+        "y": "k25.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k27",
+      "properties": {
+        "x": "k26.pos.x - 18",
+        "y": "k26.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k28",
+      "properties": {
+        "x": "k27.pos.x - 18",
+        "y": "k27.pos.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "k29",
+      "properties": {
+        "x": "k28.pos.x - 18",
+        "y": "k28.pos.y"
+      },
+      "start": 0
+    }
+  ]
+}

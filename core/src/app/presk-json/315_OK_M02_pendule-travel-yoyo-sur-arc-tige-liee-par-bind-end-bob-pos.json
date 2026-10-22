@@ -1,0 +1,109 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "pivot",
+      "type": "point",
+      "properties": {
+        "x": 640,
+        "y": 100
+      }
+    },
+    {
+      "action": "create",
+      "target": "track",
+      "type": "arc",
+      "properties": {
+        "x": 640,
+        "y": 100,
+        "radius": 380,
+        "startAngle": 60,
+        "endAngle": 120,
+        "stroke": "#334155",
+        "strokeWidth": 2,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "rod",
+      "type": "segment",
+      "properties": {
+        "start": "pivot.pos",
+        "end": {
+          "x": 640,
+          "y": 480
+        },
+        "stroke": "#94a3b8",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "bob",
+      "type": "circle",
+      "properties": {
+        "x": "track.pathX(main, 0)",
+        "y": "track.pathY(main, 0)",
+        "radius": 24,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "hub",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "white",
+        "reveal": true,
+        "pos": "pivot.pos"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "bob",
+      "along": "track",
+      "duration": 1.4,
+      "ease": "sineInOut",
+      "repeat": "infinite",
+      "repeatMode": "yoyo",
+      "start": 0,
+      "name": "swing"
+    },
+    {
+      "action": "bind",
+      "target": "rod",
+      "properties": {
+        "start": "pivot.pos",
+        "end": "bob.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 6
+    }
+  ]
+}

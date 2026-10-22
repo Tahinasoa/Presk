@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 500,
+        "y": 300,
+        "radius": 100,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "g1",
+      "type": "rectangle",
+      "properties": {
+        "x": 600,
+        "y": 100,
+        "width": 50,
+        "height": 50,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "g2",
+      "type": "rectangle",
+      "properties": {
+        "x": 700,
+        "y": 100,
+        "width": 50,
+        "height": 50,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "set",
+      "target": "r",
+      "properties": {
+        "x": 150
+      },
+      "start": 0,
+      "name": "s1"
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "x": 400
+      },
+      "duration": 1,
+      "start": "s1",
+      "ease": "cubicOut",
+      "repeat": 2,
+      "repeatMode": "yoyo",
+      "name": "a1"
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)",
+        "radius": 8,
+        "fill": "#facc15",
+        "reveal": true
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "c",
+      "from": 0,
+      "to": 1,
+      "duration": 2,
+      "ease": "linear",
+      "repeat": 2,
+      "repeatMode": "restart",
+      "orient": true,
+      "anchor": "pos",
+      "start": "a1",
+      "name": "t1"
+    },
+    {
+      "action": "bind",
+      "target": "g1",
+      "properties": {
+        "x": "r.pos.x"
+      },
+      "start": 0,
+      "name": "b1"
+    },
+    {
+      "action": "unbind",
+      "target": "g1",
+      "start": 3,
+      "name": "ub"
+    },
+    {
+      "action": "group",
+      "target": "gg",
+      "properties": {
+        "children": [
+          "g1",
+          "g2"
+        ]
+      },
+      "duration": 0.5,
+      "ease": "cubicOut",
+      "start": 4,
+      "name": "gr"
+    },
+    {
+      "action": "ungroup",
+      "target": "gg",
+      "properties": {
+        "children": [
+          "g2"
+        ]
+      },
+      "start": 5,
+      "name": "ug"
+    }
+  ]
+}

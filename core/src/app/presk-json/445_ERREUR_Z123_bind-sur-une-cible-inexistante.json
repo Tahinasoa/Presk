@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 50,
+        "height": 50,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "ghost",
+      "properties": {
+        "x": 1
+      }
+    }
+  ]
+}

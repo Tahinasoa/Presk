@@ -1,0 +1,692 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "p0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 20
+      }
+    },
+    {
+      "action": "create",
+      "target": "p1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 42
+      }
+    },
+    {
+      "action": "create",
+      "target": "p2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 64
+      }
+    },
+    {
+      "action": "create",
+      "target": "p3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 86
+      }
+    },
+    {
+      "action": "create",
+      "target": "p4",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 108
+      }
+    },
+    {
+      "action": "create",
+      "target": "p5",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 130
+      }
+    },
+    {
+      "action": "create",
+      "target": "p6",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 152
+      }
+    },
+    {
+      "action": "create",
+      "target": "p7",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 174
+      }
+    },
+    {
+      "action": "create",
+      "target": "p8",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 196
+      }
+    },
+    {
+      "action": "create",
+      "target": "p9",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 218
+      }
+    },
+    {
+      "action": "create",
+      "target": "p10",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 240
+      }
+    },
+    {
+      "action": "create",
+      "target": "p11",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 262
+      }
+    },
+    {
+      "action": "create",
+      "target": "p12",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 284
+      }
+    },
+    {
+      "action": "create",
+      "target": "p13",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 306
+      }
+    },
+    {
+      "action": "create",
+      "target": "p14",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 328
+      }
+    },
+    {
+      "action": "create",
+      "target": "p15",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 350
+      }
+    },
+    {
+      "action": "create",
+      "target": "p16",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 372
+      }
+    },
+    {
+      "action": "create",
+      "target": "p17",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 394
+      }
+    },
+    {
+      "action": "create",
+      "target": "p18",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 416
+      }
+    },
+    {
+      "action": "create",
+      "target": "p19",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 438
+      }
+    },
+    {
+      "action": "create",
+      "target": "p20",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 460
+      }
+    },
+    {
+      "action": "create",
+      "target": "p21",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 482
+      }
+    },
+    {
+      "action": "create",
+      "target": "p22",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 504
+      }
+    },
+    {
+      "action": "create",
+      "target": "p23",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 526
+      }
+    },
+    {
+      "action": "create",
+      "target": "p24",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 548
+      }
+    },
+    {
+      "action": "create",
+      "target": "p25",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 570
+      }
+    },
+    {
+      "action": "create",
+      "target": "p26",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 592
+      }
+    },
+    {
+      "action": "create",
+      "target": "p27",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 614
+      }
+    },
+    {
+      "action": "create",
+      "target": "p28",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 636
+      }
+    },
+    {
+      "action": "create",
+      "target": "p29",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 658
+      }
+    },
+    {
+      "action": "create",
+      "target": "p30",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": 100,
+        "y": 680
+      }
+    },
+    {
+      "action": "animate",
+      "target": "p0",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "sineIn"
+    },
+    {
+      "action": "animate",
+      "target": "p1",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "sineOut"
+    },
+    {
+      "action": "animate",
+      "target": "p2",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "sineInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p3",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quadIn"
+    },
+    {
+      "action": "animate",
+      "target": "p4",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quadOut"
+    },
+    {
+      "action": "animate",
+      "target": "p5",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quadInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p6",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "cubicIn"
+    },
+    {
+      "action": "animate",
+      "target": "p7",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "cubicOut"
+    },
+    {
+      "action": "animate",
+      "target": "p8",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p9",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quartIn"
+    },
+    {
+      "action": "animate",
+      "target": "p10",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quartOut"
+    },
+    {
+      "action": "animate",
+      "target": "p11",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quartInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p12",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quintIn"
+    },
+    {
+      "action": "animate",
+      "target": "p13",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quintOut"
+    },
+    {
+      "action": "animate",
+      "target": "p14",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "quintInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p15",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "expoIn"
+    },
+    {
+      "action": "animate",
+      "target": "p16",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "expoOut"
+    },
+    {
+      "action": "animate",
+      "target": "p17",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "expoInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p18",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "circIn"
+    },
+    {
+      "action": "animate",
+      "target": "p19",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "circOut"
+    },
+    {
+      "action": "animate",
+      "target": "p20",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "circInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p21",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "backIn"
+    },
+    {
+      "action": "animate",
+      "target": "p22",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "backOut"
+    },
+    {
+      "action": "animate",
+      "target": "p23",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "backInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p24",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "elasticIn"
+    },
+    {
+      "action": "animate",
+      "target": "p25",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "elasticOut"
+    },
+    {
+      "action": "animate",
+      "target": "p26",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "elasticInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p27",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "bounceIn"
+    },
+    {
+      "action": "animate",
+      "target": "p28",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "bounceOut"
+    },
+    {
+      "action": "animate",
+      "target": "p29",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "bounceInOut"
+    },
+    {
+      "action": "animate",
+      "target": "p30",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 2,
+      "start": 0,
+      "ease": "linear"
+    }
+  ]
+}

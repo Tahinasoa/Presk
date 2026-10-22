@@ -1,0 +1,74 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "point",
+      "properties": {
+        "x": 200,
+        "y": 100
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "point",
+      "properties": {
+        "x": 800,
+        "y": 500
+      }
+    },
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 0,
+        "y": 0,
+        "width": 120,
+        "height": 60,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "r",
+      "properties": {
+        "topLeft": "A.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "r",
+      "properties": {
+        "pos": "B.pos"
+      },
+      "start": 1.5
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 3
+    }
+  ]
+}

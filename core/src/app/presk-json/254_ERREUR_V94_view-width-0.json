@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "view": {
+          "x": 0,
+          "y": 0,
+          "width": 0,
+          "height": 100
+        }
+      },
+      "duration": 1
+    }
+  ]
+}

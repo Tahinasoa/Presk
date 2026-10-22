@@ -1,0 +1,96 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 250,
+        "radius": 20,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "circle",
+      "properties": {
+        "x": 900,
+        "y": 250,
+        "radius": 20,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "ar",
+      "type": "arrow",
+      "properties": {
+        "start": "A.pos",
+        "end": "B.pos",
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "ar.pathX(main, 0)",
+        "y": "ar.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "bind",
+      "target": "ar",
+      "properties": {
+        "start": "A.pos",
+        "end": "B.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "ar",
+      "duration": 1.5,
+      "ease": "sineInOut",
+      "repeat": "infinite",
+      "repeatMode": "yoyo",
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "B",
+      "properties": {
+        "y": 600
+      },
+      "duration": 3,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "A",
+      "properties": {
+        "x": 500,
+        "y": 500
+      },
+      "duration": 3,
+      "start": 0
+    }
+  ]
+}

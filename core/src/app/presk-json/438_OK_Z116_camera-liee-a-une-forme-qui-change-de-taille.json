@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 30,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "ref",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "fill": "#475569",
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "scene",
+      "properties": {
+        "focusOn": "c",
+        "focusMargin": 20
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "c",
+      "properties": {
+        "radius": 150
+      },
+      "duration": 2,
+      "start": 0.3
+    }
+  ]
+}

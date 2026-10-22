@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 300,
+        "width": 100,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "x": 900
+      },
+      "duration": 1.5,
+      "start": 0.2,
+      "ease": "bounceOut",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    }
+  ]
+}

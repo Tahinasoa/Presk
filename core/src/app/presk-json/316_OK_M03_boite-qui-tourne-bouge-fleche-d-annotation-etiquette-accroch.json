@@ -1,0 +1,77 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "box",
+      "type": "rectangle",
+      "properties": {
+        "x": 300,
+        "y": 350,
+        "width": 280,
+        "height": 120,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "lab",
+      "type": "text",
+      "properties": {
+        "text": "coin",
+        "fontSize": 26,
+        "color": "#facc15",
+        "x": "box.topRight.x + 60",
+        "y": "box.topRight.y - 60",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "ar",
+      "type": "arrow",
+      "properties": {
+        "start": "box.topRight",
+        "end": "lab.bottomLeft",
+        "stroke": "#facc15",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "lab",
+      "properties": {
+        "x": "box.topRight.x + 60",
+        "y": "box.topRight.y - 60"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "ar",
+      "properties": {
+        "start": "box.topRight",
+        "end": "lab.bottomLeft"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "box",
+      "properties": {
+        "rotation": 45,
+        "x": 700
+      },
+      "duration": 3,
+      "start": 0.2,
+      "ease": "cubicInOut"
+    }
+  ]
+}

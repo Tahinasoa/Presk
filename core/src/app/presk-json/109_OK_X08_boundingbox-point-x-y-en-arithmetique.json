@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "p",
+      "type": "circle",
+      "properties": {
+        "x": 500,
+        "y": 350,
+        "radius": 30,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "planète",
+        "fontSize": 24,
+        "color": "white",
+        "x": "p.boundingBox.center.x + 14",
+        "y": "p.boundingBox.center.y - 26",
+        "reveal": true
+      }
+    }
+  ]
+}

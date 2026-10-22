@@ -1,0 +1,49 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 200,
+        "width": 200,
+        "height": 200,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "rectangle",
+      "properties": {
+        "x": 300,
+        "y": 250,
+        "width": 200,
+        "height": 200,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "rectangle",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "width": 200,
+        "height": 200,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    }
+  ]
+}
