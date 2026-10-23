@@ -28,3 +28,6 @@
 | Q21 | `travel.from: "current"` | ne tient compte que des actions déclarées plus haut dans `steps` | ADR-013 |
 | Q22 | Origine du groupe | `pos` du groupe n'est **pas** renormalisé sur la boîte des enfants ; le layout commence à `(margin, margin)` dans le repère du groupe | ADR-015 |
 | Q23 | `along` | `"objet"` ou `"objet.chemin"` | C-engine-compile |
+| Q24 | Alpha dans la couleur (`#rgba`, `#rrggbbaa`) | accepté et interpolé ; **extension** de la spec §11.3 (qui ne parle pas d'alpha) | ADR-021 |
+| Q25 | Formats `rgb()`, `hsl()` | non supportés en v1 ; ajoutables dans `parseColor` seul | ADR-021 |
+| Q26 | Alpha de couleur × `opacity` d'objet | multiplication supposée ; **à confirmer visuellement** (T163) | ADR-022 |

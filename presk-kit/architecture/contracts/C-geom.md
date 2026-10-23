@@ -44,6 +44,8 @@ export function anchorOfBounds(b: Bounds, name: AnchorName): Pt;
 export function boundsWidth(b: Bounds): number;  export function boundsHeight(b: Bounds): number;
 ```
 
+> ⚠️ **Section périmée à partir de la tâche T161** : pour les couleurs, `C-geom-color-v2.md` fait foi (chaînes canoniques avec alpha). Avant T161, cette section décrit le comportement en vigueur.
+
 ## color.ts
 ```ts
 export function parseColor(input: unknown): number | null;   // 0xRRGGBB ou null

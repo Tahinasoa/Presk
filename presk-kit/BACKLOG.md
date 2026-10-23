@@ -5,9 +5,10 @@
 > Statuts : `TODO` · `IN_PROGRESS` · `DONE` · `FAILED` · `BLOCKED` · `CANCELLED`.
 
 ## Reprise
-- Tâche courante : aucune
-- Dernière étape terminée : T156 DONE (commit 0d6fdb6); TERMINÉ — tsc propre, arch 12/12, suite 720/720
-- Prochaine action : TERMINÉ (contrôles humains et questions architecte en attente)
+- Tâche courante : (aucune — prendre T157)
+- Dernière étape terminée : T156 (audit final) ; TERMINÉ levé : extension P10 ajoutée
+- Prochaine action : lire tasks/T157-geom-colour-canonical-helpers.md
+- État du code : sain
 - État du code : sain, T001–T156 validées; arbre git propre
 - Branche git : presk-v1
 
@@ -110,7 +111,14 @@
 | T153-view-curve | P9 | DONE | T152, T123 | T154-engine-warning-speed-path | 8bbc61a |
 | T154-engine-warning-speed-path | P9 | DONE | T153, T114 | T155-move-easing-to-lang | 4471b52 |
 | T155-move-easing-to-lang | P9 | DONE | T154 | T156-final-audit | ab2364e |
-| T156-final-audit | P9 | DONE | T155 | — | 0d6fdb6 |
+| T156-final-audit | P9 | DONE | T155 | T157-geom-colour-canonical-helpers | 0d6fdb6 |
+| T157-geom-colour-canonical-helpers | P10 | TODO | T156 | T158-model-get-colour | - |
+| T158-model-get-colour | P10 | TODO | T157 | T159-view-colours-with-alpha | - |
+| T159-view-colours-with-alpha | P10 | TODO | T158 | T160-model-colour-getters-and-interpolate | - |
+| T160-model-colour-getters-and-interpolate | P10 | TODO | T159 | T161-engine-parse-colour-canonical | - |
+| T161-engine-parse-colour-canonical | P10 | TODO | T160 | T162-model-string-colour-defaults | - |
+| T162-model-string-colour-defaults | P10 | TODO | T161 | T163-colour-migration-audit | - |
+| T163-colour-migration-audit | P10 | TODO | T162 | — | - |
 
 ## Phases
 - **P0** : Base verte + garde-fou
@@ -123,6 +131,7 @@
 - **P7** : groupes et layouts
 - **P8** : vue de la scène
 - **P9** : curve, image, finitions
+- **P10** : couleurs avec alpha (extension)
 
 ## Journal
 (une ligne par événement : `AAAA-MM-JJ | Txxx | DONE/FAILED/BLOCKED | commit abc1234 | remarque`)
@@ -262,6 +271,9 @@ T001 | Quel est l’état attendu des suppressions de agent/ et de l’ajout de 
 - [ ] Après T144 : `focusOn` zoome bien sur l'objet.
 - [ ] Après T153 : `reveal:"draw"` sur une `curve` se trace progressivement.
 - [ ] Relire `architecture/open-questions.md` (Q1–Q23) et valider ou corriger les choix.
+- [ ] Après T159 : `pnpm dev`, la démo `HELLO` s'affiche comme avant.
+- [ ] Après T163 : un rectangle `fill:"#ff000080"` avec `opacity:0.5` apparaît à environ 25 % d'opacité (Q26).
+- [ ] Après T163 : une animation `fill` rouge → bleu est un fondu continu.
 
 ### Liste finale à faire par l'humain (T156)
 - [ ] (1) `pnpm dev`, jouer la démo `HELLO` (play / pause / curseur).
