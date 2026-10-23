@@ -1,0 +1,322 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "rc",
+      "type": "rectangle",
+      "properties": {
+        "x": 60,
+        "y": 120,
+        "width": 140,
+        "height": 90,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "ci",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 330,
+        "y": 165,
+        "radius": 55
+      }
+    },
+    {
+      "action": "create",
+      "target": "el",
+      "type": "ellipse",
+      "properties": {
+        "x": 560,
+        "y": 165,
+        "width": 170,
+        "height": 90,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "pg",
+      "type": "polygon",
+      "properties": {
+        "pos": {
+          "x": 800,
+          "y": 165
+        },
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": -60
+          },
+          {
+            "x": 60,
+            "y": 40
+          },
+          {
+            "x": -60,
+            "y": 40
+          },
+          {
+            "x": -40,
+            "y": -20
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "tr",
+      "type": "triangle",
+      "properties": {
+        "pos": {
+          "x": 1010,
+          "y": 165
+        },
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": -60
+          },
+          {
+            "x": 60,
+            "y": 50
+          },
+          {
+            "x": -60,
+            "y": 50
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "pl",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 100,
+          "y": 450
+        },
+        "closed": true,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 160,
+            "y": 0
+          },
+          {
+            "x": 160,
+            "y": 100
+          },
+          {
+            "x": 0,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "cv",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 480,
+          "y": 450
+        },
+        "closed": true,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 50
+          },
+          {
+            "x": 80,
+            "y": 0
+          },
+          {
+            "x": 160,
+            "y": 50
+          },
+          {
+            "x": 80,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "d0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "x": "rc.pathX(main, 0)",
+        "y": "rc.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "ci.pathX(main, 0)",
+        "y": "ci.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "el.pathX(main, 0)",
+        "y": "el.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#3b82f6",
+        "reveal": true,
+        "x": "pg.pathX(main, 0)",
+        "y": "pg.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d4",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#f472b6",
+        "reveal": true,
+        "x": "tr.pathX(main, 0)",
+        "y": "tr.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d5",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#06b6d4",
+        "reveal": true,
+        "x": "pl.pathX(main, 0)",
+        "y": "pl.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d6",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#fb923c",
+        "reveal": true,
+        "x": "cv.pathX(main, 0)",
+        "y": "cv.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d0",
+      "along": "rc",
+      "duration": 4,
+      "ease": "linear",
+      "start": 0.3
+    },
+    {
+      "action": "travel",
+      "target": "d1",
+      "along": "ci",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d2",
+      "along": "el",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d3",
+      "along": "pg",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d4",
+      "along": "tr",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d5",
+      "along": "pl",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "d6",
+      "along": "cv",
+      "duration": 4,
+      "ease": "linear",
+      "start": "<"
+    }
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "ray",
+      "properties": {
+        "origin": {
+          "x": 0,
+          "y": 0
+        },
+        "through": {
+          "x": 100,
+          "y": 0
+        },
+        "stroke": "white"
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": "r.boundingBox.center.x",
+        "y": 100,
+        "radius": 10
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "sun",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 28,
+        "fill": "#fbbf24",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "eo",
+      "type": "ellipse",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "width": 600,
+        "height": 400,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "mo",
+      "type": "arc",
+      "properties": {
+        "radius": 50,
+        "startAngle": 0,
+        "endAngle": 360,
+        "stroke": "#475569",
+        "strokeWidth": 1,
+        "x": "eo.pathX(main, 0)",
+        "y": "eo.pathY(main, 0)",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "earth",
+      "type": "circle",
+      "properties": {
+        "radius": 14,
+        "fill": "#3b82f6",
+        "x": "eo.pathX(main, 0)",
+        "y": "eo.pathY(main, 0)",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "moon",
+      "type": "circle",
+      "properties": {
+        "radius": 6,
+        "fill": "#cbd5e1",
+        "x": "mo.pathX(main, 0)",
+        "y": "mo.pathY(main, 0)",
+        "reveal": true
+      }
+    },
+    {
+      "action": "travel",
+      "target": "earth",
+      "along": "eo",
+      "duration": 8,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0,
+      "name": "earthRun"
+    },
+    {
+      "action": "bind",
+      "target": "mo",
+      "properties": {
+        "pos": "earth.pos"
+      },
+      "start": "earthRun"
+    },
+    {
+      "action": "travel",
+      "target": "moon",
+      "along": "mo",
+      "duration": 2,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "earthRun"
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 8
+    }
+  ]
+}

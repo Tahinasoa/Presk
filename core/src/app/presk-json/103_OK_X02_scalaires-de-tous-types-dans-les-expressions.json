@@ -1,0 +1,47 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "title",
+      "type": "text",
+      "properties": {
+        "text": "Presk",
+        "fontSize": 60,
+        "color": "white",
+        "x": 400,
+        "y": 300,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "g",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "x": "scene.center.x + title.width / 2",
+        "y": "title.boundingBox.center.y - 100"
+      }
+    },
+    {
+      "action": "create",
+      "target": "p",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#f472b6",
+        "reveal": true,
+        "x": "title.topRight.x + 20",
+        "y": "title.bottomRight.y"
+      }
+    }
+  ]
+}

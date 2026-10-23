@@ -1,0 +1,46 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "arrow",
+      "properties": {
+        "start": {
+          "x": 450,
+          "y": 300
+        },
+        "end": {
+          "x": 750,
+          "y": 400
+        },
+        "stroke": "white",
+        "strokeWidth": 5,
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "rotation": 90
+      },
+      "duration": 1.2,
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "scale": 1.5
+      },
+      "duration": 1,
+      "start": ">0.2"
+    }
+  ]
+}

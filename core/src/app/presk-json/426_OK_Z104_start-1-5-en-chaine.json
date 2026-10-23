@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "radius": 30,
+        "fill": "#ef4444"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "x": 800
+      },
+      "duration": 1,
+      "start": ">1.5"
+    }
+  ]
+}

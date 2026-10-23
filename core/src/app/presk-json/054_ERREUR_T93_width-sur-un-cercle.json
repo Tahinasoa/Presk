@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 200,
+        "y": 200,
+        "radius": 50,
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "c",
+      "properties": {
+        "width": 200
+      },
+      "duration": 1
+    }
+  ]
+}

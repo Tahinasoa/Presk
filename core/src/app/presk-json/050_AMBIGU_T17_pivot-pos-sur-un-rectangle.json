@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "width": 200,
+        "height": 80,
+        "fill": "#3b82f6",
+        "pivot": "pos",
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r",
+      "properties": {
+        "rotation": 45
+      },
+      "duration": 1
+    }
+  ]
+}

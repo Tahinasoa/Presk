@@ -1,0 +1,45 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "title",
+      "type": "text",
+      "properties": {
+        "text": "Titre",
+        "fontSize": 60,
+        "color": "white",
+        "x": 100,
+        "y": 100,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "pos": "scene.center"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "title",
+      "properties": {
+        "pos": "scene.center",
+        "scale": 0.7
+      },
+      "duration": 0.8,
+      "start": 0.3,
+      "ease": "cubicOut"
+    }
+  ]
+}

@@ -1,0 +1,112 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 160,
+        "height": 100,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 70,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "C",
+      "type": "ellipse",
+      "properties": {
+        "x": 1050,
+        "y": 580,
+        "width": 240,
+        "height": 100,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "lA",
+      "type": "text",
+      "properties": {
+        "text": "A",
+        "fontSize": 18,
+        "color": "white",
+        "x": 110,
+        "y": 110,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "lB",
+      "type": "text",
+      "properties": {
+        "text": "B",
+        "fontSize": 18,
+        "color": "white",
+        "x": 630,
+        "y": 350,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "lC",
+      "type": "text",
+      "properties": {
+        "text": "C",
+        "fontSize": 18,
+        "color": "white",
+        "x": 1040,
+        "y": 570,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "frame",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true,
+        "x": 2,
+        "y": 2,
+        "width": 1276,
+        "height": 716
+      }
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "B"
+      },
+      "duration": 1.5,
+      "start": 0.3,
+      "ease": "cubicInOut"
+    }
+  ]
+}

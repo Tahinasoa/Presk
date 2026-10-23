@@ -1,0 +1,71 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "triangle",
+      "properties": {
+        "pos": {
+          "x": 600,
+          "y": 340
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": -70
+          },
+          {
+            "x": 70,
+            "y": 40
+          },
+          {
+            "x": -70,
+            "y": 40
+          }
+        ],
+        "fill": "#f59e0b",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "t",
+      "type": "triangle",
+      "properties": {
+        "x": "s.pathX(main, 0)",
+        "y": "s.pathY(main, 0)",
+        "fill": "#facc15",
+        "reveal": true,
+        "points": [
+          {
+            "x": -12,
+            "y": -8
+          },
+          {
+            "x": 12,
+            "y": 0
+          },
+          {
+            "x": -12,
+            "y": 8
+          }
+        ]
+      }
+    },
+    {
+      "action": "travel",
+      "target": "t",
+      "along": "s",
+      "duration": 3,
+      "ease": "linear",
+      "orient": true,
+      "start": 0.3
+    }
+  ]
+}

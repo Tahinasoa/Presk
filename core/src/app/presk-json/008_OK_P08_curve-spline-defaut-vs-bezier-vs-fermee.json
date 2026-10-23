@@ -1,0 +1,185 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "sp",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 60,
+          "y": 200
+        },
+        "stroke": "#60a5fa",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 100
+          },
+          {
+            "x": 100,
+            "y": 0
+          },
+          {
+            "x": 200,
+            "y": 200
+          },
+          {
+            "x": 300,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "sp2",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 60,
+          "y": 450
+        },
+        "interpolation": "spline",
+        "stroke": "#34d399",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 100
+          },
+          {
+            "x": 100,
+            "y": 0
+          },
+          {
+            "x": 200,
+            "y": 200
+          },
+          {
+            "x": 300,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "bz",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 460,
+          "y": 200
+        },
+        "interpolation": "bezier",
+        "stroke": "#f472b6",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 100
+          },
+          {
+            "x": 100,
+            "y": 0
+          },
+          {
+            "x": 200,
+            "y": 200
+          },
+          {
+            "x": 300,
+            "y": 100
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "cl",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 900,
+          "y": 250
+        },
+        "closed": true,
+        "stroke": "#facc15",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 80
+          },
+          {
+            "x": 80,
+            "y": 0
+          },
+          {
+            "x": 160,
+            "y": 160
+          },
+          {
+            "x": 240,
+            "y": 80
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "sv0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "sp.vertex[0]"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sv1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "sp.vertex[1]"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sv2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "sp.vertex[2]"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sv3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "pos": "sp.vertex[3]"
+      }
+    }
+  ]
+}

@@ -1,0 +1,72 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true,
+        "x": 640,
+        "y": 360,
+        "radius": 150
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)",
+        "radius": 8,
+        "fill": "#facc15",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "arrêté",
+        "fontSize": 30,
+        "color": "white",
+        "x": 580,
+        "y": 340
+      }
+    },
+    {
+      "action": "travel",
+      "target": "d",
+      "along": "c",
+      "duration": 3,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "stop",
+      "target": "d",
+      "name": "halt",
+      "start": 2
+    },
+    {
+      "action": "animate",
+      "target": "t",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "halt>0.5"
+    }
+  ]
+}

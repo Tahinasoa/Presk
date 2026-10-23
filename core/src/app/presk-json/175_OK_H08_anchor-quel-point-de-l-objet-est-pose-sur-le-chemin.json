@@ -1,0 +1,93 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "segment",
+      "properties": {
+        "start": {
+          "x": 200,
+          "y": 360
+        },
+        "end": {
+          "x": 1000,
+          "y": 360
+        },
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 360,
+        "width": 60,
+        "height": 30,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 360,
+        "width": 60,
+        "height": 30,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "g",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 360,
+        "width": 60,
+        "height": 30,
+        "fill": "#22c55e",
+        "reveal": true
+      }
+    },
+    {
+      "action": "travel",
+      "target": "r",
+      "along": "s",
+      "duration": 3,
+      "ease": "linear",
+      "start": 0.3
+    },
+    {
+      "action": "travel",
+      "target": "b",
+      "along": "s",
+      "duration": 3,
+      "ease": "linear",
+      "anchor": "center",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "g",
+      "along": "s",
+      "duration": 3,
+      "ease": "linear",
+      "anchor": "bottomCenter",
+      "start": "<"
+    }
+  ]
+}

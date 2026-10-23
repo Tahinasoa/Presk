@@ -1,0 +1,198 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "circuit",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 300,
+          "y": 200
+        },
+        "closed": true,
+        "stroke": "#475569",
+        "strokeWidth": 3,
+        "reveal": true,
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 600,
+            "y": 0
+          },
+          {
+            "x": 600,
+            "y": 300
+          },
+          {
+            "x": 0,
+            "y": 300
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "e0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0)",
+        "y": "circuit.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0.16666666666666666)",
+        "y": "circuit.pathY(main, 0.16666666666666666)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0.3333333333333333)",
+        "y": "circuit.pathY(main, 0.3333333333333333)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0.5)",
+        "y": "circuit.pathY(main, 0.5)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e4",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0.6666666666666666)",
+        "y": "circuit.pathY(main, 0.6666666666666666)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "e5",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "circuit.pathX(main, 0.8333333333333334)",
+        "y": "circuit.pathY(main, 0.8333333333333334)"
+      }
+    },
+    {
+      "action": "travel",
+      "target": "e0",
+      "along": "circuit",
+      "from": 0,
+      "to": 1,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": 0
+    },
+    {
+      "action": "travel",
+      "target": "e1",
+      "along": "circuit",
+      "from": 0.16666666666666666,
+      "to": 1.1666666666666667,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "e2",
+      "along": "circuit",
+      "from": 0.3333333333333333,
+      "to": 1.3333333333333333,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "e3",
+      "along": "circuit",
+      "from": 0.5,
+      "to": 1.5,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "e4",
+      "along": "circuit",
+      "from": 0.6666666666666666,
+      "to": 1.6666666666666665,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "travel",
+      "target": "e5",
+      "along": "circuit",
+      "from": 0.8333333333333334,
+      "to": 1.8333333333333335,
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 7
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#ffffff"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r",
+      "type": "rectangle",
+      "properties": {
+        "x": 100,
+        "y": 100,
+        "width": 300,
+        "height": 200,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    }
+  ]
+}

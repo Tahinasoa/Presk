@@ -1,0 +1,110 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": 150,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d0",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#22c55e",
+        "reveal": true,
+        "x": "c.pathX(main, 0)",
+        "y": "c.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d1",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#facc15",
+        "reveal": true,
+        "x": "c.pathX(main, 0.25)",
+        "y": "c.pathY(main, 0.25)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d2",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": "c.pathX(main, 0.5)",
+        "y": "c.pathY(main, 0.5)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "d3",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#3b82f6",
+        "reveal": true,
+        "x": "c.pathX(main, 0.75)",
+        "y": "c.pathY(main, 0.75)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "wrap",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#f472b6",
+        "reveal": true,
+        "x": "c.pathX(main, 1.25) + 12",
+        "y": "c.pathY(main, 1.25)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "arrow",
+      "type": "triangle",
+      "properties": {
+        "x": "c.pathX(main, 0.25)",
+        "y": "c.pathY(main, 0.25)",
+        "rotation": "c.pathAngle(main, 0.25)",
+        "fill": "#facc15",
+        "reveal": true,
+        "points": [
+          {
+            "x": -20,
+            "y": -12
+          },
+          {
+            "x": 20,
+            "y": 0
+          },
+          {
+            "x": -20,
+            "y": 12
+          }
+        ]
+      }
+    }
+  ]
+}

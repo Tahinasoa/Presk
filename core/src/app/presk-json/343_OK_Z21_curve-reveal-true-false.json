@@ -1,0 +1,59 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "curve",
+      "properties": {
+        "pos": {
+          "x": 500,
+          "y": 300
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 80
+          },
+          {
+            "x": 80,
+            "y": 0
+          },
+          {
+            "x": 160,
+            "y": 80
+          },
+          {
+            "x": 240,
+            "y": 0
+          }
+        ],
+        "stroke": "#f472b6",
+        "strokeWidth": 5
+      }
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.6,
+      "start": 1.5
+    }
+  ]
+}

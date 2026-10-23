@@ -1,0 +1,33 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "arc",
+      "properties": {
+        "x": 600,
+        "y": 340,
+        "radius": 90,
+        "startAngle": 0,
+        "endAngle": 200,
+        "stroke": "#facc15",
+        "strokeWidth": 5,
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "flavor": 3
+      },
+      "duration": 1
+    }
+  ]
+}

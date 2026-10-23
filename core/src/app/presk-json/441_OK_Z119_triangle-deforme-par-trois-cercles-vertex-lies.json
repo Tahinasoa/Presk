@@ -1,0 +1,113 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 500,
+        "radius": 12,
+        "fill": "#ef4444",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "b",
+      "type": "circle",
+      "properties": {
+        "x": 640,
+        "y": 150,
+        "radius": 12,
+        "fill": "#22c55e",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "c",
+      "type": "circle",
+      "properties": {
+        "x": 980,
+        "y": 500,
+        "radius": 12,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "t",
+      "type": "triangle",
+      "properties": {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "points": [
+          {
+            "x": 300,
+            "y": 500
+          },
+          {
+            "x": 640,
+            "y": 150
+          },
+          {
+            "x": 980,
+            "y": 500
+          }
+        ],
+        "fill": "#facc1580",
+        "stroke": "#facc15",
+        "strokeWidth": 2,
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "t",
+      "properties": {
+        "vertex[0]": "a.pos",
+        "vertex[1]": "b.pos",
+        "vertex[2]": "c.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "b",
+      "properties": {
+        "y": 650,
+        "x": 400
+      },
+      "duration": 2,
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "a",
+      "properties": {
+        "y": 100
+      },
+      "duration": 2,
+      "start": "<"
+    },
+    {
+      "action": "animate",
+      "target": "c",
+      "properties": {
+        "x": 700
+      },
+      "duration": 2,
+      "start": "<"
+    }
+  ]
+}

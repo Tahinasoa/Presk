@@ -1,0 +1,78 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "triangle",
+      "properties": {
+        "pos": {
+          "x": 0,
+          "y": 0
+        },
+        "fill": "#10b981",
+        "reveal": true,
+        "points": [
+          {
+            "x": 300,
+            "y": 500
+          },
+          {
+            "x": 600,
+            "y": 200
+          },
+          {
+            "x": 900,
+            "y": 500
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "m",
+      "type": "circle",
+      "properties": {
+        "radius": 5,
+        "fill": "#ef4444",
+        "reveal": true,
+        "x": 600,
+        "y": 200
+      }
+    },
+    {
+      "action": "bind",
+      "target": "t",
+      "properties": {
+        "vertex[1]": "m.pos"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "m",
+      "properties": {
+        "x": 800,
+        "y": 100
+      },
+      "duration": 2,
+      "start": 0.3,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "animate",
+      "target": "m",
+      "properties": {
+        "x": 400,
+        "y": 150
+      },
+      "duration": 2,
+      "start": ">"
+    }
+  ]
+}

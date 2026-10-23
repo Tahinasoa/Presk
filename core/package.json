@@ -1,0 +1,25 @@
+{
+  "name": "@presk/core",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Presk engine: DSL compiler, binding engine, and PixiJS renderer.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "tsx": "^4.23.15",
+    "typescript": "~7.0.2",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1"
+  },
+  "dependencies": {
+    "nanoid": "^6.0.1",
+    "pixi.js": "^8.21.0",
+    "transformation-matrix": "^3.1.0"
+  }
+}

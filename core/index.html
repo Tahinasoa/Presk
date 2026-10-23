@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/src/style.css" />
+    <title>Presk</title>
+  </head>
+
+  <body>
+    <!--
+      Presk renders into this element: KRenderer looks it up by the "root"
+      selector passed to Presk.init() and appends the PixiJS <canvas> to it.
+    -->
+    <main class="player" aria-label="Presk animation player">
+      <div id="app"></div>
+      <section class="timeline-controls" aria-label="Timeline controls">
+        <div class="playback-buttons">
+          <button id="play-button" type="button" aria-label="Play">Play</button>
+          <button id="pause-button" type="button" aria-label="Pause">Pause</button>
+        </div>
+        <label class="sr-only" for="timeline-cursor">Timeline position</label>
+        <input
+          id="timeline-cursor"
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value="0"
+          aria-label="Timeline position"
+        />
+        <output id="timeline-time" for="timeline-cursor">0.00 / 0.00 s</output>
+      </section>
+    </main>
+    <script type="module" src="/src/app/main.ts"></script>
+  </body>
+</html>

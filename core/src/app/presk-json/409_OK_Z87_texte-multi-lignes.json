@@ -1,0 +1,37 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t",
+      "type": "text",
+      "properties": {
+        "text": "ligne 1\nligne 2\nligne 3",
+        "fontSize": 40,
+        "color": "white",
+        "x": 300,
+        "y": 200,
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "o",
+      "type": "rectangle",
+      "properties": {
+        "fill": "#00000000",
+        "stroke": "#e5e7eb",
+        "strokeWidth": 2,
+        "reveal": true,
+        "topLeft": "t.topLeft",
+        "width": "t.width",
+        "height": "t.height"
+      }
+    }
+  ]
+}

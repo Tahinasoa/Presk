@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "A",
+      "type": "rectangle",
+      "properties": {
+        "x": 500,
+        "y": 300,
+        "width": 200,
+        "height": 120,
+        "fill": "#475569",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "B",
+      "type": "rectangle",
+      "properties": {
+        "width": 80,
+        "height": 50,
+        "fill": "#facc15",
+        "reveal": true,
+        "bottomCenter": "A.topLeft"
+      }
+    }
+  ]
+}

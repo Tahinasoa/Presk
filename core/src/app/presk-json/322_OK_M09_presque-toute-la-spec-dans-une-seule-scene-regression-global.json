@@ -1,0 +1,360 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "title",
+      "type": "text",
+      "properties": {
+        "text": "Régression globale",
+        "fontSize": 34,
+        "color": "white",
+        "x": 40,
+        "y": 20
+      }
+    },
+    {
+      "action": "create",
+      "target": "sunAnchor",
+      "type": "point",
+      "properties": {
+        "x": 500,
+        "y": 360
+      }
+    },
+    {
+      "action": "create",
+      "target": "orbit",
+      "type": "ellipse",
+      "properties": {
+        "x": "sunAnchor.pos.x + 60",
+        "y": "sunAnchor.pos.y",
+        "width": 640,
+        "height": 480,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000"
+      }
+    },
+    {
+      "action": "create",
+      "target": "moonOrbit",
+      "type": "arc",
+      "properties": {
+        "radius": 40,
+        "startAngle": 0,
+        "endAngle": 360,
+        "stroke": "#475569",
+        "strokeWidth": 1,
+        "x": "orbit.pathX(main, 0)",
+        "y": "orbit.pathY(main, 0)"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sun",
+      "type": "circle",
+      "properties": {
+        "pos": "sunAnchor.pos",
+        "radius": 34,
+        "fill": "#fbbf24"
+      }
+    },
+    {
+      "action": "create",
+      "target": "planet",
+      "type": "triangle",
+      "properties": {
+        "x": "orbit.pathX(main, 0)",
+        "y": "orbit.pathY(main, 0)",
+        "fill": "#38bdf8",
+        "points": [
+          {
+            "x": -14,
+            "y": -9
+          },
+          {
+            "x": 14,
+            "y": 0
+          },
+          {
+            "x": -14,
+            "y": 9
+          }
+        ]
+      }
+    },
+    {
+      "action": "create",
+      "target": "moon",
+      "type": "circle",
+      "properties": {
+        "x": "moonOrbit.pathX(main, 0)",
+        "y": "moonOrbit.pathY(main, 0)",
+        "radius": 6,
+        "fill": "#cbd5e1"
+      }
+    },
+    {
+      "action": "create",
+      "target": "tag",
+      "type": "text",
+      "properties": {
+        "text": "planète",
+        "fontSize": 18,
+        "color": "#9ca3af",
+        "x": "planet.boundingBox.center.x + 14",
+        "y": "planet.boundingBox.center.y - 26"
+      }
+    },
+    {
+      "action": "create",
+      "target": "lg0",
+      "type": "text",
+      "properties": {
+        "text": "Soleil",
+        "fontSize": 22,
+        "color": "white",
+        "x": 1000,
+        "y": 120
+      }
+    },
+    {
+      "action": "create",
+      "target": "lg1",
+      "type": "text",
+      "properties": {
+        "text": "Planète",
+        "fontSize": 22,
+        "color": "white",
+        "x": 1000,
+        "y": 210
+      }
+    },
+    {
+      "action": "create",
+      "target": "lg2",
+      "type": "text",
+      "properties": {
+        "text": "Lune",
+        "fontSize": 22,
+        "color": "white",
+        "x": 1000,
+        "y": 300
+      }
+    },
+    {
+      "action": "animate",
+      "target": "title",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "orbit",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "sun",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "planet",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "tag",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.1"
+    },
+    {
+      "action": "travel",
+      "target": "planet",
+      "along": "orbit",
+      "duration": 6,
+      "ease": "linear",
+      "repeat": "infinite",
+      "orient": true,
+      "start": ">0.3",
+      "name": "pRun"
+    },
+    {
+      "action": "bind",
+      "target": "tag",
+      "properties": {
+        "x": "planet.boundingBox.center.x + 14",
+        "y": "planet.boundingBox.center.y - 26"
+      },
+      "start": "pRun"
+    },
+    {
+      "action": "bind",
+      "target": "moonOrbit",
+      "properties": {
+        "pos": "planet.pos"
+      },
+      "start": "pRun"
+    },
+    {
+      "action": "animate",
+      "target": "moonOrbit",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "pRun<1"
+    },
+    {
+      "action": "animate",
+      "target": "moon",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "travel",
+      "target": "moon",
+      "along": "moonOrbit",
+      "duration": 1.2,
+      "ease": "linear",
+      "repeat": "infinite",
+      "start": "pRun<1.2"
+    },
+    {
+      "action": "animate",
+      "target": "lg0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "pRun<2"
+    },
+    {
+      "action": "animate",
+      "target": "lg1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "lg2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "start": "<0.2"
+    },
+    {
+      "action": "group",
+      "target": "legend",
+      "properties": {
+        "children": [
+          "lg0",
+          "lg1",
+          "lg2"
+        ],
+        "layout": "vertical",
+        "gap": 14,
+        "margin": 12
+      },
+      "start": "pRun<3",
+      "duration": 0.8,
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "bind",
+      "target": "scene",
+      "properties": {
+        "focusOn": "planet",
+        "focusMargin": 250
+      },
+      "start": "pRun<4"
+    },
+    {
+      "action": "unbind",
+      "target": "scene",
+      "name": "camOff",
+      "start": "pRun<8"
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "scene"
+      },
+      "duration": 1.2,
+      "start": "camOff",
+      "ease": "cubicInOut"
+    },
+    {
+      "action": "animate",
+      "target": "sun",
+      "properties": {
+        "scale": 1.3
+      },
+      "duration": 0.5,
+      "start": "pRun<9",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "stop",
+      "target": "planet",
+      "name": "freeze",
+      "start": "pRun<11"
+    },
+    {
+      "action": "stop",
+      "target": "moon",
+      "start": "freeze"
+    },
+    {
+      "action": "create",
+      "target": "clock",
+      "type": "point",
+      "properties": {
+        "x": 0,
+        "y": 0
+      }
+    },
+    {
+      "action": "set",
+      "target": "clock",
+      "properties": {
+        "x": 1
+      },
+      "start": 13
+    }
+  ]
+}

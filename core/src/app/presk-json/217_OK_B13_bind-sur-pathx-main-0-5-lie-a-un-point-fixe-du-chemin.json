@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "e",
+      "type": "ellipse",
+      "properties": {
+        "x": 400,
+        "y": 360,
+        "width": 300,
+        "height": 200,
+        "stroke": "#475569",
+        "strokeWidth": 2,
+        "fill": "#00000000",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "d",
+      "type": "circle",
+      "properties": {
+        "radius": 10,
+        "fill": "#facc15",
+        "x": "e.pathX(main, 0.5)",
+        "y": "e.pathY(main, 0.5)",
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "d",
+      "properties": {
+        "x": "e.pathX(main, 0.5)",
+        "y": "e.pathY(main, 0.5)"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "e",
+      "properties": {
+        "x": 900
+      },
+      "duration": 3,
+      "start": 0.2
+    }
+  ]
+}

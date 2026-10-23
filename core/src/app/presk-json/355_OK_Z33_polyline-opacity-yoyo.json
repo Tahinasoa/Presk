@@ -1,0 +1,53 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "s",
+      "type": "polyline",
+      "properties": {
+        "pos": {
+          "x": 500,
+          "y": 300
+        },
+        "points": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 60,
+            "y": 80
+          },
+          {
+            "x": 120,
+            "y": 0
+          },
+          {
+            "x": 180,
+            "y": 80
+          }
+        ],
+        "stroke": "#60a5fa",
+        "strokeWidth": 5,
+        "reveal": true
+      }
+    },
+    {
+      "action": "animate",
+      "target": "s",
+      "properties": {
+        "opacity": 0.2
+      },
+      "duration": 0.6,
+      "start": 0.2,
+      "repeat": 4,
+      "repeatMode": "yoyo"
+    }
+  ]
+}
