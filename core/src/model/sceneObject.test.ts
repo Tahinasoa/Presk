@@ -109,4 +109,26 @@ describe("SceneObject", () => {
     expect(() => object.readProp("missing")).toThrow("Presk internal:");
     expect(() => object.writeProp("missing", 1)).toThrow("Presk internal:");
   });
+
+  it("gets and validates color state with getColor", () => {
+    const object = createObject({
+      fillNum: 0x9c9c9c,
+      fillHexAlpha: "#ff000080",
+      fillUpper: "#FF0000",
+      fillNamed: "red",
+      fillBool: true,
+      fillObj: { x: 1, y: 2 },
+      fillFloat: 1.5,
+      fillNeg: -1,
+    });
+    expect(object.getColor("fillNum")).toBe("#9c9c9c");
+    expect(object.getColor("fillHexAlpha")).toBe("#ff000080");
+    expect(() => object.getColor("fillUpper")).toThrow("Presk internal: not a colour 'fillUpper' on 'test'");
+    expect(() => object.getColor("fillNamed")).toThrow("Presk internal: not a colour 'fillNamed' on 'test'");
+    expect(() => object.getColor("fillBool")).toThrow("Presk internal: not a colour 'fillBool' on 'test'");
+    expect(() => object.getColor("fillObj")).toThrow("Presk internal: not a colour 'fillObj' on 'test'");
+    expect(() => object.getColor("fillFloat")).toThrow("Presk internal: not a colour 'fillFloat' on 'test'");
+    expect(() => object.getColor("fillNeg")).toThrow("Presk internal: not a colour 'fillNeg' on 'test'");
+    expect(() => object.getColor("missing")).toThrow("Presk internal:");
+  });
 });

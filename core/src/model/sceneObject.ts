@@ -1,6 +1,7 @@
 import { anchorOfBounds, isAnchorName } from "@/geom/bounds";
 import type { Bounds } from "@/geom/bounds";
 import { transformBounds } from "@/geom/bounds";
+import { COLOR_STRING_RE, parseColorCanonical } from "@/geom/color";
 import { composeMat, IDENTITY, trsPivot } from "@/geom/matrix";
 import type { Mat } from "@/geom/matrix";
 import type { Pt } from "@/geom/vec";
@@ -66,6 +67,21 @@ export abstract class SceneObject {
 
   getString(key: string): string {
     return this.getState(key) as string;
+  }
+
+  getColor(key: string): string {
+    const v = this.getState(key);
+    const err = new Error(`Presk internal: not a colour '${key}' on '${this.id}'`);
+    if (typeof v === "number") {
+      const canonical = parseColorCanonical(v);
+      if (canonical === null) throw err;
+      return canonical;
+    }
+    if (typeof v === "string") {
+      if (!COLOR_STRING_RE.test(v)) throw err;
+      return v;
+    }
+    throw err;
   }
 
   snapshot(): Record<string, StateValue> {
