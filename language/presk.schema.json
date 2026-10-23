@@ -1,0 +1,2750 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://presk.dev/schema/presk-1.0.json",
+  "title": "Presk 1.0",
+  "description": "Présentation pédagogique animée décrite comme une suite d'actions JSON (spécification Presk v1.0).",
+  "type": "object",
+  "required": [
+    "version",
+    "scene",
+    "steps"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "version": {
+      "enum": [
+        "1.0"
+      ],
+      "description": "Version du langage."
+    },
+    "scene": {
+      "type": "object",
+      "required": [
+        "width",
+        "height"
+      ],
+      "additionalProperties": false,
+      "description": "Scène : résolution logique (origine en haut à gauche, y vers le bas).",
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Largeur logique."
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1,
+          "description": "Hauteur logique."
+        },
+        "background": {
+          "type": "string",
+          "description": "Couleur de fond."
+        }
+      }
+    },
+    "steps": {
+      "type": "array",
+      "description": "Actions exécutées selon la timeline.",
+      "items": {
+        "$ref": "#/definitions/step"
+      }
+    }
+  },
+  "definitions": {
+    "identifier": {
+      "type": "string",
+      "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+      "description": "Identifiant : lettres, chiffres et _, ne commence pas par un chiffre."
+    },
+    "numOrExpr": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Nombre, ou expression scalaire (ex. \"title.topRight.x + 20\", \"scene.width / 2\")."
+    },
+    "point": {
+      "anyOf": [
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/numOrExpr"
+          }
+        },
+        {
+          "type": "object",
+          "required": [
+            "x",
+            "y"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "$ref": "#/definitions/numOrExpr"
+            },
+            "y": {
+              "$ref": "#/definitions/numOrExpr"
+            }
+          }
+        }
+      ],
+      "description": "Point : référence (\"earth.pos\", \"title.bottomLeft\"), [x, y] ou {\"x\", \"y\"}."
+    },
+    "opacity": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Opacité de 0 à 1 (ou expression)."
+    },
+    "color": {
+      "type": "string",
+      "description": "Couleur (ex. \"#101014\", \"blue\")."
+    },
+    "reveal": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        }
+      ],
+      "description": "Effet universel. true = apparition par défaut, false = disparition, chaîne = variante de classe (ex. \"draw\")."
+    },
+    "effectValue": {
+      "description": "Effet propre à une classe (powerOn, state…). Booléen ou variante nommée.",
+      "type": [
+        "boolean",
+        "string",
+        "number",
+        "object",
+        "array"
+      ]
+    },
+    "pivot": {
+      "enum": [
+        "topLeft",
+        "topCenter",
+        "topRight",
+        "centerLeft",
+        "center",
+        "centerRight",
+        "bottomLeft",
+        "bottomCenter",
+        "bottomRight",
+        "pos"
+      ],
+      "description": "Pivot de rotation/échelle : une des 9 ancres (rectangles) ou \"pos\". Ne s'anime pas."
+    },
+    "points": {
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/definitions/point"
+      },
+      "description": "Sommets, dans le repère local de l'objet."
+    },
+    "children": {
+      "anyOf": [
+        {
+          "$ref": "#/definitions/identifier"
+        },
+        {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/definitions/identifier"
+          }
+        }
+      ],
+      "description": "Identifiant ou tableau d'identifiants d'objets enfants."
+    },
+    "margin": {
+      "anyOf": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "top": {
+              "type": "number"
+            },
+            "right": {
+              "type": "number"
+            },
+            "bottom": {
+              "type": "number"
+            },
+            "left": {
+              "type": "number"
+            }
+          }
+        }
+      ],
+      "description": "Marge intérieure : un nombre, ou { top, right, bottom, left }."
+    },
+    "start": {
+      "anyOf": [
+        {
+          "type": "number",
+          "minimum": 0
+        },
+        {
+          "type": "string",
+          "pattern": "^(\\d+(\\.\\d+)?|[<>]([+-]?\\d+(\\.\\d+)?)?|[A-Za-z_][A-Za-z0-9_]*([<>][+-]?\\d+(\\.\\d+)?)?)$"
+        }
+      ],
+      "description": "Instant de départ : 3 | \"<\" | \">\" | \"<3\" | \">2\" | \"nom\" | \"nom<5\" | \"nom>-2\". Défaut : \">\" (fin de l'action précédente)."
+    },
+    "duration": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Durée d'un passage, en secondes."
+    },
+    "speed": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "description": "Vitesse en unités de scène par seconde (exclusif avec duration)."
+    },
+    "ease": {
+      "enum": [
+        "linear",
+        "sineIn",
+        "sineOut",
+        "sineInOut",
+        "quadIn",
+        "quadOut",
+        "quadInOut",
+        "cubicIn",
+        "cubicOut",
+        "cubicInOut",
+        "quartIn",
+        "quartOut",
+        "quartInOut",
+        "quintIn",
+        "quintOut",
+        "quintInOut",
+        "expoIn",
+        "expoOut",
+        "expoInOut",
+        "circIn",
+        "circOut",
+        "circInOut",
+        "backIn",
+        "backOut",
+        "backInOut",
+        "elasticIn",
+        "elasticOut",
+        "elasticInOut",
+        "bounceIn",
+        "bounceOut",
+        "bounceInOut"
+      ],
+      "description": "Fonction d'interpolation, appliquée à chaque passage."
+    },
+    "repeat": {
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1
+        },
+        {
+          "enum": [
+            "infinite"
+          ]
+        }
+      ],
+      "description": "Nombre total de passages (entier ≥ 1) ou \"infinite\"."
+    },
+    "repeatMode": {
+      "enum": [
+        "restart",
+        "yoyo"
+      ],
+      "description": "\"restart\" (défaut) ou \"yoyo\"."
+    },
+    "propValues": {
+      "type": "object",
+      "properties": {
+        "x": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Position x de l'origine locale."
+        },
+        "y": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Position y de l'origine locale."
+        },
+        "pos": {
+          "$ref": "#/definitions/point",
+          "description": "Position de l'origine locale (équivaut à x + y)."
+        },
+        "rotation": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Rotation en degrés, sens horaire, autour du pivot."
+        },
+        "scale": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Échelle uniforme autour du pivot."
+        },
+        "opacity": {
+          "$ref": "#/definitions/opacity"
+        },
+        "width": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Largeur locale, avant rotation."
+        },
+        "height": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Hauteur locale, avant rotation."
+        },
+        "radius": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Rayon (circle, arc)."
+        },
+        "startAngle": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Angle de début de l'arc, en degrés, sens horaire."
+        },
+        "endAngle": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Angle de fin de l'arc, en degrés, sens horaire."
+        },
+        "reveal": {
+          "$ref": "#/definitions/reveal"
+        },
+        "powerOn": {
+          "$ref": "#/definitions/effectValue"
+        },
+        "state": {
+          "$ref": "#/definitions/effectValue"
+        },
+        "pivot": {
+          "$ref": "#/definitions/pivot"
+        },
+        "fill": {
+          "$ref": "#/definitions/color",
+          "description": "Couleur de remplissage."
+        },
+        "stroke": {
+          "$ref": "#/definitions/color",
+          "description": "Couleur du contour."
+        },
+        "color": {
+          "$ref": "#/definitions/color",
+          "description": "Couleur du texte."
+        },
+        "strokeWidth": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Épaisseur du contour."
+        },
+        "text": {
+          "type": "string",
+          "description": "Contenu du texte."
+        },
+        "url": {
+          "type": "string",
+          "description": "URL de l'image."
+        },
+        "points": {
+          "$ref": "#/definitions/points"
+        },
+        "closed": {
+          "type": "boolean",
+          "description": "Tracé fermé (défaut false)."
+        },
+        "interpolation": {
+          "enum": [
+            "spline",
+            "bezier"
+          ],
+          "description": "Interpolation de la courbe : \"spline\" (défaut) ou \"bezier\"."
+        },
+        "head": {
+          "enum": [
+            "end",
+            "start",
+            "both",
+            "none"
+          ],
+          "description": "Pointe de la flèche (défaut \"end\")."
+        },
+        "start": {
+          "$ref": "#/definitions/point",
+          "description": "Point de départ (segment, arrow)."
+        },
+        "end": {
+          "$ref": "#/definitions/point",
+          "description": "Point d'arrivée (segment, arrow)."
+        },
+        "origin": {
+          "$ref": "#/definitions/point",
+          "description": "Origine de la demi-droite."
+        },
+        "through": {
+          "$ref": "#/definitions/point",
+          "description": "Point par lequel passe la demi-droite."
+        },
+        "p1": {
+          "$ref": "#/definitions/point",
+          "description": "Premier point de passage de la droite."
+        },
+        "p2": {
+          "$ref": "#/definitions/point",
+          "description": "Second point de passage de la droite."
+        },
+        "children": {
+          "$ref": "#/definitions/children"
+        },
+        "layout": {
+          "enum": [
+            "vertical",
+            "horizontal",
+            "none"
+          ],
+          "description": "Placement automatique des enfants."
+        },
+        "gap": {
+          "$ref": "#/definitions/numOrExpr",
+          "description": "Espace entre deux enfants successifs."
+        },
+        "margin": {
+          "$ref": "#/definitions/margin"
+        },
+        "focusOn": {
+          "anyOf": [
+            {
+              "$ref": "#/definitions/identifier"
+            },
+            {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/identifier"
+              }
+            }
+          ],
+          "description": "Scène : objet (ou tableau d'objets) à cadrer. \"scene\" = plan d'ensemble."
+        },
+        "focusMargin": {
+          "type": "number",
+          "description": "Scène : marge autour de focusOn, en unités de scène."
+        },
+        "view": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": false,
+          "properties": {
+            "x": {
+              "$ref": "#/definitions/numOrExpr"
+            },
+            "y": {
+              "$ref": "#/definitions/numOrExpr"
+            },
+            "width": {
+              "$ref": "#/definitions/numOrExpr"
+            },
+            "height": {
+              "$ref": "#/definitions/numOrExpr"
+            }
+          },
+          "description": "Scène : région cadrée { x, y, width, height }."
+        },
+        "zoom": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "description": "Scène : 1 = scène entière, 2 = région deux fois plus petite."
+        },
+        "topLeft": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre topLeft (rectangles et descendants). Affectation point à point."
+        },
+        "topCenter": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre topCenter (rectangles et descendants). Affectation point à point."
+        },
+        "topRight": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre topRight (rectangles et descendants). Affectation point à point."
+        },
+        "centerLeft": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre centerLeft (rectangles et descendants). Affectation point à point."
+        },
+        "center": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre center (rectangles et descendants). Affectation point à point."
+        },
+        "centerRight": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre centerRight (rectangles et descendants). Affectation point à point."
+        },
+        "bottomLeft": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre bottomLeft (rectangles et descendants). Affectation point à point."
+        },
+        "bottomCenter": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre bottomCenter (rectangles et descendants). Affectation point à point."
+        },
+        "bottomRight": {
+          "$ref": "#/definitions/point",
+          "description": "Ancre bottomRight (rectangles et descendants). Affectation point à point."
+        }
+      },
+      "patternProperties": {
+        "^vertex\\[[0-9]+\\]$": {
+          "$ref": "#/definitions/point",
+          "description": "Sommet i du polygone/polyline/curve (lecture/écriture)."
+        }
+      }
+    },
+    "step": {
+      "type": "object",
+      "required": [
+        "action",
+        "target"
+      ],
+      "properties": {
+        "action": {
+          "enum": [
+            "create",
+            "set",
+            "animate",
+            "travel",
+            "bind",
+            "unbind",
+            "stop",
+            "group",
+            "ungroup"
+          ],
+          "description": "Type d'action."
+        },
+        "target": {
+          "$ref": "#/definitions/identifier",
+          "description": "Objet visé (pour create : identifiant à créer ; pour group/ungroup : le groupe). \"scene\" désigne la vue."
+        },
+        "type": {
+          "anyOf": [
+            {
+              "enum": [
+                "rectangle",
+                "text",
+                "image",
+                "group",
+                "circle",
+                "ellipse",
+                "arc",
+                "polygon",
+                "triangle",
+                "polyline",
+                "curve",
+                "segment",
+                "arrow",
+                "ray",
+                "line",
+                "point"
+              ]
+            },
+            {
+              "type": "string",
+              "pattern": "^[A-Za-z_][A-Za-z0-9_]*$",
+              "description": "Classe complexe (axes, plot, math, lamp, switch…) définie dans un autre document."
+            }
+          ],
+          "description": "Classe de l'objet à créer (create uniquement)."
+        },
+        "properties": {
+          "type": [
+            "object",
+            "array",
+            "string"
+          ],
+          "description": "Propriétés et valeurs. Pour unbind/stop : liste de noms de propriétés."
+        },
+        "name": {
+          "$ref": "#/definitions/identifier",
+          "description": "Étiquette unique de l'action, utilisable comme ancre de `start`. Interdit sur create."
+        },
+        "start": {
+          "$ref": "#/definitions/start"
+        },
+        "duration": {
+          "$ref": "#/definitions/duration"
+        },
+        "speed": {
+          "$ref": "#/definitions/speed"
+        },
+        "ease": {
+          "$ref": "#/definitions/ease"
+        },
+        "repeat": {
+          "$ref": "#/definitions/repeat"
+        },
+        "repeatMode": {
+          "$ref": "#/definitions/repeatMode"
+        },
+        "along": {
+          "type": "string",
+          "pattern": "^[A-Za-z_][A-Za-z0-9_]*(\\.[A-Za-z_][A-Za-z0-9_]*)?$",
+          "description": "travel : chemin à parcourir, \"objet\" ou \"objet.nom\" (main par défaut)."
+        },
+        "from": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "enum": [
+                "current"
+              ]
+            }
+          ],
+          "description": "travel : position de départ (0 par défaut) ou \"current\"."
+        },
+        "to": {
+          "type": "number",
+          "description": "travel : position d'arrivée (1 par défaut ; from + 1 sur chemin fermé)."
+        },
+        "orient": {
+          "anyOf": [
+            {
+              "enum": [
+                true
+              ]
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "offset": {
+                  "type": "number"
+                }
+              }
+            }
+          ],
+          "description": "travel : true ou { \"offset\": degrés } — oriente l'objet selon la tangente."
+        },
+        "anchor": {
+          "enum": [
+            "pos",
+            "topLeft",
+            "topCenter",
+            "topRight",
+            "centerLeft",
+            "center",
+            "centerRight",
+            "bottomLeft",
+            "bottomCenter",
+            "bottomRight"
+          ],
+          "description": "travel : point de l'objet posé sur le chemin."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {
+                "not": {
+                  "enum": [
+                    "scene"
+                  ]
+                },
+                "description": "`scene` est interdit comme cible de cette action."
+              },
+              "type": {},
+              "properties": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/propValues"
+                  },
+                  {
+                    "propertyNames": {
+                      "not": {
+                        "enum": [
+                          "focusOn",
+                          "focusMargin",
+                          "view",
+                          "zoom"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            "required": [
+              "type"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "set"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {},
+              "properties": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/propValues"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1
+                  }
+                ]
+              },
+              "name": {},
+              "start": {}
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "animate"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {},
+              "properties": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/propValues"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1
+                  },
+                  {
+                    "propertyNames": {
+                      "not": {
+                        "enum": [
+                          "pivot"
+                        ]
+                      }
+                    }
+                  }
+                ]
+              },
+              "name": {},
+              "start": {},
+              "duration": {},
+              "ease": {},
+              "repeat": {},
+              "repeatMode": {}
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "travel"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {
+                "not": {
+                  "enum": [
+                    "scene"
+                  ]
+                },
+                "description": "`scene` est interdit comme cible de cette action."
+              },
+              "name": {},
+              "start": {},
+              "along": {},
+              "from": {},
+              "to": {},
+              "duration": {},
+              "speed": {},
+              "ease": {},
+              "repeat": {},
+              "repeatMode": {},
+              "orient": {},
+              "anchor": {}
+            },
+            "required": [
+              "along"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "bind"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {},
+              "properties": {
+                "allOf": [
+                  {
+                    "$ref": "#/definitions/propValues"
+                  },
+                  {
+                    "type": "object",
+                    "minProperties": 1
+                  },
+                  {
+                    "propertyNames": {
+                      "anyOf": [
+                        {
+                          "enum": [
+                            "x",
+                            "y",
+                            "pos",
+                            "rotation",
+                            "scale",
+                            "opacity",
+                            "width",
+                            "height",
+                            "radius",
+                            "startAngle",
+                            "endAngle",
+                            "fill",
+                            "stroke",
+                            "strokeWidth",
+                            "color",
+                            "start",
+                            "end",
+                            "origin",
+                            "through",
+                            "p1",
+                            "p2",
+                            "topLeft",
+                            "topCenter",
+                            "topRight",
+                            "centerLeft",
+                            "center",
+                            "centerRight",
+                            "bottomLeft",
+                            "bottomCenter",
+                            "bottomRight",
+                            "focusOn",
+                            "focusMargin",
+                            "view",
+                            "zoom"
+                          ]
+                        },
+                        {
+                          "pattern": "^vertex\\[[0-9]+\\]$"
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "name": {},
+              "start": {}
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "unbind"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {},
+              "properties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                ],
+                "description": "Noms des propriétés à délier (tout le bind du target si absent)."
+              },
+              "name": {},
+              "start": {}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "stop"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {},
+              "properties": {
+                "anyOf": [
+                  {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  {
+                    "type": "array",
+                    "minItems": 1,
+                    "uniqueItems": true,
+                    "items": {
+                      "type": "string",
+                      "minLength": 1
+                    }
+                  }
+                ],
+                "description": "Noms des propriétés à arrêter (toutes si absent)."
+              },
+              "name": {},
+              "start": {}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "group"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {
+                "not": {
+                  "enum": [
+                    "scene"
+                  ]
+                },
+                "description": "`scene` est interdit comme cible de cette action."
+              },
+              "properties": {
+                "type": "object",
+                "minProperties": 1,
+                "propertyNames": {
+                  "enum": [
+                    "children",
+                    "layout",
+                    "gap",
+                    "margin"
+                  ]
+                },
+                "properties": {
+                  "children": {
+                    "$ref": "#/definitions/children"
+                  },
+                  "layout": {
+                    "enum": [
+                      "vertical",
+                      "horizontal",
+                      "none"
+                    ],
+                    "description": "Placement automatique des enfants."
+                  },
+                  "gap": {
+                    "$ref": "#/definitions/numOrExpr",
+                    "description": "Espace entre deux enfants successifs."
+                  },
+                  "margin": {
+                    "$ref": "#/definitions/margin"
+                  }
+                }
+              },
+              "name": {},
+              "start": {},
+              "duration": {},
+              "ease": {}
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "ungroup"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "additionalProperties": false,
+            "properties": {
+              "action": {},
+              "target": {
+                "not": {
+                  "enum": [
+                    "scene"
+                  ]
+                },
+                "description": "`scene` est interdit comme cible de cette action."
+              },
+              "properties": {
+                "type": "object",
+                "propertyNames": {
+                  "enum": [
+                    "children"
+                  ]
+                },
+                "properties": {
+                  "children": {
+                    "$ref": "#/definitions/children"
+                  }
+                }
+              },
+              "name": {},
+              "start": {}
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "travel"
+                ]
+              }
+            },
+            "required": [
+              "action"
+            ]
+          },
+          "then": {
+            "allOf": [
+              {
+                "anyOf": [
+                  {
+                    "required": [
+                      "duration"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "speed"
+                    ]
+                  }
+                ]
+              },
+              {
+                "not": {
+                  "required": [
+                    "duration",
+                    "speed"
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "animate"
+                ]
+              },
+              "properties": {
+                "anyOf": [
+                  {
+                    "required": [
+                      "x"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "y"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "pos"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "rotation"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "scale"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "opacity"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "width"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "height"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "radius"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "startAngle"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "endAngle"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "fill"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "stroke"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "strokeWidth"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "color"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "start"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "end"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "origin"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "through"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "p1"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "p2"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "focusOn"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "view"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "zoom"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "topLeft"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "topCenter"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "topRight"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "centerLeft"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "center"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "centerRight"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "bottomLeft"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "bottomCenter"
+                    ]
+                  },
+                  {
+                    "required": [
+                      "bottomRight"
+                    ]
+                  }
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "properties"
+            ]
+          },
+          "then": {
+            "required": [
+              "duration"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "set",
+                  "animate",
+                  "bind"
+                ]
+              },
+              "target": {
+                "enum": [
+                  "scene"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "target"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "propertyNames": {
+                  "enum": [
+                    "focusOn",
+                    "focusMargin",
+                    "view",
+                    "zoom"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "set",
+                  "animate",
+                  "bind"
+                ]
+              },
+              "target": {
+                "not": {
+                  "enum": [
+                    "scene"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "action",
+              "target"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "propertyNames": {
+                  "not": {
+                    "enum": [
+                      "focusOn",
+                      "focusMargin",
+                      "view",
+                      "zoom"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "rectangle"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "text"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "text"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "image"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "url"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "group"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                }
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "circle"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "radius"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "ellipse"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "width",
+                  "height"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "arc"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "radius",
+                  "startAngle",
+                  "endAngle"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "polygon"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  },
+                  "points": {
+                    "minItems": 3
+                  }
+                },
+                "required": [
+                  "points"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "triangle"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  },
+                  "points": {
+                    "minItems": 3,
+                    "maxItems": 3
+                  }
+                },
+                "required": [
+                  "points"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "polyline"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "required": [
+                  "points"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "curve"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "required": [
+                  "points"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "segment"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "start",
+                  "end"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "arrow"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "start",
+                  "end"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "ray"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "origin",
+                  "through"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "line"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "color": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false,
+                  "pivot": {
+                    "enum": [
+                      "pos"
+                    ],
+                    "description": "Pour ce type, le pivot ne peut être que \"pos\"."
+                  }
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                },
+                "required": [
+                  "p1",
+                  "p2"
+                ]
+              }
+            },
+            "required": [
+              "properties"
+            ]
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "action": {
+                "enum": [
+                  "create"
+                ]
+              },
+              "type": {
+                "enum": [
+                  "point"
+                ]
+              }
+            },
+            "required": [
+              "action",
+              "type"
+            ]
+          },
+          "then": {
+            "properties": {
+              "properties": {
+                "properties": {
+                  "rotation": false,
+                  "scale": false,
+                  "opacity": false,
+                  "width": false,
+                  "height": false,
+                  "radius": false,
+                  "startAngle": false,
+                  "endAngle": false,
+                  "pivot": false,
+                  "fill": false,
+                  "stroke": false,
+                  "color": false,
+                  "strokeWidth": false,
+                  "text": false,
+                  "url": false,
+                  "points": false,
+                  "closed": false,
+                  "interpolation": false,
+                  "head": false,
+                  "start": false,
+                  "end": false,
+                  "origin": false,
+                  "through": false,
+                  "p1": false,
+                  "p2": false,
+                  "children": false,
+                  "layout": false,
+                  "gap": false,
+                  "margin": false,
+                  "focusOn": false,
+                  "focusMargin": false,
+                  "view": false,
+                  "zoom": false,
+                  "topLeft": false,
+                  "topCenter": false,
+                  "topRight": false,
+                  "centerLeft": false,
+                  "center": false,
+                  "centerRight": false,
+                  "bottomLeft": false,
+                  "bottomCenter": false,
+                  "bottomRight": false
+                },
+                "patternProperties": {
+                  "^vertex\\[[0-9]+\\]$": false
+                }
+              }
+            }
+          }
+        }
+      ],
+      "defaultSnippets": [
+        {
+          "label": "create text",
+          "description": "Crée un texte",
+          "body": {
+            "action": "create",
+            "target": "${1:title}",
+            "type": "text",
+            "properties": {
+              "text": "${2:Titre}",
+              "pos": "scene.center",
+              "reveal": true
+            }
+          }
+        },
+        {
+          "label": "create circle",
+          "description": "Crée un cercle",
+          "body": {
+            "action": "create",
+            "target": "${1:dot}",
+            "type": "circle",
+            "properties": {
+              "radius": "^${2:20}",
+              "fill": "${3:#4aa3ff}",
+              "pos": "scene.center"
+            }
+          }
+        },
+        {
+          "label": "create rectangle",
+          "description": "Crée un rectangle",
+          "body": {
+            "action": "create",
+            "target": "${1:box}",
+            "type": "rectangle",
+            "properties": {
+              "width": "^${2:200}",
+              "height": "^${3:100}",
+              "topLeft": "${4:title.bottomLeft}"
+            }
+          }
+        },
+        {
+          "label": "reveal",
+          "description": "Fait apparaître un objet",
+          "body": {
+            "action": "animate",
+            "target": "${1:obj}",
+            "properties": {
+              "reveal": true
+            },
+            "duration": "^${2:0.5}"
+          }
+        },
+        {
+          "label": "animate",
+          "description": "Anime vers une valeur constante",
+          "body": {
+            "action": "animate",
+            "target": "${1:obj}",
+            "properties": {
+              "${2:opacity}": "^${3:1}"
+            },
+            "duration": "^${4:1}",
+            "ease": "${5|cubicInOut,linear,sineInOut,cubicOut|}"
+          }
+        },
+        {
+          "label": "set",
+          "description": "Assignation instantanée",
+          "body": {
+            "action": "set",
+            "target": "${1:obj}",
+            "properties": {
+              "${2:opacity}": "^${3:1}"
+            }
+          }
+        },
+        {
+          "label": "travel",
+          "description": "Parcourt un chemin",
+          "body": {
+            "action": "travel",
+            "target": "${1:obj}",
+            "along": "${2:path}",
+            "duration": "^${3:6}",
+            "ease": "linear",
+            "repeat": "infinite"
+          }
+        },
+        {
+          "label": "bind",
+          "description": "Lie une propriété à une expression",
+          "body": {
+            "action": "bind",
+            "target": "${1:obj}",
+            "properties": {
+              "${2:pos}": "${3:other.pos}"
+            }
+          }
+        },
+        {
+          "label": "unbind",
+          "description": "Arrête un bind",
+          "body": {
+            "action": "unbind",
+            "target": "${1:obj}"
+          }
+        },
+        {
+          "label": "stop",
+          "description": "Arrête un animate/travel",
+          "body": {
+            "action": "stop",
+            "target": "${1:obj}"
+          }
+        },
+        {
+          "label": "group",
+          "description": "Regroupe des objets",
+          "body": {
+            "action": "group",
+            "target": "${1:myGroup}",
+            "properties": {
+              "children": [
+                "${2:a}",
+                "${3:b}"
+              ],
+              "layout": "${4|vertical,horizontal,none|}",
+              "gap": "^${5:20}"
+            }
+          }
+        },
+        {
+          "label": "ungroup",
+          "description": "Détache des objets d'un groupe",
+          "body": {
+            "action": "ungroup",
+            "target": "${1:myGroup}"
+          }
+        },
+        {
+          "label": "zoom on",
+          "description": "Cadre la vue sur un objet",
+          "body": {
+            "action": "animate",
+            "target": "scene",
+            "properties": {
+              "focusOn": "${1:obj}",
+              "focusMargin": "^${2:80}"
+            },
+            "duration": "^${3:1.5}",
+            "ease": "cubicInOut"
+          }
+        }
+      ]
+    }
+  },
+  "defaultSnippets": [
+    {
+      "label": "presk document",
+      "description": "Document Presk minimal",
+      "body": {
+        "$schema": "./presk.schema.json",
+        "version": "1.0",
+        "scene": {
+          "width": 1920,
+          "height": 1080,
+          "background": "#101014"
+        },
+        "steps": [
+          "$0"
+        ]
+      }
+    }
+  ]
+}

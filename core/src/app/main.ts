@@ -1,5 +1,5 @@
 import { Presk } from "@/app/presk";
-import  EXEMPLE  from "@/app/presk-json/034_OK_T01_x-y-pos-objet-pos-expression-meme-semantique.json";
+import  EXEMPLE  from "@/app/example.presk.json";
 import { PreskCompileError } from "@/lang/diagnostics";
 
 async function main(): Promise<void> {
