@@ -3,6 +3,10 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
+  "main": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts"
+  },
   "description": "Presk engine: DSL compiler, binding engine, and PixiJS renderer.",
   "scripts": {
     "dev": "vite",
