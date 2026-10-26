@@ -1,0 +1,6 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "e", "type": "ellipse", "properties": {"width": 300, "height": 120, "fill": "#a855f7", "pos": "scene.center"}},
+    {"action": "animate", "target": "e", "properties": {"reveal": true}},
+    {"action": "animate", "target": "e", "properties": {"width": 120, "height": 300}, "duration": 2, "ease": "backInOut"}
+  ] }

@@ -1,0 +1,6 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "horizon", "type": "line", "properties": {"p1": {"x": 0, "y": 600}, "p2": {"x": 1280, "y": 560}, "stroke": "gray", "strokeWidth": 2}},
+    {"action": "animate", "target": "horizon", "properties": {"reveal": true}, "duration": 0.5},
+    {"action": "animate", "target": "horizon", "properties": {"p2": {"x": 1280, "y": 700}}, "duration": 1}
+  ] }

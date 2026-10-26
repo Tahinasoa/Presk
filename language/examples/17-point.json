@@ -1,0 +1,11 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "center", "type": "point", "properties": {"pos": "scene.center"}},
+    {"action": "create", "target": "orbit", "type": "arc", "properties": {"radius": 200, "startAngle": 0, "endAngle": 360, "stroke": "#555555", "strokeWidth": 2, "pos": "center.pos"}},
+    {"action": "create", "target": "planet", "type": "circle", "properties": {"radius": 14, "fill": "blue", "x": "orbit.pathX(main, 0)", "y": "orbit.pathY(main, 0)"}},
+    {"action": "animate", "target": "orbit", "properties": {"reveal": true}},
+    {"action": "animate", "target": "planet", "properties": {"reveal": true}, "start": "<"},
+    {"action": "animate", "target": "center", "properties": {"x": 900}, "duration": 6, "ease": "sineInOut"},
+    {"action": "bind", "target": "orbit", "properties": {"pos": "center.pos"}, "start": "<"},
+    {"action": "travel", "target": "planet", "along": "orbit", "duration": 6, "start": "<"}
+  ] }

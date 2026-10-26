@@ -1,0 +1,5 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "logo", "type": "image", "properties": {"url": "logo.png", "width": 240, "pos": {"x": 100, "y": 100}, "reveal": true}},
+    {"action": "animate", "target": "logo", "properties": {"x": 500}, "duration": 2, "ease": "sineInOut"}
+  ] }

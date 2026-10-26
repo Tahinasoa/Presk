@@ -1,0 +1,8 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "box", "type": "rectangle", "properties": {"width": 200, "height": 120, "fill": "#3b82f6", "pos": {"x": 900, "y": 500}, "reveal": true}},
+    {"action": "animate", "target": "scene", "properties": {"focusOn": "box", "focusMargin": 80}, "duration": 1.5, "ease": "cubicInOut"},
+    {"action": "animate", "target": "scene", "properties": {"focusOn": "scene"}, "duration": 1, "ease": "cubicInOut"},
+    {"action": "animate", "target": "scene", "properties": {"zoom": 2}, "duration": 1},
+    {"action": "animate", "target": "scene", "properties": {"view": {"x": 0, "y": 0, "width": 640}}, "duration": 1}
+  ] }

@@ -1,0 +1,8 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "b1", "type": "rectangle", "properties": {"width": 160, "height": 48, "fill": "#334155", "pos": {"x": 100, "y": 100}, "reveal": true}},
+    {"action": "create", "target": "b2", "type": "rectangle", "properties": {"width": 220, "height": 48, "fill": "#475569", "pos": {"x": 100, "y": 100}, "reveal": true}},
+    {"action": "create", "target": "b3", "type": "rectangle", "properties": {"width": 180, "height": 48, "fill": "#64748b", "pos": {"x": 100, "y": 100}, "reveal": true}},
+    {"action": "group", "target": "menu", "properties": {"children": ["b1", "b2", "b3"], "layout": "vertical", "gap": 20, "margin": 15}, "duration": 0.6, "ease": "cubicInOut"},
+    {"action": "animate", "target": "menu", "properties": {"x": 600}, "duration": 1.5, "ease": "cubicOut"}
+  ] }
