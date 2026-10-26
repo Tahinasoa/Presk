@@ -3,46 +3,137 @@
   "scene": {
     "width": 1280,
     "height": 720,
-    "background": "#101014"
+    "background": "#0f172a"
   },
   "steps": [
     {
       "action": "create",
-      "target": "grp1",
-      "type": "group",
+      "target": "title",
+      "type": "text",
       "properties": {
-        "x": 440,
-        "y": 240,
-        "layout": "vertical",
-        "gap": 15,
-        "margin": 25
-      }
-    },
-    {
-      "action": "create",
-      "target": "childRect",
-      "type": "rectangle",
-      "properties": {
-        "width": 400,
-        "height": 240,
-        "fill": "#334155",
-        "stroke": "#94a3b8",
-        "strokeWidth": 2
-      }
-    },
-    {
-      "action": "group",
-      "target": "grp1",
-      "properties": {
-        "children": ["childRect"]
+        "x": 150,
+        "y": 60,
+        "text": "Group Layout & Assembly Animation",
+        "fontSize": 32,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
       }
     },
     {
       "action": "animate",
-      "target": "grp1",
+      "target": "title",
       "properties": { "reveal": true },
-      "duration": 0.8,
+      "duration": 0.6,
       "start": 0
+    },
+    {
+      "action": "create",
+      "target": "txt1",
+      "type": "text",
+      "properties": { "x": 100, "y": 200, "text": "Item One", "fontSize": 24, "color": "#38bdf8", "fontFamily": "sans-serif" }
+    },
+    {
+      "action": "create",
+      "target": "txt2",
+      "type": "text",
+      "properties": { "x": 120, "y": 320, "text": "Item Two", "fontSize": 24, "color": "#38bdf8", "fontFamily": "sans-serif" }
+    },
+    {
+      "action": "create",
+      "target": "txt3",
+      "type": "text",
+      "properties": { "x": 80, "y": 450, "text": "Item Three", "fontSize": 24, "color": "#38bdf8", "fontFamily": "sans-serif" }
+    },
+    {
+      "action": "animate",
+      "target": "txt1",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": 0.2
+    },
+    {
+      "action": "animate",
+      "target": "txt2",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": "<"
+    },
+    {
+      "action": "animate",
+      "target": "txt3",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": "<"
+    },
+    {
+      "action": "create",
+      "target": "box1",
+      "type": "rectangle",
+      "properties": { "x": 700, "y": 180, "width": 120, "height": 80, "fill": "#3b82f6", "stroke": "#ffffff", "strokeWidth": 2 }
+    },
+    {
+      "action": "create",
+      "target": "box2",
+      "type": "rectangle",
+      "properties": { "x": 900, "y": 280, "width": 120, "height": 80, "fill": "#10b981", "stroke": "#ffffff", "strokeWidth": 2 }
+    },
+    {
+      "action": "create",
+      "target": "box3",
+      "type": "rectangle",
+      "properties": { "x": 800, "y": 420, "width": 120, "height": 80, "fill": "#f59e0b", "stroke": "#ffffff", "strokeWidth": 2 }
+    },
+    {
+      "action": "animate",
+      "target": "box1",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": 0.4
+    },
+    {
+      "action": "animate",
+      "target": "box2",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": "<"
+    },
+    {
+      "action": "animate",
+      "target": "box3",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": "<"
+    },
+    {
+      "action": "group",
+      "target": "textGroup",
+      "properties": {
+        "children": ["txt1", "txt2", "txt3"],
+        "layout": "vertical",
+        "gap": 25,
+        "margin": 20,
+        "x": 200,
+        "y": 200
+      },
+      "duration": 1.0,
+      "ease": "cubicInOut",
+      "start": 1.2
+    },
+    {
+      "action": "group",
+      "target": "rectGroup",
+      "properties": {
+        "children": ["box1", "box2", "box3"],
+        "layout": "horizontal",
+        "gap": 30,
+        "margin": 20,
+        "x": 600,
+        "y": 500
+      },
+      "duration": 1.0,
+      "ease": "cubicInOut",
+      "start": 2.5
     }
   ]
 }
