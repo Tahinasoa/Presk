@@ -3,49 +3,199 @@
   "scene": {
     "width": 1280,
     "height": 720,
-    "background": "#101014"
+    "background": "#0f172a"
   },
   "steps": [
     {
       "action": "create",
-      "target": "r0",
-      "type": "rectangle",
+      "target": "t1",
+      "type": "text",
       "properties": {
-        "fill": "white",
-        "reveal" : true,
-        "pos": "scene.center"
-      }
-    },
-    {
-      "action": "create",
-      "target" : "r1",
-      "type" : "rectangle",
-      "properties" : {
-        "width" : 10,
-        "height" : 10,
-        "fill": "blue",
-        "pos" : "r0.topRight",
-        "reveal" : true
+        "text": "The cat",
+        "fontSize": 44,
+        "color": "#f8fafc",
+        "x": 100,
+        "y": 200
       }
     },
     {
       "action": "animate",
-      "target" : "r0",
-      "properties" : {
-        "rotation" : 360,
-        "pos" : "scene.topCenter"
-      },
-      "duration" : 10,
-      "repeat" : 100,
-      "repeatMode" : "yoyo"
+      "target": "t1",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": 0
     },
     {
-      "action": "bind",
-      "target" : "r1",
-      "properties" : {
-        "pos" : "r0.topRight"
+      "action": "create",
+      "target": "t2",
+      "type": "text",
+      "properties": {
+        "text": "chased",
+        "fontSize": 44,
+        "color": "#f8fafc",
+        "x": 400,
+        "y": 200
+      }
+    },
+    {
+      "action": "animate",
+      "target": "t2",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": ">0.3"
+    },
+    {
+      "action": "create",
+      "target": "t3",
+      "type": "text",
+      "properties": {
+        "text": "the mouse",
+        "fontSize": 44,
+        "color": "#f8fafc",
+        "x": 660,
+        "y": 200
+      }
+    },
+    {
+      "action": "animate",
+      "target": "t3",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": ">0.3"
+    },
+
+    {
+      "action": "create",
+      "target": "c1",
+      "type": "text",
+      "properties": {
+        "text": "The cat",
+        "fontSize": 44,
+        "color": "#22c55e",
+        "pos": "t1.pos"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "c1",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">1.0"
+    },
+
+    {
+      "action": "create",
+      "target": "c2",
+      "type": "text",
+      "properties": {
+        "text": "chased",
+        "fontSize": 44,
+        "color": "#38bdf8",
+        "pos": "t2.pos"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "c2",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.3"
+    },
+
+    {
+      "action": "create",
+      "target": "c3",
+      "type": "text",
+      "properties": {
+        "text": "the mouse",
+        "fontSize": 44,
+        "color": "#f472b6",
+        "pos": "t3.pos"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "c3",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.3"
+    },
+
+    {
+      "action": "animate",
+      "target": "c3",
+      "properties": {
+        "x": "t1.pos.x",
+        "y": "t1.pos.y + 160"
       },
-      "start" : 0
+      "duration": 1.2,
+      "ease": "cubicInOut",
+      "start": ">0.6"
+    },
+
+    {
+      "action": "animate",
+      "target": "c2",
+      "properties": {
+        "x": "t2.pos.x",
+        "y": "t2.pos.y + 160"
+      },
+      "duration": 1.2,
+      "ease": "cubicInOut",
+      "start": ">0.3"
+    },
+
+    {
+      "action": "animate",
+      "target": "c1",
+      "properties": {
+        "x": "t3.pos.x + 60",
+        "y": "t3.pos.y + 160"
+      },
+      "duration": 1.2,
+      "ease": "cubicInOut",
+      "start": ">0.3"
+    },
+
+    {
+      "action": "set",
+      "target": "c3",
+      "properties": { "text": "The mouse" },
+      "start": ">0.5"
+    },
+
+    {
+      "action": "set",
+      "target": "c2",
+      "properties": { "text": "was chased" },
+      "start": ">0.3"
+    },
+
+    {
+      "action": "create",
+      "target": "byWord",
+      "type": "text",
+      "properties": {
+        "text": "by",
+        "fontSize": 28,
+        "color": "#22c55e",
+        "x": "t3.pos.x",
+        "y": "t3.pos.y + 160 + 12"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "byWord",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.3"
+    },
+
+    {
+      "action": "set",
+      "target": "c1",
+      "properties": { "text": "the cat" },
+      "start": ">0.3"
     }
   ]
 }
