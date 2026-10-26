@@ -1,0 +1,31 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "ar1",
+      "type": "arrow",
+      "properties": {
+        "x": 400,
+        "y": 360,
+        "start": { "x": 0, "y": 0 },
+        "end": { "x": 480, "y": 0 },
+        "stroke": "#6366f1",
+        "strokeWidth": 5,
+        "head": "end"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "ar1",
+      "properties": { "reveal": "draw" },
+      "duration": 0.8,
+      "start": 0
+    }
+  ]
+}

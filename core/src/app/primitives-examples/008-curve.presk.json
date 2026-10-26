@@ -1,0 +1,81 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "cv1",
+      "type": "curve",
+      "properties": {
+        "x": "scene.center.x - 225",
+        "y": "scene.center.y",
+        "points": [
+          { "x": 0, "y": 0 },
+          { "x": 150, "y": -120 },
+          { "x": 300, "y": 120 },
+          { "x": 450, "y": 0 }
+        ],
+        "closed": false,
+        "interpolation": "spline",
+        "stroke": "#a855f7",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "animate",
+      "target": "cv1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "cv1",
+      "properties": {
+        "vertex[1]": { "x": "scene.center.x - 75", "y": "scene.center.y - 180" }
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "name": "seq1",
+      "start": ">0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cv1",
+      "properties": {
+        "vertex[2]": { "x": "scene.center.x + 75", "y": "scene.center.y + 180" }
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "name": "seq2",
+      "start": "seq1>1"
+    },
+    {
+      "action": "animate",
+      "target": "cv1",
+      "properties": {
+        "vertex[3]": { "x": "scene.center.x + 225", "y": "scene.center.y - 120" }
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "name": "seq3",
+      "start": "seq2>0"
+    },
+    {
+      "action": "animate",
+      "target": "cv1",
+      "properties": {
+        "vertex[1]": { "x": "scene.center.x - 75", "y": "scene.center.y - 120" },
+        "vertex[2]": { "x": "scene.center.x + 75", "y": "scene.center.y + 120" },
+        "vertex[3]": { "x": "scene.center.x + 225", "y": "scene.center.y" }
+      },
+      "duration": 0.8,
+      "ease": "cubicInOut",
+      "start": ">0.5"
+    }
+  ]
+}

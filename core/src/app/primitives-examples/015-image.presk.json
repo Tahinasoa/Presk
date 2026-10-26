@@ -1,0 +1,29 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "img1",
+      "type": "image",
+      "properties": {
+        "x": 440,
+        "y": 200,
+        "url": "https://picsum.photos/400/300",
+        "width": 400,
+        "height": 300
+      }
+    },
+    {
+      "action": "animate",
+      "target": "img1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    }
+  ]
+}

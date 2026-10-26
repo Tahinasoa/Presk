@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "ray1",
+      "type": "ray",
+      "properties": {
+        "x": 200,
+        "y": 360,
+        "origin": { "x": 0, "y": 0 },
+        "through": { "x": 200, "y": -100 },
+        "stroke": "#10b981",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "animate",
+      "target": "ray1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    }
+  ]
+}

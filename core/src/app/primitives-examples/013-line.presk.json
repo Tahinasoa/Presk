@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "line1",
+      "type": "line",
+      "properties": {
+        "x": 300,
+        "y": 200,
+        "p1": { "x": 0, "y": 0 },
+        "p2": { "x": 400, "y": 300 },
+        "stroke": "#eab308",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "animate",
+      "target": "line1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    }
+  ]
+}

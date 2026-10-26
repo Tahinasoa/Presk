@@ -1,0 +1,36 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "p1",
+      "type": "polygon",
+      "properties": {
+        "x": 400,
+        "y": 250,
+        "points": [
+          { "x": 0, "y": 80 },
+          { "x": 120, "y": -40 },
+          { "x": 240, "y": 20 },
+          { "x": 200, "y": 180 },
+          { "x": 40, "y": 200 }
+        ],
+        "fill": "#84cc16",
+        "stroke": "#ffffff",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "animate",
+      "target": "p1",
+      "properties": { "reveal": "draw" },
+      "duration": 1.2,
+      "start": 0
+    }
+  ]
+}

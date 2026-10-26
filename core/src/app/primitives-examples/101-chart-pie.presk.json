@@ -1,0 +1,211 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#0f172a"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "pieTitle",
+      "type": "text",
+      "properties": {
+        "x": 150,
+        "y": 80,
+        "text": "Resource Allocation Pie Chart",
+        "fontSize": 36,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pieTitle",
+      "properties": { "reveal": true },
+      "duration": 0.6,
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "arc1",
+      "type": "arc",
+      "properties": {
+        "x": 400,
+        "y": 380,
+        "radius": 160,
+        "startAngle": 0,
+        "endAngle": 160,
+        "stroke": "#3b82f6",
+        "strokeWidth": 60
+      }
+    },
+    {
+      "action": "animate",
+      "target": "arc1",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "start": 0.2
+    },
+    {
+      "action": "create",
+      "target": "arc2",
+      "type": "arc",
+      "properties": {
+        "x": 400,
+        "y": 380,
+        "radius": 160,
+        "startAngle": 160,
+        "endAngle": 280,
+        "stroke": "#10b981",
+        "strokeWidth": 60
+      }
+    },
+    {
+      "action": "animate",
+      "target": "arc2",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "start": ">0.3"
+    },
+    {
+      "action": "create",
+      "target": "arc3",
+      "type": "arc",
+      "properties": {
+        "x": 400,
+        "y": 380,
+        "radius": 160,
+        "startAngle": 280,
+        "endAngle": 360,
+        "stroke": "#f59e0b",
+        "strokeWidth": 60
+      }
+    },
+    {
+      "action": "animate",
+      "target": "arc3",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "start": ">0.3"
+    },
+    {
+      "action": "create",
+      "target": "leg1Box",
+      "type": "rectangle",
+      "properties": {
+        "x": 750,
+        "y": 280,
+        "width": 24,
+        "height": 24,
+        "fill": "#3b82f6"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg1Box",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.5"
+    },
+    {
+      "action": "create",
+      "target": "leg1Text",
+      "type": "text",
+      "properties": {
+        "x": "leg1Box.topRight.x + 15",
+        "y": "leg1Box.topRight.y",
+        "text": "Engineering (45%)",
+        "fontSize": 22,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg1Text",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.5"
+    },
+    {
+      "action": "create",
+      "target": "leg2Box",
+      "type": "rectangle",
+      "properties": {
+        "x": 750,
+        "y": "leg1Box.bottomLeft.y + 20",
+        "width": 24,
+        "height": 24,
+        "fill": "#10b981"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg2Box",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.7"
+    },
+    {
+      "action": "create",
+      "target": "leg2Text",
+      "type": "text",
+      "properties": {
+        "x": "leg2Box.topRight.x + 15",
+        "y": "leg2Box.topRight.y",
+        "text": "Design (35%)",
+        "fontSize": 22,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg2Text",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.7"
+    },
+    {
+      "action": "create",
+      "target": "leg3Box",
+      "type": "rectangle",
+      "properties": {
+        "x": 750,
+        "y": "leg2Box.bottomLeft.y + 20",
+        "width": 24,
+        "height": 24,
+        "fill": "#f59e0b"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg3Box",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.9"
+    },
+    {
+      "action": "create",
+      "target": "leg3Text",
+      "type": "text",
+      "properties": {
+        "x": "leg3Box.topRight.x + 15",
+        "y": "leg3Box.topRight.y",
+        "text": "Marketing (20%)",
+        "fontSize": 22,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "leg3Text",
+      "properties": { "reveal": true },
+      "duration": 0.4,
+      "start": ">0.9"
+    }
+  ]
+}

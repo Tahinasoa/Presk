@@ -1,0 +1,38 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "txt1",
+      "type": "text",
+      "properties": {
+        "x": 400,
+        "y": 300,
+        "text": "Hello Presk Text",
+        "color": "#f8fafc",
+        "fontSize": 48,
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "txt1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "txt1",
+      "properties": { "fontSize": 60, "color": "#38bdf8" },
+      "duration": 1.0,
+      "start": ">0.5"
+    }
+  ]
+}

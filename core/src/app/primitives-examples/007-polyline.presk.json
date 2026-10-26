@@ -1,0 +1,35 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "pl1",
+      "type": "polyline",
+      "properties": {
+        "x": 300,
+        "y": 300,
+        "points": [
+          { "x": 0, "y": 100 },
+          { "x": 100, "y": -50 },
+          { "x": 200, "y": 100 },
+          { "x": 300, "y": -50 }
+        ],
+        "closed": false,
+        "stroke": "#38bdf8",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pl1",
+      "properties": { "reveal": "draw" },
+      "duration": 1.0,
+      "start": 0
+    }
+  ]
+}
