@@ -28,7 +28,7 @@
     {
       "action": "animate",
       "target": "p1",
-      "properties": { "reveal": true },
+      "properties": { "reveal": "draw" },
       "duration": 1.2,
       "start": 0
     }

@@ -12,10 +12,7 @@
       "type": "point",
       "properties": {
         "x": 640,
-        "y": 360,
-        "rotation": 0,
-        "scale": 1,
-        "opacity": 1
+        "y": 360
       }
     },
     {

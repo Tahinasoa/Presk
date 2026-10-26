@@ -23,7 +23,7 @@
     {
       "action": "animate",
       "target": "ar1",
-      "properties": { "reveal": true },
+      "properties": { "reveal": "draw" },
       "duration": 0.8,
       "start": 0
     }

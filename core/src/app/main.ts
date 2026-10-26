@@ -1,5 +1,5 @@
 import { Presk } from "@/app/presk";
-import  EXEMPLE  from "@/app/primitives-examples/004-arc.presk.json";
+import  EXEMPLE  from "@/app/primitives-examples/017-scene.presk.json";
 import { PreskCompileError } from "@/lang/diagnostics";
 
 async function main(): Promise<void> {

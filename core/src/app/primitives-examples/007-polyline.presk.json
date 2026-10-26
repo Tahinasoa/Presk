@@ -27,7 +27,7 @@
     {
       "action": "animate",
       "target": "pl1",
-      "properties": { "reveal": true },
+      "properties": { "reveal": "draw" },
       "duration": 1.0,
       "start": 0
     }

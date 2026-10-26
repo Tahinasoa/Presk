@@ -15,7 +15,7 @@
         "y": 360,
         "radius": "scene.width/8",
         "startAngle": 0,
-        "endAngle": 0,
+        "endAngle": 90,
         "stroke": "#f59e0b",
         "strokeWidth": 6
       }
@@ -23,7 +23,7 @@
     {
       "action": "animate",
       "target": "a1",
-      "properties": { "reveal": true },
+      "properties": { "reveal": "draw" },
       "duration": 1.0,
       "start": 0
     },

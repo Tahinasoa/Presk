@@ -1,42 +1,197 @@
 {
   "version": "1.0",
   "scene": {
-    "width": 1280,
-    "height": 720,
-    "background": "#101014"
+    "width": 1920,
+    "height": 1080,
+    "background": "#0b0f19"
   },
   "steps": [
     {
       "action": "create",
-      "target": "anchorBox",
-      "type": "rectangle",
+      "target": "heroTitle",
+      "type": "text",
       "properties": {
-        "x": 480,
-        "y": 260,
-        "width": 320,
-        "height": 200,
-        "fill": "#4f46e5",
-        "stroke": "#ffffff",
-        "strokeWidth": 2
+        "x": 200,
+        "y": 150,
+        "text": "Presk Scene & Viewport Cinematic Showcase",
+        "fontSize": 52,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
       }
     },
     {
       "action": "animate",
-      "target": "anchorBox",
+      "target": "heroTitle",
       "properties": { "reveal": true },
       "duration": 0.8,
       "start": 0
     },
     {
+      "action": "create",
+      "target": "cardA",
+      "type": "rectangle",
+      "properties": {
+        "x": 300,
+        "y": 350,
+        "width": 450,
+        "height": 300,
+        "fill": "#1e293b",
+        "stroke": "#3b82f6",
+        "strokeWidth": 4,
+        "rotation": 0,
+        "pivot": "center"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "cardA",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": ">0.2"
+    },
+    {
+      "action": "create",
+      "target": "badgeA",
+      "type": "text",
+      "properties": {
+        "x": 300,
+        "y": 350,
+        "text": "Target Alpha",
+        "fontSize": 32,
+        "color": "#60a5fa",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "badgeA",
+      "properties": { "reveal": true },
+      "duration": 0.6,
+      "start": ">0.3"
+    },
+    {
+      "action": "create",
+      "target": "cardB",
+      "type": "circle",
+      "properties": {
+        "x": 1100,
+        "y": 500,
+        "radius": 180,
+        "fill": "#312e81",
+        "stroke": "#ec4899",
+        "strokeWidth": 5
+      }
+    },
+    {
+      "action": "animate",
+      "target": "cardB",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": ">0.4"
+    },
+    {
+      "action": "create",
+      "target": "badgeB",
+      "type": "text",
+      "properties": {
+        "x": 1100,
+        "y": 500,
+        "text": "Target Beta",
+        "fontSize": 32,
+        "color": "#f472b6",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "badgeB",
+      "properties": { "reveal": true },
+      "duration": 0.6,
+      "start": ">0.5"
+    },
+    {
+      "action": "create",
+      "target": "cardC",
+      "type": "polygon",
+      "properties": {
+        "x": 1500,
+        "y": 250,
+        "points": [
+          { "x": 0, "y": 150 },
+          { "x": 150, "y": -50 },
+          { "x": 300, "y": 150 }
+        ],
+        "fill": "#065f46",
+        "stroke": "#10b981",
+        "strokeWidth": 4
+      }
+    },
+    {
+      "action": "animate",
+      "target": "cardC",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": ">0.6"
+    },
+    {
       "action": "animate",
       "target": "scene",
       "properties": {
-        "focusOn": "anchorBox",
-        "focusMargin": 100
+        "focusOn": "cardA",
+        "focusMargin": 80
       },
-      "duration": 1.2,
+      "duration": 1.5,
       "ease": "cubicInOut",
-      "start": ">0.6"
+      "name": "cam1",
+      "start": 2.5
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "cardB",
+        "focusMargin": 120
+      },
+      "duration": 1.5,
+      "ease": "cubicInOut",
+      "name": "cam2",
+      "start": "cam1>1.0"
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "view": { "x": 1350, "y": 150, "width": 600, "height": 337 }
+      },
+      "duration": 1.5,
+      "ease": "cubicInOut",
+      "name": "cam3",
+      "start": "cam2>1.0"
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": ["cardA", "cardB"],
+        "focusMargin": 150
+      },
+      "duration": 1.8,
+      "ease": "cubicInOut",
+      "name": "cam4",
+      "start": "cam3>1.0"
+    },
+    {
+      "action": "animate",
+      "target": "scene",
+      "properties": {
+        "focusOn": "scene"
+      },
+      "duration": 1.5,
+      "ease": "cubicInOut",
+      "start": "cam4>1.0"
     }
   ]
 }

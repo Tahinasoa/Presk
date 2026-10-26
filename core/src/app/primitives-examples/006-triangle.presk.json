@@ -26,7 +26,7 @@
     {
       "action": "animate",
       "target": "t1",
-      "properties": { "reveal": true },
+      "properties": { "reveal": "draw" },
       "duration": 1.0,
       "start": 0
     }

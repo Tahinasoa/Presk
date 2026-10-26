@@ -13,7 +13,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
 - **`scale`** : Échelle uniforme (nombre unique) autour du pivot.
 - **`opacity`** : Opacité de l'objet, de 0 à 1.
 - **`pivot`** : Point autour duquel s'appliquent la rotation et l'échelle. Par défaut `"center"` pour les formes bornées, ou `"pos"` pour les points, lignes et rayons.
-- **`reveal`** : Effet universel de révélation (fade ou draw selon la classe).
+- **`reveal`** : Effet universel de révélation (`"fade"` ou `"draw"` selon la classe de l'objet).
 
 ---
 
@@ -28,7 +28,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `strokeWidth` (nombre $\ge 0$, animable)
   - Pivot par défaut : `"center"` (supporte les 9 ancres standard).
 - **Ancres (9 ancres standard)** : `topLeft`, `topCenter`, `topRight`, `centerLeft`, `center`, `centerRight`, `bottomLeft`, `bottomCenter`, `bottomRight` (lecture/écriture, suivent la rotation).
-- **Effets** : `reveal` (fondu / `REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 - **Chemin (`main`)** : Polygone fermé aux 4 coins du rectangle.
 
 ### 2.2 Cercle (`circle`)
@@ -40,7 +40,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `strokeWidth` (nombre $\ge 0$, animable)
   - Pivot par défaut : `"center"` (valeurs autorisées : `"center"`, `"pos"`).
 - **Ancres** : 9 ancres standard disponibles via `boundingBox`.
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 - **Chemin (`main`)** : Polygone aplati représentant la circonférence du cercle.
 
 ### 2.3 Ellipse (`ellipse`)
@@ -52,7 +52,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `strokeWidth` (nombre $\ge 0$, animable)
   - Pivot par défaut : `"center"` (valeurs autorisées : `"center"`, `"pos"`).
 - **Ancres** : 9 ancres standard via `boundingBox`.
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 - **Chemin (`main`)** : Polygone aplati représentant l'ellipse.
 
 ### 2.4 Arc (`arc`)
@@ -65,7 +65,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `start`, `end` (points en lecture seule correspondant aux extrémités de l'arc).
   - Pivot par défaut : `"center"`.
 - **Ancres** : `start`, `end` (lecture seule, basées sur les angles et le rayon).
-- **Effets** : `reveal` (`revealWithDraw`, animation par tracé progressif).
+- **Effets** : `reveal` (`draw`, supporte l'effet de tracé progressif `"draw"` via `drawProgress`).
 - **Chemin (`main`)** : Tracé de l'arc géométrique.
 
 ### 2.5 Polygone & Triangle (`polygon`, `triangle`)
@@ -77,7 +77,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `drawProgress` (progression du tracé pour l'effet reveal).
   - Pivot par défaut : `"center"`.
 - **Ancres indexées** : `vertex[i]` (lecture/écriture, permet de déplacer ou lire chaque sommet par son indice).
-- **Effets** : `reveal` (`revealWithDraw`).
+- **Effets** : `reveal` (`draw`, supporte l'effet de tracé progressif `"draw"` via `drawProgress`).
 - **Chemin (`main`)** : Polygone fermé reliant les sommets.
 
 ### 2.6 Ligne Brisée (`polyline`)
@@ -88,7 +88,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `closed` (booléen, non animable, indique si la polyline est fermée).
   - `stroke`, `strokeWidth`, `drawProgress`.
 - **Ancres indexées** : `vertex[i]` (lecture/écriture).
-- **Effets** : `reveal` (`revealWithDraw`).
+- **Effets** : `reveal` (`draw`, supporte l'effet de tracé progressif `"draw"` via `drawProgress`).
 - **Chemin (`main`)** : Tracé ouvert ou fermé selon `closed`.
 
 ### 2.7 Courbe (`curve`)
@@ -101,15 +101,15 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `stroke`, `strokeWidth`, `drawProgress`.
   - `start`, `end` (points d'extrémité en lecture seule).
 - **Ancres indexées** : `vertex[i]` (lecture/écriture).
-- **Effets** : `reveal` (`revealWithDraw`).
+- **Effets** : `reveal` (`draw`, supporte l'effet de tracé progressif `"draw"` via `drawProgress`).
 - **Chemin (`main`)** : Tracé aplati calculé par interpolation spline ou chaîne de Bézier.
 
 ### 2.8 Point (`point`)
 - **Famille** : `point`
 - **Créable** : Oui
-- **Propriétés** : Uniquement les propriétés de base (`x`, `y`, `pos`, `rotation`, `scale`, `opacity`). Pivot fixé à `"pos"`.
+- **Propriétés** : Uniquement les propriétés de base (`x`, `y`, `pos`,). Pivot fixé à `"pos"`.
 - **Ancres** : Aucune ancre propre (pas de géométrie surfacique).
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`), qui ne sert à rien
 - **Chemin** : Aucun.
 
 ### 2.9 Segment & Flèche (`segment`, `arrow`)
@@ -121,7 +121,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `head` (`arrow` uniquement : `"end"`, `"start"`, `"both"`, `"none"`).
   - Après géométrie, l'origine `p0` est normalisée à `{0, 0}` et `x`/`y` portent la position de départ.
 - **Ancres** : `start`, `end`.
-- **Effets** : `reveal` (`revealWithDraw`).
+- **Effets** : `reveal` (`draw`, supporte l'effet de tracé progressif `"draw"` via `drawProgress`).
 - **Chemin (`main`)** : Segment de droite entre `start` et `end`.
 
 ### 2.10 Rayon & Ligne Infinie (`ray`, `line`)
@@ -133,7 +133,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `stroke`, `strokeWidth`.
   - `localBounds()` retourne `null` (objets non bornés).
 - **Ancres** : `origin`/`through` ou `p1`/`p2`.
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 
 ### 2.11 Texte (`text`)
 - **Famille** : `rectangle` (hérite de `RectangleObject`)
@@ -146,7 +146,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `fontWeight` (`"normal"` ou `"bold"`).
   - `width`, `height` (en lecture seule, calculés automatiquement via le mesureur de texte).
 - **Ancres** : 9 ancres standard (`topLeft` à `bottomRight`).
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 
 ### 2.12 Image (`image`)
 - **Famille** : `rectangle` (hérite de `RectangleObject`)
@@ -155,7 +155,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `url` (chemin/URL de l'image, requis à l'init).
   - `width`, `height` (dimensions modifiables ; si l'une est fournie, l'autre s'ajuste automatiquement selon le ratio naturel de l'image).
 - **Ancres** : 9 ancres standard.
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 
 ### 2.13 Groupe (`group`)
 - **Famille** : `rectangle` (hérite de `RectangleObject`)
@@ -166,7 +166,7 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `presence` (visibilité/présence).
   - `localBounds()` : union des boîtes englobantes de tous les enfants, augmentée de la marge.
 - **Ancres** : 9 ancres standard calculées à partir de la boîte englobante globale des enfants.
-- **Effets** : `reveal` (`REVEAL_FADE`).
+- **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 
 ### 2.14 Scène (`scene` / `SceneRoot`)
 - **Famille** : `rectangle`

@@ -1,0 +1,172 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#0f172a"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "pathCircle",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 360,
+        "radius": 120,
+        "stroke": "#3b82f6",
+        "strokeWidth": 2,
+        "fill": "#00000000"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pathCircle",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "pathPolyline",
+      "type": "polyline",
+      "properties": {
+        "x": 540,
+        "y": 200,
+        "points": [
+          { "x": 0, "y": 0 },
+          { "x": 100, "y": 200 },
+          { "x": 200, "y": 0 }
+        ],
+        "closed": false,
+        "stroke": "#10b981",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pathPolyline",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": ">0.1"
+    },
+    {
+      "action": "create",
+      "target": "pathPolygon",
+      "type": "polygon",
+      "properties": {
+        "x": 900,
+        "y": 260,
+        "points": [
+          { "x": 0, "y": 0 },
+          { "x": 120, "y": -80 },
+          { "x": 240, "y": 0 },
+          { "x": 180, "y": 140 },
+          { "x": 60, "y": 140 }
+        ],
+        "stroke": "#f59e0b",
+        "strokeWidth": 2,
+        "fill": "#00000000"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "pathPolygon",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": ">0.1"
+    },
+    {
+      "action": "create",
+      "target": "dot1",
+      "type": "circle",
+      "properties": {
+        "x": 300,
+        "y": 240,
+        "radius": 8,
+        "fill": "#3b82f6",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "dot2",
+      "type": "circle",
+      "properties": {
+        "x": 540,
+        "y": 200,
+        "radius": 8,
+        "fill": "#10b981",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "dot3",
+      "type": "circle",
+      "properties": {
+        "x": 900,
+        "y": 260,
+        "radius": 8,
+        "fill": "#f59e0b",
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "tri",
+      "type": "triangle",
+      "properties": {
+        "points": [
+          { "x": 300, "y": 240 },
+          { "x": 540, "y": 200 },
+          { "x": 900, "y": 260 }
+        ],
+        "fill": "#ec489940",
+        "stroke": "#ec4899",
+        "strokeWidth": 3,
+        "reveal": true
+      }
+    },
+    {
+      "action": "bind",
+      "target": "tri",
+      "properties": {
+        "vertex[0]": "dot1.pos",
+        "vertex[1]": "dot2.pos",
+        "vertex[2]": "dot3.pos"
+      },
+      "start": 0.6
+    },
+    {
+      "action": "travel",
+      "target": "dot1",
+      "along": "pathCircle",
+      "from": 0,
+      "to": 1,
+      "duration": 6,
+      "repeat": "infinite",
+      "start": 0.8
+    },
+    {
+      "action": "travel",
+      "target": "dot2",
+      "along": "pathPolyline",
+      "from": 0,
+      "to": 1,
+      "duration": 6,
+      "repeat": "infinite",
+      "start": 0.8
+    },
+    {
+      "action": "travel",
+      "target": "dot3",
+      "along": "pathPolygon",
+      "from": 0,
+      "to": 1,
+      "duration": 6,
+      "repeat": "infinite",
+      "start": 0.8
+    }
+  ]
+}
