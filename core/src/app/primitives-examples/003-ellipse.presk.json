@@ -1,0 +1,42 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "e1",
+      "type": "ellipse",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "width": 350,
+        "height": 180,
+        "fill": "#06b6d4",
+        "stroke": "#ffffff",
+        "strokeWidth": 3,
+        "rotation": 20,
+        "opacity": 0.9,
+        "pivot": "center"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "e1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "e1",
+      "properties": { "width": 450, "height": 220, "rotation": 0 },
+      "duration": 1.2,
+      "ease": "cubicInOut",
+      "start": ">0.6"
+    }
+  ]
+}

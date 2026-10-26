@@ -1,0 +1,34 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "t1",
+      "type": "triangle",
+      "properties": {
+        "x": 500,
+        "y": 260,
+        "points": [
+          { "x": 0, "y": 150 },
+          { "x": 140, "y": -40 },
+          { "x": 280, "y": 150 }
+        ],
+        "fill": "#f97316",
+        "stroke": "#ffffff",
+        "strokeWidth": 3
+      }
+    },
+    {
+      "action": "animate",
+      "target": "t1",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "start": 0
+    }
+  ]
+}

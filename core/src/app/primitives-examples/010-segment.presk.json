@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "seg1",
+      "type": "segment",
+      "properties": {
+        "x": 400,
+        "y": 360,
+        "start": { "x": 0, "y": 0 },
+        "end": { "x": 480, "y": 0 },
+        "stroke": "#ef4444",
+        "strokeWidth": 5
+      }
+    },
+    {
+      "action": "animate",
+      "target": "seg1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    }
+  ]
+}

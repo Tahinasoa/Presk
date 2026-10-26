@@ -33,17 +33,21 @@ body {
   width: min(90vw, 1100px);
 }
 
+.canvas-scroll-container {
+  width: 100%;
+  max-height: 78vh;
+  overflow: auto;
+  border-radius: 8px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+  background: #000;
+}
+
 #app canvas {
   display: block;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-  border-radius: 8px;
-  /* mockInput.json's scene is 1920x1080; scale it down to fit the viewport
-     for the demo. Real embedding contexts can size the canvas however
-     they want — this is just presentation, not part of the engine. */
-  max-width: 100%;
-  max-height: 78vh;
   width: auto;
   height: auto;
+  max-width: none;
+  max-height: none;
 }
 
 .timeline-controls {

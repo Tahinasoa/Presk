@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "a1",
+      "type": "arc",
+      "properties": {
+        "x": 640,
+        "y": 360,
+        "radius": "scene.width/8",
+        "startAngle": 0,
+        "endAngle": 0,
+        "stroke": "#f59e0b",
+        "strokeWidth": 6
+      }
+    },
+    {
+      "action": "animate",
+      "target": "a1",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "a1",
+      "properties": { "endAngle": 360 },
+      "duration": 1.0,
+      "ease": "cubicInOut",
+      "start": ">0.6"
+    }
+  ]
+}

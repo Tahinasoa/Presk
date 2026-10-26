@@ -1,0 +1,67 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1280,
+    "height": 720,
+    "background": "#101014"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "r1",
+      "type": "rectangle",
+      "properties": {
+        "x": 200,
+        "y": 200,
+        "width": 250,
+        "height": 150,
+        "fill": "#3b82f6",
+        "stroke": "#ffffff",
+        "strokeWidth": 4,
+        "rotation": 15,
+        "scale": 1.1,
+        "opacity": 0.9,
+        "pivot": "center"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r1",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "r1",
+      "properties": { "rotation": 45, "width": 300 },
+      "duration": 1.0,
+      "ease": "cubicInOut",
+      "start": ">0.5"
+    },
+    {
+      "action": "create",
+      "target": "r2",
+      "type": "rectangle",
+      "properties": {
+        "topLeft": {
+          "x" : "r1.topRight.x + 40",
+          "y": 200
+        },
+        "width": 200,
+        "height": 150,
+        "fill": "#10b981",
+        "stroke": "#f59e0b",
+        "strokeWidth": 3,
+        "pivot": "topLeft"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "r2",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": ">0.3"
+    }
+  ]
+}
