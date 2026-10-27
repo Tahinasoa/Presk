@@ -16,8 +16,9 @@ Implémenter `describeRef` (statique) et `readRef` (dynamique) selon les 6 règl
 
 ## Étapes (note la dernière terminée dans BACKLOG › Reprise)
 T046.1 Écris les tests (cas ci-dessous). Utilise `RECTANGLE_DEF` ; pour la famille `point`/`unbounded`, construis un `ClassDef` de test.
-T046.2 `describeRef(def, path)` : suis les règles 1 à 5 du contrat, dans l'ordre. Pour la règle 3, `boundingBox` accepte aussi `width`/`height`. Les codes sont ceux de `C-lang-diagnostics.md`.
-T046.3 `readRef(o, path)` : suit les mêmes règles ; suppose que `describeRef` est déjà ok (sinon `throw new Error("Presk internal: invalid ref")`). `boundingBox.*` lit `o.worldBounds()` (`anchorOfBounds`, `boundsWidth`, `boundsHeight`). Indexée : `def.indexed[name].get(o, index)` ; hors bornes (`index >= count`) → `throw new PreskRuntimeError("E_ANCHOR_INDEX: ...")`.
+T046.2 `RefDescription` est **déjà défini** dans `values.ts` (T040) : dans `refs.ts`, écris seulement `export type { RefDescription } from "./values";` (ne le redéfinis pas).
+T046.3 `describeRef(def, path)` : suis les règles 1 à 5 du contrat, dans l'ordre. Pour la règle 3, `boundingBox` accepte aussi `width`/`height`. Les codes sont ceux de `C-lang-diagnostics.md`.
+T046.4 `readRef(o, path)` : suit les mêmes règles ; suppose que `describeRef` est déjà ok (sinon `throw new Error("Presk internal: invalid ref")`). `boundingBox.*` lit `o.worldBounds()` (`anchorOfBounds`, `boundsWidth`, `boundsHeight`). Indexée : `def.indexed[name].get(o, index)` ; hors bornes (`index >= count`) → `throw new PreskRuntimeError("E_ANCHOR_INDEX: ...")`.
 
 ## Cas de test (à écrire AVANT le code)
 `describeRef(RECTANGLE_DEF, path)` :
