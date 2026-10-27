@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@presk/core": "workspace:*"
+    "@presk/core": "workspace:*",
+    "pixi.js": "^8.21.0"
   },
   "devDependencies": {
     "typescript": "~7.0.2",

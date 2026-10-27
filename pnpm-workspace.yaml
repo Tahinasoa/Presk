@@ -4,3 +4,6 @@ packages:
   - "lib/*"
 allowBuilds:
   esbuild: false
+permissions:
+  pixi.js:
+    skills: false
