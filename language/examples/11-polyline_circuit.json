@@ -1,0 +1,8 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "circuit", "type": "polyline", "properties": {"points": [{"x": 0, "y": 0}, {"x": 300, "y": 0}, {"x": 300, "y": 200}, {"x": 0, "y": 200}], "closed": true, "stroke": "#22c55e", "strokeWidth": 4, "pos": {"x": 400, "y": 260}}},
+    {"action": "create", "target": "electron", "type": "circle", "properties": {"radius": 8, "fill": "yellow", "x": "circuit.pathX(main, 0)", "y": "circuit.pathY(main, 0)"}},
+    {"action": "animate", "target": "circuit", "properties": {"reveal": "draw"}, "duration": 1},
+    {"action": "animate", "target": "electron", "properties": {"reveal": true}, "duration": 0.3},
+    {"action": "travel", "target": "electron", "along": "circuit", "duration": 4, "repeat": 3}
+  ] }

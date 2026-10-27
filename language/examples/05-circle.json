@@ -1,0 +1,8 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "sun", "type": "circle", "properties": {"radius": 60, "fill": "gold", "pos": "scene.center"}},
+    {"action": "create", "target": "label", "type": "text", "properties": {"text": "Soleil", "fontSize": 24, "topCenter": "sun.boundingBox.bottomCenter"}},
+    {"action": "animate", "target": "sun", "properties": {"reveal": true}},
+    {"action": "animate", "target": "label", "properties": {"reveal": true}, "start": "<0.2"},
+    {"action": "animate", "target": "sun", "properties": {"radius": 90}, "duration": 1.5, "ease": "bounceOut"}
+  ] }

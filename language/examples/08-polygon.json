@@ -1,0 +1,8 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "pent", "type": "polygon", "properties": {"points": [{"x": 50, "y": 0}, {"x": 100, "y": 38}, {"x": 81, "y": 97}, {"x": 19, "y": 97}, {"x": 0, "y": 38}], "fill": "#22c55e", "stroke": "white", "strokeWidth": 2, "pos": {"x": 300, "y": 200}}},
+    {"action": "create", "target": "marker", "type": "circle", "properties": {"radius": 6, "fill": "red", "pos": "pent.vertex[2]"}},
+    {"action": "animate", "target": "pent", "properties": {"reveal": "draw"}, "duration": 1.5},
+    {"action": "animate", "target": "marker", "properties": {"reveal": true}},
+    {"action": "animate", "target": "pent", "properties": {"vertex[0]": {"x": 260, "y": 120}}, "duration": 1}
+  ] }

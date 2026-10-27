@@ -1,5 +1,9 @@
 packages:
   - "core"
+  - "demo"
   - "lib/*"
 allowBuilds:
   esbuild: false
+permissions:
+  pixi.js:
+    skills: false

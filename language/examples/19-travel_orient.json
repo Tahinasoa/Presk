@@ -1,0 +1,7 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "track", "type": "rectangle", "properties": {"width": 500, "height": 300, "fill": "#1e293b", "stroke": "#64748b", "strokeWidth": 3, "pos": {"x": 300, "y": 200}, "reveal": true}},
+    {"action": "create", "target": "car", "type": "rectangle", "properties": {"width": 40, "height": 20, "fill": "#ef4444", "pos": {"x": 300, "y": 200}}},
+    {"action": "animate", "target": "car", "properties": {"reveal": true}, "duration": 0.3},
+    {"action": "travel", "target": "car", "along": "track", "anchor": "center", "orient": true, "duration": 6, "ease": "linear"}
+  ] }

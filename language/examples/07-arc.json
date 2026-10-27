@@ -1,0 +1,9 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "gauge", "type": "arc", "properties": {"radius": 100, "startAngle": -90, "endAngle": -90, "stroke": "gold", "strokeWidth": 10, "pos": "scene.center"}},
+    {"action": "create", "target": "dot", "type": "circle", "properties": {"radius": 8, "fill": "white", "pos": "gauge.end"}},
+    {"action": "animate", "target": "gauge", "properties": {"reveal": true}, "duration": 0.3},
+    {"action": "animate", "target": "gauge", "properties": {"endAngle": 180}, "duration": 2, "ease": "cubicOut"},
+    {"action": "animate", "target": "dot", "properties": {"reveal": true}, "duration": 0.3, "start": "<"},
+    {"action": "bind", "target": "dot", "properties": {"pos": "gauge.end"}, "start": "<"}
+  ] }

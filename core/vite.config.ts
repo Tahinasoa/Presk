@@ -1,17 +1,23 @@
-// Vite dev/build configuration for the Presk core package.
-// Resolves the "@/*" path alias (declared in tsconfig.json) so source files
-// can import each other with e.g. `import KScene from "@/primitives/kscene"`
-// instead of long relative paths like `../../primitives/kscene`.
-import { defineConfig } from "vite";
+import { defineConfig } from "vitest/config";
 import { fileURLToPath, URL } from "node:url";
 
 export default defineConfig({
   resolve: {
-    alias: {
-      "@": fileURLToPath(new URL("./src", import.meta.url)),
-    },
+    alias: { "@": fileURLToPath(new URL("./src", import.meta.url)) },
   },
-  test: {
-    globals: false,
+  publicDir : false,
+  build: {
+    lib: {
+      entry: "src/index.ts",
+      name: "presk",
+      fileName: "index",
+      formats: ["es", "cjs"],
+    },
+    rolldownOptions: {
+      external: [/^pixi\.js(\/.*)?$/],
+      output: {
+        globals: { "pixi.js": "PIXI" },
+      },
+    },
   },
 });

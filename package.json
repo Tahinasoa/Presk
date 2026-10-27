@@ -1,9 +1,21 @@
 {
   "name": "presk-monorepo",
+  "version": "0.1.0",
+  "description": "Declarative, AI-friendly animation DSL and rendering engine",
   "private": true,
+  "author": "Tahinasoa Randrianarimanana <randrianarimananatahinasoa@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Tahinasoa/Presk.git"
+  },
   "packageManager": "pnpm@12.15.0",
   "engines": {
     "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test"
   },
   "devDependencies": {
     "typescript": "~7.0.2"

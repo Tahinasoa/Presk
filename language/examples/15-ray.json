@@ -1,0 +1,6 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "r", "type": "ray", "properties": {"origin": {"x": 400, "y": 360}, "through": {"x": 800, "y": 360}, "stroke": "yellow", "strokeWidth": 3}},
+    {"action": "animate", "target": "r", "properties": {"reveal": true}, "duration": 0.5},
+    {"action": "animate", "target": "r", "properties": {"rotation": 360}, "duration": 4, "ease": "linear"}
+  ] }

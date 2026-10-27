@@ -1,0 +1,7 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "box", "type": "rectangle", "properties": {"width": 200, "height": 80, "fill": "#3b82f6", "stroke": "white", "strokeWidth": 3, "pos": {"x": 100, "y": 100}}},
+    {"action": "animate", "target": "box", "properties": {"reveal": true}},
+    {"action": "animate", "target": "box", "properties": {"width": 400, "fill": "orange"}, "duration": 1.5, "ease": "cubicInOut"},
+    {"action": "animate", "target": "box", "properties": {"rotation": 15}, "duration": 1, "start": "<"}
+  ] }

@@ -1,0 +1,9 @@
+{ "version": "1.0", "scene": {"width": 1280, "height": 720, "background": "#101014"},
+  "steps": [
+    {"action": "create", "target": "title", "type": "text", "properties": {"text": "Presk", "fontSize": 64, "color": "white", "pos": {"x": 100, "y": 100}}},
+    {"action": "create", "target": "subtitle", "type": "text", "properties": {"text": "un langage d'animation", "fontSize": 28, "color": "silver", "topLeft": "title.bottomLeft"}},
+    {"action": "animate", "target": "title", "properties": {"reveal": true}},
+    {"action": "animate", "target": "subtitle", "properties": {"reveal": true}},
+    {"action": "set", "target": "subtitle", "properties": {"text": "v1.0"}, "start": 2},
+    {"action": "animate", "target": "title", "properties": {"fontSize": 96}, "duration": 1, "start": 2}
+  ] }
