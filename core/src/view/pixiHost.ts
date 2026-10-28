@@ -19,7 +19,7 @@ export class PixiHost {
       background: background ?? "#000000",
       antialias: true,
       resolution: window.devicePixelRatio || 1,
-      autoDensity: true,
+      autoDensity: false,
     });
     this.root.appendChild(app.canvas);
     const world = new Container();

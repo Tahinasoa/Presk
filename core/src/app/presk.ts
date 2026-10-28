@@ -136,4 +136,11 @@ export class Presk {
     if (!this.viewSync) throw new Error("Presk: no document has been loaded.");
     return this.viewSync;
   }
+  get sceneWidth(): number {
+    return this.requireSimulation().world.root.getNumber("width");
+  }
+
+  get sceneHeight(): number {
+    return this.requireSimulation().world.root.getNumber("height");
+  }
 }
