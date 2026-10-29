@@ -35,12 +35,11 @@
     "pixi.js": "^8.21.0",
     "tsc-alias": "^1.9.9",
     "tsx": "^4.23.15",
-    "typescript": "^7.0.2",
+    "typescript": "~7.0.2",
     "vite": "^8.3.0",
     "vitest": "^5.0.1"
   },
   "dependencies": {
-    "@presk/core": "workspace:*",
     "nanoid": "^6.0.1",
     "transformation-matrix": "^3.1.0"
   },
