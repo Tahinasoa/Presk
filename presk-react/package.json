@@ -1,5 +1,5 @@
 {
-  "name": "presk-react",
+  "name": "@presk/presk-react",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@presk/core": "workspace:*",
     "react": "^19.3.1",
     "react-dom": "^19.3.1"
   },

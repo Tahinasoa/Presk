@@ -1,7 +1,9 @@
+import Presk from "./presk/presk";
+
 function App() {
 
     return <div className="App">
-        <h1>Presk</h1>
+        <Presk />
     </div>
 }
 

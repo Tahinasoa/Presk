@@ -40,6 +40,7 @@
     "vitest": "^5.0.1"
   },
   "dependencies": {
+    "@presk/core": "workspace:*",
     "nanoid": "^6.0.1",
     "transformation-matrix": "^3.1.0"
   },
