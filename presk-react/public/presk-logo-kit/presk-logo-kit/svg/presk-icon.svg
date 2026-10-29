@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="presk-icon-title">
+  <title id="presk-icon-title">Presk</title>
+  <rect x="12" y="21" width="48" height="30" rx="5" fill="#F5B800"/>
+  <rect x="4" y="13" width="48" height="30" rx="5" fill="#2563EB"/>
+  <path d="M24.5 21.5 L24.5 34.5 L35.5 28 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round"/>
+</svg>

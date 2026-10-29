@@ -1,0 +1,4302 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1920,
+    "height": 1080,
+    "background": "#fdf8ee"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "band",
+      "type": "rectangle",
+      "properties": {
+        "width": 1920,
+        "height": 150,
+        "fill": "#1d2b3a",
+        "pos": {
+          "x": 0,
+          "y": 930
+        },
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "gapR",
+      "type": "rectangle",
+      "properties": {
+        "width": 300,
+        "height": 8,
+        "fill": "#ef6c57",
+        "pos": {
+          "x": 810,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "she",
+      "type": "text",
+      "properties": {
+        "text": "She",
+        "fontSize": 72,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "bottomRight": "gapR.topLeft"
+      }
+    },
+    {
+      "action": "create",
+      "target": "tail",
+      "type": "text",
+      "properties": {
+        "text": "tennis on weekends.",
+        "fontSize": 72,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "bottomLeft": "gapR.topRight"
+      }
+    },
+    {
+      "action": "create",
+      "target": "pAR",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 520,
+          "y": 240
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "pAT",
+      "type": "text",
+      "properties": {
+        "text": "play",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "pAR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "pBR",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 900,
+          "y": 240
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "pBT",
+      "type": "text",
+      "properties": {
+        "text": "play",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "pBR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sBR",
+      "type": "rectangle",
+      "properties": {
+        "width": 87,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1079,
+          "y": 240
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sBT",
+      "type": "text",
+      "properties": {
+        "text": "s",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sBR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap1_0",
+      "type": "text",
+      "properties": {
+        "text": "Play or plays? Do or does? One little s decides.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "ic0",
+      "type": "circle",
+      "properties": {
+        "radius": 40,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 260,
+          "y": 220
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "lb0",
+      "type": "text",
+      "properties": {
+        "text": "Habits",
+        "fontSize": 56,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 360,
+          "y": 180
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ex0",
+      "type": "text",
+      "properties": {
+        "text": "I wake up at 7:00 AM every day.",
+        "fontSize": 44,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "lb0.bottomLeft.x",
+        "y": "lb0.bottomLeft.y + 10"
+      }
+    },
+    {
+      "action": "create",
+      "target": "ic1",
+      "type": "circle",
+      "properties": {
+        "radius": 40,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 260,
+          "y": 460
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "lb1",
+      "type": "text",
+      "properties": {
+        "text": "Facts",
+        "fontSize": 56,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 360,
+          "y": 420
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ex1",
+      "type": "text",
+      "properties": {
+        "text": "Water boils at 100°C.",
+        "fontSize": 44,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "lb1.bottomLeft.x",
+        "y": "lb1.bottomLeft.y + 10"
+      }
+    },
+    {
+      "action": "create",
+      "target": "ic2",
+      "type": "circle",
+      "properties": {
+        "radius": 40,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 260,
+          "y": 700
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "lb2",
+      "type": "text",
+      "properties": {
+        "text": "Permanent states",
+        "fontSize": 56,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 360,
+          "y": 660
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ex2",
+      "type": "text",
+      "properties": {
+        "text": "She lives in London.",
+        "fontSize": 44,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "lb2.bottomLeft.x",
+        "y": "lb2.bottomLeft.y + 10"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap2_0",
+      "type": "text",
+      "properties": {
+        "text": "Use the Present Simple for three things:",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap2_1",
+      "type": "text",
+      "properties": {
+        "text": "habits you repeat, facts that are always true,",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap2_2",
+      "type": "text",
+      "properties": {
+        "text": "and permanent states, like where someone lives.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sym3",
+      "type": "text",
+      "properties": {
+        "text": "+",
+        "fontSize": 120,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 120,
+          "y": 60
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sAR",
+      "type": "rectangle",
+      "properties": {
+        "width": 588,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 572,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sAT",
+      "type": "text",
+      "properties": {
+        "text": "I / you / we / they",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sAR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vAR",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 1176,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vAT",
+      "type": "text",
+      "properties": {
+        "text": "work",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vAR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "exA",
+      "type": "text",
+      "properties": {
+        "text": "I work in an office.",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "sAR.bottomLeft.x",
+        "y": "sAR.bottomLeft.y + 20"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB3R",
+      "type": "rectangle",
+      "properties": {
+        "width": 421,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 562,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB3T",
+      "type": "text",
+      "properties": {
+        "text": "he / she / it",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sB3R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vBR",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 999,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vBT",
+      "type": "text",
+      "properties": {
+        "text": "work",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vBR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "fSR",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1500,
+          "y": 370
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "fST",
+      "type": "text",
+      "properties": {
+        "text": "s/es",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "fSR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB1",
+      "type": "text",
+      "properties": {
+        "text": "He work",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "sB3R.bottomLeft.x",
+        "y": "sB3R.bottomLeft.y + 20"
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB2",
+      "type": "text",
+      "properties": {
+        "text": "s",
+        "fontSize": 42,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "x": "eB1.topRight.x",
+        "y": "eB1.topRight.y"
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB3",
+      "type": "text",
+      "properties": {
+        "text": "in an office.",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "eB2.topRight.x + 12",
+        "y": "eB2.topRight.y"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap3_0",
+      "type": "text",
+      "properties": {
+        "text": "In positive sentences, I, you, we, they take the base verb: I work.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap3_1",
+      "type": "text",
+      "properties": {
+        "text": "But he, she, it add s or es: he works.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sym4",
+      "type": "text",
+      "properties": {
+        "text": "−",
+        "fontSize": 120,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 120,
+          "y": 60
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sA4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 588,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 465,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sA4T",
+      "type": "text",
+      "properties": {
+        "text": "I / you / we / they",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sA4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "dnR",
+      "type": "rectangle",
+      "properties": {
+        "width": 199,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1069,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "dnT",
+      "type": "text",
+      "properties": {
+        "text": "don’t",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "dnR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vA4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 1284,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vA4T",
+      "type": "text",
+      "properties": {
+        "text": "verb",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vA4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "exA4",
+      "type": "text",
+      "properties": {
+        "text": "We don’t eat meat.",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "sA4R.bottomLeft.x",
+        "y": "sA4R.bottomLeft.y + 20"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 421,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 590,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB4T",
+      "type": "text",
+      "properties": {
+        "text": "he / she / it",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sB4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vB4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 1027,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vB4T",
+      "type": "text",
+      "properties": {
+        "text": "verb",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vB4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 115,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1214,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB4T",
+      "type": "text",
+      "properties": {
+        "text": "es",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "eB4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "dB4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 115,
+        "height": 81,
+        "fill": "#64748b",
+        "pos": {
+          "x": 882,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "dB4T",
+      "type": "text",
+      "properties": {
+        "text": "do",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "dB4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "nB4R",
+      "type": "rectangle",
+      "properties": {
+        "width": 143,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1144,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "nB4T",
+      "type": "text",
+      "properties": {
+        "text": "n’t",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "nB4R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "exB4",
+      "type": "text",
+      "properties": {
+        "text": "He doesn’t like coffee.",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "pos": {
+          "x": 445,
+          "y": 661
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap4_0",
+      "type": "text",
+      "properties": {
+        "text": "Negatives add don’t. For he, she or it, use doesn’t —",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap4_1",
+      "type": "text",
+      "properties": {
+        "text": "the s jumps onto does, and the verb goes back to base.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sym5",
+      "type": "text",
+      "properties": {
+        "text": "?",
+        "fontSize": 120,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 120,
+          "y": 60
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "dAR",
+      "type": "rectangle",
+      "properties": {
+        "width": 115,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 455,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "dAT",
+      "type": "text",
+      "properties": {
+        "text": "Do",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "dAR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sA5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 588,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 586,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sA5T",
+      "type": "text",
+      "properties": {
+        "text": "I / you / we / they",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sA5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vA5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 1190,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vA5T",
+      "type": "text",
+      "properties": {
+        "text": "verb",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vA5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "qAR",
+      "type": "rectangle",
+      "properties": {
+        "width": 87,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1377,
+          "y": 300
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "qAT",
+      "type": "text",
+      "properties": {
+        "text": "?",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "qAR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "exA5",
+      "type": "text",
+      "properties": {
+        "text": "Do you speak English?",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "x": "dAR.bottomLeft.x",
+        "y": "dAR.bottomLeft.y + 20"
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 421,
+        "height": 81,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 445,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "sB5T",
+      "type": "text",
+      "properties": {
+        "text": "he / she / it",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "sB5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "dB5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 115,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 882,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "dB5T",
+      "type": "text",
+      "properties": {
+        "text": "do",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "dB5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 115,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1013,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "eB5T",
+      "type": "text",
+      "properties": {
+        "text": "es",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "eB5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "nB5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 143,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1144,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "nB5T",
+      "type": "text",
+      "properties": {
+        "text": "n’t",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "nB5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "vB5R",
+      "type": "rectangle",
+      "properties": {
+        "width": 171,
+        "height": 81,
+        "fill": "#12a39a",
+        "pos": {
+          "x": 1303,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "vB5T",
+      "type": "text",
+      "properties": {
+        "text": "verb",
+        "fontSize": 48,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "vB5R.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "qBR",
+      "type": "rectangle",
+      "properties": {
+        "width": 87,
+        "height": 81,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1359,
+          "y": 560
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "qBT",
+      "type": "text",
+      "properties": {
+        "text": "?",
+        "fontSize": 48,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "qBR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "exB5",
+      "type": "text",
+      "properties": {
+        "text": "Does she live here?",
+        "fontSize": 42,
+        "color": "#475569",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "pos": {
+          "x": 473,
+          "y": 661
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap5_0",
+      "type": "text",
+      "properties": {
+        "text": "Questions start with Do, or Does for he, she and it.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap5_1",
+      "type": "text",
+      "properties": {
+        "text": "Again, does takes the s, and the verb stays base.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "qt",
+      "type": "text",
+      "properties": {
+        "text": "Quick quiz",
+        "fontSize": 60,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 160,
+          "y": 90
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "qu",
+      "type": "rectangle",
+      "properties": {
+        "width": 360,
+        "height": 8,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 160,
+          "y": 175
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "p0",
+      "type": "text",
+      "properties": {
+        "text": "The sun ___ in the east. (rise)",
+        "fontSize": 38,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "pos": {
+          "x": 160,
+          "y": 280
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d00",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1010,
+          "y": 306
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d01",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1060,
+          "y": 306
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d02",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1110,
+          "y": 306
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "a0",
+      "type": "text",
+      "properties": {
+        "text": "The sun rises in the east.",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 1190,
+          "y": 280
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ck0",
+      "type": "text",
+      "properties": {
+        "text": "✓",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "x": "a0.topRight.x + 14",
+        "y": "a0.topRight.y"
+      }
+    },
+    {
+      "action": "create",
+      "target": "p1",
+      "type": "text",
+      "properties": {
+        "text": "She ___ work on Sundays. (negative)",
+        "fontSize": 38,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "pos": {
+          "x": 160,
+          "y": 500
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d10",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1010,
+          "y": 526
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d11",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1060,
+          "y": 526
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d12",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1110,
+          "y": 526
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "a1",
+      "type": "text",
+      "properties": {
+        "text": "She doesn’t work on Sundays.",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 1190,
+          "y": 500
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ck1",
+      "type": "text",
+      "properties": {
+        "text": "✓",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "x": "a1.topRight.x + 14",
+        "y": "a1.topRight.y"
+      }
+    },
+    {
+      "action": "create",
+      "target": "p2",
+      "type": "text",
+      "properties": {
+        "text": "Yes, I like pizza. → ________?",
+        "fontSize": 38,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "pos": {
+          "x": 160,
+          "y": 720
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d20",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1010,
+          "y": 746
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d21",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1060,
+          "y": 746
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "d22",
+      "type": "circle",
+      "properties": {
+        "radius": 16,
+        "fill": "#cbd5e1",
+        "pos": {
+          "x": 1110,
+          "y": 746
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "a2",
+      "type": "text",
+      "properties": {
+        "text": "Do you like pizza?",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 1190,
+          "y": 720
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "ck2",
+      "type": "text",
+      "properties": {
+        "text": "✓",
+        "fontSize": 38,
+        "color": "#2bb673",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "x": "a2.topRight.x + 14",
+        "y": "a2.topRight.y"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap6_0",
+      "type": "text",
+      "properties": {
+        "text": "Fill the gap: three, two, one — rises!",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap6_1",
+      "type": "text",
+      "properties": {
+        "text": "Negative: three, two, one — she doesn’t work on Sundays.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap6_2",
+      "type": "text",
+      "properties": {
+        "text": "Question: three, two, one — do you like pizza?",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "rtR",
+      "type": "rectangle",
+      "properties": {
+        "width": 482,
+        "height": 95,
+        "fill": "#3b82d6",
+        "pos": {
+          "x": 719,
+          "y": 150
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "rtT",
+      "type": "text",
+      "properties": {
+        "text": "he / she / it",
+        "fontSize": 56,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "rtR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "lfR",
+      "type": "rectangle",
+      "properties": {
+        "width": 319,
+        "height": 95,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 440,
+          "y": 520
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "lfT",
+      "type": "text",
+      "properties": {
+        "text": "verb + s",
+        "fontSize": 56,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "lfR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "rgR",
+      "type": "rectangle",
+      "properties": {
+        "width": 189,
+        "height": 95,
+        "fill": "#f5a524",
+        "pos": {
+          "x": 1260,
+          "y": 520
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "rgT",
+      "type": "text",
+      "properties": {
+        "text": "does",
+        "fontSize": 56,
+        "color": "#1d2b3a",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "center": "rgR.center"
+      }
+    },
+    {
+      "action": "create",
+      "target": "l1",
+      "type": "segment",
+      "properties": {
+        "start": "rtR.bottomCenter",
+        "end": "lfR.topCenter",
+        "stroke": "#64748b",
+        "strokeWidth": 6
+      }
+    },
+    {
+      "action": "create",
+      "target": "l2",
+      "type": "segment",
+      "properties": {
+        "start": "rtR.bottomCenter",
+        "end": "rgR.topCenter",
+        "stroke": "#64748b",
+        "strokeWidth": 6
+      }
+    },
+    {
+      "action": "create",
+      "target": "pl",
+      "type": "text",
+      "properties": {
+        "text": "+",
+        "fontSize": 80,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 560,
+          "y": 350
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "mi",
+      "type": "text",
+      "properties": {
+        "text": "− ?",
+        "fontSize": 80,
+        "color": "#f5a524",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": {
+          "x": 1250,
+          "y": 350
+        }
+      }
+    },
+    {
+      "action": "create",
+      "target": "cap7_0",
+      "type": "text",
+      "properties": {
+        "text": "Remember: he, she, it — add the s, or use does.",
+        "fontSize": 38,
+        "color": "#ffffff",
+        "fontFamily": "sans-serif",
+        "fontWeight": "normal",
+        "center": "band.center"
+      }
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m1",
+      "start": 0
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m2",
+      "start": "m1<4"
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m3",
+      "start": "m2<9"
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m4",
+      "start": "m3<10"
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m5",
+      "start": "m4<9"
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m6",
+      "start": "m5<9"
+    },
+    {
+      "action": "set",
+      "target": "band",
+      "properties": {
+        "opacity": 1
+      },
+      "name": "m7",
+      "start": "m6<15"
+    },
+    {
+      "action": "bind",
+      "target": "pAT",
+      "properties": {
+        "center": "pAR.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "pBT",
+      "properties": {
+        "center": "pBR.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "sBT",
+      "properties": {
+        "center": "sBR.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "sBR",
+      "properties": {
+        "x": "pBR.topRight.x + 8",
+        "y": "pBR.topRight.y"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "cap1_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m1<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap1_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "gapR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m1"
+    },
+    {
+      "action": "animate",
+      "target": "she",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m1"
+    },
+    {
+      "action": "animate",
+      "target": "tail",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m1<0.1"
+    },
+    {
+      "action": "animate",
+      "target": "pAR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m1<0.5"
+    },
+    {
+      "action": "animate",
+      "target": "pAT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m1<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "pBR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m1<0.8"
+    },
+    {
+      "action": "animate",
+      "target": "pBT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m1<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "sBR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m1<0.95"
+    },
+    {
+      "action": "animate",
+      "target": "sBT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m1<1.05"
+    },
+    {
+      "action": "animate",
+      "target": "pAR",
+      "properties": {
+        "x": 1100
+      },
+      "duration": 0.35,
+      "ease": "cubicInOut",
+      "start": "m1<1.4"
+    },
+    {
+      "action": "animate",
+      "target": "pBR",
+      "properties": {
+        "x": 560
+      },
+      "duration": 0.35,
+      "ease": "cubicInOut",
+      "start": "m1<1.4"
+    },
+    {
+      "action": "animate",
+      "target": "sBR",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m1<2.0",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "pBR",
+      "properties": {
+        "bottomLeft": "gapR.topLeft"
+      },
+      "duration": 0.5,
+      "ease": "cubicOut",
+      "start": "m1<2.6"
+    },
+    {
+      "action": "animate",
+      "target": "pAR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.3,
+      "start": "m1<2.6"
+    },
+    {
+      "action": "animate",
+      "target": "pAT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.3,
+      "start": "m1<2.6"
+    },
+    {
+      "action": "animate",
+      "target": "ic0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<0.3"
+    },
+    {
+      "action": "animate",
+      "target": "lb0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<0.45"
+    },
+    {
+      "action": "animate",
+      "target": "ex0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<0.75"
+    },
+    {
+      "action": "animate",
+      "target": "lb0",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m2<1.2",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "ic1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<3.0"
+    },
+    {
+      "action": "animate",
+      "target": "lb1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<3.15"
+    },
+    {
+      "action": "animate",
+      "target": "ex1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<3.45"
+    },
+    {
+      "action": "animate",
+      "target": "lb1",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m2<3.9",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "ic2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<6.0"
+    },
+    {
+      "action": "animate",
+      "target": "lb2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<6.15"
+    },
+    {
+      "action": "animate",
+      "target": "ex2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m2<6.45"
+    },
+    {
+      "action": "animate",
+      "target": "lb2",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m2<6.9",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m2<0.1"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m2<2.8"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m2<2.9"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m2<6.0"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m2<6.1"
+    },
+    {
+      "action": "animate",
+      "target": "cap2_2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sym3",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m3"
+    },
+    {
+      "action": "animate",
+      "target": "exA",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m3<1.3"
+    },
+    {
+      "action": "bind",
+      "target": "fST",
+      "properties": {
+        "center": "fSR.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "sAR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m3<0.3"
+    },
+    {
+      "action": "animate",
+      "target": "sAT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m3<0.4"
+    },
+    {
+      "action": "animate",
+      "target": "vAR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m3<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "vAT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m3<0.7"
+    },
+    {
+      "action": "animate",
+      "target": "sB3R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m3<4.2"
+    },
+    {
+      "action": "animate",
+      "target": "sB3T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m3<4.3"
+    },
+    {
+      "action": "animate",
+      "target": "vBR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m3<4.5"
+    },
+    {
+      "action": "animate",
+      "target": "vBT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m3<4.6"
+    },
+    {
+      "action": "animate",
+      "target": "fSR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m3<5.2"
+    },
+    {
+      "action": "animate",
+      "target": "fST",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m3<5.3"
+    },
+    {
+      "action": "animate",
+      "target": "fSR",
+      "properties": {
+        "x": "vBR.topRight.x + 16",
+        "y": "vBR.topRight.y"
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m3<5.7"
+    },
+    {
+      "action": "animate",
+      "target": "eB1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m3<6.5"
+    },
+    {
+      "action": "animate",
+      "target": "eB2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m3<7.0"
+    },
+    {
+      "action": "animate",
+      "target": "eB3",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m3<7.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap3_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m3<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap3_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m3<4.6"
+    },
+    {
+      "action": "animate",
+      "target": "cap3_1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m3<4.6"
+    },
+    {
+      "action": "animate",
+      "target": "cap3_1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m3<9.4"
+    },
+    {
+      "action": "animate",
+      "target": "sym4",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m4"
+    },
+    {
+      "action": "animate",
+      "target": "exA4",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m4<1.5"
+    },
+    {
+      "action": "bind",
+      "target": "sB4T",
+      "properties": {
+        "center": "sB4R.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "vB4T",
+      "properties": {
+        "center": "vB4R.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "eB4T",
+      "properties": {
+        "center": "eB4R.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "sA4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<0.3"
+    },
+    {
+      "action": "animate",
+      "target": "sA4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<0.4"
+    },
+    {
+      "action": "animate",
+      "target": "dnR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "dnT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<0.7"
+    },
+    {
+      "action": "animate",
+      "target": "vA4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "vA4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<1.0"
+    },
+    {
+      "action": "animate",
+      "target": "sB4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<3.0"
+    },
+    {
+      "action": "animate",
+      "target": "sB4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<3.1"
+    },
+    {
+      "action": "animate",
+      "target": "vB4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<3.2"
+    },
+    {
+      "action": "animate",
+      "target": "vB4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<3.3"
+    },
+    {
+      "action": "animate",
+      "target": "eB4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<3.4"
+    },
+    {
+      "action": "animate",
+      "target": "eB4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<3.5"
+    },
+    {
+      "action": "animate",
+      "target": "sB4R",
+      "properties": {
+        "x": 445
+      },
+      "duration": 0.5,
+      "ease": "cubicInOut",
+      "start": "m4<4.3"
+    },
+    {
+      "action": "animate",
+      "target": "vB4R",
+      "properties": {
+        "x": 1303
+      },
+      "duration": 0.5,
+      "ease": "cubicInOut",
+      "start": "m4<4.3"
+    },
+    {
+      "action": "animate",
+      "target": "dB4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<4.8"
+    },
+    {
+      "action": "animate",
+      "target": "dB4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<4.9"
+    },
+    {
+      "action": "animate",
+      "target": "eB4R",
+      "properties": {
+        "x": 1013
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m4<5.4"
+    },
+    {
+      "action": "animate",
+      "target": "nB4R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m4<6.3"
+    },
+    {
+      "action": "animate",
+      "target": "nB4T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m4<6.4"
+    },
+    {
+      "action": "animate",
+      "target": "exB4",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m4<7.0"
+    },
+    {
+      "action": "animate",
+      "target": "cap4_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m4<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap4_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m4<4.4"
+    },
+    {
+      "action": "animate",
+      "target": "cap4_1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m4<4.4"
+    },
+    {
+      "action": "animate",
+      "target": "cap4_1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sym5",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m5"
+    },
+    {
+      "action": "animate",
+      "target": "exA5",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m5<1.5"
+    },
+    {
+      "action": "bind",
+      "target": "dB5T",
+      "properties": {
+        "center": "dB5R.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "bind",
+      "target": "eB5T",
+      "properties": {
+        "center": "eB5R.center"
+      },
+      "start": 0
+    },
+    {
+      "action": "animate",
+      "target": "dAR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<0.3"
+    },
+    {
+      "action": "animate",
+      "target": "dAT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<0.4"
+    },
+    {
+      "action": "animate",
+      "target": "sA5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "sA5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<0.7"
+    },
+    {
+      "action": "animate",
+      "target": "vA5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "vA5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<1.0"
+    },
+    {
+      "action": "animate",
+      "target": "qAR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<1.2"
+    },
+    {
+      "action": "animate",
+      "target": "qAT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<1.3"
+    },
+    {
+      "action": "animate",
+      "target": "sB5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<4.0"
+    },
+    {
+      "action": "animate",
+      "target": "sB5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<4.1"
+    },
+    {
+      "action": "animate",
+      "target": "dB5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<4.15"
+    },
+    {
+      "action": "animate",
+      "target": "dB5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<4.25"
+    },
+    {
+      "action": "animate",
+      "target": "eB5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<4.3"
+    },
+    {
+      "action": "animate",
+      "target": "eB5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<4.4"
+    },
+    {
+      "action": "animate",
+      "target": "nB5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<4.45"
+    },
+    {
+      "action": "animate",
+      "target": "nB5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<4.55"
+    },
+    {
+      "action": "animate",
+      "target": "vB5R",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<4.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB5T",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<4.7"
+    },
+    {
+      "action": "animate",
+      "target": "nB5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.3,
+      "start": "m5<5.2"
+    },
+    {
+      "action": "animate",
+      "target": "nB5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.3,
+      "start": "m5<5.2"
+    },
+    {
+      "action": "animate",
+      "target": "dB5R",
+      "properties": {
+        "x": 473
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m5<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB5R",
+      "properties": {
+        "x": 604
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m5<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB5R",
+      "properties": {
+        "x": 735
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m5<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB5R",
+      "properties": {
+        "x": 1172
+      },
+      "duration": 0.6,
+      "ease": "cubicInOut",
+      "start": "m5<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "qBR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m5<6.4"
+    },
+    {
+      "action": "animate",
+      "target": "qBT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m5<6.5"
+    },
+    {
+      "action": "animate",
+      "target": "exB5",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m5<6.9"
+    },
+    {
+      "action": "animate",
+      "target": "cap5_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m5<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap5_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m5<4.4"
+    },
+    {
+      "action": "animate",
+      "target": "cap5_1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m5<4.4"
+    },
+    {
+      "action": "animate",
+      "target": "cap5_1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "qt",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<0.1"
+    },
+    {
+      "action": "animate",
+      "target": "qu",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "p0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "d00",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "d00",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<1.4"
+    },
+    {
+      "action": "animate",
+      "target": "d01",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "d01",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<2.2"
+    },
+    {
+      "action": "animate",
+      "target": "d02",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "d02",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<3.0"
+    },
+    {
+      "action": "animate",
+      "target": "a0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<3.9"
+    },
+    {
+      "action": "animate",
+      "target": "ck0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<4.1"
+    },
+    {
+      "action": "animate",
+      "target": "p1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<5.3"
+    },
+    {
+      "action": "animate",
+      "target": "d10",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "d10",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<6.1"
+    },
+    {
+      "action": "animate",
+      "target": "d11",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "d11",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<6.9"
+    },
+    {
+      "action": "animate",
+      "target": "d12",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<5.6"
+    },
+    {
+      "action": "animate",
+      "target": "d12",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<7.7"
+    },
+    {
+      "action": "animate",
+      "target": "a1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ck1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<8.8"
+    },
+    {
+      "action": "animate",
+      "target": "p2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<10.0"
+    },
+    {
+      "action": "animate",
+      "target": "d20",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<10.3"
+    },
+    {
+      "action": "animate",
+      "target": "d20",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<10.8"
+    },
+    {
+      "action": "animate",
+      "target": "d21",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<10.3"
+    },
+    {
+      "action": "animate",
+      "target": "d21",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<11.6"
+    },
+    {
+      "action": "animate",
+      "target": "d22",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<10.3"
+    },
+    {
+      "action": "animate",
+      "target": "d22",
+      "properties": {
+        "fill": "#f5a524"
+      },
+      "duration": 0.15,
+      "start": "m6<12.4"
+    },
+    {
+      "action": "animate",
+      "target": "a2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<13.3"
+    },
+    {
+      "action": "animate",
+      "target": "ck2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m6<13.5"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<0.4"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m6<5.0"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<5.1"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m6<9.7"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m6<9.8"
+    },
+    {
+      "action": "animate",
+      "target": "cap6_2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m6<14.4"
+    },
+    {
+      "action": "animate",
+      "target": "rtR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m7<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "rtT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m7<0.3"
+    },
+    {
+      "action": "animate",
+      "target": "l1",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m7<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "l2",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m7<0.6"
+    },
+    {
+      "action": "animate",
+      "target": "lfR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m7<0.9"
+    },
+    {
+      "action": "animate",
+      "target": "lfT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m7<1.0"
+    },
+    {
+      "action": "animate",
+      "target": "rgR",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "backOut",
+      "start": "m7<1.2"
+    },
+    {
+      "action": "animate",
+      "target": "rgT",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.25,
+      "start": "m7<1.3"
+    },
+    {
+      "action": "animate",
+      "target": "pl",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m7<1.4"
+    },
+    {
+      "action": "animate",
+      "target": "mi",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.4,
+      "ease": "cubicOut",
+      "start": "m7<1.6"
+    },
+    {
+      "action": "animate",
+      "target": "lfR",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m7<2.0",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "rgR",
+      "properties": {
+        "scale": 1.15
+      },
+      "duration": 0.25,
+      "ease": "sineInOut",
+      "start": "m7<2.0",
+      "repeat": 2,
+      "repeatMode": "yoyo"
+    },
+    {
+      "action": "animate",
+      "target": "cap7_0",
+      "properties": {
+        "reveal": true
+      },
+      "duration": 0.2,
+      "ease": "cubicOut",
+      "start": "m7<0.2"
+    },
+    {
+      "action": "animate",
+      "target": "cap7_0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.2,
+      "start": "m7<3.5"
+    },
+    {
+      "action": "animate",
+      "target": "gapR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "pBR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "pBT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "sBR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "sBT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "she",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "tail",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m1<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "ex0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ex1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ex2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ic0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ic1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "ic2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "lb0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "lb1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "lb2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m2<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB3",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "exA",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "fSR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "fST",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "sAR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "sAT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB3R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB3T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "sym3",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "vAR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "vAT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "vBR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "vBT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m3<9.6"
+    },
+    {
+      "action": "animate",
+      "target": "dB4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dB4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dnR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dnT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "exA4",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "exB4",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "nB4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "nB4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sA4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sA4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sym4",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vA4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vA4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB4R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB4T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m4<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dAR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dAT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dB5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "dB5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "eB5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "exA5",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "exB5",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "qAR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "qAT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "qBR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "qBT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sA5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sA5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sB5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "sym5",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vA5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vA5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB5R",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "vB5T",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m5<8.6"
+    },
+    {
+      "action": "animate",
+      "target": "a0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "a1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "a2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "ck0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "ck1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "ck2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d00",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d01",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d02",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d10",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d11",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d12",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d20",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d21",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "d22",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "p0",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "p1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "p2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "qt",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "qu",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m6<14.6"
+    },
+    {
+      "action": "animate",
+      "target": "l1",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "l2",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "lfR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "lfT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "mi",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "pl",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "rgR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "rgT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "rtR",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    },
+    {
+      "action": "animate",
+      "target": "rtT",
+      "properties": {
+        "reveal": false
+      },
+      "duration": 0.4,
+      "start": "m7<3.6"
+    }
+  ]
+}
