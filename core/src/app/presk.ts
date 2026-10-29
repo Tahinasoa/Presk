@@ -57,6 +57,9 @@ export class Presk {
   static async create(options: PreskOptions): Promise<Presk> {
     return new Presk(options);
   }
+  async destroy(){
+    console.log("You really have to implement 'destroy', to avoid memory leak") ;
+  }
 
   async load(raw: unknown): Promise<void> {
     this.pause();
