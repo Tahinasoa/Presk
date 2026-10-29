@@ -28,7 +28,7 @@ function collectImageUrls(raw: unknown): string[] {
 }
 
 interface PreskOptions {
-  root: string;
+  root: string|HTMLElement;
   fps?: number;
 }
 
