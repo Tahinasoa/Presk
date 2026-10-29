@@ -1,16 +1,24 @@
 import { Application, Container } from "pixi.js";
 
 export class PixiHost {
-  private readonly root: Element;
+  private readonly root: HTMLElement;
   private instance: Application | null = null;
   private worldContainer: Container | null = null;
 
-  constructor(rootSelector: string) {
-    const root = document.querySelector(rootSelector);
-    if (!root) throw new Error(`PixiHost: root element not found for selector "${rootSelector}".`);
-    this.root = root;
+  constructor(rootSelector: string | HTMLElement) {
+    if (typeof rootSelector === "string") {
+      const root = document.querySelector(rootSelector);
+      if (root === null) {
+        throw new Error(`PixiHost: root element not found for selector "${rootSelector}".`);
+      }
+      if (!(root instanceof HTMLElement)) {
+        throw new Error(`PixiHost: element matched by "${rootSelector}" is not an HTMLElement.`);
+      }
+      this.root = root;
+    } else {
+      this.root = rootSelector;
+    }
   }
-
   async init(width: number, height: number, background?: string): Promise<void> {
     const app = new Application();
     await app.init({

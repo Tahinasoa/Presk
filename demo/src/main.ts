@@ -2,7 +2,10 @@ import { Presk, PreskCompileError } from "@presk/core";
 import sampleClip from "./examples/continious_01.presk.json";
 
 async function main(): Promise<void> {
-  const presk = await Presk.create({ root: "#app" });
+  const appRoot = document.getElementById("app") ;
+  if(!appRoot) throw "unable to find 'app' element, used a root" ;
+
+  const presk = await Presk.create({ root: appRoot });
   try {
     await presk.load(sampleClip);
   } catch (error) {
