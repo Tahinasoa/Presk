@@ -1,5 +1,5 @@
 import { Presk, PreskCompileError } from "@presk/core";
-import sampleClip from "./example.presk.json";
+import sampleClip from "./examples/continious_01.presk.json";
 
 async function main(): Promise<void> {
   const presk = await Presk.create({ root: "#app" });

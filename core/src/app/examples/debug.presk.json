@@ -1,0 +1,52 @@
+{
+    "version": "1.0",
+    "scene": {
+        "width": 300,
+        "height": 300,
+        "background": "blue"
+    },
+    "steps": [
+        {
+            "action": "create",
+            "type": "text",
+            "target": "t01",
+            "properties" : {
+                "text": "Hello",
+                "reveal" : true
+            }
+        },
+        {
+            "action": "create",
+            "type" : "text",
+            "target" : "t02",
+            "properties" : {
+                "text": " world",
+                "reveal" : true
+            }
+        },{
+            "action": "animate",
+            "target" : "t01",
+            "properties" : {
+                "y" : "scene.bottomCenter.y"
+            },
+            "duration" : 5,
+            "start" : "0"
+        },{
+            "action": "bind",
+            "target" : "t02",
+            "properties" : {
+                "y" : "t01.y",
+                "x" : "t01.topRight.x"
+            },
+            "start" : 0
+        },
+        {
+            "action": "set",
+            "target" : "t01",
+            "properties" : {
+                "text": "Je vous salut"
+            },
+            "start" : 3
+        }
+    ]
+}

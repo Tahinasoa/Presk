@@ -2,6 +2,7 @@ packages:
   - "core"
   - "demo"
   - "lib/*"
+  - "presk-react"
 allowBuilds:
   esbuild: false
 permissions:

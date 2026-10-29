@@ -57,6 +57,9 @@ export class Presk {
   static async create(options: PreskOptions): Promise<Presk> {
     return new Presk(options);
   }
+  async destroy(){
+    console.log("You really have to implement 'destroy', to avoid memory leak") ;
+  }
 
   async load(raw: unknown): Promise<void> {
     this.pause();
@@ -135,5 +138,12 @@ export class Presk {
   private requireViewSync(): ViewSync {
     if (!this.viewSync) throw new Error("Presk: no document has been loaded.");
     return this.viewSync;
+  }
+  get sceneWidth(): number {
+    return this.requireSimulation().world.root.getNumber("width");
+  }
+
+  get sceneHeight(): number {
+    return this.requireSimulation().world.root.getNumber("height");
   }
 }
