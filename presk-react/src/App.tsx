@@ -1,6 +1,6 @@
-import Presk from "./presk/presk";
+import { PreskPlayer } from "./presk/index";
 import PreskLogo from "./presk/PreskLogo";
-import EXAMPLE from "./example.presk.json";
+import EXAMPLE from "./history.presk.json";
 
 function App() {
   return (
@@ -12,7 +12,7 @@ function App() {
         </h1>
       </header>
       <main style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-        <Presk preskDocument={EXAMPLE} />
+        <PreskPlayer preskDocument={EXAMPLE} />
       </main>
     </div>
   );
