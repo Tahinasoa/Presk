@@ -20,6 +20,23 @@ body {
   margin: 0 auto;
 }
 
+.presk-view-container {
+  position: relative;
+  width: 100%;
+}
+
+.presk-error-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(100% - 32px);
+  max-width: 700px;
+  max-height: calc(100% - 32px);
+  overflow-y: auto;
+  z-index: 10;
+}
+
 .presk_root {
   display: flex;
   justify-content: center;

@@ -15,9 +15,14 @@ export function PreskPlayer({ preskDocument, fps, className }: PreskPlayerProps)
 
   return (
     <div className={className ?? "presk-player"}>
-      {state.error && <ErrorBanner title={state.error.title} error={state.error.message} />}
-
-      <Presk ref={preskRef} preskDocument={preskDocument} fps={fps} {...bind} />
+      <div className="presk-view-container">
+        <Presk ref={preskRef} preskDocument={preskDocument} fps={fps} {...bind} />
+        {state.error && (
+          <div className="presk-error-overlay">
+            <ErrorBanner title={state.error.title} error={state.error.message} />
+          </div>
+        )}
+      </div>
 
       <PlayerControls
         isPlaying={state.isPlaying}
