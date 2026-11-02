@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 172 102" width="172" height="102" role="img" aria-labelledby="presk-title">
+  <title id="presk-title">Presk</title>
+  <style>
+    .front, .play { transform-box: fill-box; transform-origin: center; }
+    .front { animation: front-in .35s cubic-bezier(.2,.8,.2,1) both; }
+    .back  { animation: back-in .6s cubic-bezier(.2,.8,.2,1) .25s both; }
+    .play  { animation: play-in .4s cubic-bezier(.3,1.4,.5,1) .65s both; }
+    @keyframes front-in { from { transform: scale(.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @keyframes back-in  { from { transform: translate(-12px,-12px); } to { transform: translate(0,0); } }
+    @keyframes play-in  { from { transform: scale(.4); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    @media (prefers-reduced-motion: reduce) { .front, .back, .play { animation: none; } }
+  </style>
+  <rect class="back" x="12" y="12" width="160" height="90" rx="12" fill="#F5B800"/>
+  <rect class="front" x="0" y="0" width="160" height="90" rx="12" fill="#2563EB"/>
+  <path class="play" d="M71 27 L71 63 L101 45 Z" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="6" stroke-linejoin="round"/>
+</svg>
