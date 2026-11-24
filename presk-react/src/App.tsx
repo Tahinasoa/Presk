@@ -1,5 +1,5 @@
 import { PreskPlayer } from "./presk/index";
-import EXAMPLE from "./history.presk.json";
+import EXAMPLE from "./impressive.presk.json";
 
 function App() {
   return (

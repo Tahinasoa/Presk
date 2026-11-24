@@ -1,0 +1,131 @@
+{
+  "version": "1.0",
+  "scene": {
+    "width": 1200,
+    "height": 800,
+    "background": "#090d16"
+  },
+  "steps": [
+    {
+      "action": "create",
+      "target": "bgGlow",
+      "type": "circle",
+      "properties": {
+        "radius": 380,
+        "fill": "#1e1b4b",
+        "pos": { "x": 600, "y": 400 },
+        "reveal": true
+      }
+    },
+    {
+      "action": "create",
+      "target": "titleText",
+      "type": "text",
+      "properties": {
+        "text": "PRESK DYNAMIC UNIVERSE",
+        "fontSize": 44,
+        "color": "#f8fafc",
+        "fontFamily": "sans-serif",
+        "fontWeight": "bold",
+        "pos": { "x": 330, "y": 65 }
+      }
+    },
+    {
+      "action": "animate",
+      "target": "titleText",
+      "properties": { "reveal": true },
+      "duration": 1.0,
+      "ease": "cubicOut",
+      "start": 0
+    },
+    {
+      "action": "create",
+      "target": "orbitPath",
+      "type": "arc",
+      "properties": {
+        "radius": 240,
+        "startAngle": 0,
+        "endAngle": 360,
+        "stroke": "#3b82f6",
+        "strokeWidth": 4,
+        "pos": { "x": 600, "y": 410 }
+      }
+    },
+    {
+      "action": "animate",
+      "target": "orbitPath",
+      "properties": { "reveal": "draw" },
+      "duration": 1.5,
+      "ease": "sineInOut",
+      "start": 0.5
+    },
+    {
+      "action": "create",
+      "target": "centerCore",
+      "type": "rectangle",
+      "properties": {
+        "width": 110,
+        "height": 110,
+        "fill": "#f59e0b",
+        "pos": { "x": 545, "y": 355 },
+        "pivot": "center"
+      }
+    },
+    {
+      "action": "animate",
+      "target": "centerCore",
+      "properties": { "reveal": true, "rotation": 360 },
+      "duration": 4.0,
+      "repeat": "infinite",
+      "ease": "linear",
+      "start": 1.0
+    },
+    {
+      "action": "create",
+      "target": "satellite",
+      "type": "circle",
+      "properties": {
+        "radius": 22,
+        "fill": "#10b981",
+        "pos": { "x": 600, "y": 170 }
+      }
+    },
+    {
+      "action": "animate",
+      "target": "satellite",
+      "properties": { "reveal": true },
+      "duration": 0.5,
+      "start": 1.5
+    },
+    {
+      "action": "travel",
+      "target": "satellite",
+      "along": "orbitPath",
+      "from": 0,
+      "to": 1,
+      "duration": 3.0,
+      "repeat": "infinite",
+      "orient": true,
+      "start": 2.0
+    },
+    {
+      "action": "create",
+      "target": "subText",
+      "type": "text",
+      "properties": {
+        "text": "Fractions & Spread Creation in Action",
+        "fontSize": 24,
+        "color": "#94a3b8",
+        "fontFamily": "sans-serif",
+        "pos": { "x": 390, "y": 725 }
+      }
+    },
+    {
+      "action": "animate",
+      "target": "subText",
+      "properties": { "reveal": true },
+      "duration": 0.8,
+      "start": 2.5
+    }
+  ]
+}
