@@ -55,6 +55,7 @@ export function compileExpr(expr: Expr): (world: World) => number | Pt {
         const worldMatrix = object.worldMatrix();
         if (expr.fn === "pathAngle") return flat.angleAt(expr.t) + matRotationDeg(worldMatrix);
         const point = applyMat(worldMatrix, flat.pointAt(expr.t));
+        if (expr.fn === "pathPos") return point;
         return expr.fn === "pathX" ? point.x : point.y;
       };
   }

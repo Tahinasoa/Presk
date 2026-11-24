@@ -64,6 +64,10 @@ describe("compileExpr", () => {
     expect(compileExpr(p("a.bottomLeft"))(world)).toEqual({ x: 10, y: 70 });
   });
 
+  it("returns the world-space point from pathPos", () => {
+    expect(compileExpr(p("a.pathPos(main, 0.5)"))(world)).toEqual({ x: 110, y: 70 });
+  });
+
   it("throws a runtime error when division is non-finite", () => {
     expect(() => compileExpr(p("a.width / b.y"))(world)).toThrow(PreskRuntimeError);
     expect(() => compileExpr(p("a.width / b.y"))(world)).toThrow("division by zero");

@@ -33,6 +33,7 @@ describe("analyzeExpr", () => {
     ["20", "scalar", []],
     ["a.width / 2", "scalar", ["a"]],
     ["a.pathX(main, 0)", "scalar", ["a"]],
+    ["a.pathPos(main, 0)", "point", ["a"]],
     ["a.topRight", "point", ["a"]],
     ["a.topRight.x + t.width", "scalar", ["a", "t"]],
     ["scene.center.y", "scalar", ["scene"]],
@@ -42,7 +43,7 @@ describe("analyzeExpr", () => {
     expect(diagnostics.items).toEqual([]);
   });
 
-  it.each(["a.topRight + 1", "-a.center", "a.center * 2"])("rejects point arithmetic in %s", (source) => {
+  it.each(["a.topRight + 1", "-a.center", "a.center * 2", "a.pathPos(main, 0) + 1"])("rejects point arithmetic in %s", (source) => {
     const { result, diagnostics } = analyze(source);
     expect(result).toBeNull();
     expect(diagnostics.errors.map(({ code }) => code)).toEqual(["E_EXPR_POINT_IN_ARITHMETIC"]);

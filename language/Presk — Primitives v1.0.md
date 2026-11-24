@@ -66,7 +66,7 @@ Une valeur est une **expression** quand la propriété est un nombre ou un point
 - Références : `objet.propriété`, `objet.ancre.x`, `objet.boundingBox.center.y`, `objet.vertex[2].x`, `scene.center`, `scene.width`, `scene.view.topLeft`.
 - Arithmétique `+ - * /` **sur des nombres seulement** (pas de parenthèses) ; `-` unaire accepté†.
 - **Un point ne s'additionne pas** : `a.center + 1` est une erreur ; écrivez `a.center.x + 1`.
-- `objet.pathX(main, t)`, `pathY`, `pathAngle` : position et angle sur le chemin (§2.7).
+- `objet.pathX(main, t)`, `pathY`, `pathPos`, `pathAngle` : position et angle sur le chemin (§2.7).
 - Dans un `create`, on ne peut référencer qu'un objet **créé plus haut**.
 - Lire un **effet** (`a.reveal`) ou une propriété non numérique (`a.fill`) est une erreur.
 - Un point littéral s'écrit `{ "x": 100, "y": 50 }`† ; chaque coordonnée peut être une expression.
@@ -78,7 +78,7 @@ Une valeur est une **expression** quand la propriété est un nombre ou un point
 - **Pas de « sans remplissage »** : `circle`, `ellipse`, `polygon`, `triangle` ont toujours un remplissage ; voir §6, point 1. `arc`, `polyline`, `curve`, `segment`, `arrow`, `ray`, `line` n'en ont pas.
 - `strokeWidth` vaut **0 par défaut†** pour les formes pleines (donc pas de contour), **2†** pour les tracés.
 
-### 2.7 Chemins, `travel` et `pathX`
+### 2.7 Chemins, `travel` et projections de chemin
 Un **chemin** est paramétré par `t` de 0 à 1 **à vitesse constante** (proportionnel à la distance parcourue). Il suit l'objet (position, rotation, échelle).
 
 | Primitive | Chemin `main` | `t = 0` | Sens | Fermé ? |

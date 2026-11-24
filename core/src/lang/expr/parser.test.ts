@@ -158,6 +158,13 @@ describe("parseExpression arithmetic", () => {
     });
   });
 
+  it("parses pathPos as a path function", () => {
+    expect(parseExpression("o.pathPos(main, 0.25)")).toEqual({
+      ok: true,
+      expr: { kind: "pathFn", object: "o", fn: "pathPos", pathName: "main", t: 0.25 },
+    });
+  });
+
   it("rejects a bare object identifier", () => {
     expect(parseExpression("title").ok).toBe(false);
   });

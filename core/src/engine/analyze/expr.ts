@@ -79,7 +79,7 @@ export function analyzeExpr(
         d.error("E_EXPR_PATH", `Parameter t is outside the open path '${expr.pathName}'`, where);
         return null;
       }
-      return { type: "scalar", reads: [expr.object] };
+      return { type: expr.fn === "pathPos" ? "point" : "scalar", reads: [expr.object] };
     }
   }
 }

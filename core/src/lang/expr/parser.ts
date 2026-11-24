@@ -133,7 +133,7 @@ class ArithmeticParser {
     return path.length > 0 ? { kind: "ref", object, path } : null;
   }
 
-  private parsePathFunction(object: string, fn: "pathX" | "pathY" | "pathAngle"): Expr | null {
+  private parsePathFunction(object: string, fn: "pathX" | "pathY" | "pathPos" | "pathAngle"): Expr | null {
     if (!this.consumeType("lparen")) {
       return null;
     }
@@ -194,8 +194,8 @@ class ArithmeticParser {
   }
 }
 
-function isPathFunctionName(name: string): name is "pathX" | "pathY" | "pathAngle" {
-  return name === "pathX" || name === "pathY" || name === "pathAngle";
+function isPathFunctionName(name: string): name is "pathX" | "pathY" | "pathPos" | "pathAngle" {
+  return name === "pathX" || name === "pathY" || name === "pathPos" || name === "pathAngle";
 }
 
 export function parseExpression(source: string): ParseResult {

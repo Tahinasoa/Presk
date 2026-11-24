@@ -133,7 +133,7 @@ Règles :
 3. Une ancre indexée (`vertex[i]`) dont l'indice n'existe pas est une erreur.
 4. Une ancre propre est un point : elle suit les mêmes règles de grammaire que les ancres standard (§7.2).
 
-Les fonctions de projection le long d'un chemin (`pathX`, `pathY`, `pathAngle`) sont décrites au §7.4.
+Les fonctions de projection le long d'un chemin (`pathX`, `pathY`, `pathPos`, `pathAngle`) sont décrites au §7.4.
 
 ### 3.5 Vue de la scène : viewport et zoom
 
@@ -430,16 +430,18 @@ Le moteur doit :
 
 ### 7.4 Fonctions de chemin
 
-Un objet qui expose un chemin nommé (§8.2) fournit trois fonctions de projection, **à position `t` figée** :
+Un objet qui expose un chemin nommé (§8.2) fournit quatre fonctions de projection, **à position `t` figée** :
 
 ```
 <objet>.pathX(<nom>, <t>)
 <objet>.pathY(<nom>, <t>)
+<objet>.pathPos(<nom>, <t>)
 <objet>.pathAngle(<nom>, <t>)
 ```
 
 - `t` est une position normalisée de 0 (début) à 1 (fin), proportionnelle à la longueur parcourue (§8.2). Hors de \[0, 1\], `t` n'est valide que sur un chemin fermé (modulo 1).
 - `pathX` et `pathY` retournent des coordonnées dans le repère de la scène, sans conversion.
+- `pathPos` retourne le point `{x, y}` correspondant dans le repère de la scène ; il permet de récupérer les deux coordonnées en une expression de type point.
 - `pathAngle` retourne la tangente en degrés, sens horaire à l'écran, 0 pointant vers la droite (+x). C'est un scalaire valide dans une expression arithmétique : `"rotation": "circuit.pathAngle(main, 0.5) + 90"`.
 - `t` est un nombre littéral. Il n'existe pas de forme à `t` animé : ce rôle revient à `travel`.
 

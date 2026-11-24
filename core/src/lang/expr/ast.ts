@@ -10,4 +10,4 @@ export type Expr =
   | { kind: "neg"; operand: Expr }
   | { kind: "bin"; op: BinaryOp; left: Expr; right: Expr }
   | { kind: "ref"; object: string; path: RefSegment[] }
-  | { kind: "pathFn"; object: string; fn: "pathX" | "pathY" | "pathAngle"; pathName: string; t: number };
+  | { kind: "pathFn"; object: string; fn: "pathX" | "pathY" | "pathPos" | "pathAngle"; pathName: string; t: number };
