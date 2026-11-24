@@ -66,7 +66,16 @@ export class PixiHost {
 
   destroy(): void {
     if (!this.instance) return;
-    this.instance.destroy(true, { children: true });
+    this.instance.destroy(
+      { removeView: true },
+      {
+        children: true,
+        texture: true,
+        textureSource: true,
+        context: true,
+      }
+    );
+
     this.instance = null;
     this.worldContainer = null;
   }
