@@ -184,6 +184,12 @@ Texte sur une ligne. Les dimensions sont **calculées** par le moteur (mesure r�
 | `fontSize` | nombre | 32† | > 0 | oui | Taille en unités de scène (la boîte est remesurée). |
 | `fontFamily` | chaîne | `sans-serif`† | — | non | Famille de police. |
 | `fontWeight` | énumération | `bold`† | `normal` · `bold` | non | Graisse. |
+| `margin` | nombre | 0 | ≥ 0 | non | Marge uniforme autour du bloc texte. |
+| `marginTop`, `marginBottom`, `marginLeft`, `marginRight` | nombre | 0 | ≥ 0 | non | Marge par côté ; une valeur explicite remplace le côté correspondant. |
+| `marginHorizontal` | nombre | 0 | ≥ 0 | non | Raccourci pour gauche et droite. |
+| `marginVertical` | nombre | 0 | ≥ 0 | non | Raccourci pour haut et bas. |
+| `frame` | chaîne | `none` | `none` ou une couleur, éventuellement suivie d'une épaisseur positive en `px` (défaut : `1px`) | non | Contour rectangulaire de la boîte du texte. |
+| `highlight` | chaîne | `none` | `none` ou une couleur | non | Fond coloré derrière la boîte du texte. |
 | `width` | nombre | mesurée | lecture seule | lecture seule | Largeur mesurée. |
 | `height` | nombre | mesurée | lecture seule | lecture seule | Hauteur mesurée. |
 
@@ -207,9 +213,13 @@ Texte sur une ligne. Les dimensions sont **calculées** par le moteur (mesure r�
 
 - Le texte se change par **`set`** : `animate text` est refusé (`E_PROPERTY_NOT_ANIMATABLE`).
 - `width` et `height` sont en **lecture seule** : on ne dimensionne pas un texte, on change `fontSize`.
+- `x` et `y` positionnent le coin haut-gauche de la boîte incluant les marges ; le texte est décalé par `marginLeft` et `marginTop`.
+- `width` et `height` incluent les marges. Les ancres, le chemin, `frame` et `highlight` utilisent cette boîte complète.
 - `animate fontSize` remesure la boîte à chaque image : toute ancre ou `bind` qui s'appuie sur ce texte suit.
+- Les raccourcis et les côtés se chevauchant ne peuvent pas être définis ensemble dans la même action ; un `set` ultérieur peut remplacer les marges concernées. Un raccourci ne peut être lu que si les côtés qu'il couvre ont la même valeur.
 - Une seule ligne : pas de retour à la ligne géré par le moteur†.
-- Pas de `fill`, `stroke` ni `strokeWidth` sur `text` (choix du moteur †).
+- `frame` et `highlight` utilisent les formats de couleur décrits au §2.6 ; l'épaisseur de `frame` doit être strictement positive.
+- Pas de `fill`, `stroke` ni `strokeWidth` sur `text` : `frame` et `highlight` décorent la boîte mesurée du texte, pas le contour des glyphes.
 - Une ancre de texte peut être lue dès la création : `"topLeft": "title.bottomLeft"` fonctionne parce que la taille est connue tout de suite.
 
 ### `image`
@@ -906,7 +916,7 @@ Ancre **invisible** : centre d'orbite, repère mobile. N'a aucun rendu.
 | Primitive | Animables | Non animables (`set` seulement) | Lecture seule |
 |---|---|---|---|
 | `rectangle` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, `width`, `height`, `fill`, `stroke`, `strokeWidth`, 9 ancres | `pivot` | — |
-| `text` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, `color`, `fontSize`, 9 ancres | `pivot`, `text`, `fontFamily`, `fontWeight` | `width`, `height` |
+| `text` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, `color`, `fontSize`, 9 ancres | `pivot`, `text`, `fontFamily`, `fontWeight`, `margin`, `marginTop`, `marginBottom`, `marginLeft`, `marginRight`, `marginHorizontal`, `marginVertical`, `frame`, `highlight` | `width`, `height` |
 | `image` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, `width`, `height`, 9 ancres | `pivot`, `url` | — |
 | `group` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, 9 ancres | `pivot`, `layout`, `gap`, `margin` | — |
 | `circle` | `x`, `y`, `pos`, `rotation`, `scale`, `opacity`, `radius`, `fill`, `stroke`, `strokeWidth` | `pivot` | — |

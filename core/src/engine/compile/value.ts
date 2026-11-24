@@ -9,6 +9,7 @@ import { registerSceneViewCompilers } from "@/engine/compile/sceneView";
 import type { Evaluator } from "@/engine/program";
 import type { PropSpec, StateValue } from "@/model/values";
 import type { World } from "@/model/world";
+import { registerTextDecorationCompilers } from "@/engine/compile/textDecorations";
 
 export interface CompileValueContext {
   scope: AnalyzeScope;
@@ -25,6 +26,7 @@ export type CustomCompiler = (
 
 export const CUSTOM_COMPILERS: Record<string, CustomCompiler> = {};
 registerSceneViewCompilers(CUSTOM_COMPILERS);
+registerTextDecorationCompilers(CUSTOM_COMPILERS);
 
 export function compileValue(
   spec: PropSpec,

@@ -144,7 +144,10 @@ Tous les objets instensaciables partagent un ensemble de propriétés de base (`
   - `fontSize` (taille de police $> 0$).
   - `fontFamily` (police, ex: `"sans-serif"`).
   - `fontWeight` (`"normal"` ou `"bold"`).
-  - `width`, `height` (en lecture seule, calculés automatiquement via le mesureur de texte).
+  - `margin` (marge uniforme) ; `marginTop`, `marginBottom`, `marginLeft`, `marginRight` (par côté) ; `marginHorizontal` (gauche/droite) ; `marginVertical` (haut/bas). Toutes sont non négatives et valent `0` par défaut.
+  - `frame` (`"none"` ou une couleur avec épaisseur optionnelle en `px`, 1 px par défaut).
+  - `highlight` (`"none"` ou une couleur dessinée derrière le texte).
+  - `width`, `height` (en lecture seule, texte mesuré plus les marges).
 - **Ancres** : 9 ancres standard (`topLeft` à `bottomRight`).
 - **Effets** : `reveal` (`REVEAL_FADE`, effet `"fade"`).
 

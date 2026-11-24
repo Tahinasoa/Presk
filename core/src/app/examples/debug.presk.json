@@ -1,8 +1,8 @@
 {
     "version": "1.0",
     "scene": {
-        "width": 300,
-        "height": 300,
+        "width": 900,
+        "height": 480,
         "background": "blue"
     },
     "steps": [
@@ -22,6 +22,117 @@
             "properties" : {
                 "text": " world",
                 "reveal" : true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleNone",
+            "properties": {
+                "text": "none / none",
+                "fontSize": 18,
+                "x": 360,
+                "y": 24,
+                "frame": "none",
+                "highlight": "none",
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleFrameDefaultWidth",
+            "properties": {
+                "text": "named frame (default 1px)",
+                "fontSize": 18,
+                "x": 360,
+                "y": 70,
+                "frame": "red",
+                "highlight": "none",
+                "margin": 6,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleNamedColors",
+            "properties": {
+                "text": "named colors + 2px frame",
+                "fontSize": 18,
+                "x": 360,
+                "y": 116,
+                "frame": "blue 2px",
+                "highlight": "yellow",
+                "marginHorizontal": 10,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleShortHex",
+            "properties": {
+                "text": "#RGB frame + #RGBA highlight",
+                "fontSize": 18,
+                "x": 360,
+                "y": 162,
+                "frame": "#F0A",
+                "highlight": "#0F08",
+                "marginVertical": 6,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleLongHex",
+            "properties": {
+                "text": "#RRGGBB colors + 3px frame",
+                "fontSize": 18,
+                "x": 360,
+                "y": 208,
+                "frame": "#336699 3px",
+                "highlight": "#FFE066",
+                "marginTop": 4,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleAlphaHex",
+            "properties": {
+                "text": "#RRGGBBAA colors + 1.5px frame",
+                "fontSize": 18,
+                "x": 360,
+                "y": 254,
+                "frame": "#ff000080 1.5px",
+                "highlight": "#00ff0080",
+                "marginBottom": 5,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleHighlightOnly",
+            "properties": {
+                "text": "highlight only",
+                "fontSize": 18,
+                "x": 360,
+                "y": 300,
+                "frame": "none",
+                "highlight": "orange",
+                "marginLeft": 8,
+                "reveal": true
+            }
+        },{
+            "action": "create",
+            "type": "text",
+            "target": "styleFrameOnly",
+            "properties": {
+                "text": "frame only",
+                "fontSize": 18,
+                "x": 360,
+                "y": 346,
+                "frame": "silver 1px",
+                "highlight": "none",
+                "marginRight": 8,
+                "reveal": true
             }
         },{
             "action": "animate",

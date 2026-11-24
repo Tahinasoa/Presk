@@ -37,6 +37,24 @@ describe("compileProperties", () => {
     expect(codes(compile({ zzz: 1 }, "set", SCENE_DEF))).toEqual(["E_SCENE_PROPERTY"]);
   });
 
+  it("validates text frame and highlight styles", () => {
+    expect(codes(compile({ frame: "blue 2px", highlight: "#ff0" }, "create", TEXT_DEF))).toEqual([]);
+    expect(codes(compile({ frame: "blue 0px" }, "create", TEXT_DEF))).toEqual(["E_VALUE_RANGE"]);
+    expect(codes(compile({ highlight: "not-a-color" }, "create", TEXT_DEF))).toEqual(["E_COLOR_INVALID"]);
+  });
+
+  it("validates text margins and overlapping shorthands", () => {
+    expect(codes(compile({ margin: 8 }, "create", TEXT_DEF))).toEqual([]);
+    expect(codes(compile({
+      marginHorizontal: 12,
+      marginTop: 4,
+      marginBottom: 6,
+    }, "create", TEXT_DEF))).toEqual([]);
+    expect(codes(compile({ marginVertical: -1 }, "set", TEXT_DEF))).toEqual(["E_VALUE_RANGE"]);
+    expect(codes(compile({ margin: 4, marginLeft: 8 }, "create", TEXT_DEF))).toEqual(["E_PROPERTY_DUPLICATE"]);
+    expect(codes(compile({ marginHorizontal: 4 }, "animate", TEXT_DEF))).toEqual(["E_PROPERTY_NOT_ANIMATABLE"]);
+  });
+
   it("compiles writable anchors and rejects equivalent writes", () => {
     expect(compile({ topRight: "a.center" }, "set").entries?.[0]?.name).toBe("topRight");
     expect(codes(compile({ pos: "a.topLeft", x: 3 }, "set"))).toEqual(["E_PROPERTY_DUPLICATE"]);
